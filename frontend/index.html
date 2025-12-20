@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gogobe - ×”×©×•×•××ª ×ž×—×™×¨×™×</title>
+    <title>Gogobe - השוואת מחירים</title>
     <link rel="stylesheet" href="/static/styles.css">
     <style>
         /* Main Navigation */
@@ -29,16 +29,17 @@
         <div class="nav-container">
             <div class="nav-content">
                 <a href="/dashboard.html" class="nav-brand">
-                    <span>ðŸ›’</span>
+                    <span>🛒</span>
                     <span>Gogobe</span>
                 </a>
                     <div class="nav-links">
-                        <a href="/dashboard.html" class="nav-link">ðŸ  ×“×£ ×”×‘×™×ª</a>
-                        <a href="/" class="nav-link active">ðŸ“¦ ×ž×•×¦×¨×™×</a>
-                        <a href="/prices.html" class="nav-link">ðŸ’° ×ž×—×™×¨×™×</a>
-                        <a href="/categories.html" class="nav-link">ðŸ“‚ ×§×˜×’×•×¨×™×•×ª</a>
-                        <a href="/stores.html" class="nav-link">ðŸª ×¨×©×ª×•×ª ×•×¡× ×™×¤×™×</a>`n                    <a href="/data-sources.html" class="nav-link">ðŸ“¥ ×ž×§×•×¨×•×ª × ×ª×•× ×™×</a>
-                        <a href="/errors.html" class="nav-link">ðŸ” Errors</a>
+                        <a href="/dashboard.html" class="nav-link">🏠 דף הבית</a>
+                        <a href="/" class="nav-link active">📦 מוצרים</a>
+                        <a href="/prices.html" class="nav-link">💰 מחירים</a>
+                        <a href="/categories.html" class="nav-link">📂 קטגוריות</a>
+                        <a href="/stores.html" class="nav-link">🏪 רשתות וסניפים</a>
+                        <a href="/data-sources.html" class="nav-link">📥 מקורות נתונים</a>
+                        <a href="/errors.html" class="nav-link">🔍 Errors</a>
                     </div>
             </div>
         </div>
@@ -47,21 +48,21 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <h1 class="logo">ðŸ” Gogobe</h1>
-                <p class="tagline">×”×©×•×•××ª ×ž×—×™×¨×™× ×—×›×ž×”</p>
+                <h1 class="logo">🔍 Gogobe</h1>
+                <p class="tagline">השוואת מחירים חכמה</p>
             </div>
             <div class="stats-bar">
                 <div class="stat">
                     <span class="stat-value" id="total-products">-</span>
-                    <span class="stat-label">×ž×•×¦×¨×™×</span>
+                    <span class="stat-label">מוצרים</span>
                 </div>
                 <div class="stat">
                     <span class="stat-value" id="total-suppliers">-</span>
-                    <span class="stat-label">×¡×¤×§×™×</span>
+                    <span class="stat-label">ספקים</span>
                 </div>
                 <div class="stat">
                     <span class="stat-value" id="total-prices">-</span>
-                    <span class="stat-label">×ž×—×™×¨×™×</span>
+                    <span class="stat-label">מחירים</span>
                 </div>
             </div>
         </div>
@@ -74,59 +75,45 @@
                 <input 
                     type="text" 
                     id="search-input" 
-                    placeholder="×—×¤×© ×ž×•×¦×¨..."
+                    placeholder="חפש מוצר..."
                     autocomplete="off"
                 >
-                <button id="search-btn" class="btn-primary">ðŸ” ×—×¤×©</button>
+                <button id="search-btn" class="btn-primary">🔍 חפש</button>
             </div>
 
             <div class="filters">
                 <div class="filter-group">
-                    <label>×§×˜×’×•×¨×™×”:</label>
+                    <label>קטגוריה:</label>
                     <select id="category-filter">
-                        <option value="">×”×›×œ</option>
+                        <option value="">הכל</option>
                     </select>
                 </div>
 
                 <div class="filter-group">
-                    <label>×¡×¤×§:</label>
+                    <label>ספק:</label>
                     <select id="supplier-filter">
-                        <option value="">×”×›×œ</option>
+                        <option value="">הכל</option>
                     </select>
                 </div>
 
                 <div class="filter-group">
-                    <label>×ž×—×™×¨ ×ž×™× ×™×ž×œ×™:</label>
+                    <label>מחיר מינימלי:</label>
                     <input type="number" id="min-price" placeholder="0" min="0" step="10">
                 </div>
 
                 <div class="filter-group">
-                    <label>×ž×—×™×¨ ×ž×§×¡×™×ž×œ×™:</label>
+                    <label>מחיר מקסימלי:</label>
                     <input type="number" id="max-price" placeholder="1000" min="0" step="10">
                 </div>
 
                 <div class="filter-group">
-                    <label>×ž×˜×‘×¢:</label>
-                    <select id="currency-filter">
-                        <option value="ILS" selected>ILS (â‚ª)</option>
-                        <option value="USD">USD ($)</option>
-                        <option value="EUR">EUR (â‚¬)</option>
-                        <option value="GBP">GBP (Â£)</option>
+                    <label>מיין לפי:</label>
+                    <select id="sort-by">
+                        <option value="price_asc">מחיר: מהנמוך לגבוה</option>
+                        <option value="price_desc">מחיר: מהגבוה לנמוך</option>
+                        <option value="name">שם מוצר</option>
                     </select>
                 </div>
-
-                <div class="filter-group">
-                    <label>×ž×™×•×Ÿ:</label>
-                    <select id="sort-filter">
-                        <option value="price_asc">×ž×—×™×¨: × ×ž×•×š ×œ×’×‘×•×”</option>
-                        <option value="price_desc">×ž×—×™×¨: ×’×‘×•×” ×œ× ×ž×•×š</option>
-                        <option value="name_asc">×©×: ×-×ª</option>
-                        <option value="name_desc">×©×: ×ª-×</option>
-                        <option value="newest">×”×—×“×©×™× ×‘×™×•×ª×¨</option>
-                    </select>
-                </div>
-
-                <button id="clear-filters" class="btn-secondary">ðŸ—‘ï¸ × ×§×”</button>
             </div>
         </div>
     </section>
@@ -134,88 +121,32 @@
     <!-- Results -->
     <section class="results-section">
         <div class="container">
-            <!-- Loading -->
+            <div class="results-header">
+                <h2 id="results-title">מוצרים</h2>
+                <span id="results-count"></span>
+            </div>
+
             <div id="loading" class="loading" style="display: none;">
                 <div class="spinner"></div>
-                <p>×˜×•×¢×Ÿ × ×ª×•× ×™×...</p>
+                <p>טוען מוצרים...</p>
             </div>
 
-            <!-- Error -->
-            <div id="error" class="error-box" style="display: none;"></div>
+            <div id="error" class="error-message" style="display: none;"></div>
 
-            <!-- Results info -->
-            <div id="results-info" class="results-info" style="display: none;">
-                <span id="results-count">0 ×ª×•×¦××•×ª</span>
-                <span id="results-query"></span>
-                <div class="view-toggle">
-                    <button id="view-grid" class="view-btn" title="×ª×¦×•×’×ª ×›×¨×˜×™×¡×™×">
-                        ðŸ”²
-                    </button>
-                    <button id="view-table" class="view-btn active" title="×ª×¦×•×’×ª ×˜×‘×œ×”">
-                        ðŸ“Š
-                    </button>
-                </div>
-            </div>
+            <div id="results-grid" class="results-grid"></div>
 
-            <!-- Products Grid -->
-            <div id="products-grid" class="products-grid" style="display: none;"></div>
-
-            <!-- Products Table -->
-            <div id="products-table-container" class="products-table-container">
-                <table id="products-table" class="products-table">
-                    <thead>
-                        <tr>
-                            <th>×©× ×”×ž×•×¦×¨</th>
-                            <th>×‘×¨×§×•×“</th>
-                            <th>×™×¦×¨×Ÿ/×ž×•×ª×’</th>
-                            <th>×§×˜×’×•×¨×™×”</th>
-                            <th>×—× ×•×™×•×ª</th>
-                            <th>×ž×—×™×¨ ×ž×™× ×™×ž×œ×™</th>
-                            <th>×ž×—×™×¨ ×ž×§×¡×™×ž×œ×™</th>
-                            <th>×ž×ž×•×¦×¢</th>
-                            <th>×¢×•×“×›×Ÿ</th>
-                            <th>×¤×¢×•×œ×•×ª</th>
-                        </tr>
-                    </thead>
-                    <tbody id="products-table-body">
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Pagination -->
-            <div id="pagination" class="pagination" style="display: none;"></div>
-
-            <!-- No Results -->
-            <div id="no-results" class="no-results" style="display: none;">
-                <h2>ðŸ˜” ×œ× × ×ž×¦××• ×ª×•×¦××•×ª</h2>
-                <p>× ×¡×” ×œ×©× ×•×ª ××ª ×”×—×™×¤×•×© ××• ×”×¡×™× ×•× ×™×</p>
-            </div>
+            <div id="pagination" class="pagination"></div>
         </div>
     </section>
 
     <!-- Product Modal -->
-    <div id="product-modal" class="modal" style="display: none;">
-        <div class="modal-overlay"></div>
+    <div id="product-modal" class="modal">
         <div class="modal-content">
-            <button class="modal-close">&times;</button>
+            <span class="modal-close">&times;</span>
             <div id="modal-body"></div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>Â© 2024 Gogobe - ×ž×¢×¨×›×ª ×”×©×•×•××ª ×ž×—×™×¨×™× ×ž×§×•×ž×™×ª</p>
-            <p class="api-status">
-                API: <span id="api-status">×‘×•×“×§...</span>
-                | <a href="price-sources.html" style="color: #10b981; text-decoration: none;">ðŸ“Š × ×™×”×•×œ ×ž×§×•×¨×•×ª</a>
-                | <a href="errors.html" style="color: #fbbf24; text-decoration: none;">ðŸ” Error Monitor</a>
-            </p>
-        </div>
-    </footer>
-
     <script src="/static/app.js"></script>
 </body>
 </html>
-
-

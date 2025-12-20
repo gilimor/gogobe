@@ -3,207 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>×ž×—×™×¨×™× - Gogobe</title>
+    <title>מחירים - Gogobe</title>
     <link rel="stylesheet" href="/static/styles.css">
     <style>
-        .filters {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .main-nav {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
+        .nav-container { max-width: 1600px; margin: 0 auto; padding: 0; }
+        .nav-content { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
+        .nav-brand { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-link { color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: background 0.3s; font-size: 14px; font-weight: 500; }
+        .nav-link:hover { background: rgba(255,255,255,0.2); }
+        .nav-link.active { background: rgba(255,255,255,0.3); }
         
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .filter-group label {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        
-        .filter-group input,
-        .filter-group select {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .filter-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-        
-        .btn-primary {
-            background: #4CAF50;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #45a049;
-        }
-        
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-        
-        .btn-secondary:hover {
-            background: #e0e0e0;
-        }
-        
-        .price-table {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .price-table table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .price-table th {
-            background: #4CAF50;
-            color: white;
-            padding: 12px;
-            text-align: right;
-            font-weight: 600;
-        }
-        
-        .price-table td {
-            padding: 12px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .price-table tr:hover {
-            background: #f9f9f9;
-        }
-        
-        .price-value {
-            font-weight: 700;
-            color: #4CAF50;
-            font-size: 1.1em;
-        }
-        
-        .date-time {
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        .product-link {
-            color: #2196F3;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .product-link:hover {
-            text-decoration: underline;
-        }
-        
-        .store-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        
-        .store-name {
-            font-weight: 600;
-        }
-        
-        .store-city {
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            padding: 20px;
-        }
-        
-        .pagination button {
-            padding: 8px 16px;
-            border: 1px solid #ddd;
-            background: white;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        
-        .pagination button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .pagination .page-info {
-            font-weight: 600;
-        }
-        
-        .stats-bar {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #4CAF50;
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-        
-        .empty-state-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
-        }
+        .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
     </style>
 </head>
 <body>
@@ -211,327 +29,31 @@
         <div class="nav-container">
             <div class="nav-content">
                 <a href="/dashboard.html" class="nav-brand">
-                    <span>ðŸ›’</span>
+                    <span>🛒</span>
                     <span>Gogobe</span>
                 </a>
                 <div class="nav-links">
-                    <a href="/dashboard.html" class="nav-link">ðŸ  ×“×£ ×”×‘×™×ª</a>
-                    <a href="/" class="nav-link">ðŸ“¦ ×ž×•×¦×¨×™×</a>
-                    <a href="/prices.html" class="nav-link active">ðŸ’° ×ž×—×™×¨×™×</a>
-                    <a href="/categories.html" class="nav-link">ðŸ“‚ ×§×˜×’×•×¨×™×•×ª</a>
-                    <a href="/stores.html" class="nav-link">ðŸª ×¨×©×ª×•×ª ×•×¡× ×™×¤×™×</a>`n                    <a href="/data-sources.html" class="nav-link">ðŸ“¥ ×ž×§×•×¨×•×ª × ×ª×•× ×™×</a>
-                    <a href="/errors.html" class="nav-link">ðŸ” Errors</a>
+                    <a href="/dashboard.html" class="nav-link">🏠 דף הבית</a>
+                    <a href="/" class="nav-link">📦 מוצרים</a>
+                    <a href="/prices.html" class="nav-link active">💰 מחירים</a>
+                    <a href="/categories.html" class="nav-link">📂 קטגוריות</a>
+                    <a href="/stores.html" class="nav-link">🏪 רשתות וסניפים</a>
+                    <a href="/data-sources.html" class="nav-link">📥 מקורות נתונים</a>
+                    <a href="/errors.html" class="nav-link">🔍 Errors</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <header class="page-header">
-            <h1>ðŸ’° ×ž×—×™×¨×™×</h1>
-            <p>×›×œ ×¨×©×•×ž×•×ª ×”×ž×—×™×¨ ×‘×ž×¢×¨×›×ª - ×ž×•×¦×¨ + ×¡× ×™×£ + ×ª××¨×™×š + ×ž×—×™×¨</p>
-        </header>
-
-        <!-- Statistics Bar -->
-        <div class="stats-bar" id="statsBar">
-            <div class="stat-item">
-                <div class="stat-value" id="totalPrices">-</div>
-                <div class="stat-label">×¡×”"×› ×¨×©×•×ž×•×ª ×ž×—×™×¨</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value" id="uniqueProducts">-</div>
-                <div class="stat-label">×ž×•×¦×¨×™× ×™×™×—×•×“×™×™×</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value" id="uniqueStores">-</div>
-                <div class="stat-label">×¡× ×™×¤×™×</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value" id="avgPrice">-</div>
-                <div class="stat-label">×ž×—×™×¨ ×ž×ž×•×¦×¢</div>
-            </div>
-        </div>
-
-        <!-- Filters -->
-        <div class="filters">
-            <h3>ðŸ” ×¡×™× ×•×Ÿ ×ž×—×™×¨×™×</h3>
-            <div class="filter-grid">
-                <div class="filter-group">
-                    <label>×ž×—×™×¨ ×ž×™× ×™×ž×•×</label>
-                    <input type="number" id="minPrice" placeholder="0.00" step="0.01">
-                </div>
-                <div class="filter-group">
-                    <label>×ž×—×™×¨ ×ž×§×¡×™×ž×•×</label>
-                    <input type="number" id="maxPrice" placeholder="999.00" step="0.01">
-                </div>
-                <div class="filter-group">
-                    <label>×ž×ª××¨×™×š</label>
-                    <input type="date" id="fromDate">
-                </div>
-                <div class="filter-group">
-                    <label>×¢×“ ×ª××¨×™×š</label>
-                    <input type="date" id="toDate">
-                </div>
-                <div class="filter-group">
-                    <label>×¨×©×ª</label>
-                    <select id="chainFilter">
-                        <option value="">×›×œ ×”×¨×©×ª×•×ª</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>×¡× ×™×£</label>
-                    <select id="storeFilter">
-                        <option value="">×›×œ ×”×¡× ×™×¤×™×</option>
-                    </select>
-                </div>
-            </div>
-            <div class="filter-actions">
-                <button class="btn btn-primary" onclick="applyFilters()">ðŸ” ×—×¤×©</button>
-                <button class="btn btn-secondary" onclick="clearFilters()">ðŸ”„ × ×§×”</button>
-            </div>
-        </div>
-
-        <!-- Loading State -->
-        <div class="loading" id="loadingState" style="display: none;">
-            <p>â³ ×˜×•×¢×Ÿ ×ž×—×™×¨×™×...</p>
-        </div>
-
-        <!-- Prices Table -->
-        <div class="price-table" id="priceTable" style="display: none;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>×ž×•×¦×¨</th>
-                        <th>×‘×¨×§×•×“</th>
-                        <th>×¡× ×™×£</th>
-                        <th>×¢×™×¨</th>
-                        <th>×¨×©×ª</th>
-                        <th>×ž×—×™×¨</th>
-                        <th>×ª××¨×™×š ×¡×¨×™×§×”</th>
-                    </tr>
-                </thead>
-                <tbody id="priceTableBody">
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Empty State -->
-        <div class="empty-state" id="emptyState" style="display: none;">
-            <div class="empty-state-icon">ðŸ“Š</div>
-            <h3>××™×Ÿ ×ž×—×™×¨×™× ×œ×”×¦×’×”</h3>
-            <p>× ×¡×” ×œ×©× ×•×ª ××ª ×”×¤×™×œ×˜×¨×™× ××• ×œ×”×¨×™×¥ ×™×™×‘×•× ×—×“×©</p>
-        </div>
-
-        <!-- Pagination -->
-        <div class="pagination" id="pagination" style="display: none;">
-            <button id="prevPage" onclick="prevPage()">â† ×”×§×•×“×</button>
-            <span class="page-info">
-                ×¢×ž×•×“ <strong id="currentPage">1</strong> ×ž×ª×•×š <strong id="totalPages">1</strong>
-            </span>
-            <button id="nextPage" onclick="nextPage()">×”×‘× â†’</button>
+        <h1>ניהול מחירים</h1>
+        <div id="prices-content">
+            <p>טוען מחירים...</p>
         </div>
     </div>
 
     <script>
-        let currentPage = 1;
-        let totalPages = 1;
-        let perPage = 50;
-
-        // Load page
-        async function loadPrices(page = 1) {
-            const loadingState = document.getElementById('loadingState');
-            const priceTable = document.getElementById('priceTable');
-            const emptyState = document.getElementById('emptyState');
-            const pagination = document.getElementById('pagination');
-
-            loadingState.style.display = 'block';
-            priceTable.style.display = 'none';
-            emptyState.style.display = 'none';
-            pagination.style.display = 'none';
-
-            // Build query params
-            const params = new URLSearchParams({
-                page: page,
-                per_page: perPage
-            });
-
-            const minPrice = document.getElementById('minPrice').value;
-            const maxPrice = document.getElementById('maxPrice').value;
-            const fromDate = document.getElementById('fromDate').value;
-            const toDate = document.getElementById('toDate').value;
-            const chainId = document.getElementById('chainFilter').value;
-            const storeId = document.getElementById('storeFilter').value;
-
-            if (minPrice) params.append('min_price', minPrice);
-            if (maxPrice) params.append('max_price', maxPrice);
-            if (fromDate) params.append('from_date', fromDate);
-            if (toDate) params.append('to_date', toDate);
-            if (chainId) params.append('chain_id', chainId);
-            if (storeId) params.append('store_id', storeId);
-
-            try {
-                const response = await fetch(`/api/prices?${params}`);
-                const data = await response.json();
-
-                loadingState.style.display = 'none';
-
-                if (data.prices.length === 0) {
-                    emptyState.style.display = 'block';
-                    return;
-                }
-
-                // Render table
-                const tbody = document.getElementById('priceTableBody');
-                tbody.innerHTML = data.prices.map(price => `
-                    <tr>
-                        <td>
-                            <a href="/?product=${price.product_id}" class="product-link">
-                                ${price.product_name || '×œ× ×™×“×•×¢'}
-                            </a>
-                        </td>
-                        <td>${price.product_ean || '-'}</td>
-                        <td>
-                            <div class="store-info">
-                                <span class="store-name">${price.store_name || price.supplier_name || '-'}</span>
-                                ${price.bikoret_no ? `<span class="store-city">×‘×™×§×•×¨×ª: ${price.bikoret_no}</span>` : ''}
-                            </div>
-                        </td>
-                        <td>${price.store_city || '-'}</td>
-                        <td>${price.chain_name || '-'}</td>
-                        <td class="price-value">${formatPrice(price.price, price.currency)}</td>
-                        <td class="date-time">${formatDateTime(price.scraped_at)}</td>
-                    </tr>
-                `).join('');
-
-                priceTable.style.display = 'block';
-
-                // Update pagination
-                currentPage = data.pagination.page;
-                totalPages = data.pagination.pages;
-                document.getElementById('currentPage').textContent = currentPage;
-                document.getElementById('totalPages').textContent = totalPages;
-                document.getElementById('prevPage').disabled = currentPage === 1;
-                document.getElementById('nextPage').disabled = currentPage === totalPages;
-                pagination.style.display = 'flex';
-
-            } catch (error) {
-                console.error('Error loading prices:', error);
-                loadingState.style.display = 'none';
-                emptyState.style.display = 'block';
-            }
-        }
-
-        async function loadStats() {
-            try {
-                const response = await fetch('/api/stats');
-                const data = await response.json();
-                
-                document.getElementById('totalPrices').textContent = formatNumber(data.total_prices);
-                document.getElementById('uniqueProducts').textContent = formatNumber(data.total_products);
-                document.getElementById('uniqueStores').textContent = formatNumber(data.total_suppliers);
-                document.getElementById('avgPrice').textContent = data.price_stats?.avg_price 
-                    ? `â‚ª${parseFloat(data.price_stats.avg_price).toFixed(2)}`
-                    : '-';
-            } catch (error) {
-                console.error('Error loading stats:', error);
-            }
-        }
-
-        async function loadChains() {
-            try {
-                const response = await fetch('/api/chains');
-                const data = await response.json();
-                const select = document.getElementById('chainFilter');
-                
-                data.chains.forEach(chain => {
-                    const option = document.createElement('option');
-                    option.value = chain.id;
-                    option.textContent = chain.name_he || chain.name;
-                    select.appendChild(option);
-                });
-            } catch (error) {
-                console.error('Error loading chains:', error);
-            }
-        }
-
-        async function loadStores() {
-            const chainId = document.getElementById('chainFilter').value;
-            const select = document.getElementById('storeFilter');
-            select.innerHTML = '<option value="">×›×œ ×”×¡× ×™×¤×™×</option>';
-            
-            if (!chainId) return;
-
-            try {
-                const response = await fetch(`/api/chains/${chainId}/stores`);
-                const data = await response.json();
-                
-                data.stores.forEach(store => {
-                    const option = document.createElement('option');
-                    option.value = store.id;
-                    option.textContent = `${store.name_he || store.name} - ${store.city || ''}`;
-                    select.appendChild(option);
-                });
-            } catch (error) {
-                console.error('Error loading stores:', error);
-            }
-        }
-
-        function applyFilters() {
-            loadPrices(1);
-        }
-
-        function clearFilters() {
-            document.getElementById('minPrice').value = '';
-            document.getElementById('maxPrice').value = '';
-            document.getElementById('fromDate').value = '';
-            document.getElementById('toDate').value = '';
-            document.getElementById('chainFilter').value = '';
-            document.getElementById('storeFilter').value = '';
-            loadPrices(1);
-        }
-
-        function prevPage() {
-            if (currentPage > 1) {
-                loadPrices(currentPage - 1);
-            }
-        }
-
-        function nextPage() {
-            if (currentPage < totalPages) {
-                loadPrices(currentPage + 1);
-            }
-        }
-
-        function formatPrice(price, currency = 'ILS') {
-            const symbol = currency === 'ILS' ? 'â‚ª' : '$';
-            return `${symbol}${parseFloat(price).toFixed(2)}`;
-        }
-
-        function formatDateTime(datetime) {
-            if (!datetime) return '-';
-            const date = new Date(datetime);
-            return date.toLocaleString('he-IL', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-        }
-
-        function formatNumber(num) {
-            return new Intl.NumberFormat('he-IL').format(num);
-        }
-
-        // Event listeners
-        document.getElementById('chainFilter').addEventListener('change', loadStores);
-
-        // Initialize
-        loadStats();
-        loadChains();
-        loadPrices();
+        // Prices page content will be loaded dynamically
     </script>
 </body>
 </html>
-
-

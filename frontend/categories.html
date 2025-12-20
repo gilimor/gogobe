@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>×§×˜×’×•×¨×™×•×ª - Gogobe</title>
+    <title>קטגוריות - Gogobe</title>
     <link rel="stylesheet" href="/static/styles.css">
     <style>
         /* Main Navigation */
@@ -89,81 +89,32 @@
         <div class="nav-container">
             <div class="nav-content">
                 <a href="/dashboard.html" class="nav-brand">
-                    <span>ðŸ›’</span>
+                    <span>🛒</span>
                     <span>Gogobe</span>
                 </a>
                 <div class="nav-links">
-                    <a href="/dashboard.html" class="nav-link">ðŸ  ×“×£ ×”×‘×™×ª</a>
-                    <a href="/" class="nav-link">ðŸ“¦ ×ž×•×¦×¨×™×</a>
-                    <a href="/prices.html" class="nav-link">ðŸ’° ×ž×—×™×¨×™×</a>
-                    <a href="/categories.html" class="nav-link active">ðŸ“‚ ×§×˜×’×•×¨×™×•×ª</a>
-                    <a href="/stores.html" class="nav-link">ðŸª ×¨×©×ª×•×ª ×•×¡× ×™×¤×™×</a>`n                    <a href="/data-sources.html" class="nav-link">ðŸ“¥ ×ž×§×•×¨×•×ª × ×ª×•× ×™×</a>
-                    <a href="/errors.html" class="nav-link">ðŸ” Errors</a>
+                    <a href="/dashboard.html" class="nav-link">🏠 דף הבית</a>
+                    <a href="/" class="nav-link">📦 מוצרים</a>
+                    <a href="/prices.html" class="nav-link">💰 מחירים</a>
+                    <a href="/categories.html" class="nav-link active">📂 קטגוריות</a>
+                    <a href="/stores.html" class="nav-link">🏪 רשתות וסניפים</a>
+                    <a href="/data-sources.html" class="nav-link">📥 מקורות נתונים</a>
+                    <a href="/errors.html" class="nav-link">🔍 Errors</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <div class="page-container">
-        <h1>ðŸ“‚ ×§×˜×’×•×¨×™×•×ª</h1>
-        <p>× ×™×”×•×œ ×§×˜×’×•×¨×™×•×ª ×”×™×¨×¨×›×™×•×ª ×•×ž×•×¦×¨×™×”×Ÿ</p>
-        
-        <div class="category-tree" id="categories-container">
-            <div style="text-align: center; padding: 40px;">
-                <div class="spinner"></div>
-                <p>×˜×•×¢×Ÿ ×§×˜×’×•×¨×™×•×ª...</p>
-            </div>
+        <div class="category-tree">
+            <h1>קטגוריות מוצרים</h1>
+            <div id="category-list"></div>
         </div>
     </div>
 
     <script>
-        const API_BASE = 'http://localhost:8000';
-
-        async function loadCategories() {
-            try {
-                const response = await fetch(`${API_BASE}/api/categories`);
-                const data = await response.json();
-                const categories = data.categories || [];
-                
-                displayCategories(categories);
-            } catch (error) {
-                console.error('Failed to load categories:', error);
-                document.getElementById('categories-container').innerHTML = 
-                    '<div style="text-align:center;padding:40px;color:#ef4444;">×©×’×™××” ×‘×˜×¢×™× ×ª ×§×˜×’×•×¨×™×•×ª</div>';
-            }
-        }
-
-        function displayCategories(categories) {
-            const container = document.getElementById('categories-container');
-            
-            if (categories.length === 0) {
-                container.innerHTML = '<div style="text-align:center;padding:40px;color:#6b7280;">××™×Ÿ ×§×˜×’×•×¨×™×•×ª</div>';
-                return;
-            }
-            
-            container.innerHTML = categories.map(cat => `
-                <div class="category-item">
-                    <div class="category-header">
-                        <div class="category-name">${escapeHtml(cat.name)}</div>
-                        <div class="category-stats">
-                            <span class="badge badge-products">${(cat.product_count || 0).toLocaleString()} ×ž×•×¦×¨×™×</span>
-                            ${cat.vertical_name ? `<span style="color:#9ca3af;">${escapeHtml(cat.vertical_name)}</span>` : ''}
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function escapeHtml(text) {
-            if (!text) return '';
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        document.addEventListener('DOMContentLoaded', loadCategories);
+        // Categories page content will be loaded dynamically
+        document.getElementById('category-list').innerHTML = '<p>טוען קטגוריות...</p>';
     </script>
 </body>
 </html>
-
-
