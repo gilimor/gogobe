@@ -22,6 +22,67 @@
         .nav-link.active { background: rgba(255,255,255,0.3); }
         
         .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
+        
+        .prices-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #f9fafb;
+            padding: 12px;
+            text-align: right;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        tr:hover {
+            background: #f9fafb;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+        
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .pagination button {
+            padding: 8px 16px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .pagination button:hover:not(:disabled) {
+            background: #f9fafb;
+        }
+        
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -47,13 +108,118 @@
 
     <div class="container">
         <h1>ניהול מחירים</h1>
-        <div id="prices-content">
-            <p>טוען מחירים...</p>
-        </div>
+        <div id="prices-content" class="loading">טוען מחירים...</div>
+        <div id="pagination" class="pagination"></div>
     </div>
 
     <script>
-        // Prices page content will be loaded dynamically
+        const API_BASE = '';
+        let currentPage = 1;
+        const perPage = 50;
+
+        async function loadPrices(page = 1) {
+            try {
+                const response = await fetch(`${API_BASE}/api/prices?page=${page}&per_page=${perPage}`);
+                const data = await response.json();
+                const prices = data.prices || [];
+                const pagination = data.pagination || {};
+                
+                const contentEl = document.getElementById('prices-content');
+                
+                if (prices.length === 0) {
+                    contentEl.innerHTML = '<p>אין מחירים זמינים</p>';
+                    return;
+                }
+                
+                contentEl.innerHTML = `
+                    <div class="prices-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>מוצר</th>
+                                    <th>סניף</th>
+                                    <th>רשת</th>
+                                    <th>מחיר</th>
+                                    <th>מטבע</th>
+                                    <th>עודכן</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${prices.map(price => `
+                                    <tr>
+                                        <td>${escapeHtml(price.product_name || 'ללא שם')}</td>
+                                        <td>${escapeHtml(price.store_name || '-')}</td>
+                                        <td>${escapeHtml(price.chain_name || '-')}</td>
+                                        <td>${formatPrice(price.price, price.currency)}</td>
+                                        <td>${price.currency || 'ILS'}</td>
+                                        <td>${formatDate(price.last_scraped_at || price.scraped_at)}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                
+                // Update pagination
+                updatePagination(pagination);
+                
+            } catch (error) {
+                console.error('Failed to load prices:', error);
+                document.getElementById('prices-content').innerHTML = 
+                    '<p style="color: red;">שגיאה בטעינת המחירים</p>';
+            }
+        }
+        
+        function updatePagination(pagination) {
+            const paginationEl = document.getElementById('pagination');
+            if (!pagination || pagination.pages <= 1) {
+                paginationEl.innerHTML = '';
+                return;
+            }
+            
+            const pages = [];
+            const totalPages = pagination.pages;
+            const current = pagination.page;
+            
+            // Previous button
+            pages.push(`<button ${current === 1 ? 'disabled' : ''} onclick="loadPrices(${current - 1})">← הקודם</button>`);
+            
+            // Page numbers
+            for (let i = 1; i <= Math.min(totalPages, 10); i++) {
+                pages.push(`<button ${i === current ? 'style="background: #10b981; color: white;"' : ''} onclick="loadPrices(${i})">${i}</button>`);
+            }
+            
+            if (totalPages > 10) {
+                pages.push(`<span>...</span>`);
+                pages.push(`<button onclick="loadPrices(${totalPages})">${totalPages}</button>`);
+            }
+            
+            // Next button
+            pages.push(`<button ${current === totalPages ? 'disabled' : ''} onclick="loadPrices(${current + 1})">הבא →</button>`);
+            
+            paginationEl.innerHTML = pages.join('');
+        }
+        
+        function formatPrice(price, currency = 'ILS') {
+            if (!price) return '-';
+            const symbol = currency === 'ILS' ? '₪' : currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency;
+            return `${symbol}${parseFloat(price).toFixed(2)}`;
+        }
+        
+        function formatDate(dateStr) {
+            if (!dateStr) return '-';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('he-IL');
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => loadPrices(1));
     </script>
 </body>
 </html>

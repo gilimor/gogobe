@@ -22,7 +22,67 @@
         .nav-link:hover { background: rgba(255,255,255,0.2); }
         .nav-link.active { background: rgba(255,255,255,0.3); }
         
-        .stores-page { padding: 20px; max-width: 1600px; margin: 0 auto; }
+        .stores-page { 
+            padding: 20px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+        }
+        
+        .chains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .chain-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .chain-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #1f2937;
+        }
+        
+        .chain-stats {
+            display: flex;
+            gap: 16px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .stores-list {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .store-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .store-name {
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .store-details {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
     </style>
 </head>
 <body>
@@ -48,13 +108,81 @@
 
     <div class="stores-page">
         <h1>ניהול רשתות וסניפים</h1>
-        <div id="stores-content">
-            <p>טוען נתונים...</p>
-        </div>
+        <div id="stores-content" class="loading">טוען נתונים...</div>
     </div>
 
     <script>
-        // Stores page content will be loaded dynamically
+        const API_BASE = '';
+
+        async function loadChainsAndStores() {
+            try {
+                const chainsResponse = await fetch(`${API_BASE}/api/chains`);
+                const chainsData = await chainsResponse.json();
+                const chains = chainsData.chains || [];
+                
+                const contentEl = document.getElementById('stores-content');
+                
+                if (chains.length === 0) {
+                    contentEl.innerHTML = '<p>אין רשתות זמינות</p>';
+                    return;
+                }
+                
+                // Load stores for each chain
+                const chainsWithStores = await Promise.all(
+                    chains.map(async (chain) => {
+                        try {
+                            const storesResponse = await fetch(`${API_BASE}/api/chains/${chain.id}/stores`);
+                            const storesData = await storesResponse.json();
+                            return { ...chain, stores: storesData.stores || [] };
+                        } catch {
+                            return { ...chain, stores: [] };
+                        }
+                    })
+                );
+                
+                contentEl.innerHTML = `
+                    <div class="chains-grid">
+                        ${chainsWithStores.map(chain => `
+                            <div class="chain-card">
+                                <div class="chain-name">${escapeHtml(chain.name_he || chain.name || 'ללא שם')}</div>
+                                <div class="chain-stats">
+                                    <span>${chain.active_store_count || 0} סניפים</span>
+                                    <span>${chain.product_count || 0} מוצרים</span>
+                                    <span>${chain.price_count || 0} מחירים</span>
+                                </div>
+                                ${chain.stores.length > 0 ? `
+                                    <div class="stores-list">
+                                        ${chain.stores.map(store => `
+                                            <div class="store-item">
+                                                <div class="store-name">${escapeHtml(store.name_he || store.name || 'ללא שם')}</div>
+                                                <div class="store-details">
+                                                    ${store.city ? `עיר: ${escapeHtml(store.city)}` : ''}
+                                                    ${store.product_count ? ` | ${store.product_count} מוצרים` : ''}
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('Failed to load chains:', error);
+                document.getElementById('stores-content').innerHTML = 
+                    '<p style="color: red;">שגיאה בטעינת הרשתות והסניפים</p>';
+            }
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadChainsAndStores);
     </script>
 </body>
 </html>

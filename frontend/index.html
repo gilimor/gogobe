@@ -64,6 +64,10 @@
                     <span class="stat-value" id="total-prices">-</span>
                     <span class="stat-label">מחירים</span>
                 </div>
+                <div class="stat">
+                    <span class="stat-value" id="api-status">-</span>
+                    <span class="stat-label">API</span>
+                </div>
             </div>
         </div>
     </header>
@@ -107,12 +111,28 @@
                 </div>
 
                 <div class="filter-group">
+                    <label>מטבע:</label>
+                    <select id="currency-filter">
+                        <option value="ILS">ILS (₪)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
                     <label>מיין לפי:</label>
-                    <select id="sort-by">
+                    <select id="sort-filter">
                         <option value="price_asc">מחיר: מהנמוך לגבוה</option>
                         <option value="price_desc">מחיר: מהגבוה לנמוך</option>
-                        <option value="name">שם מוצר</option>
+                        <option value="name_asc">שם: א-ת</option>
+                        <option value="name_desc">שם: ת-א</option>
+                        <option value="newest">החדש ביותר</option>
                     </select>
+                </div>
+
+                <div class="filter-group">
+                    <button id="clear-filters" class="btn-secondary">🗑️ נקה פילטרים</button>
                 </div>
             </div>
         </div>
@@ -123,7 +143,14 @@
         <div class="container">
             <div class="results-header">
                 <h2 id="results-title">מוצרים</h2>
-                <span id="results-count"></span>
+                <div id="results-info" style="display: none;">
+                    <span id="results-count"></span>
+                    <span id="results-query"></span>
+                </div>
+                <div class="view-toggle">
+                    <button id="view-grid" class="view-btn">📊 תצוגת כרטיסים</button>
+                    <button id="view-table" class="view-btn active">📋 תצוגת טבלה</button>
+                </div>
             </div>
 
             <div id="loading" class="loading" style="display: none;">
@@ -133,14 +160,39 @@
 
             <div id="error" class="error-message" style="display: none;"></div>
 
-            <div id="results-grid" class="results-grid"></div>
+            <div id="no-results" class="no-results" style="display: none;">
+                <p>לא נמצאו תוצאות</p>
+            </div>
+
+            <div id="products-grid" class="products-grid" style="display: none;"></div>
+
+            <div id="products-table-container" class="products-table-container">
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th>שם מוצר</th>
+                            <th>ברקוד</th>
+                            <th>יצרן/מותג</th>
+                            <th>קטגוריה</th>
+                            <th>חנויות</th>
+                            <th>מחיר מינימלי</th>
+                            <th>מחיר מקסימלי</th>
+                            <th>מחיר ממוצע</th>
+                            <th>עודכן</th>
+                            <th>פעולות</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body"></tbody>
+                </table>
+            </div>
 
             <div id="pagination" class="pagination"></div>
         </div>
     </section>
 
     <!-- Product Modal -->
-    <div id="product-modal" class="modal">
+    <div id="product-modal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <div id="modal-body"></div>

@@ -22,6 +22,99 @@
         .nav-link.active { background: rgba(255,255,255,0.3); }
         
         .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
+        
+        .page-header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .source-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .source-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .source-header.active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .source-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .source-body {
+            padding: 20px;
+        }
+        
+        .source-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .info-label {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .info-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .stores-table {
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #f9fafb;
+            padding: 12px;
+            text-align: right;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
     </style>
 </head>
 <body>
@@ -50,13 +143,123 @@
             <h1>מקורות נתונים</h1>
             <p>ניהול וניטור מקורות המידע למערכת</p>
         </div>
-        <div id="sources-content">
-            <p>טוען מקורות נתונים...</p>
-        </div>
+        <div id="sources-content" class="loading">טוען מקורות נתונים...</div>
     </div>
 
     <script>
-        // Data sources page content will be loaded dynamically
+        const API_BASE = '';
+
+        async function loadDataSources() {
+            try {
+                const response = await fetch(`${API_BASE}/api/data-sources/stats`);
+                const data = await response.json();
+                const sources = data.sources || [];
+                const stores = data.stores || [];
+                
+                const contentEl = document.getElementById('sources-content');
+                
+                // Display sources
+                let html = '';
+                
+                if (sources.length > 0) {
+                    html += `
+                        <div class="sources-grid">
+                            ${sources.map(source => `
+                                <div class="source-card">
+                                    <div class="source-header ${source.last_import ? 'active' : ''}">
+                                        <div class="source-name">${escapeHtml(source.source_name || 'ללא שם')}</div>
+                                    </div>
+                                    <div class="source-body">
+                                        <div class="source-info">
+                                            <span class="info-label">מוצרים:</span>
+                                            <span class="info-value">${source.total_products || 0}</span>
+                                        </div>
+                                        <div class="source-info">
+                                            <span class="info-label">מחירים:</span>
+                                            <span class="info-value">${source.total_prices || 0}</span>
+                                        </div>
+                                        <div class="source-info">
+                                            <span class="info-label">סניפים:</span>
+                                            <span class="info-value">${source.total_stores || 0}</span>
+                                        </div>
+                                        <div class="source-info">
+                                            <span class="info-label">יבוא אחרון:</span>
+                                            <span class="info-value">${formatDate(source.last_import) || 'לא זמין'}</span>
+                                        </div>
+                                        ${source.source_slug === 'kingstore' ? `
+                                            <div class="source-info">
+                                                <a href="https://kingstore.binaprojects.com/Main.aspx" target="_blank" style="color: #3b82f6; text-decoration: none;">
+                                                    🔗 פתח אתר KingStore
+                                                </a>
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+                
+                // Display stores import history
+                if (stores.length > 0) {
+                    html += `
+                        <div class="stores-table">
+                            <h2>היסטוריית יבוא לפי סניף</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>רשת</th>
+                                        <th>סניף</th>
+                                        <th>עיר</th>
+                                        <th>מוצרים</th>
+                                        <th>מחירים</th>
+                                        <th>יבוא אחרון</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${stores.map(store => `
+                                        <tr>
+                                            <td>${escapeHtml(store.chain_name || '-')}</td>
+                                            <td>${escapeHtml(store.store_name || '-')}</td>
+                                            <td>${escapeHtml(store.city || '-')}</td>
+                                            <td>${store.products || 0}</td>
+                                            <td>${store.prices || 0}</td>
+                                            <td>${formatDate(store.last_import) || '-'}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                }
+                
+                if (!html) {
+                    html = '<p>אין מקורות נתונים זמינים</p>';
+                }
+                
+                contentEl.innerHTML = html;
+                
+            } catch (error) {
+                console.error('Failed to load data sources:', error);
+                document.getElementById('sources-content').innerHTML = 
+                    '<p style="color: red;">שגיאה בטעינת מקורות הנתונים</p>';
+            }
+        }
+        
+        function formatDate(dateStr) {
+            if (!dateStr) return null;
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('he-IL') + ' ' + date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadDataSources);
     </script>
 </body>
 </html>
