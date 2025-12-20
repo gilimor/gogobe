@@ -1,0 +1,19 @@
+{
+  "total_pdfs": 1,
+  "processed": 1,
+  "failed": 0,
+  "total_products": 800,
+  "total_pages": 56,
+  "start_time": "2025-12-19T10:56:30.280311",
+  "files": [
+    {
+      "filename": "catalogue.pdf",
+      "success": true,
+      "pages": 56,
+      "products_found": 1163,
+      "products_cleaned": 800,
+      "error": null
+    }
+  ],
+  "duration_seconds": 19.415216
+}

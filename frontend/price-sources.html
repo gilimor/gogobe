@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניהול מקורות מחירים - Gogobe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .sources-container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+            color: #667eea;
+        }
+
+        .stat-card p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .sources-table {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .table-header {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-inactive {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .files-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .files-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .nav-menu {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .nav-menu a {
+            padding: 10px 20px;
+            margin: 0 5px;
+            text-decoration: none;
+            color: #667eea;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background: #667eea;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="sources-container">
+        <!-- Navigation -->
+        <div class="nav-menu">
+            <a href="index.html">🏠 עמוד ראשי</a>
+            <a href="price-sources.html" style="background: #667eea; color: white;">📊 ניהול מקורות</a>
+            <a href="errors.html">🐛 שגיאות</a>
+        </div>
+
+        <!-- Header -->
+        <div class="page-header">
+            <h1>📊 ניהול מקורות מחירים</h1>
+            <p>ניהול וניטור מקורות נתונים חיצוניים למחירים</p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-grid" id="stats">
+            <div class="stat-card">
+                <h3 id="totalSources">-</h3>
+                <p>מקורות פעילים</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalFiles">-</h3>
+                <p>קבצים שהורדו</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalProducts">-</h3>
+                <p>מוצרים יובאו</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="lastUpdate">-</h3>
+                <p>עדכון אחרון</p>
+            </div>
+        </div>
+
+        <!-- Price Sources Table -->
+        <div class="sources-table">
+            <div class="table-header">
+                <h2>📋 מקורות מחירים</h2>
+                <button class="btn btn-success" onclick="updateAllNow()">🔄 עדכן הכל עכשיו</button>
+            </div>
+            <div id="sourcesTableContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>טוען מקורות...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Downloaded Files -->
+        <div class="files-section">
+            <div class="files-header">
+                <h2>📁 קבצים שהורדו לאחרונה</h2>
+                <span id="filesCount">-</span>
+            </div>
+            <div id="filesTableContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>טוען קבצים...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scraping Sessions -->
+        <div class="files-section">
+            <div class="files-header">
+                <h2>🕒 סשני סריקה אחרונים</h2>
+            </div>
+            <div id="sessionsTableContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>טוען סשנים...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000/api';
+
+        // Load all data on page load
+        async function loadAllData() {
+            await Promise.all([
+                loadStatistics(),
+                loadPriceSources(),
+                loadDownloadedFiles(),
+                loadScrapingSessions()
+            ]);
+        }
+
+        // Load statistics
+        async function loadStatistics() {
+            try {
+                const response = await fetch(`${API_BASE}/price-sources/stats`);
+                const data = await response.json();
+                
+                document.getElementById('totalSources').textContent = data.total_sources || 0;
+                document.getElementById('totalFiles').textContent = data.total_files || 0;
+                document.getElementById('totalProducts').textContent = data.total_products || 0;
+                
+                if (data.last_update) {
+                    const date = new Date(data.last_update);
+                    document.getElementById('lastUpdate').textContent = 
+                        date.toLocaleDateString('he-IL') + ' ' + date.toLocaleTimeString('he-IL', {hour: '2-digit', minute: '2-digit'});
+                }
+            } catch (error) {
+                console.error('Failed to load statistics:', error);
+            }
+        }
+
+        // Load price sources
+        async function loadPriceSources() {
+            try {
+                const response = await fetch(`${API_BASE}/price-sources`);
+                const sources = await response.json();
+                
+                let html = '<table><thead><tr>' +
+                    '<th>שם המקור</th>' +
+                    '<th>סוג</th>' +
+                    '<th>מצב</th>' +
+                    '<th>בדיקה אחרונה</th>' +
+                    '<th>הצלחה אחרונה</th>' +
+                    '<th>תדירות (שעות)</th>' +
+                    '<th>פעולות</th>' +
+                    '</tr></thead><tbody>';
+                
+                sources.forEach(source => {
+                    const statusClass = source.is_active ? 'status-active' : 'status-inactive';
+                    const statusText = source.is_active ? 'פעיל' : 'לא פעיל';
+                    
+                    const lastCheck = source.last_check_at ? 
+                        new Date(source.last_check_at).toLocaleString('he-IL') : 'אף פעם';
+                    const lastSuccess = source.last_success_at ? 
+                        new Date(source.last_success_at).toLocaleString('he-IL') : 'אף פעם';
+                    
+                    html += `<tr>
+                        <td><strong>${source.name}</strong></td>
+                        <td>${source.source_type}</td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td>${lastCheck}</td>
+                        <td>${lastSuccess}</td>
+                        <td>${source.check_frequency_hours || 24}</td>
+                        <td>
+                            <button class="btn btn-primary" onclick="checkSource(${source.id})">בדוק עכשיו</button>
+                            <button class="btn btn-secondary" onclick="viewDetails(${source.id})">פרטים</button>
+                        </td>
+                    </tr>`;
+                });
+                
+                html += '</tbody></table>';
+                document.getElementById('sourcesTableContainer').innerHTML = html;
+            } catch (error) {
+                console.error('Failed to load price sources:', error);
+                document.getElementById('sourcesTableContainer').innerHTML = 
+                    '<p style="text-align: center; color: red;">שגיאה בטעינת מקורות</p>';
+            }
+        }
+
+        // Load downloaded files
+        async function loadDownloadedFiles() {
+            try {
+                const response = await fetch(`${API_BASE}/downloaded-files?limit=20`);
+                const files = await response.json();
+                
+                document.getElementById('filesCount').textContent = `${files.length} קבצים`;
+                
+                let html = '<table><thead><tr>' +
+                    '<th>שם קובץ</th>' +
+                    '<th>סוג</th>' +
+                    '<th>תאריך קובץ</th>' +
+                    '<th>הורד ב</th>' +
+                    '<th>סטטוס</th>' +
+                    '<th>מוצרים</th>' +
+                    '</tr></thead><tbody>';
+                
+                files.forEach(file => {
+                    const fileDate = file.file_timestamp ? 
+                        new Date(file.file_timestamp).toLocaleString('he-IL') : '-';
+                    const downloadDate = new Date(file.downloaded_at).toLocaleString('he-IL');
+                    
+                    html += `<tr>
+                        <td style="font-family: monospace; font-size: 0.85em;">${file.filename}</td>
+                        <td>${file.file_type || '-'}</td>
+                        <td>${fileDate}</td>
+                        <td>${downloadDate}</td>
+                        <td>${file.processing_status}</td>
+                        <td>${file.products_imported || 0}</td>
+                    </tr>`;
+                });
+                
+                html += '</tbody></table>';
+                document.getElementById('filesTableContainer').innerHTML = html;
+            } catch (error) {
+                console.error('Failed to load files:', error);
+                document.getElementById('filesTableContainer').innerHTML = 
+                    '<p style="text-align: center; color: red;">שגיאה בטעינת קבצים</p>';
+            }
+        }
+
+        // Load scraping sessions
+        async function loadScrapingSessions() {
+            try {
+                const response = await fetch(`${API_BASE}/scraping-sessions?limit=10`);
+                const sessions = await response.json();
+                
+                let html = '<table><thead><tr>' +
+                    '<th>שם סשן</th>' +
+                    '<th>התחלה</th>' +
+                    '<th>סיום</th>' +
+                    '<th>סטטוס</th>' +
+                    '<th>קבצים</th>' +
+                    '<th>מוצרים</th>' +
+                    '</tr></thead><tbody>';
+                
+                sessions.forEach(session => {
+                    const startTime = new Date(session.started_at).toLocaleString('he-IL');
+                    const endTime = session.completed_at ? 
+                        new Date(session.completed_at).toLocaleString('he-IL') : 'רץ...';
+                    
+                    const statusColors = {
+                        'running': '#ffc107',
+                        'completed': '#28a745',
+                        'failed': '#dc3545',
+                        'partial': '#17a2b8'
+                    };
+                    
+                    const statusColor = statusColors[session.status] || '#6c757d';
+                    
+                    html += `<tr>
+                        <td>${session.session_name}</td>
+                        <td>${startTime}</td>
+                        <td>${endTime}</td>
+                        <td><span class="status-badge" style="background-color: ${statusColor}20; color: ${statusColor};">${session.status}</span></td>
+                        <td>${session.files_downloaded || 0} / ${session.files_found || 0}</td>
+                        <td>${session.total_products_imported || 0}</td>
+                    </tr>`;
+                });
+                
+                html += '</tbody></table>';
+                document.getElementById('sessionsTableContainer').innerHTML = html;
+            } catch (error) {
+                console.error('Failed to load sessions:', error);
+                document.getElementById('sessionsTableContainer').innerHTML = 
+                    '<p style="text-align: center; color: red;">שגיאה בטעינת סשנים</p>';
+            }
+        }
+
+        // Update all sources now
+        async function updateAllNow() {
+            if (!confirm('האם להתחיל עדכון של כל המקורות?')) {
+                return;
+            }
+            
+            alert('עדכון החל! זה יכול לקחת זמן. בדוק את הסטטוס בטבלה.');
+            
+            try {
+                const response = await fetch(`${API_BASE}/price-sources/update-all`, {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    setTimeout(() => loadAllData(), 2000);
+                }
+            } catch (error) {
+                alert('שגיאה בהפעלת העדכון: ' + error.message);
+            }
+        }
+
+        // Check specific source
+        async function checkSource(sourceId) {
+            alert(`בודק מקור ${sourceId}...`);
+            // Implement source check API call
+        }
+
+        // View source details
+        function viewDetails(sourceId) {
+            alert(`מציג פרטים למקור ${sourceId}`);
+            // Implement details view
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            loadAllData();
+        }, 30000);
+
+        // Initial load
+        loadAllData();
+    </script>
+</body>
+</html>
+
+
+
+
+

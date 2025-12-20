@@ -1,0 +1,22 @@
+# Gogobe Backend Requirements
+
+# API Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+
+# Database
+psycopg2-binary==2.9.9
+
+# PDF Processing (already installed)
+pdfplumber==0.10.3
+pandas==2.2.0
+openpyxl==3.1.2
+
+# Optional: for better performance
+python-multipart==0.0.6
+
+
+
+
+
+

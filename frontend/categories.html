@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>×§×˜×’×•×¨×™×•×ª - Gogobe</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Main Navigation */
+        .main-nav {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container { max-width: 1600px; margin: 0 auto; padding: 0; }
+        .nav-content { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
+        .nav-brand { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-link { color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: background 0.3s; font-size: 14px; font-weight: 500; }
+        .nav-link:hover { background: rgba(255,255,255,0.2); }
+        .nav-link.active { background: rgba(255,255,255,0.3); }
+        
+        .page-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .category-tree {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .category-item {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .category-item:hover {
+            background: #f9fafb;
+        }
+        
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .category-name {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 16px;
+        }
+        
+        .category-stats {
+            display: flex;
+            gap: 16px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .category-children {
+            margin-right: 24px;
+            margin-top: 8px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-products {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-content">
+                <a href="/dashboard.html" class="nav-brand">
+                    <span>ðŸ›’</span>
+                    <span>Gogobe</span>
+                </a>
+                <div class="nav-links">
+                    <a href="/dashboard.html" class="nav-link">ðŸ  ×“×£ ×”×‘×™×ª</a>
+                    <a href="/" class="nav-link">ðŸ“¦ ×ž×•×¦×¨×™×</a>
+                    <a href="/prices.html" class="nav-link">ðŸ’° ×ž×—×™×¨×™×</a>
+                    <a href="/categories.html" class="nav-link active">ðŸ“‚ ×§×˜×’×•×¨×™×•×ª</a>
+                    <a href="/stores.html" class="nav-link">ðŸª ×¨×©×ª×•×ª ×•×¡× ×™×¤×™×</a>`n                    <a href="/data-sources.html" class="nav-link">ðŸ“¥ ×ž×§×•×¨×•×ª × ×ª×•× ×™×</a>
+                    <a href="/errors.html" class="nav-link">ðŸ” Errors</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <h1>ðŸ“‚ ×§×˜×’×•×¨×™×•×ª</h1>
+        <p>× ×™×”×•×œ ×§×˜×’×•×¨×™×•×ª ×”×™×¨×¨×›×™×•×ª ×•×ž×•×¦×¨×™×”×Ÿ</p>
+        
+        <div class="category-tree" id="categories-container">
+            <div style="text-align: center; padding: 40px;">
+                <div class="spinner"></div>
+                <p>×˜×•×¢×Ÿ ×§×˜×’×•×¨×™×•×ª...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+
+        async function loadCategories() {
+            try {
+                const response = await fetch(`${API_BASE}/api/categories`);
+                const data = await response.json();
+                const categories = data.categories || [];
+                
+                displayCategories(categories);
+            } catch (error) {
+                console.error('Failed to load categories:', error);
+                document.getElementById('categories-container').innerHTML = 
+                    '<div style="text-align:center;padding:40px;color:#ef4444;">×©×’×™××” ×‘×˜×¢×™× ×ª ×§×˜×’×•×¨×™×•×ª</div>';
+            }
+        }
+
+        function displayCategories(categories) {
+            const container = document.getElementById('categories-container');
+            
+            if (categories.length === 0) {
+                container.innerHTML = '<div style="text-align:center;padding:40px;color:#6b7280;">××™×Ÿ ×§×˜×’×•×¨×™×•×ª</div>';
+                return;
+            }
+            
+            container.innerHTML = categories.map(cat => `
+                <div class="category-item">
+                    <div class="category-header">
+                        <div class="category-name">${escapeHtml(cat.name)}</div>
+                        <div class="category-stats">
+                            <span class="badge badge-products">${(cat.product_count || 0).toLocaleString()} ×ž×•×¦×¨×™×</span>
+                            ${cat.vertical_name ? `<span style="color:#9ca3af;">${escapeHtml(cat.vertical_name)}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadCategories);
+    </script>
+</body>
+</html>
+
+

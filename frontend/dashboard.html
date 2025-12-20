@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Gogobe</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Main Navigation */
+        .main-nav {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+        }
+        
+        .nav-brand {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .nav-link.active {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            padding: 40px 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+        
+        .card-description {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .card-stat {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #10b981;
+            margin-top: 12px;
+        }
+        
+        .card-label {
+            font-size: 12px;
+            color: #9ca3af;
+            text-transform: uppercase;
+        }
+        
+        /* Stats Overview */
+        .stats-overview {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 40px 20px;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: #6b7280;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-content">
+                <a href="/dashboard.html" class="nav-brand">
+                    <span>ðŸ›’</span>
+                    <span>Gogobe</span>
+                </a>
+                <div class="nav-links">
+                    <a href="/dashboard.html" class="nav-link active">ðŸ  ×“×£ ×”×‘×™×ª</a>
+                    <a href="/" class="nav-link">ðŸ“¦ ×ž×•×¦×¨×™×</a>
+                    <a href="/prices.html" class="nav-link">ðŸ’° ×ž×—×™×¨×™×</a>
+                    <a href="/categories.html" class="nav-link">ðŸ“‚ ×§×˜×’×•×¨×™×•×ª</a>
+                    <a href="/stores.html" class="nav-link">ðŸª ×¨×©×ª×•×ª ×•×¡× ×™×¤×™×</a>`n                    <a href="/data-sources.html" class="nav-link">ðŸ“¥ ×ž×§×•×¨×•×ª × ×ª×•× ×™×</a>
+                    <a href="/errors.html" class="nav-link">ðŸ” Errors</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Stats Overview -->
+    <div class="stats-overview">
+        <h2>×¡×§×™×¨×” ×›×œ×œ×™×ª</h2>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-value" id="total-products">-</div>
+                <div class="stat-label">×ž×•×¦×¨×™×</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="total-prices">-</div>
+                <div class="stat-label">×ž×—×™×¨×™×</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="total-categories">-</div>
+                <div class="stat-label">×§×˜×’×•×¨×™×•×ª</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="total-chains">-</div>
+                <div class="stat-label">×¨×©×ª×•×ª</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="total-stores">-</div>
+                <div class="stat-label">×¡× ×™×¤×™×</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="total-suppliers">-</div>
+                <div class="stat-label">×¡×¤×§×™×</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Grid -->
+    <div class="dashboard-grid">
+        <!-- Products -->
+        <a href="/" class="dashboard-card">
+            <span class="card-icon">ðŸ“¦</span>
+            <div class="card-title">×ž×•×¦×¨×™×</div>
+            <div class="card-description">×—×™×¤×•×© ×•×”×©×•×•××ª ×ž×—×™×¨×™×</div>
+            <div class="card-stat" id="card-products">-</div>
+            <div class="card-label">×ž×•×¦×¨×™× ×¤×¢×™×œ×™×</div>
+        </a>
+
+        <!-- Categories -->
+        <a href="/categories.html" class="dashboard-card">
+            <span class="card-icon">ðŸ“‚</span>
+            <div class="card-title">×§×˜×’×•×¨×™×•×ª</div>
+            <div class="card-description">× ×™×”×•×œ ×§×˜×’×•×¨×™×•×ª ×”×™×¨×¨×›×™×•×ª</div>
+            <div class="card-stat" id="card-categories">-</div>
+            <div class="card-label">×§×˜×’×•×¨×™×•×ª</div>
+        </a>
+
+        <!-- Stores & Chains -->
+        <a href="/stores.html" class="dashboard-card">
+            <span class="card-icon">ðŸª</span>
+            <div class="card-title">×¨×©×ª×•×ª ×•×¡× ×™×¤×™×</div>
+            <div class="card-description">× ×™×”×•×œ ×¨×©×ª×•×ª ×§×ž×¢×•× ××•×ª ×•×¡× ×™×¤×™×”×Ÿ</div>
+            <div class="card-stat" id="card-stores">-</div>
+            <div class="card-label">×¡× ×™×¤×™× ×¤×¢×™×œ×™×</div>
+        </a>
+
+        <!-- Import Sources -->
+        <a href="/import-sources.html" class="dashboard-card">
+            <span class="card-icon">ðŸ“¥</span>
+            <div class="card-title">×ž×§×•×¨×•×ª ×™×‘×•×</div>
+            <div class="card-description">×¡×¤×§×™× ×•×ž×§×•×¨×•×ª × ×ª×•× ×™×</div>
+            <div class="card-stat" id="card-suppliers">-</div>
+            <div class="card-label">×¡×¤×§×™× ×¤×¢×™×œ×™×</div>
+        </a>
+
+        <!-- Brands -->
+        <a href="/brands.html" class="dashboard-card">
+            <span class="card-icon">ðŸ·ï¸</span>
+            <div class="card-title">×ž×•×ª×’×™×</div>
+            <div class="card-description">× ×™×”×•×œ ×ž×•×ª×’×™× ×•×™×¦×¨× ×™×</div>
+            <div class="card-stat" id="card-brands">-</div>
+            <div class="card-label">×ž×•×ª×’×™×</div>
+        </a>
+
+        <!-- Uncategorized -->
+        <a href="/uncategorized.html" class="dashboard-card">
+            <span class="card-icon">â“</span>
+            <div class="card-title">×ž×•×¦×¨×™× ×œ×œ× ×§×˜×’×•×¨×™×”</div>
+            <div class="card-description">×ž×•×¦×¨×™× ×”×“×•×¨×©×™× ×¡×™×•×•×’</div>
+            <div class="card-stat" id="card-uncategorized">-</div>
+            <div class="card-label">×ž×•×¦×¨×™×</div>
+        </a>
+
+        <!-- Price Analytics -->
+        <a href="/price-analytics.html" class="dashboard-card">
+            <span class="card-icon">ðŸ“Š</span>
+            <div class="card-title">× ×™×ª×•×— ×ž×—×™×¨×™×</div>
+            <div class="card-description">×˜×¨× ×“×™× ×•×©×™× ×•×™×™ ×ž×—×™×¨×™×</div>
+            <div class="card-stat" id="card-price-changes">-</div>
+            <div class="card-label">×©×™× ×•×™×™× ×”×™×•×</div>
+        </a>
+
+        <!-- Product Merges -->
+        <a href="/product-merges.html" class="dashboard-card">
+            <span class="card-icon">ðŸ”—</span>
+            <div class="card-title">××™×—×•×“ ×ž×•×¦×¨×™×</div>
+            <div class="card-description">×–×™×”×•×™ ×•×˜×™×¤×•×œ ×‘×›×¤×™×œ×•×™×•×ª</div>
+            <div class="card-stat" id="card-duplicates">-</div>
+            <div class="card-label">×›×¤×™×œ×•×™×•×ª ×¤×•×˜× ×¦×™××œ×™×•×ª</div>
+        </a>
+
+        <!-- Error Monitor -->
+        <a href="/errors.html" class="dashboard-card">
+            <span class="card-icon">ðŸ”</span>
+            <div class="card-title">Error Monitor</div>
+            <div class="card-description">×ž×¢×§×‘ ×•-monitoring ×©×’×™××•×ª</div>
+            <div class="card-stat" id="card-errors">-</div>
+            <div class="card-label">×©×’×™××•×ª ×¤×¢×™×œ×•×ª</div>
+        </a>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+
+        async function loadDashboardStats() {
+            try {
+                // Load stats
+                const statsResponse = await fetch(`${API_BASE}/api/stats`);
+                const stats = await statsResponse.json();
+
+                // Update overview
+                document.getElementById('total-products').textContent = (stats.total_products || 0).toLocaleString();
+                document.getElementById('total-prices').textContent = (stats.total_prices || 0).toLocaleString();
+                document.getElementById('total-categories').textContent = (stats.total_categories || 0).toLocaleString();
+                
+                // Load chains
+                const chainsResponse = await fetch(`${API_BASE}/api/chains`);
+                const chainsData = await chainsResponse.json();
+                const chains = chainsData.chains || [];
+                document.getElementById('total-chains').textContent = chains.length;
+                
+                const totalStores = chains.reduce((sum, c) => sum + (c.active_store_count || 0), 0);
+                document.getElementById('total-stores').textContent = totalStores;
+                
+                document.getElementById('total-suppliers').textContent = (stats.total_suppliers || 0).toLocaleString();
+
+                // Update cards
+                document.getElementById('card-products').textContent = (stats.total_products || 0).toLocaleString();
+                document.getElementById('card-categories').textContent = (stats.total_categories || 0).toLocaleString();
+                document.getElementById('card-stores').textContent = totalStores;
+                document.getElementById('card-suppliers').textContent = (stats.total_suppliers || 0).toLocaleString();
+                
+                // Load uncategorized count
+                const uncatResponse = await fetch(`${API_BASE}/api/products/search?per_page=1`);
+                const uncatData = await uncatResponse.json();
+                // Estimate uncategorized (would need specific API endpoint)
+                document.getElementById('card-uncategorized').textContent = '-';
+                
+                // Placeholder values
+                document.getElementById('card-brands').textContent = '-';
+                document.getElementById('card-price-changes').textContent = '-';
+                document.getElementById('card-duplicates').textContent = '-';
+                
+                // Load errors
+                const errorsResponse = await fetch(`${API_BASE}/api/errors`);
+                const errorsData = await errorsResponse.json();
+                document.getElementById('card-errors').textContent = (errorsData.errors?.length || 0);
+
+            } catch (error) {
+                console.error('Failed to load dashboard stats:', error);
+            }
+        }
+
+        // Load stats on page load
+        document.addEventListener('DOMContentLoaded', loadDashboardStats);
+    </script>
+</body>
+</html>
+
+

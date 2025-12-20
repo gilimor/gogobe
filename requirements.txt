@@ -1,0 +1,71 @@
+# Gogobe Price Comparison System - Requirements
+# Python 3.11+
+
+# ==================================================
+# Core Dependencies
+# ==================================================
+
+# Database
+psycopg2-binary==2.9.9          # PostgreSQL adapter
+psycopg2==2.9.9                 # PostgreSQL adapter (source)
+
+# Web Framework
+fastapi==0.109.0                # Modern web framework
+uvicorn[standard]==0.27.0       # ASGI server
+pydantic==2.5.3                 # Data validation
+
+# HTTP & Web Scraping
+requests==2.31.0                # HTTP library
+selenium==4.17.2                # Browser automation (if needed)
+lxml==5.1.0                     # XML/HTML parsing
+
+# Scheduling
+schedule==1.2.0                 # Job scheduling
+python-crontab==3.0.0           # Cron support
+
+# ==================================================
+# Optional Dependencies
+# ==================================================
+
+# Data Processing
+pandas==2.1.4                   # Data manipulation (optional)
+numpy==1.26.3                   # Numerical computing (optional)
+
+# Monitoring & Logging
+prometheus-client==0.19.0       # Metrics (optional)
+
+# Testing
+pytest==7.4.4                   # Testing framework
+pytest-asyncio==0.23.3          # Async testing
+
+# ==================================================
+# Development Dependencies
+# ==================================================
+
+# Code Quality
+black==23.12.1                  # Code formatter
+flake8==7.0.0                   # Linter
+mypy==1.8.0                     # Type checker
+
+# ==================================================
+# Platform Specific
+# ==================================================
+
+# Windows
+pywin32==306; sys_platform == 'win32'
+
+# ==================================================
+# Notes
+# ==================================================
+
+# Installation:
+#   pip install -r requirements.txt
+
+# For development:
+#   pip install -r requirements.txt
+#   pip install pytest black flake8
+
+# For minimal installation (production):
+#   pip install psycopg2-binary fastapi uvicorn requests schedule lxml
+
+

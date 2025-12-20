@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מקורות נתונים - Gogobe</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .main-nav {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container { max-width: 1600px; margin: 0 auto; padding: 0; }
+        .nav-content { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
+        .nav-brand { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-link { color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: background 0.3s; font-size: 14px; font-weight: 500; }
+        .nav-link:hover { background: rgba(255,255,255,0.2); }
+        .nav-link.active { background: rgba(255,255,255,0.3); }
+        
+        .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
+        
+        .page-header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .source-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .source-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        
+        .source-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .source-header.active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .source-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .source-type {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .source-body {
+            padding: 20px;
+        }
+        
+        .source-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .info-label {
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .info-value {
+            color: #333;
+        }
+        
+        .source-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #3b82f6;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .source-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #059669;
+        }
+        
+        .btn-secondary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #2563eb;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-active {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-inactive {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #10b981;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .add-source-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #10b981;
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .add-source-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.6);
+        }
+        
+        .stores-import-table {
+            margin-top: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .table-header {
+            background: #f9fafb;
+            padding: 20px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .table-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+        
+        .table-subtitle {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: #f9fafb;
+        }
+        
+        th {
+            padding: 12px 16px;
+            text-align: right;
+            font-weight: 600;
+            color: #4b5563;
+            font-size: 14px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        tbody tr:hover {
+            background: #f9fafb;
+        }
+        
+        .import-fresh {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .import-old {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        
+        .import-stale {
+            color: #ef4444;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-content">
+                <a href="/dashboard.html" class="nav-brand">
+                    <span>🛒</span>
+                    <span>Gogobe</span>
+                </a>
+                <div class="nav-links">
+                    <a href="/dashboard.html" class="nav-link">🏠 דף הבית</a>
+                    <a href="/" class="nav-link">📦 מוצרים</a>
+                    <a href="/prices.html" class="nav-link">💰 מחירים</a>
+                    <a href="/categories.html" class="nav-link">📂 קטגוריות</a>
+                    <a href="/stores.html" class="nav-link">🏪 רשתות וסניפים</a>
+                    <a href="/data-sources.html" class="nav-link active">📥 מקורות נתונים</a>
+                    <a href="/errors.html" class="nav-link">🔍 Errors</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>📥 ניהול מקורות נתונים</h1>
+            <p>מקורות המידע שממנו אנו מייבאים מחירים ומוצרים</p>
+        </div>
+
+        <div class="sources-grid" id="sourcesGrid">
+            <!-- KingStore -->
+            <div class="source-card">
+                <div class="source-header active">
+                    <div class="source-name">🏪 KingStore</div>
+                    <div class="source-type">רשת סופרמרקטים</div>
+                </div>
+                <div class="source-body">
+                    <div class="source-info">
+                        <div class="info-row">
+                            <span class="info-label">סטטוס:</span>
+                            <span class="status-badge status-active">פעיל</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">אתר:</span>
+                            <a href="https://kingstore.binaprojects.com/Main.aspx" target="_blank" class="source-link">
+                                🔗 kingstore.binaprojects.com
+                            </a>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">סוג נתונים:</span>
+                            <span class="info-value">XML - מחירונים מלאים</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">תדירות עדכון:</span>
+                            <span class="info-value">יומי</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">ייבוא אחרון:</span>
+                            <span class="info-value" id="kingstore-last-import">-</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">סטטוס מערכת:</span>
+                            <span class="info-value" id="kingstore-system-status">
+                                <span class="status-badge status-active">מעודכן</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <div class="stat-value" id="kingstore-products">924</div>
+                            <div class="stat-label">מוצרים</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="kingstore-prices">241K</div>
+                            <div class="stat-label">מחירים</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="kingstore-stores">1</div>
+                            <div class="stat-label">סניפים</div>
+                        </div>
+                    </div>
+                    
+                    <div class="source-actions">
+                        <button class="btn btn-primary" onclick="importSource('kingstore')">
+                            🔄 ייבא עכשיו
+                        </button>
+                        <button class="btn btn-secondary" onclick="viewSourceDetails('kingstore')">
+                            📊 פרטים
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shufersal (Future) -->
+            <div class="source-card">
+                <div class="source-header">
+                    <div class="source-name">🛒 שופרסל</div>
+                    <div class="source-type">רשת סופרמרקטים</div>
+                </div>
+                <div class="source-body">
+                    <div class="source-info">
+                        <div class="info-row">
+                            <span class="info-label">סטטוס:</span>
+                            <span class="status-badge status-inactive">לא פעיל</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">אתר:</span>
+                            <a href="https://prices.shufersal.co.il" target="_blank" class="source-link">
+                                🔗 prices.shufersal.co.il
+                            </a>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">סוג נתונים:</span>
+                            <span class="info-value">XML - מחירונים + סניפים</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">תדירות עדכון:</span>
+                            <span class="info-value">יומי (מתוכנן)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <div class="stat-value">-</div>
+                            <div class="stat-label">מוצרים</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">-</div>
+                            <div class="stat-label">מחירים</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">-</div>
+                            <div class="stat-label">סניפים</div>
+                        </div>
+                    </div>
+                    
+                    <div class="source-actions">
+                        <button class="btn btn-primary" disabled style="opacity: 0.5;">
+                            🚧 בפיתוח
+                        </button>
+                        <button class="btn btn-secondary" onclick="alert('בפיתוח')">
+                            ⚙️ הגדר
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GOV.IL API -->
+            <div class="source-card">
+                <div class="source-header">
+                    <div class="source-name">🏛️ משרד הכלכלה</div>
+                    <div class="source-type">API ממשלתי</div>
+                </div>
+                <div class="source-body">
+                    <div class="source-info">
+                        <div class="info-row">
+                            <span class="info-label">סטטוס:</span>
+                            <span class="status-badge status-inactive">לא פעיל</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">אתר:</span>
+                            <a href="https://prices.gov.il" target="_blank" class="source-link">
+                                🔗 prices.gov.il
+                            </a>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">סוג נתונים:</span>
+                            <span class="info-value">JSON API - רשימת סניפים</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">תדירות עדכון:</span>
+                            <span class="info-value">שבועי (מתוכנן)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <div class="stat-value">-</div>
+                            <div class="stat-label">רשתות</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">-</div>
+                            <div class="stat-label">סניפים</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">-</div>
+                            <div class="stat-label">עדכונים</div>
+                        </div>
+                    </div>
+                    
+                    <div class="source-actions">
+                        <button class="btn btn-primary" onclick="importStoresFromGov()">
+                            🔄 ייבא סניפים
+                        </button>
+                        <button class="btn btn-secondary" onclick="alert('בפיתוח')">
+                            📋 מדריך
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="add-source-btn" onclick="alert('הוסף מקור נתונים - בפיתוח')" title="הוסף מקור נתונים">
+            +
+        </button>
+
+        <!-- Import History Table -->
+        <div class="stores-import-table">
+            <div class="table-header">
+                <div class="table-title">📅 היסטוריית ייבוא לפי סניפים</div>
+                <div class="table-subtitle">תאריכי ייבוא אחרונים לכל סניף</div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>רשת</th>
+                        <th>סניף</th>
+                        <th>עיר</th>
+                        <th>מוצרים</th>
+                        <th>מחירים</th>
+                        <th>ייבוא אחרון</th>
+                        <th>ימי ייבוא</th>
+                        <th>סטטוס</th>
+                    </tr>
+                </thead>
+                <tbody id="importHistoryTable">
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 40px;">
+                            ⏳ טוען נתונים...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const data = await response.json();
+                
+                document.getElementById('kingstore-products').textContent = formatNumber(data.total_products);
+                document.getElementById('kingstore-prices').textContent = formatNumber(data.total_prices);
+                document.getElementById('kingstore-stores').textContent = formatNumber(data.total_suppliers || 1);
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        async function loadImportHistory() {
+            try {
+                const response = await fetch('/api/data-sources/stats');
+                const data = await response.json();
+                
+                // Update KingStore last import
+                if (data.sources && data.sources.length > 0) {
+                    const kingstore = data.sources.find(s => s.source_slug === 'kingstore');
+                    if (kingstore && kingstore.last_import) {
+                        document.getElementById('kingstore-last-import').textContent = 
+                            formatDateTime(kingstore.last_import);
+                        
+                        // Update status based on age
+                        const hoursAgo = getHoursAgo(kingstore.last_import);
+                        const statusEl = document.getElementById('kingstore-system-status');
+                        if (hoursAgo < 24) {
+                            statusEl.innerHTML = '<span class="status-badge status-active">מעודכן</span>';
+                        } else if (hoursAgo < 72) {
+                            statusEl.innerHTML = '<span class="status-badge" style="background: #fef3c7; color: #92400e;">זקוק עדכון</span>';
+                        } else {
+                            statusEl.innerHTML = '<span class="status-badge status-inactive">לא מעודכן</span>';
+                        }
+                    }
+                }
+                
+                // Populate stores table
+                const tbody = document.getElementById('importHistoryTable');
+                
+                if (!data.stores || data.stores.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="8" style="text-align: center; padding: 40px; color: #999;">
+                                אין נתוני ייבוא
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                tbody.innerHTML = data.stores.map(store => {
+                    const hoursAgo = getHoursAgo(store.last_import);
+                    const importClass = hoursAgo < 24 ? 'import-fresh' : 
+                                       hoursAgo < 72 ? 'import-old' : 'import-stale';
+                    
+                    const statusText = hoursAgo < 1 ? '✅ מעודכן' :
+                                      hoursAgo < 24 ? '✅ היום' :
+                                      hoursAgo < 72 ? '⚠️ ישן' : '❌ מיושן';
+                    
+                    const daysSince = Math.floor(hoursAgo / 24);
+                    const firstImport = store.first_import ? new Date(store.first_import) : null;
+                    const lastImport = store.last_import ? new Date(store.last_import) : null;
+                    const daysDiff = firstImport && lastImport ? 
+                        Math.floor((lastImport - firstImport) / (1000 * 60 * 60 * 24)) : 0;
+                    
+                    return `
+                        <tr>
+                            <td><strong>${escapeHtml(store.chain_name)}</strong></td>
+                            <td>
+                                ${escapeHtml(store.store_name || `סניף ${store.store_code}`)}
+                                ${store.store_code ? `<br><small style="color: #999;">קוד: ${store.store_code}</small>` : ''}
+                            </td>
+                            <td>${store.city || '-'}</td>
+                            <td>${formatNumber(store.products)}</td>
+                            <td>${formatNumber(store.prices)}</td>
+                            <td class="${importClass}">
+                                ${formatDateTime(store.last_import)}
+                                <br><small style="color: #999;">
+                                    ${daysSince === 0 ? 'היום' : 
+                                      daysSince === 1 ? 'אתמול' : 
+                                      `לפני ${daysSince} ימים`}
+                                </small>
+                            </td>
+                            <td>${daysDiff} ימים</td>
+                            <td>${statusText}</td>
+                        </tr>
+                    `;
+                }).join('');
+                
+            } catch (error) {
+                console.error('Error loading import history:', error);
+                document.getElementById('importHistoryTable').innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 40px; color: #ef4444;">
+                            ❌ שגיאה בטעינת נתונים
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        function formatNumber(num) {
+            if (!num) return '0';
+            if (num >= 1000) {
+                return (num / 1000).toFixed(0) + 'K';
+            }
+            return num.toLocaleString('he-IL');
+        }
+
+        function formatDateTime(datetime) {
+            if (!datetime) return '-';
+            const date = new Date(datetime);
+            return date.toLocaleString('he-IL', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function getHoursAgo(datetime) {
+            if (!datetime) return Infinity;
+            const date = new Date(datetime);
+            const now = new Date();
+            return (now - date) / (1000 * 60 * 60);
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function importSource(source) {
+            if (source === 'kingstore') {
+                if (confirm('להתחיל ייבוא מ-KingStore?\n\nהפעולה עלולה לקחת מספר דקות.')) {
+                    alert('הייבוא מתחיל ברקע...\n\nתוכל לעקוב אחר ההתקדמות בלוג המערכת.');
+                    // TODO: Call import API
+                }
+            }
+        }
+
+        function viewSourceDetails(source) {
+            if (source === 'kingstore') {
+                window.open('https://kingstore.binaprojects.com/Main.aspx', '_blank');
+            }
+        }
+
+        function importStoresFromGov() {
+            if (confirm('לייבא רשימת סניפים מאתר משרד הכלכלה?\n\nהפעולה תעדכן את כל פרטי הסניפים (שמות, כתובות, טלפונים).')) {
+                alert('ייבוא סניפים - בפיתוח\n\nהסקריפט יתווסף בקרוב.');
+                // TODO: Call GOV.IL import script
+            }
+        }
+
+        // Load stats on page load
+        loadStats();
+        loadImportHistory();
+        
+        // Refresh every 60 seconds
+        setInterval(loadImportHistory, 60000);
+    </script>
+</body>
+</html>
+

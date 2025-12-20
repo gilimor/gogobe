@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogobe - ×”×©×•×•××ª ×ž×—×™×¨×™×</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Main Navigation */
+        .main-nav {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container { max-width: 1600px; margin: 0 auto; padding: 0; }
+        .nav-content { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
+        .nav-brand { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .nav-link { color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: background 0.3s; font-size: 14px; font-weight: 500; }
+        .nav-link:hover { background: rgba(255,255,255,0.2); }
+        .nav-link.active { background: rgba(255,255,255,0.3); }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-content">
+                <a href="/dashboard.html" class="nav-brand">
+                    <span>ðŸ›’</span>
+                    <span>Gogobe</span>
+                </a>
+                    <div class="nav-links">
+                        <a href="/dashboard.html" class="nav-link">ðŸ  ×“×£ ×”×‘×™×ª</a>
+                        <a href="/" class="nav-link active">ðŸ“¦ ×ž×•×¦×¨×™×</a>
+                        <a href="/prices.html" class="nav-link">ðŸ’° ×ž×—×™×¨×™×</a>
+                        <a href="/categories.html" class="nav-link">ðŸ“‚ ×§×˜×’×•×¨×™×•×ª</a>
+                        <a href="/stores.html" class="nav-link">ðŸª ×¨×©×ª×•×ª ×•×¡× ×™×¤×™×</a>`n                    <a href="/data-sources.html" class="nav-link">ðŸ“¥ ×ž×§×•×¨×•×ª × ×ª×•× ×™×</a>
+                        <a href="/errors.html" class="nav-link">ðŸ” Errors</a>
+                    </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">ðŸ” Gogobe</h1>
+                <p class="tagline">×”×©×•×•××ª ×ž×—×™×¨×™× ×—×›×ž×”</p>
+            </div>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-value" id="total-products">-</span>
+                    <span class="stat-label">×ž×•×¦×¨×™×</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="total-suppliers">-</span>
+                    <span class="stat-label">×¡×¤×§×™×</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="total-prices">-</span>
+                    <span class="stat-label">×ž×—×™×¨×™×</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search & Filters -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="×—×¤×© ×ž×•×¦×¨..."
+                    autocomplete="off"
+                >
+                <button id="search-btn" class="btn-primary">ðŸ” ×—×¤×©</button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label>×§×˜×’×•×¨×™×”:</label>
+                    <select id="category-filter">
+                        <option value="">×”×›×œ</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>×¡×¤×§:</label>
+                    <select id="supplier-filter">
+                        <option value="">×”×›×œ</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>×ž×—×™×¨ ×ž×™× ×™×ž×œ×™:</label>
+                    <input type="number" id="min-price" placeholder="0" min="0" step="10">
+                </div>
+
+                <div class="filter-group">
+                    <label>×ž×—×™×¨ ×ž×§×¡×™×ž×œ×™:</label>
+                    <input type="number" id="max-price" placeholder="1000" min="0" step="10">
+                </div>
+
+                <div class="filter-group">
+                    <label>×ž×˜×‘×¢:</label>
+                    <select id="currency-filter">
+                        <option value="ILS" selected>ILS (â‚ª)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (â‚¬)</option>
+                        <option value="GBP">GBP (Â£)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>×ž×™×•×Ÿ:</label>
+                    <select id="sort-filter">
+                        <option value="price_asc">×ž×—×™×¨: × ×ž×•×š ×œ×’×‘×•×”</option>
+                        <option value="price_desc">×ž×—×™×¨: ×’×‘×•×” ×œ× ×ž×•×š</option>
+                        <option value="name_asc">×©×: ×-×ª</option>
+                        <option value="name_desc">×©×: ×ª-×</option>
+                        <option value="newest">×”×—×“×©×™× ×‘×™×•×ª×¨</option>
+                    </select>
+                </div>
+
+                <button id="clear-filters" class="btn-secondary">ðŸ—‘ï¸ × ×§×”</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="results-section">
+        <div class="container">
+            <!-- Loading -->
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>×˜×•×¢×Ÿ × ×ª×•× ×™×...</p>
+            </div>
+
+            <!-- Error -->
+            <div id="error" class="error-box" style="display: none;"></div>
+
+            <!-- Results info -->
+            <div id="results-info" class="results-info" style="display: none;">
+                <span id="results-count">0 ×ª×•×¦××•×ª</span>
+                <span id="results-query"></span>
+                <div class="view-toggle">
+                    <button id="view-grid" class="view-btn" title="×ª×¦×•×’×ª ×›×¨×˜×™×¡×™×">
+                        ðŸ”²
+                    </button>
+                    <button id="view-table" class="view-btn active" title="×ª×¦×•×’×ª ×˜×‘×œ×”">
+                        ðŸ“Š
+                    </button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="products-grid" style="display: none;"></div>
+
+            <!-- Products Table -->
+            <div id="products-table-container" class="products-table-container">
+                <table id="products-table" class="products-table">
+                    <thead>
+                        <tr>
+                            <th>×©× ×”×ž×•×¦×¨</th>
+                            <th>×‘×¨×§×•×“</th>
+                            <th>×™×¦×¨×Ÿ/×ž×•×ª×’</th>
+                            <th>×§×˜×’×•×¨×™×”</th>
+                            <th>×—× ×•×™×•×ª</th>
+                            <th>×ž×—×™×¨ ×ž×™× ×™×ž×œ×™</th>
+                            <th>×ž×—×™×¨ ×ž×§×¡×™×ž×œ×™</th>
+                            <th>×ž×ž×•×¦×¢</th>
+                            <th>×¢×•×“×›×Ÿ</th>
+                            <th>×¤×¢×•×œ×•×ª</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="pagination" style="display: none;"></div>
+
+            <!-- No Results -->
+            <div id="no-results" class="no-results" style="display: none;">
+                <h2>ðŸ˜” ×œ× × ×ž×¦××• ×ª×•×¦××•×ª</h2>
+                <p>× ×¡×” ×œ×©× ×•×ª ××ª ×”×—×™×¤×•×© ××• ×”×¡×™× ×•× ×™×</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Â© 2024 Gogobe - ×ž×¢×¨×›×ª ×”×©×•×•××ª ×ž×—×™×¨×™× ×ž×§×•×ž×™×ª</p>
+            <p class="api-status">
+                API: <span id="api-status">×‘×•×“×§...</span>
+                | <a href="price-sources.html" style="color: #10b981; text-decoration: none;">ðŸ“Š × ×™×”×•×œ ×ž×§×•×¨×•×ª</a>
+                | <a href="errors.html" style="color: #fbbf24; text-decoration: none;">ðŸ” Error Monitor</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
+
+
