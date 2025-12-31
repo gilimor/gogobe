@@ -1,0 +1,562 @@
+﻿<rss version="2.0">
+  <channel>
+    <title>FuelWatch Prices For All Metro Regions</title>
+    <link>https://www.fuelwatch.wa.gov.au/</link>
+    <description>27/12/2025 - All Metro Regions</description>
+    <language>en-us</language>
+    <copyright>Copyright 2025 FuelWatch. All Rights Reserved.</copyright>
+    <lastBuildDate>Sat, 27 Dec 2025 01:24:08 +0800</lastBuildDate>
+    <ttl>786</ttl>
+    <image>
+      <url>/fuelwatch/art/fuelwatch-logo.gif</url>
+      <title>FuelWatch</title>
+      <link>https://www.fuelwatch.wa.gov.au</link>
+    </image>
+    <item>
+      <title>129.9: Liberty Beckenham</title>
+      <description>Address: 63 William St, BECKENHAM, Phone: (08) 7077 3062, Open 24 hours</description>
+      <brand>Liberty</brand>
+      <date>2025-12-27</date>
+      <price>129.9</price>
+      <trading-name>Liberty Beckenham</trading-name>
+      <location>BECKENHAM</location>
+      <address>63 William St</address>
+      <phone>(08) 7077 3062</phone>
+      <latitude>-32.02205400</latitude>
+      <longitude>115.95477900</longitude>
+      <site-features>Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>132.9: BP Morley</title>
+      <description>Address: 335 Walter Rd West, MORLEY, Phone: (08) 9275 7522, Open Mon-Fri: 05:00-23:00, Sat: 06:00-23:00, Sun: 06:00-23:00</description>
+      <brand>BP</brand>
+      <date>2025-12-27</date>
+      <price>132.9</price>
+      <trading-name>BP Morley</trading-name>
+      <location>MORLEY</location>
+      <address>335 Walter Rd West</address>
+      <phone>(08) 9275 7522</phone>
+      <latitude>-31.89446000</latitude>
+      <longitude>115.90533000</longitude>
+      <site-features>Open Mon-Fri: 05:00-23:00, Sat: 06:00-23:00, Sun: 06:00-23:00</site-features>
+    </item>
+    <item>
+      <title>135.5: United Kewdale Truck Stop</title>
+      <description>Address: 410-412 Orrong Rd, KEWDALE, Phone: (08) 6336 7774, Site features: Fuel Cards ATM Bottled Gas EFTPOS Air Water Ice Discount Voucher Pumped AdBlue Truck Friendly, Open Mon: 05:00-22:00, Tue: 05:00-22:00, Wed: 05:00-22:00, Thu: 05:00-22:00, Fri: 05:00-22:00, Sat: 05:00-22:00, Sun: 05:00-22:00</description>
+      <brand>United</brand>
+      <date>2025-12-27</date>
+      <price>135.5</price>
+      <trading-name>United Kewdale Truck Stop</trading-name>
+      <location>KEWDALE</location>
+      <address>410-412 Orrong Rd</address>
+      <phone>(08) 6336 7774</phone>
+      <latitude>-31.99004700</latitude>
+      <longitude>115.93925800</longitude>
+      <site-features>Fuel Cards ATM Bottled Gas EFTPOS Air Water Ice Discount Voucher Pumped AdBlue Truck Friendly, Open Mon: 05:00-22:00, Tue: 05:00-22:00, Wed: 05:00-22:00, Thu: 05:00-22:00, Fri: 05:00-22:00, Sat: 05:00-22:00, Sun: 05:00-22:00</site-features>
+    </item>
+    <item>
+      <title>135.5: United East Victoria Park</title>
+      <description>Address: 916 Albany Hwy, EAST VICTORIA PARK, Phone: (08) 6336 7757, Site features: Fuel Cards ATM Bottled Gas Trailer Hire EFTPOS Air Water Ice Truck Friendly, Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</description>
+      <brand>United</brand>
+      <date>2025-12-27</date>
+      <price>135.5</price>
+      <trading-name>United East Victoria Park</trading-name>
+      <location>EAST VICTORIA PARK</location>
+      <address>916 Albany Hwy</address>
+      <phone>(08) 6336 7757</phone>
+      <latitude>-31.98781000</latitude>
+      <longitude>115.90540200</longitude>
+      <site-features>Fuel Cards ATM Bottled Gas Trailer Hire EFTPOS Air Water Ice Truck Friendly, Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</site-features>
+    </item>
+    <item>
+      <title>135.5: Vibe Placid Ark Roadhouse</title>
+      <description>Address: 6947 South Western Hwy, COOLUP, Phone: (08) 9530 3293, Open Mon: 04:00-21:00, Tue: 04:00-21:00, Wed: 04:00-21:00, Thu: 04:00-21:00, Fri: 04:00-21:00, Sat: 05:00-21:00, Sun: 05:00-21:00</description>
+      <brand>Vibe</brand>
+      <date>2025-12-27</date>
+      <price>135.5</price>
+      <trading-name>Vibe Placid Ark Roadhouse</trading-name>
+      <location>COOLUP</location>
+      <address>6947 South Western Hwy</address>
+      <phone>(08) 9530 3293</phone>
+      <latitude>-32.72704400</latitude>
+      <longitude>115.88185900</longitude>
+      <site-features>Open Mon: 04:00-21:00, Tue: 04:00-21:00, Wed: 04:00-21:00, Thu: 04:00-21:00, Fri: 04:00-21:00, Sat: 05:00-21:00, Sun: 05:00-21:00</site-features>
+    </item>
+    <item>
+      <title>135.5: United Perth Airport Truck Stop</title>
+      <description>Address: 8 Paltridge Rd, PERTH AIRPORT, Phone: (03) 9413 1400, Open 24 hours</description>
+      <brand>United</brand>
+      <date>2025-12-27</date>
+      <price>135.5</price>
+      <trading-name>United Perth Airport Truck Stop</trading-name>
+      <location>PERTH AIRPORT</location>
+      <address>8 Paltridge Rd</address>
+      <phone>(03) 9413 1400</phone>
+      <latitude>-31.95636600</latitude>
+      <longitude>115.96974900</longitude>
+      <site-features>Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>135.9: Caltex Burswood</title>
+      <description>Address: 265 Great Eastern Hwy, BURSWOOD, Phone: (08) 6255 1980, Open 24 hours</description>
+      <brand>Caltex</brand>
+      <date>2025-12-27</date>
+      <price>135.9</price>
+      <trading-name>Caltex Burswood</trading-name>
+      <location>BURSWOOD</location>
+      <address>265 Great Eastern Hwy</address>
+      <phone>(08) 6255 1980</phone>
+      <latitude>-31.96037700</latitude>
+      <longitude>115.90191500</longitude>
+      <site-features>Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>135.9: Caltex Langford</title>
+      <description>Address: 230-234 Nicholson Rd, LANGFORD, Phone: (08) 9258 3444, Site features: ATM Bottled Gas Trailer Hire EFTPOS Carwash Air Water Ice, Open 24 hours</description>
+      <brand>Caltex</brand>
+      <date>2025-12-27</date>
+      <price>135.9</price>
+      <trading-name>Caltex Langford</trading-name>
+      <location>LANGFORD</location>
+      <address>230-234 Nicholson Rd</address>
+      <phone>(08) 9258 3444</phone>
+      <latitude>-32.04723000</latitude>
+      <longitude>115.93237500</longitude>
+      <site-features>ATM Bottled Gas Trailer Hire EFTPOS Carwash Air Water Ice, Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>135.9: Caltex Kelmscott</title>
+      <description>Address: 2907 Albany Hwy, KELMSCOTT, Phone: (08) 9390 5433, Site features: Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Carwash Air Water Ice Discount Voucher Truck Friendly, Open 24 hours</description>
+      <brand>Caltex</brand>
+      <date>2025-12-27</date>
+      <price>135.9</price>
+      <trading-name>Caltex Kelmscott</trading-name>
+      <location>KELMSCOTT</location>
+      <address>2907 Albany Hwy</address>
+      <phone>(08) 9390 5433</phone>
+      <latitude>-32.11870800</latitude>
+      <longitude>116.01658900</longitude>
+      <site-features>Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Carwash Air Water Ice Discount Voucher Truck Friendly, Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>135.9: S24 Redcliffe</title>
+      <description>Address: 419 Great Eastern Hwy, REDCLIFFE, Phone: (08) 9277 9755, </description>
+      <brand>Shell</brand>
+      <date>2025-12-27</date>
+      <price>135.9</price>
+      <trading-name>S24 Redcliffe</trading-name>
+      <location>REDCLIFFE</location>
+      <address>419 Great Eastern Hwy</address>
+      <phone>(08) 9277 9755</phone>
+      <latitude>-31.93046900</latitude>
+      <longitude>115.94472800</longitude>
+      <site-features></site-features>
+    </item>
+    <item>
+      <title>135.9: S24 Forrestfield</title>
+      <description>Address: 155 Hale Rd, FORRESTFIELD, Phone: (08) 9359 4503, Site features: Fuel Cards ATM Toilets EFTPOS Ice, </description>
+      <brand>Shell</brand>
+      <date>2025-12-27</date>
+      <price>135.9</price>
+      <trading-name>S24 Forrestfield</trading-name>
+      <location>FORRESTFIELD</location>
+      <address>155 Hale Rd</address>
+      <phone>(08) 9359 4503</phone>
+      <latitude>-31.99055500</latitude>
+      <longitude>116.00006400</longitude>
+      <site-features>Fuel Cards ATM Toilets EFTPOS Ice, </site-features>
+    </item>
+    <item>
+      <title>135.9: Astron Roleystone</title>
+      <description>Address: 11 Wygonda Rd, ROLEYSTONE, Site features: ATM Bottled Gas Trailer Hire EFTPOS Air Water Ice, Open Mon-Fri: 06:30-18:30, Sat: 07:00-18:30, Sun: 07:00-18:30</description>
+      <brand>Astron</brand>
+      <date>2025-12-27</date>
+      <price>135.9</price>
+      <trading-name>Astron Roleystone</trading-name>
+      <location>ROLEYSTONE</location>
+      <address>11 Wygonda Rd</address>
+      <phone> </phone>
+      <latitude>-32.11267200</latitude>
+      <longitude>116.07086500</longitude>
+      <site-features>ATM Bottled Gas Trailer Hire EFTPOS Air Water Ice, Open Mon-Fri: 06:30-18:30, Sat: 07:00-18:30, Sun: 07:00-18:30</site-features>
+    </item>
+    <item>
+      <title>136.3: Astron Quinns Rocks</title>
+      <description>Address: 121 Quinns Rd, QUINNS ROCKS, Phone: (08) 6336 7756, Site features: Fuel Cards ATM Bottled Gas EFTPOS Air Water Ice, </description>
+      <brand>Astron</brand>
+      <date>2025-12-27</date>
+      <price>136.3</price>
+      <trading-name>Astron Quinns Rocks</trading-name>
+      <location>QUINNS ROCKS</location>
+      <address>121 Quinns Rd</address>
+      <phone>(08) 6336 7756</phone>
+      <latitude>-31.67265700</latitude>
+      <longitude>115.70828200</longitude>
+      <site-features>Fuel Cards ATM Bottled Gas EFTPOS Air Water Ice, </site-features>
+    </item>
+    <item>
+      <title>137.5: Vibe Spearwood</title>
+      <description>Address: 333 Rockingham Rd, SPEARWOOD, Phone: (08) 9434 7401, Open 24 hours</description>
+      <brand>Vibe</brand>
+      <date>2025-12-27</date>
+      <price>137.5</price>
+      <trading-name>Vibe Spearwood</trading-name>
+      <location>SPEARWOOD</location>
+      <address>333 Rockingham Rd</address>
+      <phone>(08) 9434 7401</phone>
+      <latitude>-32.10503300</latitude>
+      <longitude>115.78241900</longitude>
+      <site-features>Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>139.5: United Hamilton Hill</title>
+      <description>Address: 9 Winterfold Rd, HAMILTON HILL, Phone: (08) 6336 7751, Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</description>
+      <brand>United</brand>
+      <date>2025-12-27</date>
+      <price>139.5</price>
+      <trading-name>United Hamilton Hill</trading-name>
+      <location>HAMILTON HILL</location>
+      <address>9 Winterfold Rd</address>
+      <phone>(08) 6336 7751</phone>
+      <latitude>-32.07492600</latitude>
+      <longitude>115.78093100</longitude>
+      <site-features>Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</site-features>
+    </item>
+    <item>
+      <title>139.5: United Hepburn Heights</title>
+      <description>Address: 4 Walter Padbury Bvd, PADBURY, Phone: (08) 9307 2868, Open 24 hours</description>
+      <brand>United</brand>
+      <date>2025-12-27</date>
+      <price>139.5</price>
+      <trading-name>United Hepburn Heights</trading-name>
+      <location>PADBURY</location>
+      <address>4 Walter Padbury Bvd</address>
+      <phone>(08) 9307 2868</phone>
+      <latitude>-31.81889000</latitude>
+      <longitude>115.77409600</longitude>
+      <site-features>Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>139.5: United Lexia Truck Stop</title>
+      <description>Address: 779 Gnangara Rd, LEXIA, Phone: (08) 6336 7753, Site features: Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Water Ice Pumped AdBlue Truck Friendly, Open Mon-Fri: 05:00-21:00, Sat: 05:00-21:00, Sun: 05:00-21:00</description>
+      <brand>United</brand>
+      <date>2025-12-27</date>
+      <price>139.5</price>
+      <trading-name>United Lexia Truck Stop</trading-name>
+      <location>LEXIA</location>
+      <address>779 Gnangara Rd</address>
+      <phone>(08) 6336 7753</phone>
+      <latitude>-31.79518900</latitude>
+      <longitude>115.89955900</longitude>
+      <site-features>Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Water Ice Pumped AdBlue Truck Friendly, Open Mon-Fri: 05:00-21:00, Sat: 05:00-21:00, Sun: 05:00-21:00</site-features>
+    </item>
+    <item>
+      <title>139.5: United Myaree</title>
+      <description>Address: 182 Leach Hwy, MYAREE, Phone: (08) 6336 7761, Site features: Fuel Cards ATM EFTPOS Carwash Air Water Ice, Open Mon-Fri: 06:00-23:00, Sat: 06:00-23:00, Sun: 06:00-23:00</description>
+      <brand>United</brand>
+      <date>2025-12-27</date>
+      <price>139.5</price>
+      <trading-name>United Myaree</trading-name>
+      <location>MYAREE</location>
+      <address>182 Leach Hwy</address>
+      <phone>(08) 6336 7761</phone>
+      <latitude>-32.04621200</latitude>
+      <longitude>115.81261100</longitude>
+      <site-features>Fuel Cards ATM EFTPOS Carwash Air Water Ice, Open Mon-Fri: 06:00-23:00, Sat: 06:00-23:00, Sun: 06:00-23:00</site-features>
+    </item>
+    <item>
+      <title>139.5: United Northbridge</title>
+      <description>Address: 31 Fitzgerald St, NORTHBRIDGE, Phone: (08) 6336 7754, Site features: Fuel Cards ATM Bottled Gas EFTPOS Air Water Ice Bottled AdBlue, Open Mon: 06:00-22:00, Tue: 06:00-22:00, Wed: 06:00-22:00, Thu: 06:00-22:00, Fri: 06:00-23:59, Sat: 06:00-23:59, Sun: 06:00-22:00</description>
+      <brand>United</brand>
+      <date>2025-12-27</date>
+      <price>139.5</price>
+      <trading-name>United Northbridge</trading-name>
+      <location>NORTHBRIDGE</location>
+      <address>31 Fitzgerald St</address>
+      <phone>(08) 6336 7754</phone>
+      <latitude>-31.94561200</latitude>
+      <longitude>115.85243800</longitude>
+      <site-features>Fuel Cards ATM Bottled Gas EFTPOS Air Water Ice Bottled AdBlue, Open Mon: 06:00-22:00, Tue: 06:00-22:00, Wed: 06:00-22:00, Thu: 06:00-22:00, Fri: 06:00-23:59, Sat: 06:00-23:59, Sun: 06:00-22:00</site-features>
+    </item>
+    <item>
+      <title>139.5: United Ellenbrook</title>
+      <description>Address: 3 Locke Lane, ELLENBROOK, Phone: (08) 6336 7752, Site features: ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Water Ice, Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</description>
+      <brand>United</brand>
+      <date>2025-12-27</date>
+      <price>139.5</price>
+      <trading-name>United Ellenbrook</trading-name>
+      <location>ELLENBROOK</location>
+      <address>3 Locke Lane</address>
+      <phone>(08) 6336 7752</phone>
+      <latitude>-31.77852000</latitude>
+      <longitude>115.96699000</longitude>
+      <site-features>ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Water Ice, Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</site-features>
+    </item>
+    <item>
+      <title>139.5: United South Lake</title>
+      <description>Address: 49 Berrigan Dr, SOUTH LAKE, Phone: (08) 9417 7977, Site features: Fuel Cards ATM Bottled Gas EFTPOS Air Water Ice, Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</description>
+      <brand>United</brand>
+      <date>2025-12-27</date>
+      <price>139.5</price>
+      <trading-name>United South Lake</trading-name>
+      <location>SOUTH LAKE</location>
+      <address>49 Berrigan Dr</address>
+      <phone>(08) 9417 7977</phone>
+      <latitude>-32.11148100</latitude>
+      <longitude>115.83883300</longitude>
+      <site-features>Fuel Cards ATM Bottled Gas EFTPOS Air Water Ice, Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</site-features>
+    </item>
+    <item>
+      <title>139.9: BP Beeliar</title>
+      <description>Address: 701 Beeliar Dr, COCKBURN CENTRAL, Phone: (08) 9414 7499, Site features: Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Restaurant Carwash Air Water Ice Discount Voucher Bottled AdBlue Pumped AdBlue Truck Friendly, Open 24 hours</description>
+      <brand>BP</brand>
+      <date>2025-12-27</date>
+      <price>139.9</price>
+      <trading-name>BP Beeliar</trading-name>
+      <location>COCKBURN CENTRAL</location>
+      <address>701 Beeliar Dr</address>
+      <phone>(08) 9414 7499</phone>
+      <latitude>-32.12715700</latitude>
+      <longitude>115.84335700</longitude>
+      <site-features>Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Restaurant Carwash Air Water Ice Discount Voucher Bottled AdBlue Pumped AdBlue Truck Friendly, Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>139.9: Caltex Kiara</title>
+      <description>Address: 157 Morley Dr, KIARA, Phone: (08) 9379 3191, Open 24 hours</description>
+      <brand>Caltex</brand>
+      <date>2025-12-27</date>
+      <price>139.9</price>
+      <trading-name>Caltex Kiara</trading-name>
+      <location>KIARA</location>
+      <address>157 Morley Dr</address>
+      <phone>(08) 9379 3191</phone>
+      <latitude>-31.88713800</latitude>
+      <longitude>115.93832000</longitude>
+      <site-features>Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>139.9: S24 Sawyers Valley</title>
+      <description>Address: 96 Great Eastern Hwy, SAWYERS VALLEY, Phone: (08) 9469 6465, Site features: Fuel Cards ATM Toilets EFTPOS Air Truck Friendly, Open 24 hours</description>
+      <brand>Caltex</brand>
+      <date>2025-12-27</date>
+      <price>139.9</price>
+      <trading-name>S24 Sawyers Valley</trading-name>
+      <location>SAWYERS VALLEY</location>
+      <address>96 Great Eastern Hwy</address>
+      <phone>(08) 9469 6465</phone>
+      <latitude>-31.90309100</latitude>
+      <longitude>116.20713200</longitude>
+      <site-features>Fuel Cards ATM Toilets EFTPOS Air Truck Friendly, Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>139.9: BP Beldon</title>
+      <description>Address: 261 Eddystone Ave, BELDON, Phone: (08) 9307 7887, Site features: Fuel Cards ATM Toilets Bottled Gas EFTPOS Restaurant Air Water Ice Discount Voucher Bottled AdBlue, Open 24 hours</description>
+      <brand>BP</brand>
+      <date>2025-12-27</date>
+      <price>139.9</price>
+      <trading-name>BP Beldon</trading-name>
+      <location>BELDON</location>
+      <address>261 Eddystone Ave</address>
+      <phone>(08) 9307 7887</phone>
+      <latitude>-31.77079200</latitude>
+      <longitude>115.76722400</longitude>
+      <site-features>Fuel Cards ATM Toilets Bottled Gas EFTPOS Restaurant Air Water Ice Discount Voucher Bottled AdBlue, Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>139.9: BP Henley Brook</title>
+      <description>Address: 1520 Gnangara Rd, HENLEY BROOK, Phone: (08) 6296 5788, Site features: Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Restaurant Carwash Air Water Ice Discount Voucher Bottled AdBlue Pumped AdBlue Truck Friendly, Open 24 hours</description>
+      <brand>BP</brand>
+      <date>2025-12-27</date>
+      <price>139.9</price>
+      <trading-name>BP Henley Brook</trading-name>
+      <location>HENLEY BROOK</location>
+      <address>1520 Gnangara Rd</address>
+      <phone>(08) 6296 5788</phone>
+      <latitude>-31.79595100</latitude>
+      <longitude>115.97863600</longitude>
+      <site-features>Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Restaurant Carwash Air Water Ice Discount Voucher Bottled AdBlue Pumped AdBlue Truck Friendly, Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>139.9: BP Mindarie</title>
+      <description>Address: 360 Anchorage Dr North, MINDARIE, Phone: (08) 9304 4867, Site features: Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Restaurant Carwash Air Water Ice Discount Voucher Bottled AdBlue Truck Friendly, Open 24 hours</description>
+      <brand>BP</brand>
+      <date>2025-12-27</date>
+      <price>139.9</price>
+      <trading-name>BP Mindarie</trading-name>
+      <location>MINDARIE</location>
+      <address>360 Anchorage Dr North</address>
+      <phone>(08) 9304 4867</phone>
+      <latitude>-31.67706400</latitude>
+      <longitude>115.71119700</longitude>
+      <site-features>Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Restaurant Carwash Air Water Ice Discount Voucher Bottled AdBlue Truck Friendly, Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>143.9: BP Balcatta</title>
+      <description>Address: 53 Erindale Rd, BALCATTA, Phone: (08) 9240 4110, Site features: Fuel Cards ATM Toilets Bottled Gas EFTPOS Restaurant Air Water Ice Discount Voucher Bottled AdBlue Truck Friendly, Open 24 hours</description>
+      <brand>BP</brand>
+      <date>2025-12-27</date>
+      <price>143.9</price>
+      <trading-name>BP Balcatta</trading-name>
+      <location>BALCATTA</location>
+      <address>53 Erindale Rd</address>
+      <phone>(08) 9240 4110</phone>
+      <latitude>-31.86556800</latitude>
+      <longitude>115.80805500</longitude>
+      <site-features>Fuel Cards ATM Toilets Bottled Gas EFTPOS Restaurant Air Water Ice Discount Voucher Bottled AdBlue Truck Friendly, Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>143.9: Better Choice Tuart Hill</title>
+      <description>Address: 150 Wanneroo Rd, TUART HILL, Phone: (08) 9349 6915, Site features: ATM Bottled Gas EFTPOS Air Ice, Open Mon: 05:00-22:00, Tue: 05:00-22:00, Wed: 05:00-22:00, Thu: 05:00-22:00, Fri: 05:00-22:00, Sat: 06:00-22:00, Sun: 06:00-22:00</description>
+      <brand>Better Choice</brand>
+      <date>2025-12-27</date>
+      <price>143.9</price>
+      <trading-name>Better Choice Tuart Hill</trading-name>
+      <location>TUART HILL</location>
+      <address>150 Wanneroo Rd</address>
+      <phone>(08) 9349 6915</phone>
+      <latitude>-31.89726800</latitude>
+      <longitude>115.84144700</longitude>
+      <site-features>ATM Bottled Gas EFTPOS Air Ice, Open Mon: 05:00-22:00, Tue: 05:00-22:00, Wed: 05:00-22:00, Thu: 05:00-22:00, Fri: 05:00-22:00, Sat: 06:00-22:00, Sun: 06:00-22:00</site-features>
+    </item>
+    <item>
+      <title>143.9: Better Choice Malaga</title>
+      <description>Address: 3 Carson Rd, MALAGA, Phone: (08) 9248 2671, Site features: ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Ice Truck Friendly, Open Mon-Fri: 05:00-20:00, Sat: 06:00-19:00, Sun: 07:00-19:00</description>
+      <brand>Better Choice</brand>
+      <date>2025-12-27</date>
+      <price>143.9</price>
+      <trading-name>Better Choice Malaga</trading-name>
+      <location>MALAGA</location>
+      <address>3 Carson Rd</address>
+      <phone>(08) 9248 2671</phone>
+      <latitude>-31.85513600</latitude>
+      <longitude>115.87822900</longitude>
+      <site-features>ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Ice Truck Friendly, Open Mon-Fri: 05:00-20:00, Sat: 06:00-19:00, Sun: 07:00-19:00</site-features>
+    </item>
+    <item>
+      <title>143.9: Better Choice Bellevue</title>
+      <description>Address: 177-179 Great Eastern Hwy, BELLEVUE, Phone: (08) 9328 6800, Open Mon-Fri: 05:00-22:00, Sat: 06:00-22:00, Sun: 06:00-22:00</description>
+      <brand>Better Choice</brand>
+      <date>2025-12-27</date>
+      <price>143.9</price>
+      <trading-name>Better Choice Bellevue</trading-name>
+      <location>BELLEVUE</location>
+      <address>177-179 Great Eastern Hwy</address>
+      <phone>(08) 9328 6800</phone>
+      <latitude>-31.89305800</latitude>
+      <longitude>116.01941900</longitude>
+      <site-features>Open Mon-Fri: 05:00-22:00, Sat: 06:00-22:00, Sun: 06:00-22:00</site-features>
+    </item>
+    <item>
+      <title>143.9: BP Woodbridge</title>
+      <description>Address: 380 Great Eastern Hwy, WOODBRIDGE, Phone: (08) 6460 6983, Open Mon-Fri: 05:00-23:59, Sat: 05:00-23:59, Sun: 05:00-23:59</description>
+      <brand>BP</brand>
+      <date>2025-12-27</date>
+      <price>143.9</price>
+      <trading-name>BP Woodbridge</trading-name>
+      <location>WOODBRIDGE</location>
+      <address>380 Great Eastern Hwy</address>
+      <phone>(08) 6460 6983</phone>
+      <latitude>-31.89035400</latitude>
+      <longitude>115.99571500</longitude>
+      <site-features>Open Mon-Fri: 05:00-23:59, Sat: 05:00-23:59, Sun: 05:00-23:59</site-features>
+    </item>
+    <item>
+      <title>146.9: Lori's Fuel Supply</title>
+      <description>Address: 259 Railway Ave, KELMSCOTT, Phone: (08) 9399 1701, Open Mon: 06:00-18:00, Tue: 06:00-18:00, Wed: 06:00-18:00, Thu: 06:00-18:00, Fri: 06:00-18:00, Sat: 06:00-13:00, Sun: -</description>
+      <brand>Independent</brand>
+      <date>2025-12-27</date>
+      <price>146.9</price>
+      <trading-name>Lori's Fuel Supply</trading-name>
+      <location>KELMSCOTT</location>
+      <address>259 Railway Ave</address>
+      <phone>(08) 9399 1701</phone>
+      <latitude>-32.13535900</latitude>
+      <longitude>116.00948100</longitude>
+      <site-features>Open Mon: 06:00-18:00, Tue: 06:00-18:00, Wed: 06:00-18:00, Thu: 06:00-18:00, Fri: 06:00-18:00, Sat: 06:00-13:00, Sun: -</site-features>
+    </item>
+    <item>
+      <title>149.9: Caltex Alexander Heights</title>
+      <description>Address: 200 Mirrabooka Ave, ALEXANDER HEIGHTS, Phone: (08) 9343 4422, Open 24 hours</description>
+      <brand>Caltex</brand>
+      <date>2025-12-27</date>
+      <price>149.9</price>
+      <trading-name>Caltex Alexander Heights</trading-name>
+      <location>ALEXANDER HEIGHTS</location>
+      <address>200 Mirrabooka Ave</address>
+      <phone>(08) 9343 4422</phone>
+      <latitude>-31.82932600</latitude>
+      <longitude>115.85283100</longitude>
+      <site-features>Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>149.9: Petro Fuels Karragullen</title>
+      <description>Address: 1287 Brookton Hwy, KARRAGULLEN, Open 24 hours</description>
+      <brand>Petro Fuels</brand>
+      <date>2025-12-27</date>
+      <price>149.9</price>
+      <trading-name>Petro Fuels Karragullen</trading-name>
+      <location>KARRAGULLEN</location>
+      <address>1287 Brookton Hwy</address>
+      <phone> </phone>
+      <latitude>-32.10508500</latitude>
+      <longitude>116.12142100</longitude>
+      <site-features>Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>173.5: Better Choice Karridale Roadhouse</title>
+      <description>Address: 12440 Bussell Hwy, KARRIDALE, Phone: (08) 9758 5009, Open Mon: 05:30-18:00, Tue: 05:30-18:00, Wed: 05:30-18:00, Thu: 05:30-18:00, Fri: 05:30-18:00, Sat: 05:30-18:00, Sun: 05:30-18:00</description>
+      <brand>Better Choice</brand>
+      <date>2025-12-27</date>
+      <price>173.5</price>
+      <trading-name>Better Choice Karridale Roadhouse</trading-name>
+      <location>KARRIDALE</location>
+      <address>12440 Bussell Hwy</address>
+      <phone>(08) 9758 5009</phone>
+      <latitude>-34.20225400</latitude>
+      <longitude>115.09901800</longitude>
+      <site-features>Open Mon: 05:30-18:00, Tue: 05:30-18:00, Wed: 05:30-18:00, Thu: 05:30-18:00, Fri: 05:30-18:00, Sat: 05:30-18:00, Sun: 05:30-18:00</site-features>
+    </item>
+    <item>
+      <title>173.5: Better Choice Margaret River</title>
+      <description>Address: 211 Bussell Hwy, MARGARET RIVER, Phone: (08) 9785 2811, Open Mon-Fri: 06:00-22:00, Sat: 06:00-22:00, Sun: 06:00-22:00</description>
+      <brand>Better Choice</brand>
+      <date>2025-12-27</date>
+      <price>173.5</price>
+      <trading-name>Better Choice Margaret River</trading-name>
+      <location>MARGARET RIVER</location>
+      <address>211 Bussell Hwy</address>
+      <phone>(08) 9785 2811</phone>
+      <latitude>-33.95989000</latitude>
+      <longitude>115.07641200</longitude>
+      <site-features>Open Mon-Fri: 06:00-22:00, Sat: 06:00-22:00, Sun: 06:00-22:00</site-features>
+    </item>
+    <item>
+      <title>187.4: BOC Gas &amp; Gear</title>
+      <description>Address: 287 Place Rd, WEBBERTON, Phone: (08) 9964 2807, Open Mon-Fri: 07:00-16:30</description>
+      <brand>BOC</brand>
+      <date>2025-12-27</date>
+      <price>187.4</price>
+      <trading-name>BOC Gas &amp; Gear</trading-name>
+      <location>WEBBERTON</location>
+      <address>287 Place Rd</address>
+      <phone>(08) 9964 2807</phone>
+      <latitude>-28.75862700</latitude>
+      <longitude>114.63499000</longitude>
+      <site-features>Open Mon-Fri: 07:00-16:30</site-features>
+    </item>
+    <item>
+      <title>239.9: BP Wubin</title>
+      <description>Address: 80-82 Great Northern Hwy, WUBIN, Phone: (08) 9664 1013, Site features: Fuel Cards ATM EFTPOS Restaurant Pumped AdBlue Truck Friendly, Open 24 hours</description>
+      <brand>BP</brand>
+      <date>2025-12-27</date>
+      <price>239.9</price>
+      <trading-name>BP Wubin</trading-name>
+      <location>WUBIN</location>
+      <address>80-82 Great Northern Hwy</address>
+      <phone>(08) 9664 1013</phone>
+      <latitude>-30.10768200</latitude>
+      <longitude>116.63286300</longitude>
+      <site-features>Fuel Cards ATM EFTPOS Restaurant Pumped AdBlue Truck Friendly, Open 24 hours</site-features>
+    </item>
+  </channel>
+</rss>

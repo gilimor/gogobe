@@ -91,13 +91,13 @@ def test_connection():
         cur = conn.cursor()
         cur.execute("SELECT version();")
         version = cur.fetchone()
-        print(f"✅ Database connection successful!")
+        print(f"Database connection successful!")
         print(f"PostgreSQL version: {version[0]}")
         cur.close()
         conn.close()
         return True
     except Exception as e:
-        print(f"❌ Database connection failed: {e}")
+        print(f"Database connection failed: {e}")
         return False
 
 if __name__ == "__main__":

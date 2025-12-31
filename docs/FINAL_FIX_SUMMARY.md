@@ -173,3 +173,6 @@ scripts\supermarket\import-all-kingstore.bat
 סטטוס: ✅ **תוקן ועובד מושלם!**  
 גרסה: 2.0
 
+
+
+

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogobe - Master Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Assistant', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+    <div id="nav-placeholder"></div>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+
+        <header class="mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900">ניהול קטלוג גלובלי (Master Products) 🌍</h1>
+                <p class="text-slate-500 mt-1">צפייה וניהול של "המוצרים האב" והקישורים שלהם</p>
+            </div>
+            <div class="flex gap-3">
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition shadow">
+                    <i class="fas fa-plus ml-2"></i> יצירה ידנית
+                </button>
+            </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                <div class="text-slate-500 text-sm mb-1">Total Masters</div>
+                <div class="text-3xl font-bold text-blue-600" id="stat-total">TBD</div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                <div class="text-slate-500 text-sm mb-1">Linked Products</div>
+                <div class="text-3xl font-bold text-emerald-600" id="stat-linked">TBD</div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                <div class="text-slate-500 text-sm mb-1">Orphans (Unlinked)</div>
+                <div class="text-3xl font-bold text-red-500" id="stat-orphans">TBD</div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                <div class="text-slate-500 text-sm mb-1">Coverage Rate</div>
+                <div class="text-3xl font-bold text-purple-600" id="stat-coverage">TBD%</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="border-b border-slate-100 px-6 py-4 flex gap-4">
+                <button class="font-bold text-blue-600 border-b-2 border-blue-600 pb-4 -mb-4">רשימת מאסטרים</button>
+                <button class="text-slate-500 hover:text-slate-800 pb-4 -mb-4">חריגות (QC)</button>
+            </div>
+
+            <div class="p-6">
+                <!-- Search -->
+                <div class="flex gap-4 mb-6">
+                    <div class="relative flex-1">
+                        <i class="fas fa-search absolute right-3 top-3 text-slate-400"></i>
+                        <input type="text" id="searchInput" placeholder="חפש לפי שם, ברקוד או מזהה גלובלי..."
+                            class="w-full pr-10 pl-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            onkeypress="if(event.key === 'Enter') handleSearch()">
+                    </div>
+                    <select class="border border-slate-200 rounded-lg px-4 py-2 bg-white">
+                        <option>כל הקטגוריות</option>
+                    </select>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right">
+                        <thead class="bg-slate-50 text-slate-500 text-sm uppercase">
+                            <tr>
+                                <th class="px-4 py-3 cursor-pointer hover:text-blue-600 select-none"
+                                    onclick="handleSort('id')">
+                                    ID <i class="fas fa-sort ml-1"></i>
+                                </th>
+                                <th class="px-4 py-3 cursor-pointer hover:text-blue-600 select-none"
+                                    onclick="handleSort('global_name')">
+                                    שם גלובלי <i class="fas fa-sort ml-1"></i>
+                                </th>
+                                <th class="px-4 py-3 cursor-pointer hover:text-blue-600 select-none"
+                                    onclick="handleSort('global_ean')">
+                                    ברקוד (EAN) <i class="fas fa-sort ml-1"></i>
+                                </th>
+                                <th class="px-4 py-3 cursor-pointer hover:text-blue-600 select-none"
+                                    onclick="handleSort('linked_count')">
+                                    מקושרים <i class="fas fa-sort ml-1"></i>
+                                </th>
+                                <th class="px-4 py-3 cursor-pointer hover:text-blue-600 select-none"
+                                    onclick="handleSort('confidence_score')">
+                                    ציון <i class="fas fa-sort ml-1"></i>
+                                </th>
+                                <th class="px-4 py-3">פעולות</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100" id="master-table-body">
+                            <!-- Rows will be injected by JS -->
+                            <tr>
+                                <td colspan="6" class="text-center py-8 text-slate-400">
+                                    <i class="fas fa-spinner fa-spin mr-2"></i> טוען נתונים...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-between items-center mt-6 text-sm text-slate-500" id="pagination-container">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="nav.js"></script>
+    <script>
+        const API_URL = '/api/master-products';
+        let currentState = {
+            page: 1,
+            limit: 50,
+            search: '',
+            sortBy: 'linked_count',
+            order: 'desc'
+        };
+
+        async function loadStats() {
+            try {
+                const res = await fetch(`${API_URL}/stats`);
+                const stats = await res.json();
+
+                document.getElementById('stat-total').textContent = stats.total_masters.toLocaleString();
+                document.getElementById('stat-linked').textContent = stats.total_linked.toLocaleString();
+                document.getElementById('stat-orphans').textContent = stats.orphans.toLocaleString();
+                document.getElementById('stat-coverage').textContent = `${stats.coverage_rate}%`;
+            } catch (err) {
+                console.error("Failed to load stats", err);
+            }
+        }
+
+        function handleSearch() {
+            currentState.search = document.getElementById('searchInput').value;
+            currentState.page = 1; // Reset to page 1
+            loadTable();
+        }
+
+        function handleSort(col) {
+            if (currentState.sortBy === col) {
+                currentState.order = currentState.order === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentState.sortBy = col;
+                currentState.order = 'desc'; // Default desc for new col
+            }
+            loadTable();
+        }
+
+        async function loadTable() {
+            const tbody = document.getElementById('master-table-body');
+            tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8"><i class="fas fa-spinner fa-spin mr-2"></i> טוען...</td></tr>`;
+
+            try {
+                // Build URL
+                const params = new URLSearchParams({
+                    page: currentState.page,
+                    limit: currentState.limit,
+                    sort_by: currentState.sortBy,
+                    order: currentState.order
+                });
+                if (currentState.search) params.append('search', currentState.search);
+
+                const res = await fetch(`${API_URL}/?${params.toString()}`);
+                const data = await res.json();
+
+                if (data.data.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-slate-500">לא נמצאו נתונים</td></tr>`;
+                    renderPagination(data.meta);
+                    return;
+                }
+
+                tbody.innerHTML = data.data.map(item => `
+                    <tr class="hover:bg-slate-50 transition border-b border-slate-50">
+                        <td class="px-4 py-4 font-mono text-xs text-slate-400">#${item.id}</td>
+                        <td class="px-4 py-4 font-bold text-slate-800">
+                            <a href="/products.html?master_id=${item.id}" class="hover:text-blue-600 hover:underline flex items-center gap-2">
+                                ${item.global_name}
+                                <i class="fas fa-external-link-alt text-[10px] opacity-50"></i>
+                            </a>
+                        </td>
+                        <td class="px-4 py-4 font-mono text-slate-600">${item.global_ean || '-'}</td>
+                        <td class="px-4 py-4">
+                            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-bold">
+                                ${item.linked_count} Products
+                            </span>
+                        </td>
+                        <td class="px-4 py-4">
+                            <span class="font-bold ${item.confidence_score > 0.8 ? 'text-green-500' : 'text-yellow-500'}">
+                                ${item.confidence_score ? Math.round(item.confidence_score * 100) : 0}%
+                            </span>
+                        </td>
+                        <td class="px-4 py-4 flex gap-2">
+                            <a href="/products.html?master_id=${item.id}" class="text-emerald-600 hover:text-emerald-800 p-2 rounded hover:bg-emerald-50 transition" title="צפה במוצרים המקושרים">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <button class="text-blue-600 hover:text-blue-800 p-2 rounded hover:bg-blue-50 transition" title="ערוך">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+
+                renderPagination(data.meta);
+
+            } catch (err) {
+                console.error("Failed to load table", err);
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-red-500">שגיאה בטעינת הנתונים</td></tr>`;
+            }
+        }
+
+        function renderPagination(meta) {
+            const container = document.getElementById('pagination-container');
+            const total = meta.total || 0;
+            const start = (meta.page - 1) * meta.limit + 1;
+            const end = Math.min(start + meta.limit - 1, total);
+            const pages = meta.pages;
+            const current = meta.page;
+
+            let btns = '';
+
+            // Prev
+            btns += `<button onclick="changePage(${current - 1})" class="px-3 py-1 border border-slate-200 rounded hover:bg-slate-50 ${current <= 1 ? 'opacity-50 pointer-events-none' : ''}">הקודם</button>`;
+
+            // Page Numbers (Simple window)
+            for (let i = Math.max(1, current - 2); i <= Math.min(pages, current + 2); i++) {
+                btns += `<button onclick="changePage(${i})" class="px-3 py-1 border ${i === current ? 'bg-blue-50 text-blue-600 border-blue-100 font-bold' : 'border-slate-200 hover:bg-slate-50'} rounded">${i}</button>`;
+            }
+
+            // Next
+            btns += `<button onclick="changePage(${current + 1})" class="px-3 py-1 border border-slate-200 rounded hover:bg-slate-50 ${current >= pages ? 'opacity-50 pointer-events-none' : ''}">הבא</button>`;
+
+            container.innerHTML = `
+                <div>מציג ${start}-${end} מתוך ${total.toLocaleString()}</div>
+                <div class="flex gap-2">${btns}</div>
+            `;
+        }
+
+        function changePage(p) {
+            currentState.page = p;
+            loadTable();
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStats();
+            loadTable();
+        });
+    </script>
+</body>
+
+</html>

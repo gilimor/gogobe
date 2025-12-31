@@ -16,3 +16,6 @@ COMMENT ON COLUMN prices.store_id IS 'The specific store where this price was fo
 
 
 
+
+
+

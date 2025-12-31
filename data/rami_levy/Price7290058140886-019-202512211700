@@ -1,0 +1,561 @@
+﻿<Root>
+  <XmlDocVersion>19</XmlDocVersion>
+  <ChainId>7290058140886</ChainId>
+  <SubChainId>1</SubChainId>
+  <StoreId>019</StoreId>
+  <BikoretNo>9</BikoretNo>
+  <DllVerNo>9.4.0.50</DllVerNo>
+  <Items Count="29">
+    <Item>
+      <PriceUpdateDate>2025-01-01 07:45:29</PriceUpdateDate>
+      <ItemCode>7290014890145</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>שמנת 225 גרם</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>שמנת 225 גרם</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>225.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>11.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0529</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>3482676</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-01-01 07:45:29</PriceUpdateDate>
+      <ItemCode>7290014890152</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>שמנת זיתים 225 גרם</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>שמנת זיתים 225 גרם</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>225.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>11.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0529</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>3637999</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-01-01 07:45:29</PriceUpdateDate>
+      <ItemCode>7290014890169</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>שמנת שום שמיר 225 גר</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>שמנת שום שמיר 225 גר</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>225.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>11.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0529</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>3734102</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-03-24 09:03:29</PriceUpdateDate>
+      <ItemCode>7290001258682</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>יעקבס יוגורט עיזים 3</ItemName>
+      <ManufacturerName>משק יעקבס</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>יעקבס יוגורט עיזים 3</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>13.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0278</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1047207</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-07-13 15:47:40</PriceUpdateDate>
+      <ItemCode>7290015733229</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מטרנה אקסטרה קר מהדר</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>מטרנה אקסטרה קר מהדר</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>700.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>59.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0856</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>4767402</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-07-13 15:47:55</PriceUpdateDate>
+      <ItemCode>7290011447359</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>תחליף חלב מהדרין שלב</ItemName>
+      <ManufacturerName>מטרנה</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>תחליף חלב מהדרין שלב</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>700.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>54.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0784</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1021005</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-11-19 11:38:36</PriceUpdateDate>
+      <ItemCode>7290014890176</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>ריקוטה 250 גר</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>ריקוטה 250 גר</ManufacturerItemDescription>
+      <UnitQty>יח'</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>יח'</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>11.90</ItemPrice>
+      <UnitOfMeasurePrice>11.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>5701951</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-01-01 07:45:39</PriceUpdateDate>
+      <ItemCode>7290017065977</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פרוסות צ'דר 150 גר</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>פרוסות צ'דר 150 גר</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>150.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>19.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1327</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>6622673</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-11 17:09:46</PriceUpdateDate>
+      <ItemCode>7290006492432</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>גבינת מוצרלה בייבי 1</ItemName>
+      <ManufacturerName>מחלבות גד</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>גבינת מוצרלה בייבי 1</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>150.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>14.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0993</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1021821</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-11 17:09:50</PriceUpdateDate>
+      <ItemCode>7290011499051</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>גבינת פטה כבשים 20%</ItemName>
+      <ManufacturerName>מחלבות גד</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>גבינת פטה כבשים 20%</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>250.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>28.50</ItemPrice>
+      <UnitOfMeasurePrice>0.1140</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1021830</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-11 17:09:50</PriceUpdateDate>
+      <ItemCode>7290011499365</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>גד חלומי 200 גר</ItemName>
+      <ManufacturerName>מחלבות גד</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>גד חלומי 200 גר</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>200.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>22.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1145</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1021845</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-11 17:09:52</PriceUpdateDate>
+      <ItemCode>7290014455252</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>גרנה פדנו מגורד 100</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>גרנה פדנו מגורד 100</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>100.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>12.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1290</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1205717</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-11 17:09:53</PriceUpdateDate>
+      <ItemCode>7290017065175</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>גבינה חצי קשה במעטפת</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>גבינה חצי קשה במעטפת</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>150.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>22.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1527</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>4296811</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-11 17:09:53</PriceUpdateDate>
+      <ItemCode>7290017065526</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קואטרו פורמאג'י</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>קואטרו פורמאג'י</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>300.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>27.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0930</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>5716990</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-11 17:09:54</PriceUpdateDate>
+      <ItemCode>7290017065786</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>צ'דר 210 גר</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>צ'דר 210 גר</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>210.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>21.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1043</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>6483102</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-11 17:09:55</PriceUpdateDate>
+      <ItemCode>7290019635192</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פרוסות גאודה עיזים 3</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>פרוסות גאודה עיזים 3</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>160.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>24.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1556</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>6736816</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-03-06 10:44:56</PriceUpdateDate>
+      <ItemCode>7290011499846</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>גבינת ריקוטה פרסקה 9</ItemName>
+      <ManufacturerName>מחלבות גד</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>גבינת ריקוטה פרסקה 9</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>300.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>18.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0630</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1021872</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-02 10:09:34</PriceUpdateDate>
+      <ItemCode>7290000554600</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>גבינת מוצרלה מגורדת</ItemName>
+      <ManufacturerName>מחלבות גד</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>גבינת מוצרלה מגורדת</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>300.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>23.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0797</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1021794</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-12 09:30:31</PriceUpdateDate>
+      <ItemCode>7290105430441</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פלמוליב תחליב רחצה נ</ItemName>
+      <ManufacturerName>פלמוליב</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>פלמוליב תחליב רחצה נ</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>19.50</ItemPrice>
+      <UnitOfMeasurePrice>0.0260</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1018426</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-12 09:30:31</PriceUpdateDate>
+      <ItemCode>7290105430458</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פלמוליב תחליב רחצה נ</ItemName>
+      <ManufacturerName>פלמוליב</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>פלמוליב תחליב רחצה נ</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>19.50</ItemPrice>
+      <UnitOfMeasurePrice>0.0260</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1018427</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-23 09:16:49</PriceUpdateDate>
+      <ItemCode>4740051999774</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קוקטייל טומי 330 מל</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>קוקטייל טומי 330 מל</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>330.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>9.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0300</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>6739462</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-09-16 14:18:42</PriceUpdateDate>
+      <ItemCode>5900020029669</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מארז חטיף פיטנס פירו</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>מארז חטיף פיטנס פירו</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>141.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>15.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1128</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>3471812</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-09-16 14:18:42</PriceUpdateDate>
+      <ItemCode>5900020034021</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>חטיף דגנים פיטנס שוק</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>חטיף דגנים פיטנס שוק</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>141.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>15.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1128</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>5720222</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-11-27 10:55:20</PriceUpdateDate>
+      <ItemCode>5900020047915</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>דגני בוקר קראנץ 375</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>דגני בוקר קראנץ 375</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>375.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>19.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0531</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>6972913</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-11-27 10:54:57</PriceUpdateDate>
+      <ItemCode>7290019997030</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מלפפונים במלח בתוספת</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>מלפפונים במלח בתוספת</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>300.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>14.80</ItemPrice>
+      <UnitOfMeasurePrice>0.0493</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>6972954</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-11-27 10:54:57</PriceUpdateDate>
+      <ItemCode>7290019997139</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מלפפונים במלח בתוספת</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>מלפפונים במלח בתוספת</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>300.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>14.80</ItemPrice>
+      <UnitOfMeasurePrice>0.0493</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>6972955</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-11-27 10:54:57</PriceUpdateDate>
+      <ItemCode>7290019997870</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מלפפונים במלח בתוספת</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>מלפפונים במלח בתוספת</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>300.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>14.80</ItemPrice>
+      <UnitOfMeasurePrice>0.0493</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>6972956</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-11-27 10:54:57</PriceUpdateDate>
+      <ItemCode>7290019997979</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מלפפונים במלח בתוס פ</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>מלפפונים במלח בתוס פ</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>300.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>14.80</ItemPrice>
+      <UnitOfMeasurePrice>0.0493</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>6972957</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:19:55</PriceUpdateDate>
+      <ItemCode>5411188124689</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>אלפרו משקה שיבולת שו</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>אלפרו משקה שיבולת שו</ManufacturerItemDescription>
+      <UnitQty>ליטרים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ליטר    </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>14.70</ItemPrice>
+      <UnitOfMeasurePrice>14.7000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>6422920</ItemId>
+    </Item>
+  </Items>
+</Root>

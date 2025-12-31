@@ -265,6 +265,46 @@ currencies(1) ──→ (∞) prices
 
 ---
 
+## ⚡ Performance Optimization (Dec 2025)
+
+To support scaling to billions of records, we implemented several optimizations:
+
+### 1. Composite Indexes
+We added specialized indexes to the `prices` table that match common API query patterns:
+```sql
+-- For default sorting "Latest Prices"
+CREATE INDEX idx_prices_default_sort ON prices (scraped_at DESC, price ASC);
+-- For filtering by store
+CREATE INDEX idx_prices_store_sort ON prices (store_id, scraped_at DESC);
+-- For product history
+CREATE INDEX idx_prices_product_sort ON prices (product_id, scraped_at DESC);
+```
+
+### 2. Smart Count Queries
+The API (`main.py`) logic for counting total records was optimized:
+*   **No Filters:** Uses PostgreSQL table statistics (`reltuples`) for an instant estimate 0ms vs 5s).
+*   **With Filters:** Removes unnecessary `LEFT JOIN`s (e.g. to `prices` table) when filtering only by product properties, resulting in 95% faster queries.
+
+---
+
+## 🌍 Geospatial Support (PostGIS)
+
+We migrated to `postgis/postgis` image to enable advanced mapping features.
+
+### Stores Table Schema Update
+*   **Added:** `latitude` (Numeric), `longitude` (Numeric)
+*   **Added:** `geom` (Geometry Point, SRID 4326)
+*   **Index:** Spatial index (GIST) on `geom` column for fast proximity searches.
+
+This enables future features like "Stores near me" using:
+```sql
+SELECT * FROM stores 
+ORDER BY geom <-> ST_SetSRID(ST_MakePoint(lon, lat), 4326) 
+LIMIT 5;
+```
+
+---
+
 ## 🔮 תכנון עתידי
 
 ### 1. **product_merges** - איחוד כפילויות

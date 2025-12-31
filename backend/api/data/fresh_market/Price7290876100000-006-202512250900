@@ -1,0 +1,124 @@
+﻿<Root>
+  <XmlDocVersion>19</XmlDocVersion>
+  <ChainId>7290876100000</ChainId>
+  <SubChainId>1</SubChainId>
+  <StoreId>006</StoreId>
+  <BikoretNo>9</BikoretNo>
+  <DllVerNo>9.4.0.50</DllVerNo>
+  <Items Count="6">
+    <Item>
+      <PriceUpdateDate>2023-09-04 18:48:57</PriceUpdateDate>
+      <ItemCode>7290016270709</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>שרי אשכולות ארוז כ-4</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>שרי אשכולות ארוז כ-4</ManufacturerItemDescription>
+      <UnitQty>יחידה   </UnitQty>
+      <Quantity>0.00</Quantity>
+      <UnitOfMeasure>יחידה   </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>8.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>174250</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2024-12-18 09:10:29</PriceUpdateDate>
+      <ItemCode>7290018237397</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פסטרמה מקורמלת מנתח</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>פסטרמה מקורמלת מנתח</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>300.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>32.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1097</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>200790</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2024-12-18 09:10:46</PriceUpdateDate>
+      <ItemCode>7290019790303</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>חלב מועשר 3% 1 ליטר</ItemName>
+      <ManufacturerName>קריות זול</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>חלב מועשר 3% 1 ליטר</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>1000.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>9.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0099</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>208024</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-07-13 13:13:56</PriceUpdateDate>
+      <ItemCode>7290002109372</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>אצבעות פילו בולגרית</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>אצבעות פילו בולגרית</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>700.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>19.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0284</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>203780</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:09:32</PriceUpdateDate>
+      <ItemCode>7610400068505</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>לינדור בונבוניירה חל</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>לינדור בונבוניירה חל</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>200.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>39.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1995</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>123062</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-05-16 10:50:16</PriceUpdateDate>
+      <ItemCode>7290114313285</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מולר פרוטאין משקה בט</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>מולר פרוטאין משקה בט</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>350.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>8.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0254</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>217931</ItemId>
+    </Item>
+  </Items>
+</Root>

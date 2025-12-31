@@ -1,0 +1,29 @@
+﻿<Root>
+  <XmlDocVersion>19</XmlDocVersion>
+  <ChainId>7290103152017</ChainId>
+  <SubChainId>1</SubChainId>
+  <StoreId>028</StoreId>
+  <BikoretNo>1</BikoretNo>
+  <DllVerNo>9.4.0.50</DllVerNo>
+  <Items Count="1">
+    <Item>
+      <PriceUpdateDate>2015-01-01 00:00:00</PriceUpdateDate>
+      <ItemCode>7290000446721</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מארז פריכיות אורז ב.</ItemName>
+      <ManufacturerName>בטר אנד דיפרנט</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>מארז פריכיות אורז ב.</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>480.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>14.90</ItemPrice>
+      <UnitOfMeasurePrice>3.1042</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>262276</ItemId>
+    </Item>
+  </Items>
+</Root>

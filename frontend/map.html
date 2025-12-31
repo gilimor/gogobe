@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מפת סניפים - Gogobe</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <style>
+        /* Main Navigation (Consistent with stores.html) */
+        .main-nav {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            /* Map creates high z-index contexts */
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+        }
+
+        .nav-brand {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Map Page Specifics */
+        .map-page {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 64px);
+            /* Subtract nav height */
+            background-color: #f3f4f6;
+        }
+
+        #map-container {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-controls {
+            padding: 15px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            font-size: 1.2rem;
+            color: #059669;
+            font-weight: bold;
+        }
+
+        /* Stats Panel */
+        .stats-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 500;
+            width: 250px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        /* Search Styles */
+        .search-container {
+            position: relative;
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 15px;
+            padding-right: 40px;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #10b981;
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-result-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-result-item:hover {
+            background: #f9fafb;
+        }
+
+        .search-result-item img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .price-marker {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 20px;
+            padding: 2px 8px;
+            font-weight: bold;
+            font-size: 13px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        .selected-product-info {
+            background: #e0f2f1;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
+    <script src="nav.js" defer></script>
+</head>
+
+<body>
+    <!-- <main-nav> removed, handled by nav.js -->
+
+    <div class="map-page">
+        <div class="map-controls">
+            <div class="search-container">
+                <input type="text" id="product-search" class="search-input"
+                    placeholder="חפש אב מוצר (למשל: חלב, קולה, נוטלה)...">
+                <span class="search-icon">🔍</span>
+                <div id="search-results" class="search-results"></div>
+            </div>
+
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <strong>סינון:</strong>
+                <select id="chain-filter" class="filter-select">
+                    <option value="all">כל הרשתות</option>
+                </select>
+                <select id="city-filter" class="filter-select">
+                    <option value="all">כל הערים</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="selected-product-bar" class="selected-product-info" style="margin: 0 15px 10px 15px; display: none;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span id="selected-product-name" style="font-weight: bold; font-size: 1.1rem;"></span>
+                <button onclick="clearProductSearch()"
+                    style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.9rem;">✕ בטל
+                    בחירה</button>
+            </div>
+            <div id="price-range-summary" style="font-size: 0.9rem; color: #374151;"></div>
+        </div>
+
+        <div id="map-container">
+            <div id="map"></div>
+            <div id="loading" class="loading-overlay">טוען נתונים וסניפים...</div>
+
+            <div class="stats-panel">
+                <div class="stat-row">
+                    <span>סה"כ סניפים:</span>
+                    <span id="total-stores" class="stat-value">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>סניפים מוצגים:</span>
+                    <span id="visible-stores" class="stat-value">0</span>
+                </div>
+                <div
+                    style="font-size: 11px; color: #666; margin-top: 10px; border-top: 1px solid #eee; padding-top: 5px;">
+                    * המיקום מבוסס על OpenStreetMap
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+    <script>
+        // Init Map (Center on Israel)
+        const map = L.map('map').setView([31.5, 35.0], 8);
+
+        // Add OSM Tile Layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        let allStores = [];
+        let markersClusterGroup = L.markerClusterGroup();
+        let selectedProduct = null;
+        let productPrices = [];
+        const API_BASE = '';
+        let heatLayer = null;
+
+        // Chain colors
+        const chainColors = {
+            'shufersal': '#10b981', // green
+            'kingstore': '#ef4444', // red
+            'default': '#3b82f6'    // blue
+        };
+
+        map.addLayer(markersClusterGroup);
+
+        function updateHeatmap(data) {
+            if (heatLayer) {
+                map.removeLayer(heatLayer);
+                heatLayer = null;
+            }
+
+            if (!selectedProduct || !data || data.length === 0) return;
+
+            const valid = data.filter(d => d.price && d.latitude && d.longitude);
+            if (valid.length === 0) return;
+
+            const prices = valid.map(d => d.price);
+            const minP = Math.min(...prices);
+
+            // Inverted Heatmap: Cheaper = Hotter (High Intensity)
+            const heatPoints = valid.map(p => {
+                const ratio = p.price / minP;
+                let intensity = 1.0 / (ratio * ratio * ratio);
+                return [p.latitude, p.longitude, intensity];
+            });
+
+            heatLayer = L.heatLayer(heatPoints, {
+                radius: 35,
+                blur: 20,
+                maxZoom: 10,
+                max: 1.0,
+                gradient: {
+                    0.0: 'blue',
+                    0.4: 'purple',
+                    0.6: 'red',
+                    0.8: 'orange',
+                    1.0: 'yellow'
+                }
+            }).addTo(map);
+        }
+
+        async function init() {
+            try {
+                // 1. Fetch stores (OPTIMIZED ENDPOINT)
+                const response = await fetch(`${API_BASE}/api/stores/geo`);
+                const data = await response.json();
+                allStores = (data.stores || []).filter(s => s.latitude && s.longitude);
+                const rawCount = (data.stores || []).length;
+
+                // Populate Filters
+                populateFilters(data.stores || []);
+
+                document.getElementById('total-stores').textContent = rawCount.toLocaleString();
+
+                if (allStores.length === 0) {
+                    alert(`נטענו ${rawCount} סניפים, אך ל-0 מהם יש קואורדינטות כרגע. אנא המתן לתהליך הגאו-קודינג.`);
+                }
+
+                // 2. Plot Stores (respecting initial filters if any)
+                filterStores();
+
+                // 3. Setup Search
+                setupSearch();
+
+                document.getElementById('loading').style.display = 'none';
+
+            } catch (err) {
+                console.error("Error loading map data:", err);
+                document.getElementById('loading').innerHTML = `<span style="color:red">שגיאה בטעינת הנתונים: ${err.message}</span>`;
+            }
+        }
+
+        function renderMarkers(storesToRender, isFiltered = false) {
+            // Clear existing
+            markersClusterGroup.clearLayers();
+            if (heatLayer) {
+                map.removeLayer(heatLayer);
+                heatLayer = null;
+            }
+
+            const markers = []; // Temp array for efficient adding
+
+            const data = isFiltered ? storesToRender : (selectedProduct ? productPrices : allStores);
+            if (!data) return;
+
+            // Update Heatmap if product is selected
+            if (selectedProduct) {
+                updateHeatmap(data);
+            }
+
+            // Calculate min/max for color coding
+            const prices = data.filter(d => d.price).map(d => d.price);
+            const minPrice = prices.length ? Math.min(...prices) : 0;
+            const maxPrice = prices.length ? Math.max(...prices) : 0;
+
+            console.log(`Rendering ${data.length} markers...`);
+
+            data.forEach(item => {
+                const lat = item.latitude;
+                const lng = item.longitude;
+                if (!lat || !lng) return;
+
+                let marker;
+
+                if (selectedProduct) {
+                    // Create beautiful price badge
+                    const ratio = maxPrice === minPrice ? 0.5 : (item.price - minPrice) / (maxPrice - minPrice);
+                    // Green to Red gradient (HSL: 120 is green, 0 is red)
+                    const hue = ((1 - ratio) * 120).toString(10);
+                    const color = `hsl(${hue}, 80%, 45%)`;
+
+                    const currencySymbol = getCurrencySymbol(item.currency);
+
+                    const priceIcon = L.divIcon({
+                        className: 'price-marker-icon',
+                        html: `<div class="price-marker" style="border-color: ${color}; color: ${color};">${currencySymbol}${parseFloat(item.price).toFixed(2)}</div>`,
+                        iconSize: [60, 24],
+                        iconAnchor: [30, 12]
+                    });
+
+                    marker = L.marker([lat, lng], { icon: priceIcon });
+                } else {
+                    // Standard store marker
+                    let color = chainColors.default;
+                    const cName = (item.chain_name || '').toLowerCase();
+                    if (cName.includes('shufersal') || cName.includes('שופרסל')) color = chainColors.shufersal;
+                    if (cName.includes('king') || cName.includes('קינג')) color = chainColors.kingstore;
+                    if (cName.includes('fuel') || cName.includes('dalk')) color = '#f59e0b'; // orange for fuel
+
+                    marker = L.circleMarker([lat, lng], {
+                        radius: 8,
+                        fillColor: color,
+                        color: '#fff',
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                    });
+                }
+
+                const currencySymbol = getCurrencySymbol(item.currency);
+                const content = `
+                    <div style="text-align: right; min-width: 150px;">
+                        <strong>${escapeHtml(item.store_name || item.name_he || item.name)}</strong><br>
+                        ${escapeHtml(item.city || '')} ${escapeHtml(item.address || '')}<br>
+                        <small>${escapeHtml(item.chain_name_he || item.chain_name)}</small><br>
+                        ${selectedProduct ? `
+                            <div style="margin-top: 10px; padding-top: 5px; border-top: 1px solid #eee;">
+                                <div style="font-size: 1.1rem; font-weight: bold; color: #059669;">${currencySymbol}${parseFloat(item.price).toFixed(2)}</div>
+                                <div style="font-size: 0.8rem; color: #666;">גרסה: ${escapeHtml(item.variant_name)}</div>
+                                <div style="font-size: 0.7rem; color: #999;">עודכן: ${new Date(item.scraped_at).toLocaleDateString()}</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+
+                marker.bindPopup(content);
+                markers.push(marker);
+            });
+
+            // Batch add to cluster group
+            if (markers.length > 0) {
+                markersClusterGroup.addLayers(markers);
+                document.getElementById('visible-stores').textContent = markers.length.toLocaleString();
+
+                // Adjust bounds if we have markers
+                try {
+                    map.fitBounds(markersClusterGroup.getBounds().pad(0.1));
+                } catch (e) { /* ignore bounds error if empty */ }
+            } else {
+                document.getElementById('visible-stores').textContent = "0";
+            }
+        }
+
+        function getCurrencySymbol(currencyCode) {
+            const map = {
+                'ILS': '₪',
+                'USD': '$',
+                'EUR': '€',
+                'GBP': '£',
+                'JPY': '¥'
+            };
+            return map[currencyCode] || (currencyCode + ' ');
+        }
+
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function setupSearch() {
+            const input = document.getElementById('product-search');
+            const results = document.getElementById('search-results');
+            let timeout = null;
+
+            input.addEventListener('input', () => {
+                clearTimeout(timeout);
+                const q = input.value.trim();
+
+                if (q.length < 2) {
+                    results.style.display = 'none';
+                    return;
+                }
+
+                timeout = setTimeout(async () => {
+                    const res = await fetch(`${API_BASE}/api/master-products/search?q=${encodeURIComponent(q)}`);
+                    const data = await res.json();
+
+                    if (data.masters && data.masters.length > 0) {
+                        results.innerHTML = data.masters.map(m => `
+                            <div class="search-result-item" 
+                                 data-id="${m.id}" 
+                                 data-name="${escapeHtml(m.name)}">
+                                ${m.main_image_url ? `<img src="${m.main_image_url}" style="width:30px;height:30px;object-fit:contain;pointer-events:none;">` : '📦'}
+                                <span style="pointer-events: none;">${escapeHtml(m.name)}</span>
+                            </div>
+                        `).join('');
+                        results.style.display = 'block';
+                    } else {
+                        results.style.display = 'none';
+                    }
+                }, 300);
+            });
+
+            // Handle selection via delegation
+            results.addEventListener('click', (e) => {
+                const item = e.target.closest('.search-result-item');
+                if (item) {
+                    const id = item.dataset.id;
+                    const name = item.dataset.name;
+                    console.log("Selected product:", id, name);
+                    selectProduct(id, name);
+                }
+            });
+
+            // Close on click outside
+            document.addEventListener('click', (e) => {
+                if (!input.contains(e.target) && !results.contains(e.target)) {
+                    results.style.display = 'none';
+                }
+            });
+        }
+
+        async function selectProduct(id, name) {
+            console.log("Initiating selectProduct for ID:", id);
+            document.getElementById('search-results').style.display = 'none';
+            document.getElementById('product-search').value = '';
+            document.getElementById('loading').style.display = 'flex';
+            document.getElementById('loading').textContent = 'טוען מחירים ארציים...';
+
+            try {
+                const url = `${API_BASE}/api/master-products/${id}/map-prices`;
+                console.log("Fetching prices from:", url);
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`API returned ${res.status}`);
+
+                const data = await res.json();
+                productPrices = data.prices || [];
+                selectedProduct = { id, name };
+                console.log(`Found ${productPrices.length} distinct locations on map for ${name} (Total: ${data.total_stores_found})`);
+
+                // Update UI
+                document.getElementById('selected-product-name').textContent = `🔎 מחירים עבור: ${name}`;
+                document.getElementById('selected-product-bar').style.display = 'flex';
+
+                if (productPrices.length > 0) {
+                    const min = Math.min(...productPrices.map(p => p.price));
+                    const max = Math.max(...productPrices.map(p => p.price));
+
+                    const onMap = data.total_on_map || productPrices.length;
+                    const total = data.total_stores_found || onMap;
+                    let countText = `${onMap} סניפים מוצגים`;
+                    if (total > onMap) {
+                        countText = `${onMap} מתוך ${total} סניפים מוצגים (לשאר אין קואורדינטות)`;
+                    }
+
+                    document.getElementById('price-range-summary').textContent = `טווח מחירים: ₪${min.toFixed(2)} - ₪${max.toFixed(2)} (${countText})`;
+                } else {
+                    document.getElementById('price-range-summary').textContent = 'לא נמצאו מחירים עדכניים בסניפים שיש להם מיקום במפה.';
+                }
+
+                filterStores();
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        function clearProductSearch() {
+            selectedProduct = null;
+            productPrices = [];
+            document.getElementById('selected-product-bar').style.display = 'none';
+            filterStores();
+        }
+
+        function populateFilters(stores) {
+            // Chains
+            const chains = [...new Set(stores.map(s => s.chain_name_he || s.chain_name))].sort();
+            const chainSelect = document.getElementById('chain-filter');
+            chains.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                chainSelect.appendChild(opt);
+            });
+
+            // Cities
+            const cities = [...new Set(stores.map(s => s.city).filter(Boolean))].sort();
+            const citySelect = document.getElementById('city-filter');
+            cities.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                citySelect.appendChild(opt);
+            });
+
+            // Event Listeners
+            chainSelect.addEventListener('change', filterStores);
+            citySelect.addEventListener('change', filterStores);
+        }
+
+        function filterStores() {
+            const chain = document.getElementById('chain-filter').value;
+            const city = document.getElementById('city-filter').value;
+
+            // Determine source data
+            const sourceData = selectedProduct ? productPrices : allStores;
+
+            // Apply filters
+            const filtered = sourceData.filter(item => {
+                const matchChain = chain === 'all' || (item.chain_name_he || item.chain_name) === chain;
+                const matchCity = city === 'all' || item.city === city;
+                return matchChain && matchCity;
+            });
+
+            console.log(`Filtering: Chain=${chain}, City=${city} -> ${filtered.length} results`);
+            renderMarkers(filtered, true);
+        }
+
+
+
+        init();
+    </script>
+</body>
+
+</html>

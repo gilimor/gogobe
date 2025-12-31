@@ -1,0 +1,751 @@
+﻿<Root>
+  <XmlDocVersion>19</XmlDocVersion>
+  <ChainId>7290058140886</ChainId>
+  <SubChainId>1</SubChainId>
+  <StoreId>705</StoreId>
+  <BikoretNo>1</BikoretNo>
+  <DllVerNo>9.4.0.50</DllVerNo>
+  <Items Count="39">
+    <Item>
+      <PriceUpdateDate>2025-01-15 12:47:31</PriceUpdateDate>
+      <ItemCode>7290008801522</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>יין קונקורד קינג דיו</ItemName>
+      <ManufacturerName>כרמל מזרחי</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>יין קונקורד קינג דיו</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>21.00</ItemPrice>
+      <UnitOfMeasurePrice>0.0280</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508857</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-01-15 12:51:18</PriceUpdateDate>
+      <ItemCode>7290018294000</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קינג דיוויד רוזה 750</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>קינג דיוויד רוזה 750</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>21.00</ItemPrice>
+      <UnitOfMeasurePrice>0.0280</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508910</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-01-15 13:04:27</PriceUpdateDate>
+      <ItemCode>7312040017683</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>אבסולוט וודקה 700 מ"</ItemName>
+      <ManufacturerName>אבסולוט</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>אבסולוט וודקה 700 מ"ל</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>700.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>77.70</ItemPrice>
+      <UnitOfMeasurePrice>0.1110</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1511739</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:37:30</PriceUpdateDate>
+      <ItemCode>7290008464208</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה מכבי 7.9 330 מל</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בירה מכבי 7.9 330 מל</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>330.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>7.80</ItemPrice>
+      <UnitOfMeasurePrice>0.0236</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501527</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:37:56</PriceUpdateDate>
+      <ItemCode>851621000050</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>שישיית 1664 בלאנק בק</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>שישיית 1664 בלאנק בק</ManufacturerItemDescription>
+      <UnitQty>יח'</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>יח'</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>49.80</ItemPrice>
+      <UnitOfMeasurePrice>49.8000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1500223</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:38:02</PriceUpdateDate>
+      <ItemCode>4008287905786</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קרומבאכר פחית בקבוק</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>קרומבאכר פחית בקבוק</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>11.10</ItemPrice>
+      <UnitOfMeasurePrice>0.0222</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508843</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:38:20</PriceUpdateDate>
+      <ItemCode>5410228222941</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה לף בלונד פחית 5</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בירה לף בלונד פחית 5</ManufacturerItemDescription>
+      <UnitQty>מטרים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 מ'ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>13.30</ItemPrice>
+      <UnitOfMeasurePrice>0.0266</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1566540</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:38:47</PriceUpdateDate>
+      <ItemCode>7290001594568</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה בפחית קרלסברג 5</ItemName>
+      <ManufacturerName>קוקה קולה</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בירה בפחית קרלסברג 5</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>9.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0198</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1500244</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:38:47</PriceUpdateDate>
+      <ItemCode>7290001594575</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה טובורג בפחית 50</ItemName>
+      <ManufacturerName>טובורג</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בירה טובורג בפחית 50</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>9.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0198</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1500245</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:39:20</PriceUpdateDate>
+      <ItemCode>7290008464130</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה גולדסטאר לא מסו</ItemName>
+      <ManufacturerName>טמפו</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>גולדסטאר לא מסונן ח"פ 330</ManufacturerItemDescription>
+      <UnitQty>ליטרים</UnitQty>
+      <Quantity>1.98</Quantity>
+      <UnitOfMeasure>ליטר    </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>38.70</ItemPrice>
+      <UnitOfMeasurePrice>19.5455</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501644</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:39:21</PriceUpdateDate>
+      <ItemCode>7290008464734</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה גולדסטאר SLOWBR</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בירה גולדסטאר SLOWBR</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>330.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>44.00</ItemPrice>
+      <UnitOfMeasurePrice>0.1333</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501652</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:39:21</PriceUpdateDate>
+      <ItemCode>7290008464741</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה גולדסטאר שישייה</ItemName>
+      <ManufacturerName>טמפו</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>גולדסטאר ח"פ 330 בקבוק שי</ManufacturerItemDescription>
+      <UnitQty>ליטרים</UnitQty>
+      <Quantity>1.98</Quantity>
+      <UnitOfMeasure>ליטר    </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>40.70</ItemPrice>
+      <UnitOfMeasurePrice>20.5556</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501653</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:39:24</PriceUpdateDate>
+      <ItemCode>7290010237784</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>שנדי לימון ליים 330</ItemName>
+      <ManufacturerName>טמפו</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>שנדי לימון ליים 330 בקבוק</ManufacturerItemDescription>
+      <UnitQty>ליטרים</UnitQty>
+      <Quantity>1.98</Quantity>
+      <UnitOfMeasure>ליטר    </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>33.20</ItemPrice>
+      <UnitOfMeasurePrice>16.7677</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501661</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-04-20 07:40:34</PriceUpdateDate>
+      <ItemCode>7290019398233</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>סטלה ארטואה בקבוק 6*</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>סטלה ארטואה בקבוק 6*</ManufacturerItemDescription>
+      <UnitQty>ליטרים</UnitQty>
+      <Quantity>1.98</Quantity>
+      <UnitOfMeasure>ליטר    </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>38.50</ItemPrice>
+      <UnitOfMeasurePrice>19.4444</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508927</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:34:58</PriceUpdateDate>
+      <ItemCode>7290000023083</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>ערק אשקלון 700 מ"ל</ItemName>
+      <ManufacturerName>טמפו</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>ערק אשקלון 700 מ"ל</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>700.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>58.00</ItemPrice>
+      <UnitOfMeasurePrice>0.0829</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501563</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:34:58</PriceUpdateDate>
+      <ItemCode>7290000023809</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קלאסיק קברנה סוביניו</ItemName>
+      <ManufacturerName>טמפו</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>קלאסיק קברנה סוביניון</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>38.40</ItemPrice>
+      <UnitOfMeasurePrice>0.0512</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501565</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:35:18</PriceUpdateDate>
+      <ItemCode>7290000484747</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>עלית הארק 700 מ"ל</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>עלית הארק 700 מ"ל</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>700.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>65.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0941</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1521594</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:35:29</PriceUpdateDate>
+      <ItemCode>7290001594865</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה קרלסברג 6*330 מ</ItemName>
+      <ManufacturerName>קוקה קולה</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בירה קרלסברג 6*330 מ</ManufacturerItemDescription>
+      <UnitQty>ליטרים</UnitQty>
+      <Quantity>1.98</Quantity>
+      <UnitOfMeasure>ליטר    </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>38.10</ItemPrice>
+      <UnitOfMeasurePrice>19.2424</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1500248</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:36:16</PriceUpdateDate>
+      <ItemCode>7290008464222</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה מכבי 7.9 פחית 5</ItemName>
+      <ManufacturerName>מכבי</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בירה מכבי 7.9 פחית 5</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>8.70</ItemPrice>
+      <UnitOfMeasurePrice>0.0174</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501645</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:36:16</PriceUpdateDate>
+      <ItemCode>7290008464468</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה גולדסטאר 500 פח</ItemName>
+      <ManufacturerName>טמפו</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>גולדסטאר 500 פחית 24 יח'</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>8.70</ItemPrice>
+      <UnitOfMeasurePrice>0.0174</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501646</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:36:16</PriceUpdateDate>
+      <ItemCode>7290008464796</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה היינקן שישייה 3</ItemName>
+      <ManufacturerName>טמפו</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>היינקן cities 330 בקבוק ח</ManufacturerItemDescription>
+      <UnitQty>ליטרים</UnitQty>
+      <Quantity>1.98</Quantity>
+      <UnitOfMeasure>ליטר    </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>38.30</ItemPrice>
+      <UnitOfMeasurePrice>19.3434</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501654</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:36:18</PriceUpdateDate>
+      <ItemCode>7290008801010</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>ין קברנה /מרלו פרייב</ItemName>
+      <ManufacturerName>כרמל מזרחי</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>ין קברנה /מרלו פרייב</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>48.20</ItemPrice>
+      <UnitOfMeasurePrice>0.0643</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508850</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:36:18</PriceUpdateDate>
+      <ItemCode>7290008801843</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>יין קברנה סוביניון ס</ItemName>
+      <ManufacturerName>כרמל מזרחי</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>יין קברנה סוביניון ס</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>34.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0465</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508860</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:36:18</PriceUpdateDate>
+      <ItemCode>7290008801850</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>יין אמרלד ריזלינג סל</ItemName>
+      <ManufacturerName>כרמל מזרחי</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>יין אמרלד ריזלינג סל</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>34.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0465</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508861</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:36:18</PriceUpdateDate>
+      <ItemCode>7290008802529</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>יין וינו לבן יקבי כר</ItemName>
+      <ManufacturerName>כרמל מזרחי</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>יין וינו לבן יקבי כר</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>24.10</ItemPrice>
+      <UnitOfMeasurePrice>0.0321</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508864</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:36:19</PriceUpdateDate>
+      <ItemCode>7290008805520</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>יין קברנה /מרלו סלקט</ItemName>
+      <ManufacturerName>כרמל מזרחי</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>יין קברנה /מרלו סלקט</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>34.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0465</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508874</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:36:45</PriceUpdateDate>
+      <ItemCode>7290012576607</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פרמייר קברנה סוביניו</ItemName>
+      <ManufacturerName>טמפו</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>פרמייר קברנה סוביניון אדו</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>30.70</ItemPrice>
+      <UnitOfMeasurePrice>0.0409</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501683</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:37:01</PriceUpdateDate>
+      <ItemCode>7290014256620</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>יין קריניאנו  750 מל</ItemName>
+      <ManufacturerName>כרמל מזרחי</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>יין קריניאנו  750 מל</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>30.70</ItemPrice>
+      <UnitOfMeasurePrice>0.0409</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508883</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:37:14</PriceUpdateDate>
+      <ItemCode>7290015350150</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>סגל אדום חצי יבש 750</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>סגל אדום חצי יבש 750</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>24.10</ItemPrice>
+      <UnitOfMeasurePrice>0.0321</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501692</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:37:30</PriceUpdateDate>
+      <ItemCode>7290016717631</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>יין מוסקטו פרייבט קו</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>יין מוסקטו פרייבט קו</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>48.20</ItemPrice>
+      <UnitOfMeasurePrice>0.0643</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1508892</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:37:40</PriceUpdateDate>
+      <ItemCode>7290017589633</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>רזרב גולד קברנה סובי</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>רזרב גולד קברנה סובי</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>56.00</ItemPrice>
+      <UnitOfMeasurePrice>0.0747</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1501695</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:38:27</PriceUpdateDate>
+      <ItemCode>7290019398745</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>יין מוסקטו ורוד מבעב</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>יין מוסקטו ורוד מבעב</ManufacturerItemDescription>
+      <UnitQty>מטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ'ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>48.20</ItemPrice>
+      <UnitOfMeasurePrice>0.0643</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1619881</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:38:27</PriceUpdateDate>
+      <ItemCode>7290019398912</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>יין אבטיח 750מל באזז</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>יין אבטיח 750מל באזז</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>750.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>30.70</ItemPrice>
+      <UnitOfMeasurePrice>0.0409</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1619882</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:39:30</PriceUpdateDate>
+      <ItemCode>7290110110369</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה קרלסברג לומה שי</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בירה קרלסברג לומה שי</ManufacturerItemDescription>
+      <UnitQty>יח'</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>יח'</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>40.90</ItemPrice>
+      <UnitOfMeasurePrice>40.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1500283</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-11 08:43:54</PriceUpdateDate>
+      <ItemCode>8850999132013</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בירה סינגה שישייה 33</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בירה סינגה שישייה 33</ManufacturerItemDescription>
+      <UnitQty>ליטרים</UnitQty>
+      <Quantity>1.98</Quantity>
+      <UnitOfMeasure>ליטר    </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>37.20</ItemPrice>
+      <UnitOfMeasurePrice>18.7879</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1622263</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-10-27 15:22:48</PriceUpdateDate>
+      <ItemCode>7290011447359</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>תחליף חלב מהדרין שלב</ItemName>
+      <ManufacturerName>מטרנה</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>תחליף חלב מהדרין שלב</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>700.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>59.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0856</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1503202</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-10-08 17:06:36</PriceUpdateDate>
+      <ItemCode>7501064191527</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קורונה מארז שישיה 6*</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>קורונה מארז שישיה 6*</ManufacturerItemDescription>
+      <UnitQty>ליטרים</UnitQty>
+      <Quantity>2.13</Quantity>
+      <UnitOfMeasure>ליטר    </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>43.70</ItemPrice>
+      <UnitOfMeasurePrice>20.5164</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1546765</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:16:51</PriceUpdateDate>
+      <ItemCode>7290001591703</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קבב אנגוס עגול 500 ג</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>קבב אנגוס עגול 500 ג</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>25.20</ItemPrice>
+      <UnitOfMeasurePrice>0.0504</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1506063</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:19:30</PriceUpdateDate>
+      <ItemCode>5410291022011</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>ממרח אגוזי לוז עם קק</ItemName>
+      <ManufacturerName>נאטרא מאלה</ManufacturerName>
+      <ManufactureCountry>בלגיה</ManufactureCountry>
+      <ManufacturerItemDescription>ממרח אגוזי לוז עם קק</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>350.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>15.30</ItemPrice>
+      <UnitOfMeasurePrice>0.0437</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>1521758</ItemId>
+    </Item>
+  </Items>
+</Root>

@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+
+</title>
+    <!--<link href="StyleSheet.css" rel="stylesheet" />-->
+
+    <link href="Css/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-grid.css" rel="stylesheet" /><link href="Css/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-grid.min.css" rel="stylesheet" /><link href="Css/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-reboot.css" rel="stylesheet" /><link href="Css/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-reboot.min.css" rel="stylesheet" /><link href="Css/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.css" rel="stylesheet" /><link href="Css/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script type="text/javascript" language="javascript" src="JS/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="JS/jquery.query.js"></script>
+    <script type="text/javascript" language="javascript" src="JS/jquery-ui.min.js"></script>
+    <script type="text/javascript" language="javascript" src="JS/jquery.numeric.pack.js"></script>
+    <script type="text/javascript" language="javascript" src="JS/jquery.validate.js"></script>
+    <script type="text/javascript" language="javascript" src="JS/jquery.form.js"></script>
+    <script type="text/javascript" language="javascript" src="JS/script.js"></script>
+
+
+    <script type="text/javascript">
+
+        function onload() {
+
+            var isPostBack = "False";
+            if (isPostBack == "False") {
+                SelectStore();
+                BuildHtml();
+
+
+            }
+
+        }
+
+        function SelectStore() {
+
+            //debugger
+            data = "";
+            $.ajax({
+                url: 'Select_Store.aspx',
+                data: data,
+                method: 'POST',
+                async: true,
+                cache: false,
+                success: function (data, textStatus, xhr) {
+
+                    for (var i = 0; i < data.length; i++) {
+                        var Kod = data[i].Kod;
+                        var Nm = data[i].Nm;
+                        $("#wStore").append('<option value=' + Kod + '>' + Nm + '</option>');
+                    }
+
+
+                },
+                complete: function () {
+                }
+
+            });
+        }
+
+        function BuildHtml() {
+
+
+            wDate = document.getElementById("wDate").value;
+            wFileType = document.getElementById("wFileType").value;
+            wStore = document.getElementById("wStore").value;
+
+            debugger
+
+
+            data = "";
+            $.ajax({
+                url: 'MainIO_Hok.aspx',
+                data:
+                    {
+                        WStore: wStore,
+                        WDate: wDate,
+                        WFileType: wFileType
+                    },
+                method: 'POST',
+                async: true,
+                cache: false,
+                success: function (data, textStatus, xhr) {
+                    var tbody = $('<tbody />');
+
+                    var MRows = document.getElementById("SumRows").innerText;
+                    // debugger
+
+
+
+                    for (i = 0; i <= MRows; i++) {
+                        $('table#myTable tr#tr' + i).remove();
+                    }
+
+                    for (var i = 0; i < data.length; i++) {
+                        var FileNm = data[i].FileNm;
+                        var Company = data[i].Company;
+                        var Store = data[i].Store;
+                        var TypeFile = data[i].TypeFile;
+                        var TypeExpFile = data[i].TypeExpFile;
+                        var DateFile = data[i].DateFile;
+
+                        if (i == 0)
+
+                            document.getElementById("Logo").src = data[i].PathLogo;
+                        //debugger
+
+
+                        $("#myTable tbody").append(
+                        "<tr id='tr" + i + "' >"
+                        + "<td>" + FileNm + "</td>"
+                        + "<td>" + Store + "</td>"
+                        + "<td>" + TypeFile + "</td>"
+                        + "<td>" + TypeExpFile + "</td>"
+                        + "<td>" + DateFile + "</td>"
+                        + "<td ><button id='button" + i + "' style='padding: 0;  border: none;  background: none; text-decoration:underline; ' onclick='Download(&apos;" + FileNm + "&apos;)'>להורדה לחץ כאן</button></td>"
+
+
+
+
+
+                        + "</tr>");
+
+                    }
+                    document.getElementById("SumRows").innerText = data.length - 1;
+                },
+                complete: function () {
+
+                }
+
+            });
+
+        }
+
+
+        function onload1() {
+
+
+            if (checkDate())
+                BuildHtml();
+            else {
+                document.getElementById("wDate").value = "";
+            }
+        }
+
+        function Download(FileNm) {
+            data = "";
+            //debugger
+            $.ajax({
+                url: 'Download.aspx?FileNm=' + FileNm,
+                data: data,
+                method: 'POST',
+                dataType: "json",
+                async: true,
+                cache: false,
+                success: function (data, textStatus, xhr) {
+                    //debugger
+                    for (var i = 0; i < data.length; i++) {
+                        var SPath = data[i].SPath;
+                    }
+
+                    if (SPath != "")
+                        window.location.href = (SPath);
+                }, complete: function () {
+
+                }
+            });
+        }
+
+
+        function isDate(ExpiryDate) {
+            var objDate,
+            mSeconds,
+            day,
+            month,
+            year;
+
+            if (ExpiryDate.length !== 10) {
+                return false;
+            }
+
+            if (ExpiryDate.substring(2, 3) !== '/' || ExpiryDate.substring(5, 6) !== '/') {
+                return false;
+            }
+
+            day = ExpiryDate.substring(0, 2) - 0;
+            month = ExpiryDate.substring(3, 5) - 1;
+            year = ExpiryDate.substring(6, 10) - 0;
+
+            if (year < 1000 || year > 3000) {
+                return false;
+            }
+
+            mSeconds = (new Date(year, month, day)).getTime();
+
+            objDate = new Date();
+            objDate.setTime(mSeconds);
+
+            if (objDate.getFullYear() !== year ||
+                objDate.getMonth() !== month ||
+                objDate.getDate() !== day) {
+                return false;
+            }
+
+            return true;
+        }
+
+        function checkDate() {
+            var ExpiryDate = document.getElementById("wDate").value;
+            if (isDate(ExpiryDate) || ExpiryDate == "") {
+                return true;
+            }
+            else {
+                alert('Invalid date format!');
+                return false;
+            }
+        }
+
+        function GetStore(FileNm) {
+            data = "";
+            //debugger
+            $.ajax({
+                url: 'Download.aspx?FileNm=' + FileNm,
+                data: data,
+                method: 'POST',
+                dataType: "json",
+                async: true,
+                cache: false,
+                success: function (data, textStatus, xhr) {
+                    var tbody = $('<tbody />');
+
+
+                }
+            });
+        }
+
+    </script>
+</head>
+<body onload="onload()" style="direction: rtl">
+  
+
+
+<div class="container">
+  
+
+   
+
+        <div id="pageWithoutFooter" class="header">
+
+             <div id="MainContent_content" class="container-fluid " >    
+            <div  class="col-lg-12 col-md-6  ">
+               <h1 id="MainContent_lblPageTitle" style="vertical-align:central ;color:#31708f" >הורדות - חוק המזון</h1> 
+                </div>
+            <div   style="margin: -50px 670px 0px 0px" class="col-lg-12 col-md-6">
+           
+              <img id="Logo" src="" />
+            </div>
+           </div> 
+
+      
+ 
+      
+       <nav class="navbar navbar-default "  >
+         
+           <div  class="container-fluid alert alert-info ">
+               <div class="navbar-header">
+              <form class="form-inline ">
+                   <div class="form-group ">
+                <label id="Lbl_wStore">מחסן:</label>&nbsp
+                <select id="wStore" class="form-control"></select>
+                 </div>
+                  <!--<div class="col-1">
+
+                  </div>-->&nbsp&nbsp&nbsp
+                  <!--
+                      
+                      -->
+            <div class="form-group ">
+                <label id="Lbl_FileType">סוג:</label>&nbsp
+                <select style="border-radius:8px 10px" id="wFileType" class="form-control" ">
+                    <option style="border-radius:8px 10px" value="0">הכל</option>
+                    <option style="border-radius:8px 10px" value="1">מחסנים</option>
+                    <option style="border-radius:8px 10px" value="2">מחירים</option>
+                    <option style="border-radius:8px 10px" value="3">מבצעים</option>
+                   <option style="border-radius:8px 10px" value="4">מחירים מלא </option>
+                    <option style="border-radius:8px 10px" value="5">מבצעים מלא</option>
+                </select>
+            </div>
+                <!--<div class="col-1">
+
+                  </div>-->
+                  &nbsp&nbsp&nbsp
+            <div class="form-group ">
+                <span id="Span1">מתאריך:</span>&nbsp
+                <input id="wDate" class="form-control" />
+            </div>&nbsp&nbsp&nbsp&nbsp
+
+                       <div class="form-group  ">
+               
+            <img type="button" id="Button1"  src="Pic/s_V.png" onclick="onload1()" > <img />
+                
+            </div>
+                  <div class="col-lg-1 col-md-1"></div>
+         
+                   
+        </form>
+    </div>
+  </div>
+</nav>
+
+
+
+        <div class="table-responsive col-md-6 col-lg-12 col-xs-4  " >
+            <table id="myTable" class="table table-bordered table-hover ">
+                <tr> 
+                    <th class="alert alert-info" style="text-align:right">שם קובץ</th>
+                    <th class="alert alert-info"  style="text-align:right">סניף</th>
+                    <th class="alert alert-info"  style="text-align:right">סוג</th> 
+                    <th class="alert  alert-info" style="text-align:right">סיומת</th>                                    
+                    <th class="alert  alert-info"  style="text-align:right">תאריך</th>
+                    <th class="alert alert-info" style="text-align:right"></th>
+                    
+                </tr>
+            </table>
+        </div>
+        <textarea id="SumRows" style="display: none;"></textarea>
+    </div>
+  </div>
+</body>
+
+
+</html>
+
+
+

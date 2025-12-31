@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<OrderXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Envelope>
+    <ChainId>7290172900007</ChainId>
+    <SubChainId>000</SubChainId>
+    <StoreId>217</StoreId>
+    <BikoretNo>0</BikoretNo>
+    <Header>
+      <Details>
+        <Line>
+          <PriceUpdateDate>2025-12-24</PriceUpdateDate>
+          <ItemCode>5391523057943</ItemCode>
+          <ItemName>סימילאק גולד שלב 3 700 גרם</ItemName>
+          <ManufacturerName>General</ManufacturerName>
+          <ManufactureCountry>אירלנד</ManufactureCountry>
+          <ManufacturerItemDescription>סימילאק גולד תרכובת מזון לתינוקות עם נוסחת הטריפל הייחודית שלב 3</ManufacturerItemDescription>
+          <UnitQty>גרם</UnitQty>
+          <Quantity>0.00</Quantity>
+          <UnitOfMeasure>100 גרם</UnitOfMeasure>
+          <blsWeighted>0</blsWeighted>
+          <QtyInPackage>1.00</QtyInPackage>
+          <ItemPrice>69.90</ItemPrice>
+          <UnitOfMeasurePrice>0.00</UnitOfMeasurePrice>
+          <AllowDiscount>1</AllowDiscount>
+          <ItemStatus>0</ItemStatus>
+        </Line>
+      </Details>
+    </Header>
+  </Envelope>
+</OrderXml>

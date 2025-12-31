@@ -1,356 +1,599 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Gogobe</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Gogobe - מרכז שליטה</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- MASTER NAV -->
+    <script src="nav.js" defer></script>
+
     <style>
-        /* Main Navigation */
-        .main-nav {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
         }
-        
-        .nav-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0;
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
-        
-        .nav-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 20px;
-        }
-        
-        .nav-brand {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: background 0.3s;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
-        .nav-link:hover {
-            background: rgba(255,255,255,0.2);
-        }
-        
-        .nav-link.active {
-            background: rgba(255,255,255,0.3);
-        }
-        
-        /* Dashboard Grid */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            padding: 40px 20px;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-        
-        .dashboard-card {
+
+        /* Dashboard Card */
+        .dash-card {
             background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        
-        .dashboard-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-        }
-        
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
-            display: block;
-        }
-        
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #1f2937;
-        }
-        
-        .card-description {
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-        
-        .card-stat {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #10b981;
-            margin-top: 12px;
-        }
-        
-        .card-label {
-            font-size: 12px;
-            color: #9ca3af;
-            text-transform: uppercase;
-        }
-        
-        /* Stats Overview */
-        .stats-overview {
-            background: white;
-            border-radius: 12px;
-            padding: 32px;
-            margin: 40px 20px;
-            max-width: 1600px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            margin-top: 24px;
-        }
-        
-        .stat-box {
-            text-align: center;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
             padding: 20px;
-            background: #f9fafb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dash-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            border-color: #cbd5e1;
+        }
+
+        /* Gauge Arc Logic */
+        .gauge-circle {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.8s ease-out;
+        }
+
+        /* Scrollbar */
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        /* Chips Status */
+        .chip {
+            padding: 4px 10px;
             border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid transparent;
         }
-        
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #10b981;
-            margin-bottom: 8px;
+
+        .chip.waiting {
+            background: #f1f5f9;
+            color: #64748b;
+            border-color: #e2e8f0;
         }
-        
-        .stat-label {
-            color: #6b7280;
-            font-size: 14px;
+
+        .chip.running {
+            background: #eff6ff;
+            color: #2563eb;
+            border-color: #bfdbfe;
+            animation: pulse-blue 2s infinite;
+        }
+
+        .chip.done {
+            background: #ecfdf5;
+            color: #059669;
+            border-color: #a7f3d0;
+        }
+
+        .chip.error {
+            background: #fef2f2;
+            color: #ef4444;
+            border-color: #fecaca;
+        }
+
+        @keyframes pulse-blue {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.2);
+            }
+
+            70% {
+                box-shadow: 0 0 0 4px rgba(37, 99, 235, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
         }
     </style>
 </head>
-<body>
-    <!-- Main Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="nav-content">
-                <a href="/dashboard.html" class="nav-brand">
-                    <span>🛒</span>
-                    <span>Gogobe</span>
-                </a>
-                <div class="nav-links">
-                    <a href="/dashboard.html" class="nav-link active">🏠 דף הבית</a>
-                    <a href="/" class="nav-link">📦 מוצרים</a>
-                    <a href="/prices.html" class="nav-link">💰 מחירים</a>
-                    <a href="/categories.html" class="nav-link">📂 קטגוריות</a>
-                    <a href="/stores.html" class="nav-link">🏪 רשתות וסניפים</a>
-                    <a href="/data-sources.html" class="nav-link">📥 מקורות נתונים</a>
-                    <a href="/errors.html" class="nav-link">🔍 Errors</a>
+
+<body class="min-h-screen bg-slate-950 text-slate-200">
+
+    <!-- Navbar Space -->
+    <div style="height: 64px;"></div>
+
+    <main class="max-w-[1800px] mx-auto p-6">
+
+        <!-- Header Strip -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-4 border-b border-slate-800 pb-6">
+            <div>
+                <h1 class="text-4xl font-black text-white tracking-tight flex items-center gap-4">
+                    <span class="text-blue-500 animate-pulse">●</span> מרכז שליטה
+                    <span
+                        class="bg-blue-900/30 text-blue-400 text-xs px-2 py-1 rounded font-mono uppercase tracking-widest border border-blue-800/50">Live
+                        Ops</span>
+                </h1>
+                <p class="text-slate-500 mt-2 text-sm font-mono">SYSTEM_STATUS: <span
+                        class="text-emerald-400">OPERATIONAL</span></p>
+            </div>
+
+            <div class="flex items-center gap-8">
+                <div class="text-right">
+                    <div class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">Active Workers</div>
+                    <div class="font-mono font-bold text-yellow-400 text-2xl" id="v-fleet">0/20</div>
+                </div>
+                <div class="text-right border-l border-slate-800 pl-8">
+                    <div class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">Avg Flux</div>
+                    <div class="font-mono font-bold text-blue-400 text-2xl" id="header-flux">0 BPM</div>
+                </div>
+                <div class="text-right border-l border-slate-800 pl-8">
+                    <div class="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">System Clock</div>
+                    <div class="font-mono font-bold text-white text-3xl tabular-nums" id="clock">00:00:00</div>
+                </div>
+            </div>
+
+            <!-- CONTROL PANEL (New) -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-4 mt-8 lg:mt-0 flex justify-end items-start">
+                <button onclick="window.location.href='/trends.html'"
+                    class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3 px-6 rounded-lg border border-slate-700 shadow-lg flex items-center gap-2 transition hover:text-white group mr-3">
+                    <i class="fas fa-chart-line text-blue-500 group-hover:scale-110 transition"></i>
+                    MARKET TRENDS
+                </button>
+                <button onclick="runDetailedImport()"
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg border border-red-500 shadow-red-900/50 flex items-center gap-2 transition transform hover:scale-105 active:scale-95 group">
+                    <span class="relative flex h-3 w-3">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+                    </span>
+                    <i class="fas fa-rocket"></i> LAUNCH FULL MISSION
+                </button>
+            </div>
+        </div>
+
+        <!-- ODOMETERS (Big Counters) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+            <!-- Prices Today -->
+            <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                    <i class="fas fa-tags text-6xl text-emerald-500"></i>
+                </div>
+                <div class="text-xs font-bold text-emerald-500 uppercase tracking-widest mb-2">Prices Imported Today
+                </div>
+                <div class="text-5xl font-black text-white font-mono tracking-tighter odometer" id="odo-prices">0</div>
+                <div class="mt-4 h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-emerald-500 w-0 transition-all duration-1000" id="bar-prices"></div>
+                </div>
+            </div>
+
+            <!-- Products Today -->
+            <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                    <i class="fas fa-box-open text-6xl text-blue-500"></i>
+                </div>
+                <div class="text-xs font-bold text-blue-500 uppercase tracking-widest mb-2">New Products Found</div>
+                <div class="text-5xl font-black text-white font-mono tracking-tighter odometer" id="odo-products">0
+                </div>
+                <div class="mt-4 h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-blue-500 w-0 transition-all duration-1000" id="bar-products"></div>
+                </div>
+            </div>
+
+            <!-- Uptime Clock -->
+            <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                    <i class="fas fa-clock text-6xl text-indigo-500"></i>
+                </div>
+                <div class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-2">System Uptime</div>
+                <div class="text-5xl font-black text-white font-mono tracking-tighter" id="header-uptime">00:00:00</div>
+                <div class="mt-4 h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-indigo-500 w-full transition-all duration-1000"></div>
+                </div>
+            </div>
+
+            <!-- Files Today -->
+            <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                    <i class="fas fa-file-import text-6xl text-purple-500"></i>
+                </div>
+                <div class="text-xs font-bold text-purple-500 uppercase tracking-widest mb-2">Files Processed</div>
+                <div class="text-5xl font-black text-white font-mono tracking-tighter odometer" id="odo-files">0</div>
+                <div class="mt-4 h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-purple-500 w-0 transition-all duration-1000" id="bar-files"></div>
                 </div>
             </div>
         </div>
-    </nav>
 
-    <!-- Stats Overview -->
-    <div class="stats-overview">
-        <h2>סקירה כללית</h2>
-        <div class="stats-grid">
-            <div class="stat-box">
-                <div class="stat-value" id="total-products">-</div>
-                <div class="stat-label">מוצרים</div>
+        <!-- ACTIVE MISSIONS (New "Mission Control") -->
+        <div class="mb-8">
+            <h2 class="text-xl font-bold text-slate-300 mb-4 flex items-center gap-2">
+                <i class="fas fa-satellite-dish text-blue-400"></i> Active Missions
+                <span class="text-xs bg-blue-900/30 text-blue-300 px-2 py-1 rounded border border-blue-800/50" <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="mission-grid">
+                    <!-- Mission Cards Injected Here -->
+                    <div
+                        class="dash-card bg-slate-900/40 border-slate-800 p-6 flex items-center justify-center text-slate-500 italic">
+                        Waiting for incoming data stream...
+                    </div>
+        </div>
+        </div>
+
+        <!-- NETWORK STATUS (Telemetery) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- 1. SOURCES GAUGE -->
+            <div class="dash-card bg-slate-900 border-slate-700 p-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-slate-500 uppercase">Active Sources</span>
+                    <i class="fas fa-server text-blue-500"></i>
+                </div>
+                <div class="flex items-end gap-2 mb-2">
+                    <span class="text-2xl font-bold text-white font-mono" id="net-sources-active">0</span>
+                    <span class="text-sm text-slate-500 mb-1">/ <span id="net-sources-total">0</span></span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-1.5">
+                    <div class="bg-blue-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"
+                        id="bar-sources"></div>
+                </div>
             </div>
-            <div class="stat-box">
-                <div class="stat-value" id="total-prices">-</div>
-                <div class="stat-label">מחירים</div>
+
+            <!-- 2. COVERAGE GAUGE -->
+            <div class="dash-card bg-slate-900 border-slate-700 p-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-slate-500 uppercase">Store Coverage</span>
+                    <i class="fas fa-store-alt text-emerald-500"></i>
+                </div>
+                <div class="flex items-end gap-2 mb-2">
+                    <span class="text-2xl font-bold text-white font-mono" id="net-stores-visited">0</span>
+                    <span class="text-sm text-slate-500 mb-1">/ <span id="net-stores-total">0</span></span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-1.5">
+                    <div class="bg-emerald-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"
+                        id="bar-stores"></div>
+                </div>
             </div>
-            <div class="stat-box">
-                <div class="stat-value" id="total-categories">-</div>
-                <div class="stat-label">קטגוריות</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value" id="total-chains">-</div>
-                <div class="stat-label">רשתות</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value" id="total-stores">-</div>
-                <div class="stat-label">סניפים</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value" id="total-suppliers">-</div>
-                <div class="stat-label">ספקים</div>
+
+            <!-- 3. PRODUCTS FLUX -->
+            <div class="dash-card bg-slate-900 border-slate-700 p-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-slate-500 uppercase">Daily Ingestion</span>
+                    <i class="fas fa-tags text-purple-500"></i>
+                </div>
+                <div class="flex items-end gap-2 mb-2">
+                    <span class="text-2xl font-bold text-white font-mono" id="net-daily-prices">0</span>
+                    <span class="text-xs text-green-400 mb-1 bg-green-900/30 px-1 rounded">+<span
+                            id="net-flux">0</span>/min</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                    <div class="bg-purple-500 h-1.5 rounded-full animate-[shimmer_2s_infinite] w-full opacity-50"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Dashboard Grid -->
-    <div class="dashboard-grid">
-        <!-- Products -->
-        <a href="/" class="dashboard-card">
-            <span class="card-icon">📦</span>
-            <div class="card-title">מוצרים</div>
-            <div class="card-description">חיפוש והשוואת מחירים</div>
-            <div class="card-stat" id="card-products">-</div>
-            <div class="card-label">מוצרים פעילים</div>
-        </a>
+        <!-- MAIN GRID -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[500px]">
 
-        <!-- Categories -->
-        <a href="/categories.html" class="dashboard-card">
-            <span class="card-icon">📂</span>
-            <div class="card-title">קטגוריות</div>
-            <div class="card-description">ניהול קטגוריות היררכיות</div>
-            <div class="card-stat" id="card-categories">-</div>
-            <div class="card-label">קטגוריות</div>
-        </a>
+            <!-- FLUX CHART (Left) -->
+            <div class="col-span-1 lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-slate-300 flex items-center gap-2">
+                        <i class="fas fa-wave-square text-blue-500"></i> Ingestion Flux (Real-time)
+                    </h3>
+                    <div class="flex gap-2">
+                        <span class="w-3 h-3 rounded-full bg-blue-500 animate-ping"></span>
+                    </div>
+                </div>
+                <div class="flex-1 w-full min-h-0 relative">
+                    <canvas id="mainChart"></canvas>
+                </div>
+            </div>
 
-        <!-- Stores & Chains -->
-        <a href="/stores.html" class="dashboard-card">
-            <span class="card-icon">🏪</span>
-            <div class="card-title">רשתות וסניפים</div>
-            <div class="card-description">ניהול רשתות קמעונאות וסניפיהן</div>
-            <div class="card-stat" id="card-stores">-</div>
-            <div class="card-label">סניפים פעילים</div>
-        </a>
+            <!-- TERMINAL (Right) -->
+            <div
+                class="col-span-1 lg:col-span-4 bg-black border border-slate-800 rounded-2xl p-4 flex flex-col font-mono text-xs shadow-2xl">
+                <div class="flex justify-between items-center mb-2 border-b border-slate-800 pb-2 px-2">
+                    <span class="text-slate-500 font-bold">TERMINAL OUTPUT</span>
+                    <span class="text-green-500">● LIVE</span>
+                </div>
+                <div id="terminal-logs" class="flex-1 overflow-y-auto space-y-1 p-2 custom-scroll text-slate-300">
+                    <div class="text-slate-500">System intialized...</div>
+                    <div class="text-slate-500">Connecting to stream...</div>
+                </div>
+            </div>
 
-        <!-- Import Sources -->
-        <a href="/import-sources.html" class="dashboard-card">
-            <span class="card-icon">📥</span>
-            <div class="card-title">מקורות יבוא</div>
-            <div class="card-description">ספקים ומקורות נתונים</div>
-            <div class="card-stat" id="card-suppliers">-</div>
-            <div class="card-label">ספקים פעילים</div>
-        </a>
+        </div>
 
-        <!-- Brands -->
-        <a href="/brands.html" class="dashboard-card">
-            <span class="card-icon">🏷️</span>
-            <div class="card-title">מותגים</div>
-            <div class="card-description">ניהול מותגים ויצרנים</div>
-            <div class="card-stat" id="card-brands">-</div>
-            <div class="card-label">מותגים</div>
-        </a>
-
-        <!-- Uncategorized -->
-        <a href="/uncategorized.html" class="dashboard-card">
-            <span class="card-icon">❓</span>
-            <div class="card-title">מוצרים ללא קטגוריה</div>
-            <div class="card-description">מוצרים הדורשים סיווג</div>
-            <div class="card-stat" id="card-uncategorized">-</div>
-            <div class="card-label">מוצרים</div>
-        </a>
-
-        <!-- Price Analytics -->
-        <a href="/price-analytics.html" class="dashboard-card">
-            <span class="card-icon">📊</span>
-            <div class="card-title">ניתוח מחירים</div>
-            <div class="card-description">טרנדים ושינויי מחירים</div>
-            <div class="card-stat" id="card-price-changes">-</div>
-            <div class="card-label">שינויים היום</div>
-        </a>
-
-        <!-- Product Merges -->
-        <a href="/product-merges.html" class="dashboard-card">
-            <span class="card-icon">🔗</span>
-            <div class="card-title">איחוד מוצרים</div>
-            <div class="card-description">זיהוי וטיפול בכפילויות</div>
-            <div class="card-stat" id="card-duplicates">-</div>
-            <div class="card-label">כפילויות פוטנציאליות</div>
-        </a>
-
-        <!-- Error Monitor -->
-        <a href="/errors.html" class="dashboard-card">
-            <span class="card-icon">🔍</span>
-            <div class="card-title">Error Monitor</div>
-            <div class="card-description">מעקב ו-monitoring שגיאות</div>
-            <div class="card-stat" id="card-errors">-</div>
-            <div class="card-label">שגיאות פעילות</div>
-        </a>
-    </div>
+    </main>
 
     <script>
-        const API_BASE = 'http://localhost:8000';
+        // --- HELPERS ---
+        const get = (id) => document.getElementById(id);
+        const formatNum = (n) => parseInt(n || 0).toLocaleString();
 
-        async function loadDashboardStats() {
-            try {
-                // Load stats
-                const statsResponse = await fetch(`${API_BASE}/api/stats`);
-                const stats = await statsResponse.json();
+        // Simple Odometer Effect
+        function updateOdo(id, newVal) {
+            const el = get(id);
+            const current = parseInt(el.textContent.replace(/,/g, '')) || 0;
+            if (newVal === current) return;
 
-                // Update overview
-                document.getElementById('total-products').textContent = (stats.total_products || 0).toLocaleString();
-                document.getElementById('total-prices').textContent = (stats.total_prices || 0).toLocaleString();
-                document.getElementById('total-categories').textContent = (stats.total_categories || 0).toLocaleString();
-                
-                // Load chains
-                const chainsResponse = await fetch(`${API_BASE}/api/chains`);
-                const chainsData = await chainsResponse.json();
-                const chains = chainsData.chains || [];
-                document.getElementById('total-chains').textContent = chains.length;
-                
-                const totalStores = chains.reduce((sum, c) => sum + (c.active_store_count || 0), 0);
-                document.getElementById('total-stores').textContent = totalStores;
-                
-                document.getElementById('total-suppliers').textContent = (stats.total_suppliers || 0).toLocaleString();
-
-                // Update cards
-                document.getElementById('card-products').textContent = (stats.total_products || 0).toLocaleString();
-                document.getElementById('card-categories').textContent = (stats.total_categories || 0).toLocaleString();
-                document.getElementById('card-stores').textContent = totalStores;
-                document.getElementById('card-suppliers').textContent = (stats.total_suppliers || 0).toLocaleString();
-                
-                // Load uncategorized count
-                const uncatResponse = await fetch(`${API_BASE}/api/products/search?per_page=1`);
-                const uncatData = await uncatResponse.json();
-                // Estimate uncategorized (would need specific API endpoint)
-                document.getElementById('card-uncategorized').textContent = '-';
-                
-                // Placeholder values
-                document.getElementById('card-brands').textContent = '-';
-                document.getElementById('card-price-changes').textContent = '-';
-                document.getElementById('card-duplicates').textContent = '-';
-                
-                // Load errors
-                const errorsResponse = await fetch(`${API_BASE}/api/errors`);
-                const errorsData = await errorsResponse.json();
-                document.getElementById('card-errors').textContent = (errorsData.errors?.length || 0);
-
-            } catch (error) {
-                console.error('Failed to load dashboard stats:', error);
+            // Just jump if difference is huge to avoid long loop
+            if (Math.abs(newVal - current) > 1000) {
+                el.textContent = formatNum(newVal);
+                return;
             }
+
+            // Animate
+            const step = newVal > current ? 1 : -1;
+            const diff = Math.abs(newVal - current);
+            let i = 0;
+            const interval = setInterval(() => {
+                const now = parseInt(el.textContent.replace(/,/g, '')) || 0;
+                if (now === newVal) { clearInterval(interval); return; }
+
+                // Accelerate
+                let jump = Math.ceil(diff / 20);
+                if (current + i + jump > newVal && step > 0) jump = 1;
+
+                el.textContent = formatNum(now + (step * jump));
+                i += jump;
+                if ((step > 0 && now >= newVal) || (step < 0 && now <= newVal)) {
+                    el.textContent = formatNum(newVal);
+                    clearInterval(interval);
+                }
+            }, 30);
         }
 
-        // Load stats on page load
-        document.addEventListener('DOMContentLoaded', loadDashboardStats);
+        // --- NEW: MISSION CARD COMPONENT ---
+        function renderMissionCard(task) {
+            // Task: source, status, filename, products_added, prices_added, started_at (seconds)
+
+            // Format time T+HH:MM:SS
+            const totalSeconds = Math.floor(task.started_at || 0);
+            const hrs = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+            const mins = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+            const secs = (totalSeconds % 60).toString().padStart(2, '0');
+            const timeStr = `T+${hrs}:${mins}:${secs}`;
+
+            // Determine Color Status
+            let statusColor = "text-blue-400";
+            let statusBg = "bg-blue-900/20";
+            let pulse = "animate-pulse";
+
+            if (task.status === 'processing') { statusColor = "text-purple-400"; statusBg = "bg-purple-900/20"; }
+            if (task.status === 'extracting') { statusColor = "text-yellow-400"; statusBg = "bg-yellow-900/20"; }
+
+            return `
+            <div class="dash-card bg-slate-900 border-slate-700 relative overflow-hidden group">
+                <!-- Header -->
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Source</div>
+                        <div class="font-bold text-white text-lg flex items-center gap-2">
+                             <span class="w-2 h-2 rounded-full ${statusBg.replace('/20', '')} ${pulse}"></span>
+                             ${task.source}
+                        </div>
+                    </div>
+                    <div class="font-mono text-xl font-bold ${statusColor} bg-slate-950 px-3 py-1 rounded border border-slate-800">
+                        ${timeStr}
+                    </div>
+                </div>
+
+                <!-- Progress Grid -->
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                     <div class="bg-slate-950/50 p-2 rounded border border-slate-800">
+                        <div class="text-[10px] text-slate-500 uppercase">Products Found</div>
+                        <div class="text-2xl font-mono text-white font-bold">${formatNum(task.products_added)}</div>
+                     </div>
+                     <div class="bg-slate-950/50 p-2 rounded border border-slate-800">
+                        <div class="text-[10px] text-slate-500 uppercase">Prices Updated</div>
+                        <div class="text-2xl font-mono text-emerald-400 font-bold">${formatNum(task.prices_added)}</div>
+                     </div>
+                </div>
+
+                 <!-- Footer -->
+                <div class="flex justify-between items-center text-xs">
+                     <div class="text-slate-500 truncate max-w-[150px]" title="${task.filename}">
+                        <i class="fas fa-file-alt mr-1"></i> ${task.filename.substring(0, 20)}...
+                     </div>
+                     <div class="px-2 py-1 rounded-full ${statusBg} ${statusColor} font-bold uppercase text-[10px]">
+                        ${task.status}
+                     </div>
+                </div>
+                
+                <!-- Progress Line Animation -->
+                <div class="absolute bottom-0 left-0 w-full h-1 bg-slate-800">
+                     <div class="h-full ${statusBg.replace('/20', '')} w-full animate-[shimmer_2s_infinite]"></div>
+                </div>
+            </div>
+            `;
+        }
+
+        // --- CHART SETUP ---
+        const ctx = get('mainChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(59, 130, 246, 0.5)');
+        gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array(40).fill(''),
+                datasets: [{
+                    data: Array(40).fill(0),
+                    borderColor: '#60a5fa',
+                    borderWidth: 2,
+                    backgroundColor: gradient,
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 0,
+                    pointHoverRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { display: false },
+                    y: {
+                        display: true,
+                        grid: { color: '#1e293b' },
+                        ticks: { color: '#64748b' }
+                    }
+                },
+                animation: { duration: 0 } // Disable chart.js animation for instant realtime feel
+            }
+        });
+
+        // --- UPTIME CLOCK ---
+        const startTime = Date.now();
+        setInterval(() => {
+            const now = Date.now();
+            const diff = Math.floor((now - startTime) / 1000); // In seconds
+            // In a real app, fetch server start time from API. For now, session time.
+
+            const h = Math.floor(diff / 3600).toString().padStart(2, '0');
+            const m = Math.floor((diff % 3600) / 60).toString().padStart(2, '0');
+            const s = (diff % 60).toString().padStart(2, '0');
+            get('header-uptime').textContent = `${h}:${m}:${s}`;
+        }, 1000);
+
+        // --- SSE LOGIC ---
+        const sse = new EventSource('/api/stream-status');
+        let lastPrices = 0;
+
+        sse.onmessage = (e) => {
+            try {
+                const data = JSON.parse(e.data);
+                if (data.error) return;
+
+                const stats = data.stats || {};
+
+                // 1. ODOMETERS
+                updateOdo('odo-prices', stats.daily_prices || 0);
+                updateOdo('odo-products', stats.daily_products || 0);
+                updateOdo('odo-files', stats.daily_files || 0);
+
+                // Progress Bars (Mock scale for visual fun)
+                get('bar-prices').style.width = Math.min((stats.daily_prices / 50000) * 100, 100) + '%';
+                get('bar-products').style.width = Math.min((stats.daily_products / 500) * 100, 100) + '%';
+                get('bar-files').style.width = Math.min((stats.daily_files / 100) * 100, 100) + '%';
+
+                // 2. HEADER STATS
+                get('v-fleet').textContent = (stats.active_sources_count || 0) + '/' + (data.total_sources || 20);
+                get('header-flux').textContent = (stats.flux_bpm || 0) + ' BPM';
+
+                // 3. CHART FLUX
+                // We use the calculated                // 3. CHART FLUX
+                const flux = stats.flux_bpm || 0;
+                chart.data.datasets[0].data.shift();
+                chart.data.datasets[0].data.push(flux);
+                chart.update();
+
+                // Better: Just append active tasks updates too.
+
+                // 5. ACTIVE MISSIONS (New)
+                const grid = get('mission-grid');
+                const tasks = data.active_tasks || [];
+
+                get('mission-count').textContent = tasks.length + " Active";
+
+                if (tasks.length === 0) {
+                    grid.innerHTML = `<div class="col-span-full dash-card bg-slate-900/40 border-slate-800 border-dashed p-8 flex flex-col items-center justify-center text-slate-500 gap-4">
+                        <i class="fas fa-satellite-dish text-4xl opacity-20"></i>
+                        <span class="italic">No active missions. Systems standing by.</span>
+                     </div>`;
+                } else {
+                    grid.innerHTML = tasks.map(renderMissionCard).join('');
+                }
+
+                /* DEPRECATED TERMINAL LOGS
+                if (data.active_tasks && data.active_tasks.length > 0) {
+                     data.active_tasks.forEach(t => {
+                         const line = document.createElement('div');
+                         line.className = "flex gap-2 font-mono";
+                         line.innerHTML = `<span class="text-blue-500">[WORKER]</span> <span class="text-slate-400">${t.source}:</span> <span class="text-yellow-300">${t.status}...</span>`;
+                         term.appendChild(line);
+                     });
+                }
+                */
+
+                if (logs.length > 0) {
+                    logs.forEach(l => {
+                        const line = document.createElement('div');
+                        line.className = "flex gap-2 font-mono";
+                        const color = l.type === 'success' ? 'text-green-400' : 'text-slate-300';
+                        line.innerHTML = `<span class="${color}">> ${l.msg}</span>`;
+                        term.appendChild(line);
+                    });
+                }
+
+                // Auto scroll
+                if (term.children.length > 100) {
+                    while (term.children.length > 50) term.removeChild(term.firstChild);
+                }
+                term.scrollTop = term.scrollHeight;
+
+
+            } catch (e) { console.error(e); }
+        };
+
+        setInterval(() => get('clock').textContent = new Date().toLocaleTimeString('en-US', { hour12: false }), 1000);
+
+        // --- ACTIONS ---
+        async function runDetailedImport() {
+            if (!confirm("Are you sure you want to LAUNCH A FULL IMPORT MISSION?\nThis will trigger all scrapers simultaneously.")) return;
+
+            try {
+                const btn = document.querySelector('button[onclick="runDetailedImport()"]');
+                const origText = btn.innerHTML;
+                btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> INITIALIZING...`;
+                btn.disabled = true;
+                btn.classList.add('opacity-50');
+
+                const res = await fetch('/api/admin/run-pipeline', { method: 'POST' });
+                const json = await res.json();
+
+                alert(`MISSION LAUNCHED: ${json.message}`);
+
+                // Reset button after 5s
+                setTimeout(() => {
+                    btn.innerHTML = origText;
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50');
+                }, 5000);
+
+            } catch (e) {
+                alert("Launch Failed: " + e.message);
+            }
+        }
     </script>
 </body>
+
 </html>

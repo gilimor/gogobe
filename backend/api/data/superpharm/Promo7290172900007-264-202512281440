@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<OrderXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Envelope>
+    <ChainId>7290172900007</ChainId>
+    <SubChainId>000</SubChainId>
+    <StoreId>264</StoreId>
+    <BikoretNo>0</BikoretNo>
+    <Header>
+      <Details>
+        <Line>
+          <PriceUpdateDate>2025-12-28 13:40:59</PriceUpdateDate>
+          <ItemCode>7290118200208</ItemCode>
+          <IsGiftItem>0</IsGiftItem>
+          <RewardType>7</RewardType>
+          <AllowMultipleDiscounts>1</AllowMultipleDiscounts>
+          <PromotionId>4430728</PromotionId>
+          <PromotionDetails>
+            <PromotionDescription>לייף קידס ביסקוויטים אפויים עם קמח מלא לילדים 180 גרם 1+1</PromotionDescription>
+            <PromotionStartDate>2025-12-28</PromotionStartDate>
+            <PromotionStartHour>00:00:00</PromotionStartHour>
+            <PromotionEndDate>2025-12-30</PromotionEndDate>
+            <PromotionEndHour>23:59:59</PromotionEndHour>
+            <ClubId>0</ClubId>
+            <MinQty>2.00</MinQty>
+            <MaxQty>0.00</MaxQty>
+            <DiscountRate>100.00</DiscountRate>
+            <DiscountType>0</DiscountType>
+            <MinPurchaseAmnt>0.00</MinPurchaseAmnt>
+            <DiscountedPrice>4.45</DiscountedPrice>
+            <DiscountedPricePerMida>2.47</DiscountedPricePerMida>
+            <MinNoOfItemOfered>0</MinNoOfItemOfered>
+            <AdditionalIsCoupon>0</AdditionalIsCoupon>
+            <AdditionalGiftCount>0.00</AdditionalGiftCount>
+            <AdditionalIsTotal>0</AdditionalIsTotal>
+            <AdditionalMinBasketAmount>0.00</AdditionalMinBasketAmount>
+            <Remarks />
+          </PromotionDetails>
+        </Line>
+        <Line>
+          <PriceUpdateDate>2025-12-28 13:40:59</PriceUpdateDate>
+          <ItemCode>7290118200192</ItemCode>
+          <IsGiftItem>0</IsGiftItem>
+          <RewardType>7</RewardType>
+          <AllowMultipleDiscounts>1</AllowMultipleDiscounts>
+          <PromotionId>4430728</PromotionId>
+          <PromotionDetails>
+            <PromotionDescription>לייף קידס ביסקוויטים אפויים עם קמח מלא לילדים 180 גרם 1+1</PromotionDescription>
+            <PromotionStartDate>2025-12-28</PromotionStartDate>
+            <PromotionStartHour>00:00:00</PromotionStartHour>
+            <PromotionEndDate>2025-12-30</PromotionEndDate>
+            <PromotionEndHour>23:59:59</PromotionEndHour>
+            <ClubId>0</ClubId>
+            <MinQty>2.00</MinQty>
+            <MaxQty>0.00</MaxQty>
+            <DiscountRate>100.00</DiscountRate>
+            <DiscountType>0</DiscountType>
+            <MinPurchaseAmnt>0.00</MinPurchaseAmnt>
+            <DiscountedPrice>4.45</DiscountedPrice>
+            <DiscountedPricePerMida>2.47</DiscountedPricePerMida>
+            <MinNoOfItemOfered>0</MinNoOfItemOfered>
+            <AdditionalIsCoupon>0</AdditionalIsCoupon>
+            <AdditionalGiftCount>0.00</AdditionalGiftCount>
+            <AdditionalIsTotal>0</AdditionalIsTotal>
+            <AdditionalMinBasketAmount>0.00</AdditionalMinBasketAmount>
+            <Remarks />
+          </PromotionDetails>
+        </Line>
+      </Details>
+    </Header>
+  </Envelope>
+</OrderXml>

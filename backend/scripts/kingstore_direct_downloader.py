@@ -32,7 +32,7 @@ class KingStoreDirectDownloader:
         self.main_page = f"{self.base_url}/Main.aspx"
         self.download_base = f"{self.base_url}/Download/"
         
-        self.download_dir = Path("backend/data/kingstore")
+        self.download_dir = Path("/app/data/kingstore/downloads")
         self.download_dir.mkdir(parents=True, exist_ok=True)
         
         self.download_limit = download_limit
@@ -61,39 +61,9 @@ class KingStoreDirectDownloader:
     
     def create_session(self):
         """Create scraping session"""
-        conn = get_db_connection()
-        cur = conn.cursor()
-        
-        try:
-            # Get price source
-            cur.execute("SELECT id FROM price_sources WHERE name LIKE '%KingStore%' LIMIT 1")
-            result = cur.fetchone()
-            
-            if result:
-                self.price_source_id = result[0]
-            else:
-                cur.execute("""
-                    INSERT INTO price_sources (name, source_type, base_url, country_code)
-                    VALUES ('KingStore', 'website', %s, 'IL')
-                    RETURNING id
-                """, (self.main_page,))
-                self.price_source_id = cur.fetchone()[0]
-            
-            # Create session
-            cur.execute("""
-                INSERT INTO scraping_sessions (session_name, price_source_id, status)
-                VALUES (%s, %s, 'running')
-                RETURNING id
-            """, (f"KingStore Direct {datetime.now().strftime('%Y-%m-%d %H:%M')}", self.price_source_id))
-            
-            self.session_id = cur.fetchone()[0]
-            conn.commit()
-            
-            self.log(f"Created session (ID: {self.session_id})")
-            
-        finally:
-            cur.close()
-            conn.close()
+        # Skip database session tracking for now
+        self.session_id = None
+        self.log("Starting download session (no DB tracking)")
     
     def parse_filename(self, filename):
         """Extract metadata from filename"""
@@ -152,66 +122,14 @@ class KingStoreDirectDownloader:
     
     def is_file_already_downloaded(self, filename, file_hash):
         """Check if file already exists"""
-        conn = get_db_connection()
-        cur = conn.cursor()
-        
-        try:
-            cur.execute("""
-                SELECT id FROM downloaded_files
-                WHERE (filename = %s AND price_source_id = %s)
-                   OR file_hash = %s
-            """, (filename, self.price_source_id, file_hash))
-            
-            return cur.fetchone() is not None
-            
-        finally:
-            cur.close()
-            conn.close()
+        # Check if file exists locally
+        filepath = self.download_dir / filename
+        return filepath.exists()
     
     def register_downloaded_file(self, filepath, metadata):
         """Register file in database"""
-        conn = get_db_connection()
-        cur = conn.cursor()
-        
-        try:
-            file_hash = self.calculate_file_hash(filepath)
-            file_size = filepath.stat().st_size
-            
-            cur.execute("""
-                INSERT INTO downloaded_files (
-                    filename, file_hash, file_size,
-                    price_source_id, file_type, file_timestamp,
-                    local_path, processing_status,
-                    file_metadata
-                )
-                VALUES (%s, %s, %s, %s, %s, %s, %s, 'pending', %s::jsonb)
-                ON CONFLICT (filename, price_source_id) DO UPDATE
-                SET file_hash = EXCLUDED.file_hash,
-                    downloaded_at = NOW()
-                RETURNING id
-            """, (
-                filepath.name,
-                file_hash,
-                file_size,
-                self.price_source_id,
-                metadata['file_type'],
-                metadata['timestamp'],
-                str(filepath),
-                '{}' if not metadata else str(metadata).replace("'", '"')
-            ))
-            
-            file_id = cur.fetchone()[0]
-            conn.commit()
-            
-            return file_id
-            
-        except Exception as e:
-            self.log(f"[ERROR] Failed to register file: {e}")
-            conn.rollback()
-            return None
-        finally:
-            cur.close()
-            conn.close()
+        # Skip database registration for now
+        return True
     
     def find_all_files(self):
         """Scrape main page to find all file links"""
@@ -334,33 +252,8 @@ class KingStoreDirectDownloader:
     
     def update_session(self, status='completed'):
         """Update session in database"""
-        if not self.session_id:
-            return
-        
-        conn = get_db_connection()
-        cur = conn.cursor()
-        
-        try:
-            cur.execute("""
-                UPDATE scraping_sessions
-                SET status = %s,
-                    files_found = %s,
-                    files_downloaded = %s,
-                    completed_at = CASE WHEN %s != 'running' THEN NOW() ELSE NULL END
-                WHERE id = %s
-            """, (
-                status,
-                self.stats['files_found'],
-                self.stats['files_downloaded'],
-                status,
-                self.session_id
-            ))
-            
-            conn.commit()
-            
-        finally:
-            cur.close()
-            conn.close()
+        # Skip database update for now
+        pass
     
     def run(self):
         """Main download process"""
@@ -444,6 +337,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
 
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +33,7 @@
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
@@ -51,7 +52,7 @@
         .sources-table {
             background: white;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             margin-bottom: 30px;
         }
@@ -70,7 +71,8 @@
             border-collapse: collapse;
         }
 
-        th, td {
+        th,
+        td {
             padding: 15px;
             text-align: right;
             border-bottom: 1px solid #eee;
@@ -144,7 +146,7 @@
         .files-section {
             background: white;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin-top: 30px;
         }
@@ -190,15 +192,20 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .nav-menu {
             background: white;
             padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
 
@@ -217,13 +224,15 @@
         }
     </style>
 </head>
+
 <body>
     <div class="sources-container">
         <!-- Navigation -->
         <div class="nav-menu">
-            <a href="index.html">🏠 עמוד ראשי</a>
+            <a href="dashboard.html">🏠 דף הבית</a>
             <a href="price-sources.html" style="background: #667eea; color: white;">📊 ניהול מקורות</a>
             <a href="errors.html">🐛 שגיאות</a>
+            <a href="admin.html">👨‍💼 ניהול</a>
         </div>
 
         <!-- Header -->
@@ -312,15 +321,15 @@
             try {
                 const response = await fetch(`${API_BASE}/price-sources/stats`);
                 const data = await response.json();
-                
+
                 document.getElementById('totalSources').textContent = data.total_sources || 0;
                 document.getElementById('totalFiles').textContent = data.total_files || 0;
                 document.getElementById('totalProducts').textContent = data.total_products || 0;
-                
+
                 if (data.last_update) {
                     const date = new Date(data.last_update);
-                    document.getElementById('lastUpdate').textContent = 
-                        date.toLocaleDateString('he-IL') + ' ' + date.toLocaleTimeString('he-IL', {hour: '2-digit', minute: '2-digit'});
+                    document.getElementById('lastUpdate').textContent =
+                        date.toLocaleDateString('he-IL') + ' ' + date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
                 }
             } catch (error) {
                 console.error('Failed to load statistics:', error);
@@ -332,7 +341,7 @@
             try {
                 const response = await fetch(`${API_BASE}/price-sources`);
                 const sources = await response.json();
-                
+
                 let html = '<table><thead><tr>' +
                     '<th>שם המקור</th>' +
                     '<th>סוג</th>' +
@@ -342,16 +351,16 @@
                     '<th>תדירות (שעות)</th>' +
                     '<th>פעולות</th>' +
                     '</tr></thead><tbody>';
-                
+
                 sources.forEach(source => {
                     const statusClass = source.is_active ? 'status-active' : 'status-inactive';
                     const statusText = source.is_active ? 'פעיל' : 'לא פעיל';
-                    
-                    const lastCheck = source.last_check_at ? 
+
+                    const lastCheck = source.last_check_at ?
                         new Date(source.last_check_at).toLocaleString('he-IL') : 'אף פעם';
-                    const lastSuccess = source.last_success_at ? 
+                    const lastSuccess = source.last_success_at ?
                         new Date(source.last_success_at).toLocaleString('he-IL') : 'אף פעם';
-                    
+
                     html += `<tr>
                         <td><strong>${source.name}</strong></td>
                         <td>${source.source_type}</td>
@@ -365,12 +374,12 @@
                         </td>
                     </tr>`;
                 });
-                
+
                 html += '</tbody></table>';
                 document.getElementById('sourcesTableContainer').innerHTML = html;
             } catch (error) {
                 console.error('Failed to load price sources:', error);
-                document.getElementById('sourcesTableContainer').innerHTML = 
+                document.getElementById('sourcesTableContainer').innerHTML =
                     '<p style="text-align: center; color: red;">שגיאה בטעינת מקורות</p>';
             }
         }
@@ -380,9 +389,9 @@
             try {
                 const response = await fetch(`${API_BASE}/downloaded-files?limit=20`);
                 const files = await response.json();
-                
+
                 document.getElementById('filesCount').textContent = `${files.length} קבצים`;
-                
+
                 let html = '<table><thead><tr>' +
                     '<th>שם קובץ</th>' +
                     '<th>סוג</th>' +
@@ -391,12 +400,12 @@
                     '<th>סטטוס</th>' +
                     '<th>מוצרים</th>' +
                     '</tr></thead><tbody>';
-                
+
                 files.forEach(file => {
-                    const fileDate = file.file_timestamp ? 
+                    const fileDate = file.file_timestamp ?
                         new Date(file.file_timestamp).toLocaleString('he-IL') : '-';
                     const downloadDate = new Date(file.downloaded_at).toLocaleString('he-IL');
-                    
+
                     html += `<tr>
                         <td style="font-family: monospace; font-size: 0.85em;">${file.filename}</td>
                         <td>${file.file_type || '-'}</td>
@@ -406,12 +415,12 @@
                         <td>${file.products_imported || 0}</td>
                     </tr>`;
                 });
-                
+
                 html += '</tbody></table>';
                 document.getElementById('filesTableContainer').innerHTML = html;
             } catch (error) {
                 console.error('Failed to load files:', error);
-                document.getElementById('filesTableContainer').innerHTML = 
+                document.getElementById('filesTableContainer').innerHTML =
                     '<p style="text-align: center; color: red;">שגיאה בטעינת קבצים</p>';
             }
         }
@@ -421,7 +430,7 @@
             try {
                 const response = await fetch(`${API_BASE}/scraping-sessions?limit=10`);
                 const sessions = await response.json();
-                
+
                 let html = '<table><thead><tr>' +
                     '<th>שם סשן</th>' +
                     '<th>התחלה</th>' +
@@ -430,21 +439,21 @@
                     '<th>קבצים</th>' +
                     '<th>מוצרים</th>' +
                     '</tr></thead><tbody>';
-                
+
                 sessions.forEach(session => {
                     const startTime = new Date(session.started_at).toLocaleString('he-IL');
-                    const endTime = session.completed_at ? 
+                    const endTime = session.completed_at ?
                         new Date(session.completed_at).toLocaleString('he-IL') : 'רץ...';
-                    
+
                     const statusColors = {
                         'running': '#ffc107',
                         'completed': '#28a745',
                         'failed': '#dc3545',
                         'partial': '#17a2b8'
                     };
-                    
+
                     const statusColor = statusColors[session.status] || '#6c757d';
-                    
+
                     html += `<tr>
                         <td>${session.session_name}</td>
                         <td>${startTime}</td>
@@ -454,12 +463,12 @@
                         <td>${session.total_products_imported || 0}</td>
                     </tr>`;
                 });
-                
+
                 html += '</tbody></table>';
                 document.getElementById('sessionsTableContainer').innerHTML = html;
             } catch (error) {
                 console.error('Failed to load sessions:', error);
-                document.getElementById('sessionsTableContainer').innerHTML = 
+                document.getElementById('sessionsTableContainer').innerHTML =
                     '<p style="text-align: center; color: red;">שגיאה בטעינת סשנים</p>';
             }
         }
@@ -469,14 +478,14 @@
             if (!confirm('האם להתחיל עדכון של כל המקורות?')) {
                 return;
             }
-            
+
             alert('עדכון החל! זה יכול לקחת זמן. בדוק את הסטטוס בטבלה.');
-            
+
             try {
                 const response = await fetch(`${API_BASE}/price-sources/update-all`, {
                     method: 'POST'
                 });
-                
+
                 if (response.ok) {
                     setTimeout(() => loadAllData(), 2000);
                 }
@@ -506,11 +515,5 @@
         loadAllData();
     </script>
 </body>
+
 </html>
-
-
-
-
-
-
-

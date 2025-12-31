@@ -467,8 +467,62 @@ CREATE TRIGGER trg_products_updated_at BEFORE UPDATE ON products
 -- DONE!
 -- ==========================================
 
+
+-- ==========================================
+-- MASTER PRODUCTS (Parents)
+-- ==========================================
+CREATE TABLE IF NOT EXISTS master_products (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(500) NOT NULL,
+    description TEXT,
+    main_image_url VARCHAR(500),
+    
+    -- External Links
+    wikipedia_url VARCHAR(500),
+    youtube_url VARCHAR(500),
+
+    -- Status
+    is_active BOOLEAN DEFAULT TRUE,
+    is_featured BOOLEAN DEFAULT FALSE,
+
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- ==========================================
+-- PRODUCT-MASTER LINKS
+-- ==========================================
+CREATE TABLE IF NOT EXISTS product_master_links (
+    id BIGSERIAL PRIMARY KEY,
+    master_product_id BIGINT REFERENCES master_products(id) ON DELETE CASCADE,
+    product_id BIGINT UNIQUE REFERENCES products(id) ON DELETE CASCADE,
+    
+    confidence_score DECIMAL(3,2) DEFAULT 1.0,
+    match_method VARCHAR(50), -- 'manual', 'llm', 'rule-based'
+    
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_links_master ON product_master_links(master_product_id);
+CREATE INDEX IF NOT EXISTS idx_links_product ON product_master_links(product_id);
+
+-- ==========================================
+-- PRICES LINKAGE
+-- ==========================================
+-- Add master_product_id to prices if not exists
+DO $$ 
+BEGIN 
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='prices' AND column_name='master_product_id') THEN
+        ALTER TABLE prices ADD COLUMN master_product_id BIGINT REFERENCES master_products(id);
+        CREATE INDEX idx_prices_master ON prices(master_product_id);
+    END IF;
+END $$;
+
 SELECT 'Gogobe schema created successfully!' as status,
        'Universal schema ready for dental and beyond!' as message;
+
+
+
 
 
 

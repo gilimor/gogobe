@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <ChainId>7290873255550</ChainId>
+  <SubChainId>000</SubChainId>
+  <StoreId>523</StoreId>
+  <BikoretNo>6</BikoretNo>
+  <DllVerNo>1</DllVerNo>
+  <Items Count="16">
+    <Item>
+      <PriceUpdateDate>2024-12-12 22:32</PriceUpdateDate>
+      <ItemCode>1230000116022</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>המבורגר ביונד מיט זוג 226 גרם</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>ארצות הברית</ManufactureCountry>
+      <ManufacturerItemDescription>המבורגר ביונד מיט זו</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>226.00</Quantity>
+      <bIsWeighted>0</bIsWeighted>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <QtyInPackage>1</QtyInPackage>
+      <ItemPrice>39.90</ItemPrice>
+      <UnitOfMeasurePrice>17.65</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-25 15:00</PriceUpdateDate>
+      <ItemCode>4412500</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בצל אדום</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בצל אדום            </ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>1</bIsWeighted>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <QtyInPackage>0</QtyInPackage>
+      <ItemPrice>7.90</ItemPrice>
+      <UnitOfMeasurePrice>7.90</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-25 15:00</PriceUpdateDate>
+      <ItemCode>4412746</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פלפל חריף</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>פלפל חריף           </ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>1</bIsWeighted>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <QtyInPackage>0</QtyInPackage>
+      <ItemPrice>11.90</ItemPrice>
+      <UnitOfMeasurePrice>11.90</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-25 15:00</PriceUpdateDate>
+      <ItemCode>4412869</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>חצילים</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>חצילים              </ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>1</bIsWeighted>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <QtyInPackage>0</QtyInPackage>
+      <ItemPrice>8.90</ItemPrice>
+      <UnitOfMeasurePrice>8.90</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2024-01-06 01:28</PriceUpdateDate>
+      <ItemCode>7290008776004</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קבב גלילי קפוא 500 גרם</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>קבב גלילי קפוא 500 ג</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <bIsWeighted>0</bIsWeighted>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <QtyInPackage>1</QtyInPackage>
+      <ItemPrice>38.90</ItemPrice>
+      <UnitOfMeasurePrice>7.78</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-19 00:22</PriceUpdateDate>
+      <ItemCode>7290115110180</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>נקניקיות פליאו גאודה 500 גרם</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>IL</ManufactureCountry>
+      <ManufacturerItemDescription>נקניקיות פליאו גאודה</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <bIsWeighted>0</bIsWeighted>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <QtyInPackage>1</QtyInPackage>
+      <ItemPrice>47.90</ItemPrice>
+      <UnitOfMeasurePrice>9.58</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-02-19 00:22</PriceUpdateDate>
+      <ItemCode>7290115110289</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>צוריסוס עגל קפוא</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>IL</ManufactureCountry>
+      <ManufacturerItemDescription>צוריסוס עגל קפוא    </ManufacturerItemDescription>
+      <UnitQty>Unknown</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>1</bIsWeighted>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <QtyInPackage>0</QtyInPackage>
+      <ItemPrice>77.90</ItemPrice>
+      <UnitOfMeasurePrice>77.90</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2024-11-03 22:34</PriceUpdateDate>
+      <ItemCode>7290115110340</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>נקניקיות פרדי עוף 500 גרם</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>IL</ManufactureCountry>
+      <ManufacturerItemDescription>נקניקיות פרדי עוף   </ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <bIsWeighted>0</bIsWeighted>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <QtyInPackage>1</QtyInPackage>
+      <ItemPrice>28.90</ItemPrice>
+      <UnitOfMeasurePrice>5.78</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2024-12-01 00:18</PriceUpdateDate>
+      <ItemCode>7290115110593</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>נקניקיות סליזי קפואות</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>IL</ManufactureCountry>
+      <ManufacturerItemDescription>נקניקיות סליזי קפואו</ManufacturerItemDescription>
+      <UnitQty>Unknown</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>1</bIsWeighted>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <QtyInPackage>0</QtyInPackage>
+      <ItemPrice>104.90</ItemPrice>
+      <UnitOfMeasurePrice>104.90</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2024-11-03 22:34</PriceUpdateDate>
+      <ItemCode>7290115113587</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>נקניקיות סוצי 500 גרם</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>IL</ManufactureCountry>
+      <ManufacturerItemDescription>נקניקיות סוצי 500 גר</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <bIsWeighted>0</bIsWeighted>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <QtyInPackage>1</QtyInPackage>
+      <ItemPrice>38.90</ItemPrice>
+      <UnitOfMeasurePrice>7.78</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-25 15:00</PriceUpdateDate>
+      <ItemCode>9913019</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>בצל יבש</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>בצל יבש             </ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>1</bIsWeighted>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <QtyInPackage>0</QtyInPackage>
+      <ItemPrice>5.90</ItemPrice>
+      <UnitOfMeasurePrice>5.90</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2019-11-21 18:46</PriceUpdateDate>
+      <ItemCode>9966</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>משלוח אינטרנט</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>משלוח אינטרנט       </ManufacturerItemDescription>
+      <UnitQty>Unknown</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>0</bIsWeighted>
+      <UnitOfMeasure>Unknown</UnitOfMeasure>
+      <QtyInPackage>1</QtyInPackage>
+      <ItemPrice>29.90</ItemPrice>
+      <UnitOfMeasurePrice>29.90</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2019-11-05 05:34</PriceUpdateDate>
+      <ItemCode>9988</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>איסוף עצמי</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>איסוף עצמי          </ManufacturerItemDescription>
+      <UnitQty>Unknown</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>0</bIsWeighted>
+      <UnitOfMeasure>Unknown</UnitOfMeasure>
+      <QtyInPackage>1</QtyInPackage>
+      <ItemPrice>15.00</ItemPrice>
+      <UnitOfMeasurePrice>15.00</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2019-11-29 05:33</PriceUpdateDate>
+      <ItemCode>9990015</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>שובר אתר 15 שח</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>שובר אתר 15 שח      </ManufacturerItemDescription>
+      <UnitQty>Unknown</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>0</bIsWeighted>
+      <UnitOfMeasure>Unknown</UnitOfMeasure>
+      <QtyInPackage>1</QtyInPackage>
+      <ItemPrice>0.10</ItemPrice>
+      <UnitOfMeasurePrice>0.10</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2019-11-29 05:33</PriceUpdateDate>
+      <ItemCode>9990020</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>שובר אתר 20 שח</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>שובר אתר 20 שח      </ManufacturerItemDescription>
+      <UnitQty>Unknown</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>0</bIsWeighted>
+      <UnitOfMeasure>Unknown</UnitOfMeasure>
+      <QtyInPackage>1</QtyInPackage>
+      <ItemPrice>0.10</ItemPrice>
+      <UnitOfMeasurePrice>0.10</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2023-06-13 10:19</PriceUpdateDate>
+      <ItemCode>9999212</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>משלוח באתר</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>משלוח מיוחד באתר    </ManufacturerItemDescription>
+      <UnitQty>Unknown</UnitQty>
+      <Quantity>0.00</Quantity>
+      <bIsWeighted>0</bIsWeighted>
+      <UnitOfMeasure>Unknown</UnitOfMeasure>
+      <QtyInPackage>1</QtyInPackage>
+      <ItemPrice>29.90</ItemPrice>
+      <UnitOfMeasurePrice>29.90</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+    </Item>
+  </Items>
+</root>

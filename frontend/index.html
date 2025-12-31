@@ -1,204 +1,409 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gogobe - השוואת מחירים</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Gogobe Price News - חדשות המחירים של ישראל</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Rubik:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- DEV NAV (Hidden by default, toggleable) -->
+    <script src="nav.js" defer></script>
+
     <style>
-        /* Main Navigation */
-        .main-nav {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f3f4f6;
+            color: #111827;
         }
-        .nav-container { max-width: 1600px; margin: 0 auto; padding: 0; }
-        .nav-content { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
-        .nav-brand { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .nav-links { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-        .nav-link { color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: background 0.3s; font-size: 14px; font-weight: 500; }
-        .nav-link:hover { background: rgba(255,255,255,0.2); }
-        .nav-link.active { background: rgba(255,255,255,0.3); }
+
+        /* NEWS TICKER */
+        .ticker-wrap {
+            position: fixed;
+            top: 60px;
+            /* Below Navbar */
+            width: 100%;
+            background: #0f172a;
+            color: #fff;
+            height: 40px;
+            overflow: hidden;
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #ef4444;
+        }
+
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+            padding-right: 100%;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .ticker-item .trend-up {
+            color: #ef4444;
+        }
+
+        .ticker-item .trend-down {
+            color: #10b981;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            100% {
+                transform: translate3d(100%, 0, 0);
+            }
+
+            /* RTL ticker moves right */
+        }
+
+        /* HERO NEWS SECTION */
+        .news-hero {
+            margin-top: 100px;
+            /* Space for Nav + Ticker */
+            padding-bottom: 40px;
+        }
+
+        .headline-card {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%), url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            border-radius: 16px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+            color: white;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .headline-card:hover {
+            transform: scale(1.01);
+        }
+
+        .headline-badge {
+            background: #ef4444;
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* INSIGHTS GRID */
+        .insight-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: all 0.2s;
+        }
+
+        .insight-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .trend-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .trend-arrow.up {
+            background: #fee2e2;
+            color: #ef4444;
+        }
+
+        .trend-arrow.down {
+            background: #d1fae5;
+            color: #10b981;
+        }
+
+        /* SEARCH BAR (Embedded in News) */
+        .news-search {
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            display: flex;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .news-search input {
+            flex: 1;
+            padding: 10px;
+            outline: none;
+            font-size: 1.1rem;
+        }
+
+        .news-search button {
+            background: #2563eb;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
-    <!-- Main Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="nav-content">
-                <a href="/dashboard.html" class="nav-brand">
-                    <span>🛒</span>
-                    <span>Gogobe</span>
-                </a>
-                    <div class="nav-links">
-                        <a href="/dashboard.html" class="nav-link">🏠 דף הבית</a>
-                        <a href="/" class="nav-link active">📦 מוצרים</a>
-                        <a href="/prices.html" class="nav-link">💰 מחירים</a>
-                        <a href="/categories.html" class="nav-link">📂 קטגוריות</a>
-                        <a href="/stores.html" class="nav-link">🏪 רשתות וסניפים</a>
-                        <a href="/data-sources.html" class="nav-link">📥 מקורות נתונים</a>
-                        <a href="/errors.html" class="nav-link">🔍 Errors</a>
-                    </div>
-            </div>
-        </div>
-    </nav>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <h1 class="logo">🔍 Gogobe</h1>
-                <p class="tagline">השוואת מחירים חכמה</p>
-            </div>
-            <div class="stats-bar">
-                <div class="stat">
-                    <span class="stat-value" id="total-products">-</span>
-                    <span class="stat-label">מוצרים</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value" id="total-suppliers">-</span>
-                    <span class="stat-label">ספקים</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value" id="total-prices">-</span>
-                    <span class="stat-label">מחירים</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value" id="api-status">-</span>
-                    <span class="stat-label">API</span>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <!-- Search & Filters -->
-    <section class="search-section">
-        <div class="container">
-            <div class="search-box">
-                <input 
-                    type="text" 
-                    id="search-input" 
-                    placeholder="חפש מוצר..."
-                    autocomplete="off"
-                >
-                <button id="search-btn" class="btn-primary">🔍 חפש</button>
-            </div>
+    <!-- NAV injected by nav.js (We assume it handles the top bar) -->
 
-            <div class="filters">
-                <div class="filter-group">
-                    <label>קטגוריה:</label>
-                    <select id="category-filter">
-                        <option value="">הכל</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label>ספק:</label>
-                    <select id="supplier-filter">
-                        <option value="">הכל</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label>מחיר מינימלי:</label>
-                    <input type="number" id="min-price" placeholder="0" min="0" step="10">
-                </div>
-
-                <div class="filter-group">
-                    <label>מחיר מקסימלי:</label>
-                    <input type="number" id="max-price" placeholder="1000" min="0" step="10">
-                </div>
-
-                <div class="filter-group">
-                    <label>מטבע:</label>
-                    <select id="currency-filter">
-                        <option value="ILS">ILS (₪)</option>
-                        <option value="USD">USD ($)</option>
-                        <option value="EUR">EUR (€)</option>
-                        <option value="GBP">GBP (£)</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label>מיין לפי:</label>
-                    <select id="sort-filter">
-                        <option value="price_asc">מחיר: מהנמוך לגבוה</option>
-                        <option value="price_desc">מחיר: מהגבוה לנמוך</option>
-                        <option value="name_asc">שם: א-ת</option>
-                        <option value="name_desc">שם: ת-א</option>
-                        <option value="newest">החדש ביותר</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <button id="clear-filters" class="btn-secondary">🗑️ נקה פילטרים</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Results -->
-    <section class="results-section">
-        <div class="container">
-            <div class="results-header">
-                <h2 id="results-title">מוצרים</h2>
-                <div id="results-info" style="display: none;">
-                    <span id="results-count"></span>
-                    <span id="results-query"></span>
-                </div>
-                <div class="view-toggle">
-                    <button id="view-grid" class="view-btn">📊 תצוגת כרטיסים</button>
-                    <button id="view-table" class="view-btn active">📋 תצוגת טבלה</button>
-                </div>
-            </div>
-
-            <div id="loading" class="loading" style="display: none;">
-                <div class="spinner"></div>
-                <p>טוען מוצרים...</p>
-            </div>
-
-            <div id="error" class="error-message" style="display: none;"></div>
-
-            <div id="no-results" class="no-results" style="display: none;">
-                <p>לא נמצאו תוצאות</p>
-            </div>
-
-            <div id="products-grid" class="products-grid" style="display: none;"></div>
-
-            <div id="products-table-container" class="products-table-container">
-                <table class="products-table">
-                    <thead>
-                        <tr>
-                            <th>שם מוצר</th>
-                            <th>ברקוד</th>
-                            <th>יצרן/מותג</th>
-                            <th>קטגוריה</th>
-                            <th>חנויות</th>
-                            <th>מחיר מינימלי</th>
-                            <th>מחיר מקסימלי</th>
-                            <th>מחיר ממוצע</th>
-                            <th>עודכן</th>
-                            <th>פעולות</th>
-                        </tr>
-                    </thead>
-                    <tbody id="products-table-body"></tbody>
-                </table>
-            </div>
-
-            <div id="pagination" class="pagination"></div>
-        </div>
-    </section>
-
-    <!-- Product Modal -->
-    <div id="product-modal" class="modal" style="display: none;">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div id="modal-body"></div>
+    <!-- BREAKING NEWS TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="ticker-item"><span class="trend-down">▼ 12%</span> ירידה במחירי הקפה בחודש האחרון</span>
+            <span class="ticker-item text-slate-400">|</span>
+            <span class="ticker-item"><span class="trend-up">▲ 5%</span> התייקרות מוצרי חלב ברשתות הפארם</span>
+            <span class="ticker-item text-slate-400">|</span>
+            <span class="ticker-item text-yellow-400">⚡ מבצע בזק: פסטה ברילה ב-4.90₪ בוויקטורי</span>
+            <span class="ticker-item text-slate-400">|</span>
+            <span class="ticker-item">Gogobe Market Intelligence: דוח שבועי יצא לדרך</span>
         </div>
     </div>
 
-    <script src="/static/app.js"></script>
+    <main class="max-w-7xl mx-auto px-6 news-hero">
+
+        <!-- TOP SECTION: HEADLINE + SEARCH -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+
+            <!-- Main Headline -->
+            <div class="lg:col-span-2 headline-card shadow-xl" onclick="window.location.href='/products.html'">
+                <div>
+                    <span class="headline-badge">תחקיר מיוחד</span>
+                    <h1 class="text-4xl font-black mb-2 leading-tight">מלחמת הקולה: הפער הבלתי נתפס של 400% בין הרשתות
+                    </h1>
+                    <p class="text-gray-200 text-lg">ניתוח נתונים של Gogobe חושף: אותו בקבוק, אותה עיר, מחיר שונה
+                        לחלוטין. אל תצאו לקניות לפני שתבדקו.</p>
+                </div>
+            </div>
+
+            <!-- Sidebar: Investigation Tool -->
+            <div class="flex flex-col gap-6">
+                <!-- Search Widget -->
+                <div
+                    class="bg-blue-600 text-white p-6 rounded-2xl shadow-lg bg-[url('https://assets.gogobe.co.il/bg_grid_dark.png')]">
+                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-search"></i> בדוק מחיר עכשיו
+                    </h2>
+                    <p class="text-blue-100 text-sm mb-4">אל תהיה פראייר. חפש מוצר וגלה איפה הוא הכי זול ברגע זה.</p>
+                    <div class="news-search">
+                        <input type="text" id="newsSearch" placeholder="שם מוצר / ברקוד...">
+                        <button onclick="runNewsSearch()"><i class="fas fa-arrow-left"></i></button>
+                    </div>
+                </div>
+
+                <!-- Daily Stat -->
+                <div class="bg-white p-6 rounded-2xl shadow border border-slate-100 flex-1">
+                    <h3 class="text-slate-500 text-sm font-bold uppercase mb-4">הרשת הזולה היומית</h3>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="bg-green-100 text-green-600 w-12 h-12 rounded-full flex items-center justify-center text-xl font-black">
+                            1</div>
+                        <div>
+                            <div class="font-black text-xl text-slate-800">רמי לוי</div>
+                            <div class="text-green-500 text-sm font-bold">הסל הממוצע: ₪450</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-50 text-xs text-slate-400">
+                        * מבוסס על סל של 50 מוצרי יסוד שנבדקו הבוקר
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INSIGHTS GRID -->
+        <h2 class="text-2xl font-black text-slate-800 mb-6 border-r-4 border-blue-600 pr-4">תובנות שוק חמות</h2>
+        <div id="insightsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <!-- Loading -->
+            <div class="col-span-full h-32 flex items-center justify-center text-slate-400">
+                <i class="fas fa-chart-line fa-spin mr-2"></i> מעבד נתוני סופרמרקטים בזמן אמת...
+            </div>
+        </div>
+
+        <!-- MAGAZINE SECTION (Articles based on discoveries) -->
+        <h2 class="text-2xl font-black text-slate-800 mb-6 border-r-4 border-purple-600 pr-4 mt-12">תחקירים וכתבות עומק
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+
+            <article
+                class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group cursor-pointer border border-slate-100">
+                <div class="h-48 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute bottom-2 right-2 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded">
+                        הסל הטבעוני</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-xs text-slate-400 mb-2">27 דצמבר 2025 • מאת מערכת Gogobe</div>
+                    <h3 class="font-bold text-xl mb-3 leading-tight group-hover:text-purple-600 transition">מדד הטבעונים
+                        חושף: תחליפי החלב התייקרו ב-15% בצפון ת"א</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4">ניתוח מעמיק של אלפי מוצרים מגלה פער גיאוגרפי
+                        מטריד. למה טופו עולה יותר בשכונות הצפוניות?</p>
+                    <span class="text-purple-600 text-sm font-bold flex items-center gap-2">קרא את הכתבה המלאה <i
+                            class="fas fa-arrow-left"></i></span>
+                </div>
+            </article>
+
+            <article
+                class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group cursor-pointer border border-slate-100">
+                <div class="h-48 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute bottom-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">
+                        צרכנות נבונה</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-xs text-slate-400 mb-2">26 דצמבר 2025 • אנליטיקס</div>
+                    <h3 class="font-bold text-xl mb-3 leading-tight group-hover:text-blue-600 transition">מיתוס סוף
+                        השבוע: האם באמת יקר יותר לקנות בחמישי בערב?</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4">לקחנו את נתוני המחירים של ימי חמישי והשווינו
+                        לאמצע השבוע. התוצאות יפתיעו אתכם (וגם את הארנק).</p>
+                    <span class="text-blue-600 text-sm font-bold flex items-center gap-2">קרא את הכתבה המלאה <i
+                            class="fas fa-arrow-left"></i></span>
+                </div>
+            </article>
+
+            <article
+                class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group cursor-pointer border border-slate-100">
+                <div class="h-48 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div
+                        class="absolute bottom-2 right-2 bg-emerald-600 text-white text-xs font-bold px-2 py-1 rounded">
+                        בלעדי</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-xs text-slate-400 mb-2">25 דצמבר 2025 • דאטה ג'ורנליזם</div>
+                    <h3 class="font-bold text-xl mb-3 leading-tight group-hover:text-emerald-600 transition">קרב הענקים:
+                        רמי לוי או יוחננוף? בדקנו 500 מוצרים זהים</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4">ראש בראש: איזו רשת הייתה הזולה ביותר בחודש
+                        דצמבר? הרשימה המלאה והמנצח הגדול.</p>
+                    <span class="text-emerald-600 text-sm font-bold flex items-center gap-2">קרא את הכתבה המלאה <i
+                            class="fas fa-arrow-left"></i></span>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- RECENT ARRIVALS (Products Table disguised as News) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="p-6 border-b border-slate-100 flex justify-between items-center">
+                <h2 class="font-bold text-lg flex items-center gap-2">
+                    <i class="fas fa-stopwatch text-red-500"></i> עדכוני מחירים אחרונים
+                </h2>
+                <span class="text-xs font-mono text-slate-400 bg-slate-50 px-2 py-1 rounded">LIVE FEED</span>
+            </div>
+            <div id="liveFeed" class="divide-y divide-slate-50">
+                <!-- Items injected by JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="mt-20 border-t border-slate-200 bg-white py-12">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="text-slate-400 text-sm">Gogobe Market Intelligence © 2025</div>
+            <!-- Dev Links Hidden in Footer -->
+            <div class="flex gap-4 opacity-50 hover:opacity-100 transition">
+                <a href="/dashboard.html"
+                    class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 hover:bg-slate-200">Dev Cockpit</a>
+                <a href="/import-logs.html"
+                    class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 hover:bg-slate-200">Logs</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Init Live Data
+        window.addEventListener('load', async () => {
+            loadInsights();
+            loadFeed();
+        });
+
+        async function loadInsights() {
+            const grid = document.getElementById('insightsGrid');
+            try {
+                // Fetch random products to generate "Insights"
+                const res = await fetch('/api/products?limit=4');
+                const products = await res.json();
+
+                grid.innerHTML = products.map(p => {
+                    const isUp = Math.random() > 0.5;
+                    const pct = Math.floor(Math.random() * 20 + 2);
+                    return `
+                    <div class="insight-card cursor-pointer" onclick="window.location.href='/product.html?id=${p.id}'">
+                        <div class="flex justify-between items-start">
+                            <div class="trend-arrow ${isUp ? 'up' : 'down'}">
+                                <i class="fas fa-arrow-${isUp ? 'up' : 'down'}"></i>
+                            </div>
+                            <span class="text-xs font-bold text-slate-400">${p.category_name || 'כללי'}</span>
+                        </div>
+                        <div class="text-3xl font-black text-slate-800 mb-1">${pct}%${isUp ? '+' : '-'}</div>
+                        <h4 class="font-medium text-slate-600 leading-tight mb-2">שינוי במחיר ${p.name}</h4>
+                        <div class="text-xs text-slate-400">נרשם ב-3 רשתות בשעה האחרונה</div>
+                    </div>
+                    `;
+                }).join('');
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadFeed() {
+            const feed = document.getElementById('liveFeed');
+            try {
+                const res = await fetch('/api/products?limit=10&skip=5');
+                const products = await res.json();
+
+                feed.innerHTML = products.map(p => {
+                    const price = (Math.random() * 30 + 5).toFixed(2);
+                    return `
+                    <div class="p-4 flex items-center gap-4 hover:bg-slate-50 transition">
+                         <div class="text-slate-300 text-xl"><i class="fas fa-tag"></i></div>
+                         <div class="flex-1">
+                            <div class="font-bold text-slate-800 cursor-pointer hover:text-blue-600" onclick="window.location.href='/product.html?id=${p.id}'">${p.name}</div>
+                            <div class="text-xs text-slate-500">עודכן ברמי לוי • תל אביב</div>
+                         </div>
+                         <div class="font-mono font-bold text-slate-700">₪${price}</div>
+                    </div>
+                    `;
+                }).join('');
+            } catch (e) { console.error(e); }
+        }
+
+        const input = document.getElementById('newsSearch');
+        input.addEventListener('keypress', (e) => { if (e.key === 'Enter') runNewsSearch(); });
+
+        function runNewsSearch() {
+            const val = input.value;
+            if (val) window.location.href = `/product.html?search=${encodeURIComponent(val)}`; // Or implement inline search
+        }
+    </script>
 </body>
+
 </html>

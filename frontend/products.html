@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogobe - קטלוג המוצרים האולטימטיבי</title>
+
+    <!-- Fonts & Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Heebo', 'Outfit', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow': '0 0 20px rgba(59, 130, 246, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Main styles -->
+    <style>
+        body {
+            background-color: #f0f4f8;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .category-pill {
+            transition: all 0.2s;
+        }
+
+        .category-pill:hover,
+        .category-pill.active {
+            background-color: #2563eb;
+            color: white;
+            border-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Loader Animation */
+        .loader-dots div {
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+        .loader-dots div:nth-child(1) {
+            left: 8px;
+            animation: loader-dots1 0.6s infinite;
+        }
+
+        .loader-dots div:nth-child(2) {
+            left: 8px;
+            animation: loader-dots2 0.6s infinite;
+        }
+
+        .loader-dots div:nth-child(3) {
+            left: 32px;
+            animation: loader-dots2 0.6s infinite;
+        }
+
+        .loader-dots div:nth-child(4) {
+            left: 56px;
+            animation: loader-dots3 0.6s infinite;
+        }
+
+        @keyframes loader-dots1 {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes loader-dots3 {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes loader-dots2 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(24px, 0);
+            }
+        }
+    </style>
+
+    <!-- Master Nav -->
+    <script src="nav.js" defer></script>
+</head>
+
+<body class="text-slate-800 antialiased">
+
+    <!-- Nav Placeholder -->
+    <div id="nav-placeholder" class="h-16"></div>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-white border-b border-slate-200 shadow-sm z-10">
+        <div class="max-w-7xl mx-auto px-4 py-8 lg:py-12">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+
+                <!-- Title -->
+                <div class="text-center lg:text-right">
+                    <h1 class="text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-2">
+                        מצא את <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">המחיר
+                            הטוב ביותר</span>
+                    </h1>
+                    <p class="text-slate-500 font-medium text-lg">
+                        סורק בזמן אמת <span id="storeCountHero" class="font-bold text-slate-800">500+</span> סניפים
+                        ברחבי הארץ
+                    </p>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="w-full max-w-2xl relative group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500">
+                    </div>
+                    <div
+                        class="relative flex items-center bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden">
+                        <i class="fas fa-search text-slate-400 text-xl mr-5 ml-4"></i>
+                        <input type="text" id="searchInput"
+                            class="w-full py-4 text-lg font-medium text-slate-700 placeholder-slate-400 focus:outline-none bg-transparent"
+                            placeholder="חפש מוצר (לדוגמה: קוקה קולה, גבינה צהובה...)">
+                        <button onclick="searchProducts()"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 m-2 rounded-lg transition shadow-md">
+                            חפש
+                        </button>
+                    </div>
+                    <!-- Quick Suggestions -->
+                    <div
+                        class="mt-3 flex gap-2 justify-center lg:justify-start text-sm text-slate-500 overflow-x-auto pb-2 scrollbar-none">
+                        <span class="font-bold">חיפושים נפוצים:</span>
+                        <button class="hover:text-blue-600" onclick="setSearch('חלב תנובה')">חלב תנובה</button> •
+                        <button class="hover:text-blue-600" onclick="setSearch('קפה נמס')">קפה נמס</button> •
+                        <button class="hover:text-blue-600" onclick="setSearch('פסטה')">פסטה</button> •
+                        <button class="hover:text-blue-600" onclick="setSearch('אבטיח')">אבטיח</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8 items-start">
+
+        <!-- SIDEBAR FILTERS (Sticky) -->
+        <aside class="w-full lg:w-72 shrink-0 space-y-6 lg:sticky lg:top-24 z-0">
+
+            <!-- Category Filter -->
+            <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg flex items-center gap-2">
+                        <i class="fas fa-layer-group text-blue-500"></i> קטגוריות
+                    </h3>
+                </div>
+
+                <div id="categoriesList" class="space-y-1 max-h-[400px] overflow-y-auto pr-1 -mr-2">
+                    <div class="animate-pulse space-y-2">
+                        <div class="h-6 bg-slate-100 rounded w-3/4"></div>
+                        <div class="h-6 bg-slate-100 rounded w-1/2"></div>
+                        <div class="h-6 bg-slate-100 rounded w-2/3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stores Filter -->
+            <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-6">
+                <h3 class="font-bold text-lg flex items-center gap-2 mb-4">
+                    <i class="fas fa-store text-emerald-500"></i> רשתות
+                </h3>
+                <div id="chainsList" class="space-y-3 max-h-[300px] overflow-y-auto pr-1 -mr-2">
+                    <!-- Chains will be loaded dynamically -->
+                    <div class="animate-pulse space-y-2">
+                        <div class="h-6 bg-slate-100 rounded w-3/4"></div>
+                        <div class="h-6 bg-slate-100 rounded w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- PRODUCT GRID -->
+        <main class="flex-1 w-full min-h-[600px]">
+
+            <!-- Toolbar -->
+            <div class="flex flex-wrap items-center justify-between mb-6 gap-4">
+                <div class="text-slate-500 text-sm">
+                    מציג <span id="productsCount" class="font-bold text-slate-900">0</span> תוצאות
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <span class="text-sm text-slate-500 bg-white px-3 py-1.5 rounded-lg border border-slate-200">
+                        <i class="fas fa-sort text-slate-400 ml-2"></i>
+                        מיון לפי:
+                    </span>
+                    <select id="sortSelect" onchange="searchProducts()"
+                        class="bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="pop">פופולריות</option>
+                        <option value="price_asc">מחיר: מהנמוך לגבוה</option>
+                        <option value="price_desc">מחיר: מהגבוה לנמוך</option>
+                        <option value="name_asc">שם: א-ת</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Loader -->
+            <div id="mainLoader" class="hidden py-20 flex justify-center">
+                <div class="loader-dots relative w-20 h-5">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Items will be injected here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden py-20 text-center">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-slate-100 rounded-full mb-4">
+                    <i class="fas fa-search text-3xl text-slate-300"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-700 mb-2">לא מצאנו מוצרים</h3>
+                <p class="text-slate-500 max-w-md mx-auto">נסה לחפש מילים כלליות יותר או הסר חלק מהסינונים.</p>
+                <button onclick="setSearch('')" class="mt-6 text-blue-600 font-bold hover:underline">נקה חיפוש</button>
+            </div>
+
+            <!-- Load More -->
+            <div class="mt-12 text-center">
+                <button id="loadMoreBtn" onclick="loadMore()"
+                    class="hidden bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold py-3 px-8 rounded-full shadow-sm transition">
+                    טען עוד מוצרים
+                </button>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- History Modal -->
+    <div id="historyModal"
+        class="fixed inset-0 bg-black/50 z-[1000] hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div
+            class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div class="bg-slate-50 border-b border-slate-100 p-4 flex justify-between items-center">
+                <h3 class="font-bold text-lg text-slate-800" id="histModalTitle">היסטוריית מחירים</h3>
+                <button onclick="closeHistoryModal()" class="text-slate-400 hover:text-red-500 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 h-[400px]">
+                <canvas id="priceHistoryChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- SCRIPTS -->
+    <script>
+        let currentOffset = 0;
+        let limit = 24;
+        let activeCategory = null;
+        let activeMasterId = null; // Fix: Declare variable
+        let isLoading = false;
+        let chartInstance = null;
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            // Parse URL Params
+            const urlParams = new URLSearchParams(window.location.search);
+            const queryParam = urlParams.get('query') || urlParams.get('q');
+            const masterIdParam = urlParams.get('master_id');
+
+            if (masterIdParam) {
+                activeMasterId = masterIdParam;
+                // Optional: Update UI to show filter state
+            } else if (queryParam) {
+                document.getElementById('searchInput').value = queryParam;
+            }
+
+            loadCategories();
+            loadChains(); // Load dynamic chains
+            searchProducts();
+
+            // Input Enter Key
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') searchProducts();
+            });
+
+            // Close modal on outside click
+            document.getElementById('historyModal').addEventListener('click', (e) => {
+                if (e.target.id === 'historyModal') closeHistoryModal();
+            });
+        });
+
+        async function loadChains() {
+            const container = document.getElementById('chainsList');
+            try {
+                // Use suppliers or chains endpoint depending on backend. Using /api/chains based on stores.html logic
+                const res = await fetch('/api/chains'); // Or /api/suppliers if chains is purely for stores
+                if (!res.ok) throw new Error("API Error");
+                const data = await res.json();
+
+                // Sort by name
+                const chains = (data.chains || []).sort((a, b) => (a.name_he || a.name).localeCompare(b.name_he || b.name));
+
+                if (chains.length === 0) {
+                    container.innerHTML = '<div class="text-xs text-slate-400">אין רשתות זמינות</div>';
+                    return;
+                }
+
+                container.innerHTML = chains.map(chain => `
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input type="checkbox"
+                            class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer chain-checkbox"
+                            value="${chain.id}" onchange="searchProducts()">
+                        <span class="text-slate-600 font-medium group-hover:text-blue-600 transition truncate" title="${chain.name_he || chain.name}">
+                            ${chain.name_he || chain.name}
+                        </span>
+                    </label>
+                `).join('');
+
+            } catch (err) {
+                console.error("Error loading chains:", err);
+                container.innerHTML = `<div class="text-red-400 text-xs">שגיאה בטעינה</div>`;
+            }
+        }
+
+        async function openHistoryChart(event, pid, pname) {
+            event.stopPropagation(); // Prevent card click
+            const modal = document.getElementById('historyModal');
+            document.getElementById('histModalTitle').innerText = pname;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            const ctx = document.getElementById('priceHistoryChart').getContext('2d');
+
+            // Show loading state/placeholder logic could go here
+
+            try {
+                const res = await fetch(`/api/products/${pid}/history`);
+                const data = await res.json();
+                const history = data.history || [];
+
+                if (chartInstance) chartInstance.destroy();
+
+                const labels = history.map(h => new Date(h.date).toLocaleDateString('he-IL'));
+                const prices = history.map(h => h.avg_price);
+
+                chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'מחיר ממוצע (₪)',
+                            data: prices,
+                            borderColor: '#2563eb',
+                            backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 4,
+                            pointHoverRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            intersect: false,
+                            mode: 'index',
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                rtl: true,
+                                bodyFont: { family: 'Heebo' },
+                                titleFont: { family: 'Heebo' }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                grid: { color: '#f1f5f9' }
+                            },
+                            x: {
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+
+            } catch (err) {
+                console.error("Chart Error", err);
+            }
+        }
+
+        function closeHistoryModal() {
+            const modal = document.getElementById('historyModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function setSearch(term) {
+            document.getElementById('searchInput').value = term;
+            activeCategory = null;
+            document.querySelectorAll('.category-pill').forEach(b => b.classList.remove('active', 'bg-blue-100', 'text-blue-700'));
+            searchProducts();
+        }
+
+
+        async function loadCategories() {
+            const container = document.getElementById('categoriesList');
+
+            // Icon Mapping
+            const iconMap = {
+                'Fruits & Vegetables': 'carrot',
+                'Dairy & Cheese': 'cheese',
+                'Meat & Fish': 'drumstick-bite',
+                'Bread & Bakery': 'bread-slice',
+                'Beverages': 'wine-bottle',
+                'Pre-made Meals': 'pizza-slice',
+                'Frozen Food': 'snowflake',
+                'Spices & Sauces': 'pepper-hot',
+                'Canned Goods': 'box',
+                'Grains & Pasta': 'wheat',
+                'Baking Needs': 'birthday-cake',
+                'Cleaning Supplies': 'pump-soap',
+                'Paper & Disposables': 'toilet-paper',
+                'Hygiene & Personal Care': 'teeth',
+                'Baby Products': 'baby',
+                'Pets': 'paw',
+                'Pharmacy & Health': 'notes-medical',
+                'Home & Electrical': 'lightbulb'
+            };
+
+            const getIcon = (enName) => iconMap[enName] || 'shopping-basket';
+
+            try {
+                const res = await fetch('/api/categories');
+                if (!res.ok) throw new Error("API Error");
+                const data = await res.json();
+                const categories = data.categories || [];
+
+                // Helper for recursive rendering
+                const renderCategoryItem = (cat, level = 0) => {
+                    const hasChildren = cat.children && cat.children.length > 0;
+                    const padding = level * 12; // Indent per level
+
+                    // Parent Icon logic
+                    const iconName = getIcon(cat.name_en);
+                    const iconHtml = level === 0
+                        ? `<div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition"><i class="fas fa-${iconName}"></i></div>`
+                        : `<div class="w-2 h-2 rounded-full bg-slate-300 mr-2 group-hover:bg-blue-500"></div>`; // Dot for children
+
+                    return `
+                        <div class="category-wrapper w-full">
+                            <div class="flex items-center w-full gap-1 group">
+                                <button onclick="filterCategory('${cat.id}', this)" 
+                                    class="category-pill flex-1 text-right py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-3 transition pr-[${padding}px]">
+                                    ${level === 0 ? iconHtml : ''} 
+                                    <div class="flex-1 flex justify-between items-center">
+                                        <span class="${level > 0 ? 'text-slate-600' : ''}">${cat.name}</span>
+                                        <span class="text-[10px] text-slate-400 font-bold bg-slate-100 px-1.5 rounded">${cat.product_count || 0}</span>
+                                    </div>
+                                </button>
+                                ${hasChildren ? `
+                                    <button onclick="toggleChildren(this)" class="p-2 text-slate-400 hover:text-blue-600 transition">
+                                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                                    </button>
+                                ` : ''}
+                            </div>
+                            
+                            <!-- Children Container -->
+                            ${hasChildren ? `
+                                <div class="children-container hidden flex flex-col gap-1 pr-8 border-r border-slate-100 mr-4">
+                                    ${cat.children.map(child => renderCategoryItem(child, level + 1)).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                };
+
+                container.innerHTML = `
+                    <button onclick="filterCategory(null, this)" class="category-pill active w-full text-right px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-3 transition mb-2">
+                        <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center"><i class="fas fa-th-large"></i></div>
+                        <span>הכל</span>
+                    </button>
+                    ${categories.map(cat => renderCategoryItem(cat)).join('')}
+                `;
+
+            } catch (e) {
+                console.error("Categories error:", e);
+                container.innerHTML = `<div class="text-red-400 text-xs p-4">שגיאה בטעינת קטגוריות</div>`;
+            }
+        }
+
+        // New function to toggle accordion
+        function toggleChildren(btn) {
+            const container = btn.parentElement.nextElementSibling;
+            const icon = btn.querySelector('i');
+
+            if (container) {
+                container.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+
+        function filterCategory(catName, btn) {
+            // UI Update
+            document.querySelectorAll('.category-pill').forEach(b => {
+                b.classList.remove('active', 'bg-blue-50', 'ring-1', 'ring-blue-200');
+                // Reset icons
+                const iconBox = b.querySelector('div');
+                if (iconBox) {
+                    iconBox.classList.remove('bg-blue-600', 'text-white');
+                    if (b.innerText.includes('הכל')) iconBox.classList.add('bg-slate-100', 'text-slate-500');
+                    else iconBox.classList.add('bg-indigo-50', 'text-indigo-500');
+                }
+            });
+
+            btn.classList.add('active', 'bg-blue-50', 'ring-1', 'ring-blue-200');
+            const activeIconBox = btn.querySelector('div');
+            activeIconBox.classList.remove('bg-slate-100', 'text-slate-500', 'bg-indigo-50', 'text-indigo-500');
+            activeIconBox.classList.add('bg-blue-600', 'text-white');
+
+            activeCategory = catName;
+            searchProducts();
+        }
+
+        async function searchProducts(refresh = true) {
+            if (activeCategory === undefined) activeCategory = null; // Guard
+
+            const grid = document.getElementById('productsGrid');
+            const loader = document.getElementById('mainLoader');
+            const empty = document.getElementById('emptyState');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const query = document.getElementById('searchInput').value;
+            const countEl = document.getElementById('productsCount');
+
+            if (refresh) {
+                currentOffset = 0;
+                grid.innerHTML = '';
+                isLoading = true;
+                loader.classList.remove('hidden');
+                empty.classList.add('hidden');
+                loadMoreBtn.classList.add('hidden');
+            }
+
+            try {
+                // Build URL
+                let url = `/api/products/search?limit=${limit}&offset=${currentOffset}`;
+
+                // Prioritize Master ID Filter if exists
+                if (activeMasterId) {
+                    url += `&master_id=${activeMasterId}`;
+                } else {
+                    if (query) url += `&query=${encodeURIComponent(query)}`;
+                    if (activeCategory) url += `&category=${encodeURIComponent(activeCategory)}`;
+
+                    // Add Chain Filters
+                    const selectedChains = Array.from(document.querySelectorAll('.chain-checkbox:checked'))
+                        .map(cb => cb.value)
+                        .join(',');
+                    if (selectedChains) url += `&chains=${selectedChains}`;
+                }
+
+                // Fetch logic continues below...
+
+                const res = await fetch(url);
+                if (!res.ok) throw new Error("API Failure");
+                const responseData = await res.json();
+                let products = responseData.products || []; // Extract from object
+
+                // Sort client side for demo (if API doesn't)
+                // In real app, pass sort param to API
+
+                loader.classList.add('hidden');
+                isLoading = false;
+
+                if (products.length === 0 && currentOffset === 0) {
+                    empty.classList.remove('hidden');
+                    countEl.innerText = '0';
+                    return;
+                }
+
+                if (refresh) {
+                    // Only update total on first load or use metadata if API provides
+                    // Mocking total count based on result size
+                    countEl.innerText = products.length < limit ? products.length : "100+";
+                }
+
+                if (products.length < limit) {
+                    loadMoreBtn.classList.add('hidden');
+                } else {
+                    loadMoreBtn.classList.remove('hidden');
+                }
+
+                // Append Logic
+                const html = products.map(p => {
+                    // Enrich data if missing
+                    const minPrice = p.price_min || p.min_price || '---';
+                    const maxPrice = p.price_max || p.max_price || '---';
+                    const storeCount = p.store_count || 0;
+
+                    let discount = 0;
+                    if (minPrice !== '---' && maxPrice !== '---' && maxPrice > minPrice) {
+                        discount = Math.floor(((maxPrice - minPrice) / maxPrice) * 100);
+                    }
+
+                    // Image Placeholder (Color coded by category)
+                    const hue = Math.floor(Math.random() * 360);
+
+                    return `
+                    <div class="group bg-white rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 flex flex-col overflow-hidden relative cursor-pointer" onclick="window.location.href='/product.html?id=${p.id}'">
+                        
+                        <!-- Sale Badge -->
+                        ${discount > 15 ? `<div class="absolute top-3 right-3 bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-sm z-10">-${discount}%</div>` : ''}
+
+                        <!-- Image Area -->
+                        <div class="h-48 bg-slate-50 relative overflow-hidden flex items-center justify-center">
+                            <!-- Background Pattern -->
+                            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 10px 10px;"></div>
+                            
+                            <!-- Icon -->
+                            <i class="fas fa-shopping-bag text-5xl text-slate-300/50 group-hover:scale-110 group-hover:text-blue-500/50 transition-all duration-500"></i>
+                            
+                            <!-- Quick Action (On Hover) -->
+                            <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex gap-2">
+                                <button class="flex-1 bg-white/90 backdrop-blur text-slate-900 font-bold py-2 rounded-lg shadow-lg hover:bg-blue-600 hover:text-white transition text-sm">
+                                    השוואת מחירים
+                                </button>
+                                <button onclick="openHistoryChart(event, ${p.id}, '${p.name.replace(/'/g, "\\'")}')" class="w-10 bg-white/90 backdrop-blur text-blue-600 font-bold py-2 rounded-lg shadow-lg hover:bg-blue-50 transition text-sm flex items-center justify-center" title="היסטוריית מחירים">
+                                    <i class="fas fa-chart-line"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-5 flex-1 flex flex-col">
+                            <div class="text-xs text-slate-400 font-medium mb-1">${p.category_name || 'כללי'}</div>
+                            <h3 class="font-bold text-slate-800 text-lg leading-snug mb-2 line-clamp-2 group-hover:text-blue-600 transition" title="${p.name}">
+                                ${p.name}
+                            </h3>
+                            
+                            <!-- Stores Avatars -->
+                            <div class="mt-auto pt-4 flex items-end justify-between border-t border-slate-50">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wide">המחיר הזול</span>
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="text-xl font-black text-slate-800">₪${minPrice}</span>
+                                        ${discount > 0 ? `<span class="text-xs text-slate-300 line-through">₪${maxPrice}</span>` : ''}
+                                    </div>
+                                </div>
+
+                                <!-- Networks Badge -->
+                                <div class="bg-blue-50 px-2 py-1 rounded-lg flex items-center gap-1.5 border border-blue-100">
+                                    <i class="fas fa-store text-blue-500 text-xs"></i>
+                                    <span class="text-xs font-bold text-blue-700">${storeCount} רשתות</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+
+                if (refresh) grid.innerHTML = html;
+                else grid.insertAdjacentHTML('beforeend', html);
+
+            } catch (e) {
+                console.error("Search error:", e);
+                grid.innerHTML = `<div class="col-span-full py-20 text-center text-red-400">שגיאה בטעינת הנתונים. נסה שוב.</div>`;
+            }
+        }
+
+        function loadMore() {
+            currentOffset += limit;
+            searchProducts(false);
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -109,8 +109,22 @@ scripts\web\start-web.bat
 
 1. `CODING_GUIDELINES.md` - חוקי קוד (קרא קודם!)
 2. `scripts/README.md` - הסבר כל הסקריפטים
-3. `MIGRATION_GUIDE.md` - מדריך מעבר מפורט
-4. `docs/` - תיעוד טכני
+### 3. ממשקי ניהול (Web Interfaces)
+המערכת כוללת פורטל מרכזי המאגד את כל הכלים:
+
+*   **כתובת ראשית (Portal):** `http://localhost:8000/`
+    *   משם ניתן להגיע לכל המערכות (דשבורד, מפה, ניהול מוצרים).
+
+*   **דשבורד ראשי (Mission Control):** `http://localhost:8000/dashboard.html`
+*   **מפת מחירים (Geo Intel):** `http://localhost:8000/map.html`
+*   **תיעוד API (Swagger):** `http://localhost:8000/docs`
+
+> **הערה חשובה:** הניווט בין הדפים הוא אוטומטי באמצעות ה-Navbar העליון.
+
+### 4. פרוטוקול עבודה יומי (Daily Routine)
+1.  הפעלת המנוע: `RUN_ORCHESTRA.bat`
+2.  פתיחת ה-Portal בדפדפן.
+3.  בדיקת סטטוס ב-Dashboard (וידוא שכל ה-"Chips" בטבלת הצי ירוקים).
 
 ---
 

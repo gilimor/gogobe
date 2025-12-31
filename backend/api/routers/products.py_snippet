@@ -1,0 +1,47 @@
+@router.get("/trends/arbitrage")
+def get_arbitrage_products(
+    limit: int = 50,
+    offset: int = 0
+):
+    """
+    Get products with significant price gaps between stores (Arbitrage opportunities).
+    """
+    conn = get_db_connection()
+    if not conn:
+        raise HTTPException(status_code=500, detail="DB Connection Failed")
+    
+    try:
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+            cur.execute("""
+                WITH PriceStats AS (
+                    SELECT 
+                        product_id, 
+                        MIN(price) as min_p, 
+                        MAX(price) as max_p,
+                        COUNT(DISTINCT store_id) as store_count
+                    FROM prices
+                    WHERE scraped_at > NOW() - INTERVAL '2 days'
+                    GROUP BY product_id
+                    HAVING COUNT(DISTINCT store_id) > 1 
+                       AND MIN(price) > 0
+                       AND (MAX(price) - MIN(price)) / MIN(price) > 0.5
+                )
+                SELECT 
+                    p.id, p.name, p.ean,
+                    ps.min_p, ps.max_p,
+                    ROUND(((ps.max_p - ps.min_p) / ps.min_p * 100)::numeric, 1) as gap_pct,
+                    (SELECT s.name FROM prices pr JOIN stores s ON pr.store_id = s.id WHERE pr.product_id = p.id AND pr.price = ps.min_p ORDER BY pr.scraped_at DESC LIMIT 1) as min_store,
+                    (SELECT s.name FROM prices pr JOIN stores s ON pr.store_id = s.id WHERE pr.product_id = p.id AND pr.price = ps.max_p ORDER BY pr.scraped_at DESC LIMIT 1) as max_store
+                FROM PriceStats ps
+                JOIN products p ON ps.product_id = p.id
+                ORDER BY gap_pct DESC
+                LIMIT %s OFFSET %s
+            """, (limit, offset))
+            
+            results = cur.fetchall()
+            return {"arbitrage": results}
+    except Exception as e:
+        logger.error(f"Arbitrage Fetch Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()

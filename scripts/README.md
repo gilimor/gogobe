@@ -119,3 +119,6 @@ scripts\supermarket\automation\scheduler.bat
 **📖 תיעוד מלא**: `docs/guides/`
 
 
+
+
+

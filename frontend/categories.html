@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,67 +10,107 @@
         /* Main Navigation */
         .main-nav {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        .nav-container { max-width: 1600px; margin: 0 auto; padding: 0; }
-        .nav-content { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
-        .nav-brand { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .nav-links { display: flex; gap: 8px; align-items: center; }
-        .nav-link { color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: background 0.3s; font-size: 14px; font-weight: 500; }
-        .nav-link:hover { background: rgba(255,255,255,0.2); }
-        .nav-link.active { background: rgba(255,255,255,0.3); }
-        
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+        }
+
+        .nav-brand {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
         .page-container {
             max-width: 1600px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-        
+
         .category-tree {
             background: white;
             border-radius: 12px;
             padding: 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
-        
+
         .category-item {
             padding: 12px;
             border-bottom: 1px solid #e5e7eb;
             cursor: pointer;
             transition: background 0.2s;
         }
-        
+
         .category-item:hover {
             background: #f9fafb;
         }
-        
+
         .category-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .category-name {
             font-weight: 600;
             color: #1f2937;
             font-size: 16px;
         }
-        
+
         .category-stats {
             display: flex;
             gap: 16px;
             color: #6b7280;
             font-size: 14px;
         }
-        
+
         .category-children {
             margin-right: 24px;
             margin-top: 8px;
         }
-        
+
         .badge {
             display: inline-block;
             padding: 4px 12px;
@@ -77,39 +118,23 @@
             font-size: 12px;
             font-weight: 600;
         }
-        
+
         .badge-products {
             background: #dbeafe;
             color: #1e40af;
         }
-        
+
         .loading {
             text-align: center;
             padding: 40px;
             color: #6b7280;
         }
     </style>
+    <script src="/static/nav.js"></script>
 </head>
+
 <body>
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="nav-content">
-                <a href="/dashboard.html" class="nav-brand">
-                    <span>🛒</span>
-                    <span>Gogobe</span>
-                </a>
-                <div class="nav-links">
-                    <a href="/dashboard.html" class="nav-link">🏠 דף הבית</a>
-                    <a href="/" class="nav-link">📦 מוצרים</a>
-                    <a href="/prices.html" class="nav-link">💰 מחירים</a>
-                    <a href="/categories.html" class="nav-link active">📂 קטגוריות</a>
-                    <a href="/stores.html" class="nav-link">🏪 רשתות וסניפים</a>
-                    <a href="/data-sources.html" class="nav-link">📥 מקורות נתונים</a>
-                    <a href="/errors.html" class="nav-link">🔍 Errors</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <main-nav></main-nav>
 
     <div class="page-container">
         <div class="category-tree">
@@ -126,14 +151,14 @@
                 const response = await fetch(`${API_BASE}/api/categories`);
                 const data = await response.json();
                 const categories = data.categories || [];
-                
+
                 const listEl = document.getElementById('category-list');
-                
+
                 if (categories.length === 0) {
                     listEl.innerHTML = '<p>אין קטגוריות זמינות</p>';
                     return;
                 }
-                
+
                 listEl.innerHTML = categories.map(cat => `
                     <div class="category-item">
                         <div class="category-header">
@@ -144,14 +169,14 @@
                         </div>
                     </div>
                 `).join('');
-                
+
             } catch (error) {
                 console.error('Failed to load categories:', error);
-                document.getElementById('category-list').innerHTML = 
+                document.getElementById('category-list').innerHTML =
                     '<p style="color: red;">שגיאה בטעינת הקטגוריות</p>';
             }
         }
-        
+
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
@@ -161,4 +186,5 @@
         document.addEventListener('DOMContentLoaded', loadCategories);
     </script>
 </body>
+
 </html>

@@ -265,3 +265,6 @@ scripts\web\start-web.bat
 **🚀 התחל**: `scripts\database\show-info.bat`
 
 
+
+
+

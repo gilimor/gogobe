@@ -48,7 +48,7 @@ def extract_gz(gz_path):
 
 def parse_price_xml(xml_path):
     """Parse Prices XML file"""
-    # KingStore store ID to name mapping
+    # KingStore store ID to name mapping (with full names from website)
     STORE_NAMES = {
         '1': 'קינג סטור - סניף 1',
         '2': 'קינג סטור - סניף 2',
@@ -70,6 +70,13 @@ def parse_price_xml(xml_path):
         '27': 'קינג סטור - סניף 27',
         '28': 'קינג סטור - סניף 28',
         '30': 'קינג סטור - סניף 30',
+        '31': 'צים סנטר נוף הגליל',
+        '200': 'ירושליים',
+        '334': 'דיר חנא זכיינות',
+        '336': 'דוכאן קלנסווה',
+        '338': 'דוכאן חי אלוורוד',
+        '339': 'יפו תלאביב מכללה',
+        '340': 'מיני קינג סח\'נין',
     }
     
     try:
@@ -137,6 +144,37 @@ def import_products_and_prices(conn, metadata, items):
         
         cur.execute("SELECT id FROM suppliers WHERE slug = 'kingstore'")
         supplier_id = cur.fetchone()[0]
+        
+        # Get or create chain
+        cur.execute("SELECT id FROM chains WHERE slug = 'kingstore'")
+        chain_result = cur.fetchone()
+        if chain_result:
+            chain_id = chain_result[0]
+        else:
+            cur.execute("""
+                INSERT INTO chains (name, slug, name_he)
+                VALUES ('KingStore', 'kingstore', 'קינג סטור')
+                ON CONFLICT (slug) DO NOTHING
+                RETURNING id
+            """)
+            result = cur.fetchone()
+            if result:
+                chain_id = result[0]
+            else:
+                cur.execute("SELECT id FROM chains WHERE slug = 'kingstore'")
+                chain_id = cur.fetchone()[0]
+        
+        # Get store table ID from store_id (metadata has store_id like "15", we need stores.id)
+        store_table_id = None
+        if metadata.get('store_id'):
+            cur.execute("""
+                SELECT id FROM stores 
+                WHERE chain_id = %s AND store_id = %s
+                LIMIT 1
+            """, (chain_id, metadata.get('store_id')))
+            store_result = cur.fetchone()
+            if store_result:
+                store_table_id = store_result[0]
         
         conn.commit()
         
@@ -238,17 +276,18 @@ def import_products_and_prices(conn, metadata, items):
                     continue
                 
                 # Use upsert_price function for smart insert/update
+                # store_table_id is the stores.id (not stores.store_id)
                 cur.execute("""
                     SELECT upsert_price(
                         %s,    -- product_id
                         %s,    -- supplier_id
-                        %s,    -- store_id
+                        %s,    -- store_id (stores.id, not stores.store_id)
                         %s,    -- price
                         'ILS', -- currency
                         TRUE,  -- is_available
                         0.01   -- price_tolerance (1 אגורה)
                     )
-                """, (product_id, supplier_id, metadata.get('store_id'), price_value))
+                """, (product_id, supplier_id, store_table_id, price_value))
                 
                 price_id = cur.fetchone()[0]
                 stats['prices'] += 1

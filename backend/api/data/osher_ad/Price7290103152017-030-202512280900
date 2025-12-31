@@ -1,0 +1,181 @@
+﻿<Root>
+  <XmlDocVersion>19</XmlDocVersion>
+  <ChainId>7290103152017</ChainId>
+  <SubChainId>1</SubChainId>
+  <StoreId>030</StoreId>
+  <BikoretNo>4</BikoretNo>
+  <DllVerNo>9.4.0.50</DllVerNo>
+  <Items Count="9">
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:14:05</PriceUpdateDate>
+      <ItemCode>7290003352173</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קבב מזרחי תומס עטרה</ItemName>
+      <ManufacturerName>טיבון ויל</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>קבב מזרחי תומס עטרה</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>29.90</ItemPrice>
+      <UnitOfMeasurePrice>5.9800</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>364834</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:14:05</PriceUpdateDate>
+      <ItemCode>7290003352180</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קבב טלה תומס עטרה 50</ItemName>
+      <ManufacturerName>טיבון ויל</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>קבב טלה תומס עטרה 50</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>29.90</ItemPrice>
+      <UnitOfMeasurePrice>5.9800</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>364835</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:14:05</PriceUpdateDate>
+      <ItemCode>7290003352197</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קבב רומני תומס עטרה</ItemName>
+      <ManufacturerName>טיבון ויל</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>קבב רומני תומס עטרה</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>29.90</ItemPrice>
+      <UnitOfMeasurePrice>5.9800</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>364836</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:14:05</PriceUpdateDate>
+      <ItemCode>7290003352326</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קבב עיראקי תומס עטרה</ItemName>
+      <ManufacturerName>טיבון ויל</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>קבב עיראקי תומס עטרה</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>29.90</ItemPrice>
+      <UnitOfMeasurePrice>5.9800</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>364837</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:14:05</PriceUpdateDate>
+      <ItemCode>7290003352333</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>נקניקיות מרגז מרוקאי</ItemName>
+      <ManufacturerName>טיבון ויל</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>נקניקיות מרגז מרוקאי</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>400.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>29.90</ItemPrice>
+      <UnitOfMeasurePrice>7.4750</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>364838</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:14:05</PriceUpdateDate>
+      <ItemCode>7290003352463</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קציצות מרוקאיות תומס</ItemName>
+      <ManufacturerName>טיבון ויל</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>קציצות מרוקאיות תומס</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>29.90</ItemPrice>
+      <UnitOfMeasurePrice>5.9800</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>364839</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:14:06</PriceUpdateDate>
+      <ItemCode>7290003352470</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>המבורגר תומס עטרה 50</ItemName>
+      <ManufacturerName>טיבון ויל</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>המבורגר תומס עטרה 50</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>500.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>29.90</ItemPrice>
+      <UnitOfMeasurePrice>5.9800</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>364840</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:14:30</PriceUpdateDate>
+      <ItemCode>96619420100</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>תרסיס שמן קנולה קירק</ItemName>
+      <ManufacturerName>פולמר דיבלומנט</ManufacturerName>
+      <ManufactureCountry>ארצות הברית</ManufactureCountry>
+      <ManufacturerItemDescription>תרסיס שמן קנולה קירק</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>482.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>24.90</ItemPrice>
+      <UnitOfMeasurePrice>5.1660</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>358381</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-28 08:14:47</PriceUpdateDate>
+      <ItemCode>7290010868186</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>תפוח אדמה בייבי גורמ</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>תפוח אדמה בייבי גורמ</ManufacturerItemDescription>
+      <UnitQty>Unknown </UnitQty>
+      <Quantity>0.00</Quantity>
+      <UnitOfMeasure>יחידה   </UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>7.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>368978</ItemId>
+    </Item>
+  </Items>
+</Root>

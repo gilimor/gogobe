@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogobe - ניהול מקורות</title>
+    <!-- Tailwind is required for the design system -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MASTER NAV (Injected Automatically) -->
+    <script src="nav.js" defer></script>
+
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        .table-row:hover {
+            background-color: #f1f5f9;
+        }
+
+        .sort-icon {
+            font-size: 0.8em;
+            margin-right: 4px;
+            color: #94a3b8;
+        }
+
+        th {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        th:hover .sort-icon {
+            color: #475569;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 min-h-screen">
+
+    <!-- Navbar space is handled by nav.js spacer -->
+    <div style="height: 64px;"></div>
+
+    <main class="max-w-[1600px] mx-auto px-6 py-10">
+
+        <!-- Header Section -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+            <div>
+                <h1 class="text-3xl font-black text-slate-800 tracking-tight mb-2 flex items-center gap-3">
+                    <span
+                        class="bg-amber-100 text-amber-600 w-10 h-10 inline-flex items-center justify-center rounded-lg text-xl shadow-sm">
+                        <i class="fas fa-server"></i>
+                    </span>
+                    ניהול מקורות מידע
+                </h1>
+                <p class="text-slate-500 text-lg">שליטה, בקרה וניטור של כל סורקי המידע במערכת.</p>
+            </div>
+
+            <div class="flex gap-3">
+                <div class="relative">
+                    <i class="fas fa-search absolute right-3 top-3 text-slate-400"></i>
+                    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="חיפוש מקור..."
+                        class="pl-4 pr-10 py-2 rounded-lg border border-slate-200 focus:border-blue-500 focus:outline-none shadow-sm w-64">
+                </div>
+                <button onclick="loadSources()"
+                    class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-lg font-bold hover:bg-slate-50 transition shadow-sm">
+                    <i class="fas fa-sync-alt mr-2"></i> רענן
+                </button>
+                <button onclick="runImportAll()"
+                    class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-500 transition shadow-lg shadow-blue-500/20">
+                    <i class="fas fa-rocket mr-2"></i> הפעל הכל
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+            <div
+                class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60 flex items-center justify-between">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">סך הכל מקורות</div>
+                    <div class="text-2xl font-black text-slate-800" id="stat-total">-</div>
+                </div>
+                <div class="w-10 h-10 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center">
+                    <i class="fas fa-database"></i>
+                </div>
+            </div>
+
+            <div
+                class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60 flex items-center justify-between">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">פעילים כעת</div>
+                    <div class="text-2xl font-black text-emerald-600" id="stat-active">-</div>
+                </div>
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-check"></i>
+                </div>
+            </div>
+
+            <div
+                class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60 flex items-center justify-between">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">סך מוצרים</div>
+                    <div class="text-2xl font-black text-blue-600" id="stat-products">-</div>
+                </div>
+                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-barcode"></i>
+                </div>
+            </div>
+
+            <div
+                class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60 flex items-center justify-between">
+                <div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">סך סניפים</div>
+                    <div class="text-2xl font-black text-indigo-600" id="stat-branches">-</div>
+                </div>
+                <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-store"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-right">
+                    <thead class="bg-slate-50 text-slate-500 font-bold uppercase border-b border-slate-200">
+                        <tr>
+                            <th class="p-4 w-16 text-center">סטטוס</th>
+                            <th class="p-4 cursor-pointer hover:bg-slate-100" onclick="sortTable('name')">
+                                שם המקור <i class="fas fa-sort sort-icon"></i>
+                            </th>
+                            <th class="p-4 w-24 text-center">מדינה</th>
+                            <th class="p-4 w-24">תדירות</th>
+                            <th class="p-4 cursor-pointer hover:bg-slate-100" onclick="sortTable('branches')">
+                                סניפים <i class="fas fa-sort sort-icon"></i>
+                            </th>
+                            <th class="p-4 cursor-pointer hover:bg-slate-100" onclick="sortTable('products')">
+                                מוצרים <i class="fas fa-sort sort-icon"></i>
+                            </th>
+                            <th class="p-4 cursor-pointer hover:bg-slate-100" onclick="sortTable('date')">
+                                ריצה אחרונה <i class="fas fa-sort sort-icon"></i>
+                            </th>
+                            <th class="p-4 text-center w-32">פעולות</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-slate-100">
+                        <tr>
+                            <td colspan="8" class="p-10 text-center text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin text-3xl mb-3 text-blue-500"></i><br>
+                                טוען נתונים...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Footer (Placeholder for now) -->
+            <div class="p-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400">
+                <span id="showing-text">מציג 0 תוצאות</span>
+                <div class="flex gap-1">
+                    <button class="px-3 py-1 rounded bg-slate-100 text-slate-500 disabled:opacity-50"
+                        disabled>הקודם</button>
+                    <button class="px-3 py-1 rounded bg-slate-100 text-slate-500 disabled:opacity-50"
+                        disabled>הבא</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const API_BASE = '/api';
+        let allSources = [];
+        let sortDir = 1; // 1 = asc, -1 = desc
+        let lastSortCol = '';
+
+        document.addEventListener('DOMContentLoaded', loadSources);
+
+        async function loadSources() {
+            try {
+                const res = await fetch(`${API_BASE}/admin/sources/status`);
+                const data = await res.json();
+
+                // Convert object to array for easier sorting/filtering
+                allSources = Object.entries(data.sources || data).map(([id, s]) => ({
+                    id: id,
+                    ...s,
+                    // Defaults for sorting
+                    branch_count: s.branch_count || 0,
+                    product_count: s.product_count || 0,
+                    country: s.metadata?.country || 'IL', // Default IL
+                    name: s.metadata?.description || id
+                }));
+
+                updateStats();
+                renderTable(allSources);
+            } catch (err) {
+                console.error(err);
+                document.getElementById('tableBody').innerHTML = `<tr><td colspan="8" class="text-center text-red-500 p-10 font-bold">שגיאה בטעינת נתונים: ${err.message}</td></tr>`;
+            }
+        }
+
+        function updateStats() {
+            const active = allSources.filter(s => s.enabled && s.available);
+
+            document.getElementById('stat-total').innerText = allSources.length;
+            document.getElementById('stat-active').innerText = active.length;
+
+            const totalProducts = allSources.reduce((sum, s) => sum + (s.product_count || 0), 0);
+            document.getElementById('stat-products').innerText = totalProducts.toLocaleString();
+
+            const totalBranches = allSources.reduce((sum, s) => sum + (s.branch_count || 0), 0);
+            document.getElementById('stat-branches').innerText = totalBranches;
+        }
+
+        function renderTable(displayData) {
+            const tbody = document.getElementById('tableBody');
+            document.getElementById('showing-text').innerText = `מציג ${displayData.length} מתוך ${allSources.length}`;
+
+            if (displayData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="p-10 text-center text-slate-400">לא נמצאו תוצאות</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = displayData.map(s => {
+                const isActive = s.enabled && s.available;
+                const statusColor = isActive ? 'bg-emerald-100 text-emerald-600' : 'bg-red-100 text-red-500';
+                const statusIcon = isActive ? 'check' : 'ban';
+
+                const countryFlag = getFlagEmoji(s.country);
+
+                return `
+                <tr class="table-row group transition">
+                    <td class="p-4 text-center">
+                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full ${statusColor}">
+                            <i class="fas fa-${statusIcon}"></i>
+                        </span>
+                    </td>
+                    <td class="p-4">
+                        <div class="font-bold text-slate-800">${s.name}</div>
+                        <div class="text-xs text-slate-400 font-mono">${s.id}</div>
+                    </td>
+                    <td class="p-4 text-center text-xl" title="${s.country}">
+                        ${countryFlag}
+                    </td>
+                    <td class="p-4 text-slate-600 bg-opacity-50">
+                        <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded text-xs font-bold border border-blue-100">
+                             ${getFrequency(s)}
+                        </span>
+                    </td>
+                    <td class="p-4 font-mono text-slate-700 font-bold text-lg">
+                        ${(s.branch_count || 0).toLocaleString()}
+                    </td>
+                    <td class="p-4 font-mono text-slate-700 font-bold text-lg">
+                        ${(s.product_count || 0).toLocaleString()}
+                    </td>
+                    <td class="p-4">
+                         <div class="text-sm text-slate-600 font-bold">
+                            ${s.last_import ? new Date(s.last_import).toLocaleDateString() : '-'}
+                         </div>
+                         <div class="text-xs text-slate-400">
+                            ${s.last_import ? new Date(s.last_import).toLocaleTimeString().slice(0, 5) : ''}
+                         </div>
+                    </td>
+                    <td class="p-4 text-center">
+                        <div class="flex justify-center gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition">
+                            <button onclick="toggleSource('${s.id}', ${!s.enabled})" 
+                                class="w-8 h-8 rounded-full flex items-center justify-center transition border ${s.enabled ? 'border-amber-200 text-amber-500 hover:bg-amber-50' : 'border-emerald-200 text-emerald-500 hover:bg-emerald-50'}" 
+                                title="${s.enabled ? 'השבת' : 'הפעל'}">
+                                <i class="fas fa-${s.enabled ? 'pause' : 'play'}"></i>
+                            </button>
+                            <button onclick="runImport('${s.id}')" 
+                                class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 border border-blue-200 flex items-center justify-center transition shadow-sm" 
+                                title="הרץ עכשיו">
+                                <i class="fas fa-bolt"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                `;
+            }).join('');
+        }
+
+        // --- Logic Helpers ---
+
+        function getFrequency(source) {
+            // Logic to infer frequency based on metadata or type
+            if (source.metadata?.category === 'fuel') return 'יומי (Daily)';
+            if (source.metadata?.category === 'produce') return 'יומי (Daily)';
+            return 'שבועי (Weekly)';
+        }
+
+        function getFlagEmoji(countryCode) {
+            if (!countryCode) return '🌍';
+            const codePoints = countryCode
+                .toUpperCase()
+                .split('')
+                .map(char => 127397 + char.charCodeAt());
+            return String.fromCodePoint(...codePoints);
+        }
+
+        // --- Sorting & Filtering ---
+
+        function filterTable() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allSources.filter(s =>
+                s.name.toLowerCase().includes(term) ||
+                s.id.toLowerCase().includes(term) ||
+                (s.metadata?.url || '').toLowerCase().includes(term)
+            );
+            renderTable(filtered);
+        }
+
+        function sortTable(col) {
+            if (lastSortCol === col) {
+                sortDir *= -1;
+            } else {
+                sortDir = 1;
+                lastSortCol = col;
+            }
+
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            let subset = allSources.filter(s =>
+                s.name.toLowerCase().includes(term) ||
+                s.id.toLowerCase().includes(term)
+            );
+
+            subset.sort((a, b) => {
+                let valA, valB;
+
+                switch (col) {
+                    case 'name':
+                        valA = a.name; valB = b.name; break;
+                    case 'branches':
+                        valA = a.branch_count; valB = b.branch_count; break;
+                    case 'products':
+                        valA = a.product_count; valB = b.product_count; break;
+                    case 'date':
+                        valA = new Date(a.last_import || 0); valB = new Date(b.last_import || 0); break;
+                    default: return 0;
+                }
+
+                if (valA < valB) return -1 * sortDir;
+                if (valA > valB) return 1 * sortDir;
+                return 0;
+            });
+
+            renderTable(subset);
+        }
+
+        // --- Actions ---
+
+        async function toggleSource(id, enable) {
+            if (!confirm(`האם ${enable ? 'להפעיל' : 'להשבית'} את ${id}?`)) return;
+            try {
+                // Optimistic UI
+                const s = allSources.find(x => x.id === id);
+                if (s) s.enabled = enable;
+                renderTable(allSources); // Re-render immediately
+
+                await fetch(`${API_BASE}/admin/sources/${enable ? 'enable' : 'disable'}`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source_id: id })
+                });
+                // Background refresh to be safe
+                loadSources();
+            } catch (e) { alert("שגיאה"); }
+        }
+
+        async function runImport(id) {
+            if (!confirm(`להריץ ייבוא מיידי מ-${id}?`)) return;
+            try {
+                await fetch(`${API_BASE}/admin/sources/import`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source_id: id })
+                });
+                alert("פקודה נשלחה בהצלחה! (רץ ברקע)");
+            } catch (e) { alert("שגיאה"); }
+        }
+
+        async function runImportAll() {
+            if (!confirm("להפעיל את כל הסורקים במקביל?")) return;
+            try {
+                await fetch(`${API_BASE}/admin/sources/import-all`, { method: 'POST' });
+                alert("תהליך המקביל החל!");
+            } catch (e) { alert("שגיאה"); }
+        }
+
+    </script>
+</body>
+
+</html>

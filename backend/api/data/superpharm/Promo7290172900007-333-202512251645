@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='utf-8'?>
+<OrderXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Envelope>
+    <ChainId>7290172900007</ChainId>
+    <SubChainId>000</SubChainId>
+    <StoreId>333</StoreId>
+    <BikoretNo>0</BikoretNo>
+    <Header>
+      <Details>
+        <Line>
+          <PriceUpdateDate>2025-12-25 15:39:07</PriceUpdateDate>
+          <ItemCode>3600523936625</ItemCode>
+          <IsGiftItem>0</IsGiftItem>
+          <RewardType>3</RewardType>
+          <AllowMultipleDiscounts>1</AllowMultipleDiscounts>
+          <PromotionId>4429860</PromotionId>
+          <PromotionDetails>
+            <PromotionDescription>LOREAL PARIS REVITALIFT LASER סרום לפנים להפחתת מראה קמטים 30 מ"ל  84.90 ₪</PromotionDescription>
+            <PromotionStartDate>2025-12-25</PromotionStartDate>
+            <PromotionStartHour>00:00:00</PromotionStartHour>
+            <PromotionEndDate>2025-12-30</PromotionEndDate>
+            <PromotionEndHour>23:59:59</PromotionEndHour>
+            <ClubId>0</ClubId>
+            <MinQty>1.00</MinQty>
+            <MaxQty>0.00</MaxQty>
+            <DiscountRate>26.10</DiscountRate>
+            <DiscountType>1</DiscountType>
+            <MinPurchaseAmnt>0.00</MinPurchaseAmnt>
+            <DiscountedPrice>84.90</DiscountedPrice>
+            <DiscountedPricePerMida>0.00</DiscountedPricePerMida>
+            <MinNoOfItemOfered>0</MinNoOfItemOfered>
+            <AdditionalIsCoupon>0</AdditionalIsCoupon>
+            <AdditionalGiftCount>0.00</AdditionalGiftCount>
+            <AdditionalIsTotal>0</AdditionalIsTotal>
+            <AdditionalMinBasketAmount>0.00</AdditionalMinBasketAmount>
+            <Remarks />
+          </PromotionDetails>
+        </Line>
+        <Line>
+          <PriceUpdateDate>2025-12-25 15:39:08</PriceUpdateDate>
+          <ItemCode>3600524186234</ItemCode>
+          <IsGiftItem>0</IsGiftItem>
+          <RewardType>3</RewardType>
+          <AllowMultipleDiscounts>1</AllowMultipleDiscounts>
+          <PromotionId>4429861</PromotionId>
+          <PromotionDetails>
+            <PromotionDescription>LOREAL PARIS REVITALIFT LASER קרם לשקיות מתחת לעיניים למיצוק ואפקט מתיחה מיידי 15 מ"ל  84.90 ₪</PromotionDescription>
+            <PromotionStartDate>2025-12-25</PromotionStartDate>
+            <PromotionStartHour>00:00:00</PromotionStartHour>
+            <PromotionEndDate>2025-12-30</PromotionEndDate>
+            <PromotionEndHour>23:59:59</PromotionEndHour>
+            <ClubId>0</ClubId>
+            <MinQty>1.00</MinQty>
+            <MaxQty>0.00</MaxQty>
+            <DiscountRate>26.10</DiscountRate>
+            <DiscountType>1</DiscountType>
+            <MinPurchaseAmnt>0.00</MinPurchaseAmnt>
+            <DiscountedPrice>84.90</DiscountedPrice>
+            <DiscountedPricePerMida>0.00</DiscountedPricePerMida>
+            <MinNoOfItemOfered>0</MinNoOfItemOfered>
+            <AdditionalIsCoupon>0</AdditionalIsCoupon>
+            <AdditionalGiftCount>0.00</AdditionalGiftCount>
+            <AdditionalIsTotal>0</AdditionalIsTotal>
+            <AdditionalMinBasketAmount>0.00</AdditionalMinBasketAmount>
+            <Remarks />
+          </PromotionDetails>
+        </Line>
+        <Line>
+          <PriceUpdateDate>2025-12-25 15:39:08</PriceUpdateDate>
+          <ItemCode>3600522251750</ItemCode>
+          <IsGiftItem>0</IsGiftItem>
+          <RewardType>3</RewardType>
+          <AllowMultipleDiscounts>1</AllowMultipleDiscounts>
+          <PromotionId>4429862</PromotionId>
+          <PromotionDetails>
+            <PromotionDescription>LOREAL PARIS REVITALIFT LASER קרם עיניים להפחתת מראה קמטים 15 מ"ל  84.90 ₪</PromotionDescription>
+            <PromotionStartDate>2025-12-25</PromotionStartDate>
+            <PromotionStartHour>00:00:00</PromotionStartHour>
+            <PromotionEndDate>2025-12-30</PromotionEndDate>
+            <PromotionEndHour>23:59:59</PromotionEndHour>
+            <ClubId>0</ClubId>
+            <MinQty>1.00</MinQty>
+            <MaxQty>0.00</MaxQty>
+            <DiscountRate>26.10</DiscountRate>
+            <DiscountType>1</DiscountType>
+            <MinPurchaseAmnt>0.00</MinPurchaseAmnt>
+            <DiscountedPrice>84.90</DiscountedPrice>
+            <DiscountedPricePerMida>0.00</DiscountedPricePerMida>
+            <MinNoOfItemOfered>0</MinNoOfItemOfered>
+            <AdditionalIsCoupon>0</AdditionalIsCoupon>
+            <AdditionalGiftCount>0.00</AdditionalGiftCount>
+            <AdditionalIsTotal>0</AdditionalIsTotal>
+            <AdditionalMinBasketAmount>0.00</AdditionalMinBasketAmount>
+            <Remarks />
+          </PromotionDetails>
+        </Line>
+        <Line>
+          <PriceUpdateDate>2025-12-25 15:39:12</PriceUpdateDate>
+          <ItemCode>3600522480129</ItemCode>
+          <IsGiftItem>0</IsGiftItem>
+          <RewardType>3</RewardType>
+          <AllowMultipleDiscounts>1</AllowMultipleDiscounts>
+          <PromotionId>4429868</PromotionId>
+          <PromotionDetails>
+            <PromotionDescription>LOREAL PARIS  REVITALIFT LASER קרם פנים ללילה להפחתת מראה קמטים 50 מ"ל  84.90 ₪</PromotionDescription>
+            <PromotionStartDate>2025-12-25</PromotionStartDate>
+            <PromotionStartHour>00:00:00</PromotionStartHour>
+            <PromotionEndDate>2025-12-30</PromotionEndDate>
+            <PromotionEndHour>23:59:59</PromotionEndHour>
+            <ClubId>0</ClubId>
+            <MinQty>1.00</MinQty>
+            <MaxQty>0.00</MaxQty>
+            <DiscountRate>26.10</DiscountRate>
+            <DiscountType>1</DiscountType>
+            <MinPurchaseAmnt>0.00</MinPurchaseAmnt>
+            <DiscountedPrice>84.90</DiscountedPrice>
+            <DiscountedPricePerMida>0.00</DiscountedPricePerMida>
+            <MinNoOfItemOfered>0</MinNoOfItemOfered>
+            <AdditionalIsCoupon>0</AdditionalIsCoupon>
+            <AdditionalGiftCount>0.00</AdditionalGiftCount>
+            <AdditionalIsTotal>0</AdditionalIsTotal>
+            <AdditionalMinBasketAmount>0.00</AdditionalMinBasketAmount>
+            <Remarks />
+          </PromotionDetails>
+        </Line>
+        <Line>
+          <PriceUpdateDate>2025-12-25 15:39:13</PriceUpdateDate>
+          <ItemCode>3600524197704</ItemCode>
+          <IsGiftItem>0</IsGiftItem>
+          <RewardType>3</RewardType>
+          <AllowMultipleDiscounts>1</AllowMultipleDiscounts>
+          <PromotionId>4429869</PromotionId>
+          <PromotionDetails>
+            <PromotionDescription>LOREAL PARIS REVITALIFT LASER סרום פפטידים 30 מ"ל  84.90 ₪</PromotionDescription>
+            <PromotionStartDate>2025-12-25</PromotionStartDate>
+            <PromotionStartHour>00:00:00</PromotionStartHour>
+            <PromotionEndDate>2025-12-30</PromotionEndDate>
+            <PromotionEndHour>23:59:59</PromotionEndHour>
+            <ClubId>0</ClubId>
+            <MinQty>1.00</MinQty>
+            <MaxQty>0.00</MaxQty>
+            <DiscountRate>31.10</DiscountRate>
+            <DiscountType>1</DiscountType>
+            <MinPurchaseAmnt>0.00</MinPurchaseAmnt>
+            <DiscountedPrice>84.90</DiscountedPrice>
+            <DiscountedPricePerMida>0.00</DiscountedPricePerMida>
+            <MinNoOfItemOfered>0</MinNoOfItemOfered>
+            <AdditionalIsCoupon>0</AdditionalIsCoupon>
+            <AdditionalGiftCount>0.00</AdditionalGiftCount>
+            <AdditionalIsTotal>0</AdditionalIsTotal>
+            <AdditionalMinBasketAmount>0.00</AdditionalMinBasketAmount>
+            <Remarks />
+          </PromotionDetails>
+        </Line>
+        <Line>
+          <PriceUpdateDate>2025-12-25 15:39:10</PriceUpdateDate>
+          <ItemCode>3600523971954</ItemCode>
+          <IsGiftItem>0</IsGiftItem>
+          <RewardType>3</RewardType>
+          <AllowMultipleDiscounts>1</AllowMultipleDiscounts>
+          <PromotionId>4429864</PromotionId>
+          <PromotionDetails>
+            <PromotionDescription>LOREAL PARIS REVITALIFT LASER סרום רטינול ערב 30 מ"ל  84.90 ₪</PromotionDescription>
+            <PromotionStartDate>2025-12-25</PromotionStartDate>
+            <PromotionStartHour>00:00:00</PromotionStartHour>
+            <PromotionEndDate>2025-12-30</PromotionEndDate>
+            <PromotionEndHour>23:59:59</PromotionEndHour>
+            <ClubId>0</ClubId>
+            <MinQty>1.00</MinQty>
+            <MaxQty>0.00</MaxQty>
+            <DiscountRate>26.10</DiscountRate>
+            <DiscountType>1</DiscountType>
+            <MinPurchaseAmnt>0.00</MinPurchaseAmnt>
+            <DiscountedPrice>84.90</DiscountedPrice>
+            <DiscountedPricePerMida>0.00</DiscountedPricePerMida>
+            <MinNoOfItemOfered>0</MinNoOfItemOfered>
+            <AdditionalIsCoupon>0</AdditionalIsCoupon>
+            <AdditionalGiftCount>0.00</AdditionalGiftCount>
+            <AdditionalIsTotal>0</AdditionalIsTotal>
+            <AdditionalMinBasketAmount>0.00</AdditionalMinBasketAmount>
+            <Remarks />
+          </PromotionDetails>
+        </Line>
+        <Line>
+          <PriceUpdateDate>2025-12-25 15:39:12</PriceUpdateDate>
+          <ItemCode>3600523985326</ItemCode>
+          <IsGiftItem>0</IsGiftItem>
+          <RewardType>3</RewardType>
+          <AllowMultipleDiscounts>1</AllowMultipleDiscounts>
+          <PromotionId>4429867</PromotionId>
+          <PromotionDetails>
+            <PromotionDescription>LOREAL PARIS REVITALIFT LASER  קרם יום SPF25 50 מ"ל  84.90 ₪</PromotionDescription>
+            <PromotionStartDate>2025-12-25</PromotionStartDate>
+            <PromotionStartHour>00:00:00</PromotionStartHour>
+            <PromotionEndDate>2025-12-30</PromotionEndDate>
+            <PromotionEndHour>23:59:59</PromotionEndHour>
+            <ClubId>0</ClubId>
+            <MinQty>1.00</MinQty>
+            <MaxQty>0.00</MaxQty>
+            <DiscountRate>26.10</DiscountRate>
+            <DiscountType>1</DiscountType>
+            <MinPurchaseAmnt>0.00</MinPurchaseAmnt>
+            <DiscountedPrice>84.90</DiscountedPrice>
+            <DiscountedPricePerMida>0.00</DiscountedPricePerMida>
+            <MinNoOfItemOfered>0</MinNoOfItemOfered>
+            <AdditionalIsCoupon>0</AdditionalIsCoupon>
+            <AdditionalGiftCount>0.00</AdditionalGiftCount>
+            <AdditionalIsTotal>0</AdditionalIsTotal>
+            <AdditionalMinBasketAmount>0.00</AdditionalMinBasketAmount>
+            <Remarks />
+          </PromotionDetails>
+        </Line>
+        <Line>
+          <PriceUpdateDate>2025-12-25 15:39:09</PriceUpdateDate>
+          <ItemCode>3600523428663</ItemCode>
+          <IsGiftItem>0</IsGiftItem>
+          <RewardType>3</RewardType>
+          <AllowMultipleDiscounts>1</AllowMultipleDiscounts>
+          <PromotionId>4429863</PromotionId>
+          <PromotionDetails>
+            <PromotionDescription>LOREAL PARIS REVITALIFT LASER קרם פנים ליום להפחתת מראה קמטים 50 מ"ל  84.90 ₪</PromotionDescription>
+            <PromotionStartDate>2025-12-25</PromotionStartDate>
+            <PromotionStartHour>00:00:00</PromotionStartHour>
+            <PromotionEndDate>2025-12-30</PromotionEndDate>
+            <PromotionEndHour>23:59:59</PromotionEndHour>
+            <ClubId>0</ClubId>
+            <MinQty>1.00</MinQty>
+            <MaxQty>0.00</MaxQty>
+            <DiscountRate>26.10</DiscountRate>
+            <DiscountType>1</DiscountType>
+            <MinPurchaseAmnt>0.00</MinPurchaseAmnt>
+            <DiscountedPrice>84.90</DiscountedPrice>
+            <DiscountedPricePerMida>0.00</DiscountedPricePerMida>
+            <MinNoOfItemOfered>0</MinNoOfItemOfered>
+            <AdditionalIsCoupon>0</AdditionalIsCoupon>
+            <AdditionalGiftCount>0.00</AdditionalGiftCount>
+            <AdditionalIsTotal>0</AdditionalIsTotal>
+            <AdditionalMinBasketAmount>0.00</AdditionalMinBasketAmount>
+            <Remarks />
+          </PromotionDetails>
+        </Line>
+      </Details>
+    </Header>
+  </Envelope>
+</OrderXml>

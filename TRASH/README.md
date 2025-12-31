@@ -81,3 +81,6 @@ Remove-Item -Recurse -Force TRASH
 📦 **גודל**: ~500KB מסמכי טקסט
 
 
+
+
+

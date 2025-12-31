@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gogobe - מגמות ותנודות שוק</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MASTER NAV -->
+    <script src="nav.js" defer></script>
+
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            margin-top: -6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e2e8f0;
+            border-radius: 2px;
+        }
+
+        .trend-card {
+            transition: all 0.2s;
+        }
+
+        .trend-card.up {
+            border-right: 4px solid #ef4444;
+        }
+
+        .trend-card.down {
+            border-right: 4px solid #10b981;
+        }
+
+        .trend-card:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-slate-50">
+
+    <!-- Navbar Spacer -->
+    <div style="height: 64px;"></div>
+
+    <main class="max-w-[1600px] mx-auto p-6">
+
+        <!-- Header -->
+        <header class="mb-10">
+            <h1 class="text-3xl font-black text-slate-800 tracking-tight flex items-center gap-3">
+                <i class="fas fa-chart-line text-purple-600"></i> אנליזת שוק ומגמות
+            </h1>
+            <p class="text-slate-500 mt-2 text-lg">
+                כלי לזיהוי אנומליות, עליות מחיר חריגות והזדמנויות ("מבצעי כסאח").
+                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded-full mr-2">LIVE DATA</span>
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- CONTROLS SIDEBAR -->
+            <aside class="lg:col-span-3 space-y-6">
+
+                <!-- Time Machine Widget -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-slate-700 mb-4 flex items-center gap-2">
+                        <i class="fas fa-filter text-slate-400"></i> פרמטרים לניתוח
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-xs font-bold text-slate-500 mb-1 block">טווח השוואה (ימים אחורה)</label>
+                            <select id="days-input"
+                                class="w-full border border-slate-200 rounded-lg p-2 text-sm focus:border-blue-500 outline-none bg-slate-50 font-bold text-slate-700">
+                                <option value="1">24 שעות אחרונות</option>
+                                <option value="2" selected>יומיים אחרונים</option>
+                                <option value="7">שבוע אחרון (7 ימים)</option>
+                                <option value="30">חודש אחרון (30 ימים)</option>
+                            </select>
+                        </div>
+
+                        <!-- Category Tree Widget -->
+                        <div class="pt-4 border-t border-slate-100 mt-4">
+                            <label class="text-xs font-bold text-slate-500 mb-2 block">סינון לפי קטגוריה</label>
+                            <div id="categoriesList" class="space-y-1 max-h-[300px] overflow-y-auto custom-scroll pr-1">
+                                <!-- Populated by JS -->
+                            </div>
+                            <input type="hidden" id="category-filter" value="">
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 mt-4 space-y-3">
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 mb-1 block">סינון לפי רשת</label>
+                                <select id="chain-filter"
+                                    class="w-full border border-slate-200 rounded-lg p-2 text-sm focus:border-blue-500 outline-none bg-slate-50 text-slate-700">
+                                    <option value="">כל הרשתות</option>
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 mt-4">
+                            <label class="text-xs font-bold text-slate-500 mb-2 block flex justify-between">
+                                סף שינוי מינימלי <span class="text-blue-600 font-mono" id="thresh-val">1%</span>
+                            </label>
+                            <input id="pct-input" type="range" min="1" max="50" value="1"
+                                oninput="document.getElementById('thresh-val').innerText = this.value + '%'">
+                        </div>
+
+                        <div class="pt-2">
+                            <button onclick="runAnalysis()"
+                                class="w-full bg-blue-600 text-white py-3 rounded-xl text-sm font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">
+                                <i class="fas fa-calculator"></i> נתח שוק בזמן אמת
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alert Config Info -->
+                <div class="bg-gradient-to-br from-indigo-900 to-slate-900 p-6 rounded-2xl shadow-lg text-white">
+                    <h3 class="font-bold text-lg mb-2 flex items-center gap-2"><i
+                            class="fas fa-robot text-yellow-400"></i> טיפ אנליטי</h3>
+                    <p class="text-sm text-indigo-200 mb-4 leading-relaxed opacity-90">
+                        המערכת משווה את המחיר הממוצע של כל מוצר היום מול המחיר הממוצע שלו ההיסטורי.
+                        <br><br>
+                        השתמש בטווח של <b>7 ימים</b> כדי למצוא מבצעים שבועיים אמיתיים ולנטרל רעשי יום-יומיים.
+                    </p>
+                </div>
+
+            </aside>
+
+            <!-- RESULTS AREA -->
+            <div class="lg:col-span-9 space-y-8">
+
+                <!-- MARKET INSIGHTS WIDGET (New) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- Insight 1: Arbitrage/Gaps -->
+                    <div
+                        class="bg-gradient-to-br from-violet-600 to-indigo-700 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden group">
+                        <div
+                            class="absolute -right-6 -top-6 w-24 h-24 bg-white/10 rounded-full group-hover:scale-150 transition duration-700">
+                        </div>
+                        <h3 class="font-bold text-indigo-100 text-sm mb-1 uppercase tracking-wider">פערים קיצוניים</h3>
+                        <div class="text-3xl font-black mb-2 flex items-baseline gap-2">
+                            <span id="arb-count">--</span> <span class="text-sm font-normal opacity-70">מוצרים</span>
+                        </div>
+                        <p class="text-xs text-indigo-200 mb-4">מוצרים עם פער > 50% בין רשתות בזמן אמת</p>
+                        <button onclick="showArbitrage()"
+                            class="bg-white/20 hover:bg-white/30 text-white text-xs font-bold py-2 px-4 rounded-lg w-full transition flex items-center justify-center gap-2">
+                            <i class="fas fa-search-dollar"></i> צפה בהזדמנויות
+                        </button>
+                    </div>
+
+                    <!-- Insight 2: Cheapest Chain -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 relative">
+                        <h3
+                            class="font-bold text-slate-500 text-sm mb-3 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fas fa-crown text-yellow-500"></i> הרשת הזולה היום
+                        </h3>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-600 text-xl">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div>
+                                <div class="font-black text-slate-800 text-xl" id="cheapest-chain-name">--</div>
+                                <div class="text-xs text-green-600 font-bold" id="cheapest-chain-gap">--</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Insight 3: Volatility -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                        <h3
+                            class="font-bold text-slate-500 text-sm mb-3 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fas fa-bolt text-orange-500"></i> קטגוריה תנודתית
+                        </h3>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 bg-orange-50 rounded-full flex items-center justify-center text-orange-600 text-xl">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <div class="font-black text-slate-800 text-xl" id="volatile-cat-name">--</div>
+                                <div class="text-xs text-slate-400">שינוי מחיר ממוצע: <span
+                                        class="text-orange-600 font-bold" id="volatile-cat-pct">--</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TOP MOVERS (The "News" Feed) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Biggest Drops (Good news) -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col h-[600px]">
+                        <div
+                            class="p-4 border-b border-slate-100 bg-emerald-50/50 flex justify-between items-center rounded-t-2xl">
+                            <h2 class="font-bold text-emerald-800 flex items-center gap-2">
+                                <i class="fas fa-arrow-down"></i> ירידות מחיר חדות ("מבצעים")
+                            </h2>
+                            <span class="bg-emerald-100 text-emerald-700 text-xs px-2 py-1 rounded font-bold">Top
+                                Drops</span>
+                        </div>
+                        <div class="flex-1 overflow-y-auto p-4 space-y-3 custom-scroll" id="drops-list">
+                            <!-- Injected JS Items -->
+                        </div>
+                    </div>
+
+                    <!-- Biggest Hikes (Bad news) -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col h-[600px]">
+                        <div
+                            class="p-4 border-b border-slate-100 bg-red-50/50 flex justify-between items-center rounded-t-2xl">
+                            <h2 class="font-bold text-red-800 flex items-center gap-2">
+                                <i class="fas fa-arrow-up"></i> עליות מחיר ("התייקרויות")
+                            </h2>
+                            <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded font-bold">Top Hikes</span>
+                        </div>
+                        <div class="flex-1 overflow-y-auto p-4 space-y-3 custom-scroll" id="hikes-list">
+                            <!-- Injected JS Items -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Load More Button -->
+                <div class="flex justify-center pb-10">
+                    <button id="load-more-btn" onclick="runAnalysis(true)"
+                        class="hidden bg-slate-200 text-slate-700 font-bold py-2 px-8 rounded-full hover:bg-slate-300 transition">
+                        <i class="fas fa-arrow-down mr-2"></i> טען עוד תוצאות
+                    </button>
+                    <p id="end-of-data" class="hidden text-slate-400 text-sm">-- אין תוצאות נוספות --</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const API_BASE = '/api';
+        let currentOffset = 0;
+        const limit = 50;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchFilters();
+            runAnalysis();
+            loadInsights();
+        });
+
+        async function loadInsights() {
+            try {
+                const res = await fetch(`${API_BASE}/products/trends/insights`);
+                if (!res.ok) return; // Silent fail
+                const data = await res.json();
+
+                // 1. Arbitrage
+                if (data.arbitrage) {
+                    const countElem = document.getElementById('arb-count');
+                    // Animate number
+                    let start = 0;
+                    const end = data.arbitrage.count;
+                    if (end > 0) {
+                        const duration = 1000;
+                        const step = Math.ceil(end / (duration / 16));
+                        const timer = setInterval(() => {
+                            start += step;
+                            if (start >= end) {
+                                start = end;
+                                clearInterval(timer);
+                            }
+                            countElem.innerText = start.toLocaleString();
+                        }, 16);
+                    } else {
+                        countElem.innerText = "0";
+                    }
+                }
+
+                // 2. Cheapest Chain
+                if (data.cheapest_chain) {
+                    document.getElementById('cheapest-chain-name').innerText = data.cheapest_chain.name;
+                    document.getElementById('cheapest-chain-gap').innerText = `${data.cheapest_chain.wins.toLocaleString()} מוצרים הכי זולים`;
+                }
+
+                // 3. Volatility
+                if (data.volatile_category) {
+                    document.getElementById('volatile-cat-name').innerText = data.volatile_category.name;
+                    document.getElementById('volatile-cat-pct').innerText = `${data.volatile_category.pct}%`;
+                }
+
+            } catch (e) {
+                console.error("Insights error", e);
+            }
+        }
+
+        // Toggle children for adjacent container
+        function toggleChildren(btn) {
+            const container = btn.parentElement.nextElementSibling;
+            const icon = btn.querySelector('i');
+            if (container) {
+                container.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+
+        // Set active category and re-run
+        function selectCategory(id, btn) {
+            document.getElementById('category-filter').value = id || '';
+            // Updating UI state
+            document.querySelectorAll('.cat-link').forEach(l => l.classList.remove('text-blue-600', 'font-bold'));
+            if (btn) {
+                btn.querySelector('.cat-link').classList.add('text-blue-600', 'font-bold');
+            }
+            runAnalysis();
+        }
+
+
+        async function fetchFilters() {
+            try {
+                // Fetch Categories (Hierarchical)
+                const catRes = await fetch(`${API_BASE}/categories`); // Use standard categories endpoint
+                const catData = await catRes.json();
+                const categories = catData.categories || [];
+
+                const container = document.getElementById('categoriesList');
+
+                // Icon Mapping
+                const iconMap = {
+                    'Fruits & Vegetables': 'carrot',
+                    'Dairy & Cheese': 'cheese',
+                    'Meat & Fish': 'drumstick-bite',
+                    'Bread & Bakery': 'bread-slice',
+                    'Beverages': 'wine-bottle',
+                    'Pre-made Meals': 'pizza-slice',
+                    'Frozen Food': 'snowflake',
+                    'Spices & Sauces': 'pepper-hot',
+                    'Canned Goods': 'box',
+                    'Grains & Pasta': 'wheat',
+                    'Baking Needs': 'birthday-cake',
+                    'Cleaning Supplies': 'pump-soap',
+                    'Paper & Disposables': 'toilet-paper',
+                    'Hygiene & Personal Care': 'teeth',
+                    'Baby Products': 'baby',
+                    'Pets': 'paw',
+                    'Pharmacy & Health': 'notes-medical',
+                    'Home & Electrical': 'lightbulb'
+                };
+                const getIcon = (en) => iconMap[en] || 'shopping-basket';
+
+                // Helper for recursive rendering
+                const renderCategoryItem = (cat, level = 0) => {
+                    const hasChildren = cat.children && cat.children.length > 0;
+                    const padding = level * 12;
+
+                    return `
+                        <div class="category-wrapper w-full select-none">
+                            <div class="flex items-center w-full gap-2 group hover:bg-slate-100 rounded-lg p-1 transition cursor-pointer" onclick="selectCategory('${cat.id}', this)">
+                                <div class="w-6 h-6 flex items-center justify-center text-slate-400">
+                                    ${level === 0 ? `<i class="fas fa-${getIcon(cat.name_en)}"></i>` : `<div class="w-1.5 h-1.5 rounded-full bg-slate-300"></div>`}
+                                </div>
+                                <span class="cat-link flex-1 text-sm text-slate-600 group-hover:text-slate-900">${cat.name}</span>
+                                ${hasChildren ? `
+                                    <button onclick="event.stopPropagation(); toggleChildren(this)" class="w-6 h-6 flex items-center justify-center text-slate-400 hover:text-blue-600 transition">
+                                        <i class="fas fa-chevron-down text-xs transition-transform"></i>
+                                    </button>
+                                ` : ''}
+                            </div>
+                            
+                            ${hasChildren ? `
+                                <div class="children-container hidden flex flex-col gap-0.5 border-r border-slate-100 mr-3 pr-2 border-slate-200">
+                                    ${cat.children.map(child => renderCategoryItem(child, level + 1)).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                };
+
+                container.innerHTML = `
+                    <div class="flex items-center w-full gap-2 group hover:bg-slate-100 rounded-lg p-2 transition cursor-pointer mb-1 border-b border-slate-50" onclick="selectCategory('', this)">
+                        <div class="w-6 h-6 flex items-center justify-center text-blue-500"><i class="fas fa-th-large"></i></div>
+                        <span class="cat-link font-bold text-sm text-slate-800">כל הקטגוריות</span>
+                    </div>
+                    ${categories.map(cat => renderCategoryItem(cat)).join('')}
+                `;
+
+                // Fetch Chains
+                const chainRes = await fetch(`${API_BASE}/products/chains`);
+                const chains = await chainRes.json();
+                const chainSelect = document.getElementById('chain-filter');
+                chains.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c.id;
+                    opt.innerText = c.name;
+                    chainSelect.appendChild(opt);
+                });
+            } catch (e) {
+                console.error("Error fetching filters:", e);
+                document.getElementById('categoriesList').innerHTML = `<div class="text-red-400 text-xs">שגיאה בטעינה</div>`;
+            }
+        }
+
+        async function runAnalysis(append = false) {
+            const days = document.getElementById('days-input').value;
+            const pct = document.getElementById('pct-input').value;
+            const catId = document.getElementById('category-filter').value;
+            const chainId = document.getElementById('chain-filter').value;
+
+            const btn = document.querySelector('button[onclick="runAnalysis()"]');
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            const endMsg = document.getElementById('end-of-data');
+
+            // Handle Offset
+            if (!append) {
+                currentOffset = 0;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> מעבד נתונים...';
+                btn.disabled = true;
+                document.getElementById('drops-list').innerHTML = `<div class="flex flex-col items-center justify-center p-10"><i class="fas fa-circle-notch fa-spin text-3xl text-slate-300"></i></div>`;
+                document.getElementById('hikes-list').innerHTML = `<div class="flex flex-col items-center justify-center p-10"><i class="fas fa-circle-notch fa-spin text-3xl text-slate-300"></i></div>`;
+                loadMoreBtn.classList.add('hidden');
+                endMsg.classList.add('hidden');
+            } else {
+                currentOffset += limit;
+                loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> טוען...';
+                loadMoreBtn.disabled = true;
+            }
+
+            try {
+                let url = `${API_BASE}/products/trends/analyze?days_back=${days}&min_change_pct=${pct}&limit=${limit}&offset=${currentOffset}`;
+                if (catId) url += `&category_id=${catId}`;
+                if (chainId) url += `&chain_id=${chainId}`;
+
+                console.log("Fetching trends:", url);
+
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`Server Error: ${res.status}`);
+
+                const data = await res.json();
+                console.log("Got trends data:", data);
+
+                renderList(document.getElementById('drops-list'), data.drops, 'down', append);
+                renderList(document.getElementById('hikes-list'), data.hikes, 'up', append);
+
+                // Show/Hide Load More
+                if (data.drops.length === limit || data.hikes.length === limit) {
+                    loadMoreBtn.classList.remove('hidden');
+                    endMsg.classList.add('hidden');
+                } else {
+                    loadMoreBtn.classList.add('hidden');
+                    if (append) endMsg.classList.remove('hidden');
+                }
+
+            } catch (e) {
+                console.error(e);
+                // Error handling mostly for initial load logic
+                if (!append) {
+                    const errHTML = `<div class="text-center text-red-500 p-4">Error: ${e.message}</div>`;
+                    document.getElementById('drops-list').innerHTML = errHTML;
+                    document.getElementById('hikes-list').innerHTML = errHTML;
+                }
+            } finally {
+                if (!append) {
+                    btn.innerHTML = '<i class="fas fa-calculator"></i> נתח שוק בזמן אמת';
+                    btn.disabled = false;
+                } else {
+                    loadMoreBtn.innerHTML = '<i class="fas fa-arrow-down mr-2"></i> טען עוד תוצאות';
+                    loadMoreBtn.disabled = false;
+                }
+            }
+        }
+
+
+        async function showArbitrage() {
+            const btn = document.querySelector('button[onclick="showArbitrage()"]') || document.querySelector('.fa-search-dollar').parentElement;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> טוען...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(`${API_BASE}/products/trends/arbitrage?limit=50`);
+                const data = await res.json();
+
+                // UX: Clear existing lists and hide Hikes
+                document.getElementById('drops-list').innerHTML = '';
+                document.getElementById('hikes-list').innerHTML = '';
+
+                // Change Headers
+                document.querySelector('.bg-emerald-50\\/50 h2').innerHTML = '<i class="fas fa-search-dollar"></i> הזדמנויות ארביטראז\' (פער > 50%)';
+                document.querySelector('.bg-emerald-100').innerText = 'Arbitrage';
+
+                document.querySelector('.bg-red-50\\/50').parentElement.classList.add('hidden'); // Hide right column
+                document.querySelector('.bg-emerald-50\\/50').parentElement.parentElement.classList.remove('md:grid-cols-2'); // Make full width
+                document.querySelector('.bg-emerald-50\\/50').parentElement.parentElement.classList.add('grid-cols-1');
+
+                renderArbitrage(document.getElementById('drops-list'), data.arbitrage);
+
+                // Scroll to results
+                document.getElementById('drops-list').scrollIntoView({ behavior: 'smooth' });
+
+            } catch (e) {
+                console.error(e);
+                alert('Error fetching arbitrage data');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        function renderArbitrage(container, items) {
+            if (!items || items.length === 0) {
+                container.innerHTML = `<div class="text-center p-10 text-slate-400">לא נמצאו הזדמנויות כרגע.</div>`;
+                return;
+            }
+
+            const html = items.map(p => {
+                return `
+                <div class="trend-card bg-slate-50 p-4 rounded-xl flex justify-between items-start cursor-pointer mb-3 border border-slate-100 group hover:bg-white hover:border-violet-200" onclick="window.location.href='/product.html?id=${p.id}'">
+                        <div class="flex items-start gap-4">
+                         <div class="w-12 h-12 bg-white rounded-2xl flex flex-col items-center justify-center text-violet-600 shadow-sm border border-violet-100 group-hover:bg-violet-50 transition shrink-0">
+                            <span class="font-black text-sm">${p.gap_pct}%</span>
+                            <i class="fas fa-exchange-alt text-[10px]"></i>
+                         </div>
+                         <div>
+                             <div class="font-bold text-slate-800 text-sm line-clamp-1 group-hover:text-blue-600 transition" title="${p.name}">${p.name}</div>
+                             <div class="text-xs text-slate-500 mt-1 flex flex-col gap-1">
+                                <span class="text-green-600 font-bold"><i class="fas fa-check"></i> זול: ${p.min_store} (₪${parseFloat(p.min_p).toFixed(2)})</span>
+                                <span class="text-red-500"><i class="fas fa-times"></i> יקר: ${p.max_store} (₪${parseFloat(p.max_p).toFixed(2)})</span>
+                             </div>
+                         </div>
+                    </div>
+                </div>`;
+            }).join('');
+            container.innerHTML = html;
+        }
+
+        function renderList(container, items, type, append) {
+            if (!items || items.length === 0) {
+                if (!append) {
+                    container.innerHTML = `
+                        <div class="flex flex-col items-center justify-center h-full text-center p-10 text-slate-400">
+                            <i class="far fa-folder-open text-4xl mb-3 opacity-50"></i>
+                            <p>לא נמצאו תוצאות.</p>
+                        </div>`;
+                }
+                return;
+            }
+
+            const html = items.map(p => {
+                const pct = parseFloat(p.change_pct).toFixed(1);
+                const absPct = Math.abs(pct);
+                const isDown = type === 'down';
+                const color = isDown ? 'emerald' : 'red';
+
+                return `
+                <div class="trend-card ${type} bg-slate-50 p-4 rounded-xl flex justify-between items-start cursor-pointer mb-3 border border-slate-100 group hover:bg-white hover:border-${color}-200" onclick="window.location.href='/product.html?id=${p.id}'">
+                        <div class="flex items-start gap-4">
+                         <div class="w-12 h-12 bg-white rounded-2xl flex flex-col items-center justify-center text-${color}-600 shadow-sm border border-${color}-100 group-hover:bg-${color}-50 transition shrink-0">
+                            <span class="font-black text-sm">${absPct}%</span>
+                            <i class="fas fa-arrow-${isDown ? 'down' : 'up'} text-[10px]"></i>
+                         </div>
+                         <div>
+                             <div class="font-bold text-slate-800 text-sm line-clamp-1 group-hover:text-blue-600 transition" title="${p.name}">${p.name}</div>
+                             <div class="text-xs text-slate-500 font-bold mt-1 flex items-center gap-1">
+                                <i class="fas fa-store-alt text-slate-400"></i> ${p.chain_name || 'Store'} - ${p.store_name || 'Unknown Branch'}
+                             </div>
+                             <div class="text-xs text-slate-400 font-mono flex gap-2 mt-1">
+                                <span>${p.ean || 'No Barcode'}</span>
+                             </div>
+                         </div>
+                    </div>
+                    <div class="text-left min-w-[90px]">
+                        <div class="font-black text-${color}-600 text-lg">₪${parseFloat(p.curr_avg).toFixed(2)}</div>
+                        <div class="text-xs text-slate-400 line-through">₪${parseFloat(p.hist_avg).toFixed(2)}</div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            if (append) {
+                container.insertAdjacentHTML('beforeend', html);
+            } else {
+                container.innerHTML = html;
+            }
+        }
+    </script>
+</body>
+
+</html>

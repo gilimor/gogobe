@@ -134,3 +134,7 @@ docker-compose up
 
 מה אתה אומר? רוצה לנסות venv? 🚀
 
+
+
+
+

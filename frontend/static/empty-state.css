@@ -1,0 +1,156 @@
+/* ==================================
+   EMPTY STATE STYLES
+   ================================== */
+
+.empty-state-full {
+    grid-column: 1 / -1;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.empty-state-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.empty-state-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.empty-state-title {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.empty-state-subtitle {
+    font-size: 1.2rem;
+    color: #64748b;
+    margin-bottom: 50px;
+}
+
+/* Popular Categories */
+.popular-categories {
+    margin-bottom: 50px;
+}
+
+.popular-categories h3 {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.category-card-small {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 25px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.category-card-small:hover {
+    border-color: #10b981;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+}
+
+.cat-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.cat-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* Trending Searches */
+.trending-searches {
+    margin-top: 50px;
+}
+
+.trending-searches h3 {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.trending-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.trending-pill {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border: 2px solid transparent;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+.trending-pill:hover {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .empty-state-title {
+        font-size: 1.5rem;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 15px;
+    }
+
+    .cat-icon {
+        font-size: 2.5rem;
+    }
+
+    .trending-pills {
+        gap: 8px;
+    }
+
+    .trending-pill {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}

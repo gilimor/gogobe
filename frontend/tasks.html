@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניהול משימות - Gogobe</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/nav.js"></script>
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .task-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-right: 4px solid #e5e7eb;
+        }
+
+        .task-card.pending {
+            border-right-color: #f59e0b;
+        }
+
+        .task-card.done {
+            border-right-color: #10b981;
+            background-color: #f0fdf4;
+        }
+
+        .task-card.high-priority {
+            background-color: #fff7ed;
+        }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .task-text {
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .task-meta {
+            font-size: 0.85em;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-check {
+            background: none;
+            border: 1px solid #10b981;
+            color: #10b981;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-check:hover {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-check.active {
+            background: #10b981;
+            color: white;
+        }
+
+        .add-task-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .add-task-form input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+        }
+
+        .add-task-form select {
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+        }
+
+        .add-task-form button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <main-nav></main-nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>רשימת מטלות ודרישות</h1>
+            <p>ניהול דרישות פיתוח, באגים ופיצ'רים עתידיים</p>
+        </div>
+
+        <div class="add-task-form">
+            <input type="text" id="new-task-desc" placeholder="מה צריך לבצע הלאה?">
+            <select id="new-task-priority">
+                <option value="normal">רגיל</option>
+                <option value="high">דחוף</option>
+                <option value="low">נמוך</option>
+            </select>
+            <button onclick="addTask()">הוסף משימה</button>
+        </div>
+
+        <div id="tasks-container" class="task-list">
+            <!-- Loading -->
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '';
+
+        async function loadTasks() {
+            try {
+                const res = await fetch(`${API_BASE}/api/tasks`);
+                const data = await res.json();
+
+                const container = document.getElementById('tasks-container');
+                container.innerHTML = data.tasks.map(task => `
+                    <div class="task-card ${task.status} ${task.priority === 'high' ? 'high-priority' : ''}">
+                        <div class="task-content">
+                            <div class="task-text" style="${task.status === 'done' ? 'text-decoration: line-through; color: #6b7280;' : ''}">
+                                ${escapeHtml(task.description)}
+                            </div>
+                            <div class="task-meta">
+                                עדיפות: ${getPriorityName(task.priority)} • נוצר: ${new Date(task.created_at).toLocaleDateString()}
+                            </div>
+                        </div>
+                        <div class="task-actions">
+                            <button class="btn-check ${task.status === 'done' ? 'active' : ''}" 
+                                    onclick="toggleTask(${task.id}, '${task.status}')"
+                                    title="${task.status === 'done' ? 'סמן כלא בוצע' : 'סמן כבוצע'}">
+                                ✓
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function addTask() {
+            const desc = document.getElementById('new-task-desc').value;
+            const priority = document.getElementById('new-task-priority').value;
+            if (!desc) return;
+
+            await fetch(`${API_BASE}/api/tasks`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ description: desc, priority, status: 'pending' })
+            });
+
+            document.getElementById('new-task-desc').value = '';
+            loadTasks();
+        }
+
+        async function toggleTask(id, currentStatus) {
+            const newStatus = currentStatus === 'done' ? 'pending' : 'done';
+            await fetch(`${API_BASE}/api/tasks/${id}/status`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: newStatus })
+            });
+            loadTasks();
+        }
+
+        function getPriorityName(p) {
+            if (p === 'high') return '🚨 גבוהה';
+            if (p === 'low') return '📉 נמוכה';
+            return 'רגילה';
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        document.addEventListener('DOMContentLoaded', loadTasks);
+    </script>
+</body>
+
+</html>

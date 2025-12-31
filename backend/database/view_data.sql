@@ -66,3 +66,6 @@ SELECT 'Categories', COUNT(*)::text FROM categories WHERE vertical_id = (SELECT 
 
 
 
+
+
+

@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:15
+    image: postgis/postgis:15-3.4-alpine
     environment:
       - POSTGRES_DB=gogobe
       - POSTGRES_USER=postgres
@@ -12,10 +12,15 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
     restart: unless-stopped
 
   api:
@@ -28,6 +33,8 @@ services:
       - DB_NAME=gogobe
       - DB_USER=postgres
       - DB_PASSWORD=9152245-Gl!
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     volumes:
       - ./backend:/app/backend
       - ./frontend:/app/frontend
@@ -35,13 +42,133 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_started
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    restart: unless-stopped
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
+    restart: unless-stopped
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_HEAP_OPTS: "-Xmx512m -Xms256m"
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+
+  parser:
+    image: gogobe-api:patched
+    command: /bin/sh -c "pip install kafka-python && python /app/backend/kafka_services/consumer_parser.py"
+    volumes:
+      - ./backend:/app/backend
+      - ./data:/app/data
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=gogobe
+      - DB_USER=postgres
+      - DB_PASSWORD=9152245-Gl!
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - KAFKA_BROKER=kafka:29092
+    depends_on:
+      - kafka
+      - db
+      - redis
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: 512M
+
+  carrier:
+    image: gogobe-api:patched
+    command: /bin/sh -c "pip install kafka-python && python /app/backend/kafka_services/consumer_carrier.py"
+    volumes:
+      - ./backend:/app/backend
+      - ./data:/app/data
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=gogobe
+      - DB_USER=postgres
+      - DB_PASSWORD=9152245-Gl!
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - KAFKA_BROKER=kafka:29092
+    depends_on:
+      - kafka
+      - db
+      - redis
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  scanner-scheduler:
+    image: gogobe-api:patched
+    command: /bin/sh -c "pip install scrapy scrapy-playwright playwright && playwright install chromium && playwright install-deps && python /app/backend/price_scanner/run_scheduler.py"
+    volumes:
+      - ./backend:/app/backend
+      - ./data:/app/data
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=gogobe
+      - DB_USER=postgres
+      - DB_PASSWORD=9152245-Gl!
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1024M
     restart: unless-stopped
 
 volumes:
   postgres_data:
-
-
-
-
 
 

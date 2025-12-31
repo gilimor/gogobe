@@ -1,0 +1,262 @@
+# ============================================================================
+# Prometheus Configuration for Gogobe Global
+# Scrapes metrics from all regions and services
+# ============================================================================
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'gogobe-global'
+    environment: 'production'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+# Load rules once and periodically evaluate them
+rule_files:
+  # - "alerts.yml"
+
+# Scrape configurations
+scrape_configs:
+  # ========================================================================
+  # GLOBAL SERVICES
+  # ========================================================================
+  
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          service: 'prometheus'
+          region: 'global'
+
+  - job_name: 'global-lb'
+    static_configs:
+      - targets: ['global-lb:80']
+        labels:
+          service: 'nginx-lb'
+          region: 'global'
+    metrics_path: '/metrics'
+
+  - job_name: 'cockroachdb'
+    static_configs:
+      - targets: ['cockroach-global:8080']
+        labels:
+          service: 'cockroachdb'
+          region: 'global'
+    metrics_path: '/_status/vars'
+
+  - job_name: 'kafka-global'
+    static_configs:
+      - targets: ['kafka-global:9092']
+        labels:
+          service: 'kafka'
+          region: 'global'
+
+  # ========================================================================
+  # ISRAEL REGION 🇮🇱
+  # ========================================================================
+  
+  - job_name: 'api-israel'
+    static_configs:
+      - targets: ['api-israel:8000']
+        labels:
+          service: 'api-gateway'
+          region: 'israel'
+          region_code: 'IL'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'postgres-israel'
+    static_configs:
+      - targets: ['postgres-israel:5432']
+        labels:
+          service: 'postgresql'
+          region: 'israel'
+          region_code: 'IL'
+
+  - job_name: 'redis-israel'
+    static_configs:
+      - targets: ['redis-israel:6379']
+        labels:
+          service: 'redis'
+          region: 'israel'
+          region_code: 'IL'
+
+  - job_name: 'nats-israel'
+    static_configs:
+      - targets: ['nats-israel:8222']
+        labels:
+          service: 'nats'
+          region: 'israel'
+          region_code: 'IL'
+    metrics_path: '/varz'
+
+  - job_name: 'product-processor-israel'
+    static_configs:
+      - targets: ['product-processor-israel:8080']
+        labels:
+          service: 'product-processor'
+          region: 'israel'
+          region_code: 'IL'
+    metrics_path: '/metrics'
+
+  # ========================================================================
+  # USA REGION 🇺🇸
+  # ========================================================================
+  
+  - job_name: 'api-usa'
+    static_configs:
+      - targets: ['api-usa:8000']
+        labels:
+          service: 'api-gateway'
+          region: 'usa'
+          region_code: 'US'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'postgres-usa'
+    static_configs:
+      - targets: ['postgres-usa:5432']
+        labels:
+          service: 'postgresql'
+          region: 'usa'
+          region_code: 'US'
+
+  - job_name: 'redis-usa'
+    static_configs:
+      - targets: ['redis-usa:6379']
+        labels:
+          service: 'redis'
+          region: 'usa'
+          region_code: 'US'
+
+  - job_name: 'nats-usa'
+    static_configs:
+      - targets: ['nats-usa:8223']
+        labels:
+          service: 'nats'
+          region: 'usa'
+          region_code: 'US'
+    metrics_path: '/varz'
+
+  - job_name: 'product-processor-usa'
+    static_configs:
+      - targets: ['product-processor-usa:8080']
+        labels:
+          service: 'product-processor'
+          region: 'usa'
+          region_code: 'US'
+    metrics_path: '/metrics'
+
+  # ========================================================================
+  # EUROPE REGION 🇪🇺
+  # ========================================================================
+  
+  - job_name: 'api-europe'
+    static_configs:
+      - targets: ['api-europe:8000']
+        labels:
+          service: 'api-gateway'
+          region: 'europe'
+          region_code: 'EU'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'postgres-europe'
+    static_configs:
+      - targets: ['postgres-europe:5432']
+        labels:
+          service: 'postgresql'
+          region: 'europe'
+          region_code: 'EU'
+
+  - job_name: 'redis-europe'
+    static_configs:
+      - targets: ['redis-europe:6379']
+        labels:
+          service: 'redis'
+          region: 'europe'
+          region_code: 'EU'
+
+  - job_name: 'nats-europe'
+    static_configs:
+      - targets: ['nats-europe:8224']
+        labels:
+          service: 'nats'
+          region: 'europe'
+          region_code: 'EU'
+    metrics_path: '/varz'
+
+  - job_name: 'product-processor-europe'
+    static_configs:
+      - targets: ['product-processor-europe:8080']
+        labels:
+          service: 'product-processor'
+          region: 'europe'
+          region_code: 'EU'
+    metrics_path: '/metrics'
+
+  # ========================================================================
+  # ASIA REGION 🌏
+  # ========================================================================
+  
+  - job_name: 'api-asia'
+    static_configs:
+      - targets: ['api-asia:8000']
+        labels:
+          service: 'api-gateway'
+          region: 'asia'
+          region_code: 'ASIA'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'postgres-asia'
+    static_configs:
+      - targets: ['postgres-asia:5432']
+        labels:
+          service: 'postgresql'
+          region: 'asia'
+          region_code: 'ASIA'
+
+  - job_name: 'redis-asia'
+    static_configs:
+      - targets: ['redis-asia:6379']
+        labels:
+          service: 'redis'
+          region: 'asia'
+          region_code: 'ASIA'
+
+  - job_name: 'nats-asia'
+    static_configs:
+      - targets: ['nats-asia:8225']
+        labels:
+          service: 'nats'
+          region: 'asia'
+          region_code: 'ASIA'
+    metrics_path: '/varz'
+
+  - job_name: 'product-processor-asia'
+    static_configs:
+      - targets: ['product-processor-asia:8080']
+        labels:
+          service: 'product-processor'
+          region: 'asia'
+          region_code: 'ASIA'
+    metrics_path: '/metrics'
+
+  # ========================================================================
+  # DOCKER METRICS (cAdvisor)
+  # ========================================================================
+  
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+        labels:
+          service: 'cadvisor'
+          region: 'global'
+    metrics_path: '/metrics'
+    scrape_interval: 30s

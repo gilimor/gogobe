@@ -7,7 +7,7 @@
 
 # Database
 psycopg2-binary==2.9.9          # PostgreSQL adapter
-psycopg2==2.9.9                 # PostgreSQL adapter (source)
+# psycopg2==2.9.9                 # PostgreSQL adapter (source) - COMMENTED FOR WINDOWS COMPATIBILITY
 
 # Web Framework
 fastapi==0.109.0                # Modern web framework
@@ -18,6 +18,11 @@ pydantic==2.5.3                 # Data validation
 requests==2.31.0                # HTTP library
 selenium==4.17.2                # Browser automation (if needed)
 lxml==5.1.0                     # XML/HTML parsing
+
+
+# Monitoring & Caching
+redis==5.0.0                    # Redis client
+psutil==5.9.8                   # System metrics (CPU/RAM)
 
 # Scheduling
 schedule==1.2.0                 # Job scheduling
@@ -67,5 +72,8 @@ pywin32==306; sys_platform == 'win32'
 
 # For minimal installation (production):
 #   pip install psycopg2-binary fastapi uvicorn requests schedule lxml
+
+
+
 
 

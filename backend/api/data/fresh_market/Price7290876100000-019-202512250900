@@ -1,0 +1,162 @@
+﻿<Root>
+  <XmlDocVersion>19</XmlDocVersion>
+  <ChainId>7290876100000</ChainId>
+  <SubChainId>1</SubChainId>
+  <StoreId>019</StoreId>
+  <BikoretNo>9</BikoretNo>
+  <DllVerNo>9.4.0.50</DllVerNo>
+  <Items Count="8">
+    <Item>
+      <PriceUpdateDate>2024-09-02 17:52:24</PriceUpdateDate>
+      <ItemCode>7290003914012</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>שוקיים עוף טרי</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>שוקיים עוף טרי</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>35.90</ItemPrice>
+      <UnitOfMeasurePrice>35.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>249250</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-07-01 16:32:28</PriceUpdateDate>
+      <ItemCode>7290011447281</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מטרנה חלבי שלב 2 700</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>מטרנה חלבי שלב 2 700</ManufacturerItemDescription>
+      <UnitQty>לא ידוע</UnitQty>
+      <Quantity>700.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>63.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0913</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>135919</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-19 11:28:27</PriceUpdateDate>
+      <ItemCode>7290003229222</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>סלמי תה משובח 300 גר</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>סלמי תה משובח 300 גר</ManufacturerItemDescription>
+      <UnitQty>לא ידוע</UnitQty>
+      <Quantity>300.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>30.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1030</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>222889</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-21 13:56:19</PriceUpdateDate>
+      <ItemCode>8000500026731</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>קינדר ביצי שוקולד 3*</ItemName>
+      <ManufacturerName>קריות זול</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>קינדר ביצי שוקולד 3*</ManufacturerItemDescription>
+      <UnitQty>לא ידוע</UnitQty>
+      <Quantity>60.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>19.50</ItemPrice>
+      <UnitOfMeasurePrice>0.3250</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>166320</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-26 16:05:24</PriceUpdateDate>
+      <ItemCode>7290115201703</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>ביסלי ברביקיו אסם 20</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>ביסלי ברביקיו אסם 20</ManufacturerItemDescription>
+      <UnitQty>לא ידוע</UnitQty>
+      <Quantity>200.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>11.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0595</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>232885</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-08-31 08:44:43</PriceUpdateDate>
+      <ItemCode>7290013145031</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מימונס ברס אגוזי לוז</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>מימונס ברס אגוזי לוז</ManufacturerItemDescription>
+      <UnitQty>לא ידוע</UnitQty>
+      <Quantity>100.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>16.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1690</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>248765</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-09-08 07:57:16</PriceUpdateDate>
+      <ItemCode>7622210163899</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>שוקולד מילקה חלב עם</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>שוקולד מילקה חלב עם</ManufacturerItemDescription>
+      <UnitQty>לא ידוע</UnitQty>
+      <Quantity>100.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>9.90</ItemPrice>
+      <UnitOfMeasurePrice>0.0990</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>202125</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-12-05 11:34:18</PriceUpdateDate>
+      <ItemCode>7622201401900</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>עוגיות מילקה סנסיישן</ItemName>
+      <ManufacturerName>לא ידוע</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>עוגיות מילקה סנסיישן</ManufacturerItemDescription>
+      <UnitQty>לא ידוע</UnitQty>
+      <Quantity>156.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>17.90</ItemPrice>
+      <UnitOfMeasurePrice>0.1147</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>233111</ItemId>
+    </Item>
+  </Items>
+</Root>

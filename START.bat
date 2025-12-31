@@ -10,9 +10,9 @@ echo ⚠️  יש בעיה עם Python במערכת שלך!
 echo.
 echo בחר אופציה:
 echo.
-echo 1. START-VENV.bat       (מומלץ! - Virtual Environment)
-echo 2. START-DOCKER.bat     (עם Docker)
-echo 3. START-WITH-PY39.bat  (Python 3.9 ישיר)
+echo 1. START-DOCKER.bat     (מומלץ! - הכי יציב)
+echo 2. START-VENV.bat       (למתקדמים - Virtual Environment)
+echo 3. START-WITH-PY39.bat  (לא מומלץ - Python ישיר)
 echo.
 echo ════════════════════════════════════════════════════════════
 echo.

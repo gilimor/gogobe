@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<OrderXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Envelope>
+    <ChainId>7290172900007</ChainId>
+    <SubChainId>000</SubChainId>
+    <StoreId>217</StoreId>
+    <BikoretNo>0</BikoretNo>
+    <Header>
+      <Details>
+        <Line>
+          <PriceUpdateDate>2025-12-29</PriceUpdateDate>
+          <ItemCode>8720689012720</ItemCode>
+          <ItemName>אוונט מוצץ 6-18 אולטרה אייר בנות דג/סוס</ItemName>
+          <ManufacturerName>כמיפל</ManufacturerName>
+          <ManufactureCountry>הולנד</ManufactureCountry>
+          <ManufacturerItemDescription>אולטרה אייר מוצצים 6-18 חודשים לעור רגיש</ManufacturerItemDescription>
+          <UnitQty />
+          <Quantity>0.00</Quantity>
+          <UnitOfMeasure>0.00</UnitOfMeasure>
+          <blsWeighted>0</blsWeighted>
+          <QtyInPackage>1.00</QtyInPackage>
+          <ItemPrice>55.90</ItemPrice>
+          <UnitOfMeasurePrice>27.95</UnitOfMeasurePrice>
+          <AllowDiscount>1</AllowDiscount>
+          <ItemStatus>0</ItemStatus>
+        </Line>
+      </Details>
+    </Header>
+  </Envelope>
+</OrderXml>

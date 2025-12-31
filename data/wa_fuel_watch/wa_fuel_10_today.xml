@@ -1,0 +1,184 @@
+﻿<rss version="2.0">
+  <channel>
+    <title>FuelWatch Prices For All Metro Regions</title>
+    <link>https://www.fuelwatch.wa.gov.au/</link>
+    <description>28/12/2025 - All Metro Regions</description>
+    <language>en-us</language>
+    <copyright>Copyright 2025 FuelWatch. All Rights Reserved.</copyright>
+    <lastBuildDate>Sun, 28 Dec 2025 02:29:48 +0800</lastBuildDate>
+    <ttl>721</ttl>
+    <image>
+      <url>/fuelwatch/art/fuelwatch-logo.gif</url>
+      <title>FuelWatch</title>
+      <link>https://www.fuelwatch.wa.gov.au</link>
+    </image>
+    <item>
+      <title>279.9: United Armadale</title>
+      <description>Address: 178 South Western Hwy, ARMADALE, Phone: (08) 6336 7760, Site features: Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Water Ice Bottled AdBlue Truck Friendly, Open Mon-Fri: 06:00-20:00, Sat: 06:00-20:00, Sun: 06:00-20:00</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Armadale</trading-name>
+      <location>ARMADALE</location>
+      <address>178 South Western Hwy</address>
+      <phone>(08) 6336 7760</phone>
+      <latitude>-32.16149200</latitude>
+      <longitude>116.01760000</longitude>
+      <site-features>Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Water Ice Bottled AdBlue Truck Friendly, Open Mon-Fri: 06:00-20:00, Sat: 06:00-20:00, Sun: 06:00-20:00</site-features>
+    </item>
+    <item>
+      <title>279.9: United Hepburn Heights</title>
+      <description>Address: 4 Walter Padbury Bvd, PADBURY, Phone: (08) 9307 2868, Open 24 hours</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Hepburn Heights</trading-name>
+      <location>PADBURY</location>
+      <address>4 Walter Padbury Bvd</address>
+      <phone>(08) 9307 2868</phone>
+      <latitude>-31.81889000</latitude>
+      <longitude>115.77409600</longitude>
+      <site-features>Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>279.9: United Lexia Truck Stop</title>
+      <description>Address: 779 Gnangara Rd, LEXIA, Phone: (08) 6336 7753, Site features: Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Water Ice Pumped AdBlue Truck Friendly, Open Mon-Fri: 05:00-21:00, Sat: 05:00-21:00, Sun: 05:00-21:00</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Lexia Truck Stop</trading-name>
+      <location>LEXIA</location>
+      <address>779 Gnangara Rd</address>
+      <phone>(08) 6336 7753</phone>
+      <latitude>-31.79518900</latitude>
+      <longitude>115.89955900</longitude>
+      <site-features>Fuel Cards ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Water Ice Pumped AdBlue Truck Friendly, Open Mon-Fri: 05:00-21:00, Sat: 05:00-21:00, Sun: 05:00-21:00</site-features>
+    </item>
+    <item>
+      <title>279.9: United Ellenbrook</title>
+      <description>Address: 3 Locke Lane, ELLENBROOK, Phone: (08) 6336 7752, Site features: ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Water Ice, Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Ellenbrook</trading-name>
+      <location>ELLENBROOK</location>
+      <address>3 Locke Lane</address>
+      <phone>(08) 6336 7752</phone>
+      <latitude>-31.77852000</latitude>
+      <longitude>115.96699000</longitude>
+      <site-features>ATM Toilets Bottled Gas Trailer Hire EFTPOS Air Water Ice, Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</site-features>
+    </item>
+    <item>
+      <title>279.9: United Kellerberrin Truck Stop</title>
+      <description>Address: 150 Massingham St, KELLERBERRIN, Phone: (08) 6336 7773, Site features: Fuel Cards ATM Toilets Bottled Gas EFTPOS Restaurant Air Water Ice Pumped AdBlue Truck Friendly, Open 24 hours</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Kellerberrin Truck Stop</trading-name>
+      <location>KELLERBERRIN</location>
+      <address>150 Massingham St</address>
+      <phone>(08) 6336 7773</phone>
+      <latitude>-31.63305600</latitude>
+      <longitude>117.72717300</longitude>
+      <site-features>Fuel Cards ATM Toilets Bottled Gas EFTPOS Restaurant Air Water Ice Pumped AdBlue Truck Friendly, Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>279.9: United Byford</title>
+      <description>Address: 801-803 South Western Hwy, BYFORD, Phone: (08) 6118 6517, Open Mon-Fri: 05:00-22:00, Sat: 05:00-22:00, Sun: 05:00-22:00</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Byford</trading-name>
+      <location>BYFORD</location>
+      <address>801-803 South Western Hwy</address>
+      <phone>(08) 6118 6517</phone>
+      <latitude>-32.21544360</latitude>
+      <longitude>116.00803040</longitude>
+      <site-features>Open Mon-Fri: 05:00-22:00, Sat: 05:00-22:00, Sun: 05:00-22:00</site-features>
+    </item>
+    <item>
+      <title>279.9: United Tapping</title>
+      <description>Address: 1369 Wanneroo Rd, WANNEROO, Phone: (08) 6205 9010, Site features: ATM Bottled Gas EFTPOS Air Water Ice Discount Voucher Pumped AdBlue Truck Friendly, Open Mon-Fri: 04:00-22:00, Sat: 04:00-22:00, Sun: 04:00-22:00</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Tapping</trading-name>
+      <location>WANNEROO</location>
+      <address>1369 Wanneroo Rd</address>
+      <phone>(08) 6205 9010</phone>
+      <latitude>-31.71974400</latitude>
+      <longitude>115.78340800</longitude>
+      <site-features>ATM Bottled Gas EFTPOS Air Water Ice Discount Voucher Pumped AdBlue Truck Friendly, Open Mon-Fri: 04:00-22:00, Sat: 04:00-22:00, Sun: 04:00-22:00</site-features>
+    </item>
+    <item>
+      <title>279.9: United Southern River</title>
+      <description>Address: Lot 101 Terrier Pl, SOUTHERN RIVER, Phone: (08) 6336 7771, Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Southern River</trading-name>
+      <location>SOUTHERN RIVER</location>
+      <address>Lot 101 Terrier Pl</address>
+      <phone>(08) 6336 7771</phone>
+      <latitude>-32.12113600</latitude>
+      <longitude>115.95458200</longitude>
+      <site-features>Open Mon-Fri: 06:00-21:00, Sat: 06:00-21:00, Sun: 06:00-21:00</site-features>
+    </item>
+    <item>
+      <title>279.9: United Maddington Truck Stop</title>
+      <description>Address: 13 Stebbing Rd, MADDINGTON, Phone: (08) 6400 6609, Site features: Fuel Cards ATM Bottled Gas EFTPOS Air Water Ice Discount Voucher Pumped AdBlue Truck Friendly, Open 24 hours</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Maddington Truck Stop</trading-name>
+      <location>MADDINGTON</location>
+      <address>13 Stebbing Rd</address>
+      <phone>(08) 6400 6609</phone>
+      <latitude>-32.04235600</latitude>
+      <longitude>115.99131000</longitude>
+      <site-features>Fuel Cards ATM Bottled Gas EFTPOS Air Water Ice Discount Voucher Pumped AdBlue Truck Friendly, Open 24 hours</site-features>
+    </item>
+    <item>
+      <title>279.9: United Pinjarra Truck Stop</title>
+      <description>Address: 1602 Pinjarra Rd, PINJARRA, Phone: (08) 9548 6000, Site features: Fuel Cards ATM Bottled Gas EFTPOS Restaurant Air Water Ice Bottled AdBlue Pumped AdBlue Truck Friendly, Open Mon-Fri: 05:00-22:00, Sat: 05:00-22:00, Sun: 05:00-22:00</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Pinjarra Truck Stop</trading-name>
+      <location>PINJARRA</location>
+      <address>1602 Pinjarra Rd</address>
+      <phone>(08) 9548 6000</phone>
+      <latitude>-32.61078500</latitude>
+      <longitude>115.84804100</longitude>
+      <site-features>Fuel Cards ATM Bottled Gas EFTPOS Restaurant Air Water Ice Bottled AdBlue Pumped AdBlue Truck Friendly, Open Mon-Fri: 05:00-22:00, Sat: 05:00-22:00, Sun: 05:00-22:00</site-features>
+    </item>
+    <item>
+      <title>279.9: United Naval Base Truck Stop</title>
+      <description>Address: 13 Lionel St, NAVAL BASE, Phone: (08) 6170 5095, Open Mon-Fri: 05:00-22:00, Sat: 05:00-22:00, Sun: 05:00-22:00</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Naval Base Truck Stop</trading-name>
+      <location>NAVAL BASE</location>
+      <address>13 Lionel St</address>
+      <phone>(08) 6170 5095</phone>
+      <latitude>-32.19542500</latitude>
+      <longitude>115.78310600</longitude>
+      <site-features>Open Mon-Fri: 05:00-22:00, Sat: 05:00-22:00, Sun: 05:00-22:00</site-features>
+    </item>
+    <item>
+      <title>279.9: United Anketell South</title>
+      <description>Address: 805 Thomas Rd, ANKETELL, Phone: (08) 6170 9002, Open 24 hours</description>
+      <brand>United</brand>
+      <date>2025-12-28</date>
+      <price>279.9</price>
+      <trading-name>United Anketell South</trading-name>
+      <location>ANKETELL</location>
+      <address>805 Thomas Rd</address>
+      <phone>(08) 6170 9002</phone>
+      <latitude>-32.22780200</latitude>
+      <longitude>115.85587580</longitude>
+      <site-features>Open 24 hours</site-features>
+    </item>
+  </channel>
+</rss>

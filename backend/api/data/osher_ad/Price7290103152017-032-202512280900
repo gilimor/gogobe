@@ -1,0 +1,162 @@
+﻿<Root>
+  <XmlDocVersion>19</XmlDocVersion>
+  <ChainId>7290103152017</ChainId>
+  <SubChainId>1</SubChainId>
+  <StoreId>032</StoreId>
+  <BikoretNo>8</BikoretNo>
+  <DllVerNo>9.4.0.50</DllVerNo>
+  <Items Count="8">
+    <Item>
+      <PriceUpdateDate>2025-06-08 06:34:23</PriceUpdateDate>
+      <ItemCode>7290000902265</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פילה מדומה עגל טרי ע</ItemName>
+      <ManufacturerName>,</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>פילה מדומה עגל טרי ע</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>89.90</ItemPrice>
+      <UnitOfMeasurePrice>89.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>7586</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-06-08 06:34:23</PriceUpdateDate>
+      <ItemCode>7290000902272</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>כתף עגל טרי עטרה</ItemName>
+      <ManufacturerName>,</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>כתף עגל טרי עטרה</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>84.90</ItemPrice>
+      <UnitOfMeasurePrice>84.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>7587</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-06-08 06:34:25</PriceUpdateDate>
+      <ItemCode>7290004758028</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>אנטריקוט פרימיום טרי</ItemName>
+      <ManufacturerName>,</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>אנטריקוט פרימיום טרי</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>199.90</ItemPrice>
+      <UnitOfMeasurePrice>199.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>8218</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-06-19 07:08:27</PriceUpdateDate>
+      <ItemCode>7290001209950</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פילה מדומה מעובד מופ</ItemName>
+      <ManufacturerName>נטו</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>פילה מדומה מעובד מופ</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>79.90</ItemPrice>
+      <UnitOfMeasurePrice>79.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>623</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-07-06 06:51:15</PriceUpdateDate>
+      <ItemCode>7290001209776</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>צלי כתף מעובד מופשר</ItemName>
+      <ManufacturerName>נטו</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>צלי כתף מעובד מופשר</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>79.90</ItemPrice>
+      <UnitOfMeasurePrice>79.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>620</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-07-06 06:51:15</PriceUpdateDate>
+      <ItemCode>7290001209769</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>כתף בקר מעובד מופשר</ItemName>
+      <ManufacturerName>נטו</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>כתף בקר מעובד מופשר</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>59.90</ItemPrice>
+      <UnitOfMeasurePrice>59.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>7689</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-07-06 06:51:15</PriceUpdateDate>
+      <ItemCode>7290001209905</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>צלעות בקר מעובד מופש</ItemName>
+      <ManufacturerName>נטו</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>צלעות בקר מעובד מופש</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>59.90</ItemPrice>
+      <UnitOfMeasurePrice>59.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>7692</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-09-02 06:43:17</PriceUpdateDate>
+      <ItemCode>7290000902241</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>אנטריקוט עגל טרי עטר</ItemName>
+      <ManufacturerName>,</ManufacturerName>
+      <ManufactureCountry>לא ידוע</ManufactureCountry>
+      <ManufacturerItemDescription>אנטריקוט עגל טרי עטר</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>159.90</ItemPrice>
+      <UnitOfMeasurePrice>159.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>7584</ItemId>
+    </Item>
+  </Items>
+</Root>

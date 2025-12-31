@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="he">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,34 +9,216 @@
     <style>
         .main-nav {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        .nav-container { max-width: 1600px; margin: 0 auto; padding: 0; }
-        .nav-content { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
-        .nav-brand { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .nav-links { display: flex; gap: 8px; align-items: center; }
-        .nav-link { color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: background 0.3s; font-size: 14px; font-weight: 500; }
-        .nav-link:hover { background: rgba(255,255,255,0.2); }
-        .nav-link.active { background: rgba(255,255,255,0.3); }
-        
-        .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
-        
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+        }
+
+        .nav-brand {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .page-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+        }
+
+        .page-header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .filters-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #374151;
+            font-size: 14px;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-advanced {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .search-advanced-title {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-box-advanced {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .actions-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 6px;
+        }
+
         .prices-table {
             background: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        
+
         th {
             background: #f9fafb;
             padding: 12px;
@@ -43,71 +226,260 @@
             font-weight: 600;
             color: #374151;
             border-bottom: 2px solid #e5e7eb;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
         }
-        
+
+        th:hover {
+            background: #f3f4f6;
+        }
+
+        th.sortable::after {
+            content: ' ↕';
+            opacity: 0.5;
+            font-size: 12px;
+        }
+
+        th.sort-asc::after {
+            content: ' ↑';
+            opacity: 1;
+            color: #3b82f6;
+        }
+
+        th.sort-desc::after {
+            content: ' ↓';
+            opacity: 1;
+            color: #3b82f6;
+        }
+
         td {
             padding: 12px;
             border-bottom: 1px solid #f3f4f6;
         }
-        
+
         tr:hover {
             background: #f9fafb;
         }
-        
+
+        .product-name {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .store-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .store-name {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .store-details {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .price-value {
+            font-weight: 600;
+            color: #10b981;
+            font-size: 1.1rem;
+        }
+
         .loading {
             text-align: center;
             padding: 40px;
             color: #6b7280;
         }
-        
+
         .pagination {
             margin-top: 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 8px;
         }
-        
+
         .pagination button {
             padding: 8px 16px;
             border: 1px solid #e5e7eb;
             background: white;
             border-radius: 4px;
             cursor: pointer;
+            transition: all 0.3s;
         }
-        
+
         .pagination button:hover:not(:disabled) {
             background: #f9fafb;
+            border-color: #3b82f6;
         }
-        
+
         .pagination button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
+
+        .pagination button.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .pagination-info {
+            margin: 0 16px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Enriched User Interface Styles */
+        .product-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            object-fit: cover;
+            border: 1px solid #e5e7eb;
+        }
+
+        .no-img {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3f4f6;
+            border-radius: 4px;
+            font-size: 20px;
+            color: #9ca3af;
+        }
+
+        .master-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 4px;
+            border: 1px solid #dbeafe;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .category-tag {
+            background: #f0fdf4;
+            color: #15803d;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-block;
+            white-space: nowrap;
+            border: 1px solid #dcfce7;
+        }
     </style>
+    <script src="/static/nav.js"></script>
 </head>
+
 <body>
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="nav-content">
-                <a href="/dashboard.html" class="nav-brand">
-                    <span>🛒</span>
-                    <span>Gogobe</span>
-                </a>
-                <div class="nav-links">
-                    <a href="/dashboard.html" class="nav-link">🏠 דף הבית</a>
-                    <a href="/" class="nav-link">📦 מוצרים</a>
-                    <a href="/prices.html" class="nav-link active">💰 מחירים</a>
-                    <a href="/categories.html" class="nav-link">📂 קטגוריות</a>
-                    <a href="/stores.html" class="nav-link">🏪 רשתות וסניפים</a>
-                    <a href="/data-sources.html" class="nav-link">📥 מקורות נתונים</a>
-                    <a href="/errors.html" class="nav-link">🔍 Errors</a>
+    <main-nav></main-nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>💰 ניהול מחירים מתקדם</h1>
+            <p>חיפוש, סינון ומיון מתקדם של כל המחירים במערכת</p>
+        </div>
+
+        <div class="filters-panel">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label>🔍 חיפוש מוצר:</label>
+                    <input type="text" id="product-name" placeholder="שם מוצר...">
+                </div>
+
+                <div class="filter-group">
+                    <label>🏪 חיפוש סניף:</label>
+                    <input type="text" id="store-name" placeholder="שם סניף או עיר...">
+                </div>
+
+                <div class="filter-group">
+                    <label>🏢 חיפוש רשת:</label>
+                    <input type="text" id="chain-name" placeholder="שם רשת...">
+                </div>
+
+                <div class="filter-group">
+                    <label>💰 מחיר מינימלי:</label>
+                    <input type="number" id="min-price" placeholder="0" min="0" step="0.01">
+                </div>
+
+                <div class="filter-group">
+                    <label>💰 מחיר מקסימלי:</label>
+                    <input type="number" id="max-price" placeholder="1000" min="0" step="0.01">
+                </div>
+
+                <div class="filter-group">
+                    <label>💵 מטבע:</label>
+                    <select id="currency">
+                        <option value="" selected>הכל</option>
+                        <option value="ILS">ILS (₪)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                        <option value="JPY">JPY (¥)</option>
+                        <option value="AUD">AUD ($)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>📅 מתאריך:</label>
+                    <input type="date" id="from-date">
+                </div>
+
+                <div class="filter-group">
+                    <label>📅 עד תאריך:</label>
+                    <input type="date" id="to-date">
+                </div>
+
+                <div class="filter-group">
+                    <label>📊 מיון לפי:</label>
+                    <select id="sort-by">
+                        <option value="scraped_at_desc">תאריך: החדש ביותר</option>
+                        <option value="scraped_at_asc">תאריך: הישן ביותר</option>
+                        <option value="price_asc">מחיר: מהנמוך לגבוה</option>
+                        <option value="price_desc">מחיר: מהגבוה לנמוך</option>
+                        <option value="product_name_asc">שם מוצר: א-ת</option>
+                        <option value="product_name_desc">שם מוצר: ת-א</option>
+                        <option value="store_name_asc">שם סניף: א-ת</option>
+                        <option value="store_name_desc">שם סניף: ת-א</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="actions-bar">
+                <div>
+                    <button class="btn btn-primary" onclick="applyFilters()">🔍 חפש</button>
+                    <button class="btn btn-secondary" onclick="clearFilters()">🗑️ נקה פילטרים</button>
+                </div>
+                <div>
+                    <button class="btn btn-success" onclick="exportData()">📥 ייצא נתונים</button>
                 </div>
             </div>
         </div>
-    </nav>
 
-    <div class="container">
-        <h1>ניהול מחירים</h1>
+        <div class="results-info" id="results-info" style="display: none;">
+            <div>
+                <strong id="results-count">0</strong> תוצאות
+            </div>
+            <div style="color: #6b7280; font-size: 14px;">
+                עמוד <strong id="current-page">1</strong> מתוך <strong id="total-pages">1</strong>
+            </div>
+        </div>
+
         <div id="prices-content" class="loading">טוען מחירים...</div>
         <div id="pagination" class="pagination"></div>
     </div>
@@ -116,41 +488,128 @@
         const API_BASE = '';
         let currentPage = 1;
         const perPage = 50;
+        let currentFilters = {};
+        let currentSort = 'scraped_at_desc';
+
+        // Load initial data
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPrices(1);
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Enter key in search fields
+            ['product-name', 'store-name', 'chain-name'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            applyFilters();
+                        }
+                    });
+                }
+            });
+        }
+
+        function getFilters() {
+            return {
+                product_name: document.getElementById('product-name').value.trim() || null,
+                store_name: document.getElementById('store-name').value.trim() || null,
+                chain_name: document.getElementById('chain-name').value.trim() || null,
+                min_price: parseFloat(document.getElementById('min-price').value) || null,
+                max_price: parseFloat(document.getElementById('max-price').value) || null,
+                currency: document.getElementById('currency').value || null,
+                from_date: document.getElementById('from-date').value || null,
+                to_date: document.getElementById('to-date').value || null,
+                sort_by: document.getElementById('sort-by').value || 'scraped_at_desc'
+            };
+        }
+
+        function buildQueryString(filters, page) {
+            const params = new URLSearchParams();
+            params.append('page', page);
+            params.append('per_page', perPage);
+
+            Object.entries(filters).forEach(([key, value]) => {
+                if (value !== null && value !== '') {
+                    params.append(key, value);
+                }
+            });
+
+            return params.toString();
+        }
 
         async function loadPrices(page = 1) {
             try {
-                const response = await fetch(`${API_BASE}/api/prices?page=${page}&per_page=${perPage}`);
+                currentFilters = getFilters();
+                currentSort = currentFilters.sort_by;
+                const queryString = buildQueryString(currentFilters, page);
+
+                const response = await fetch(`${API_BASE}/api/prices?${queryString}`);
                 const data = await response.json();
                 const prices = data.prices || [];
                 const pagination = data.pagination || {};
-                
+
                 const contentEl = document.getElementById('prices-content');
-                
+
                 if (prices.length === 0) {
-                    contentEl.innerHTML = '<p>אין מחירים זמינים</p>';
+                    contentEl.innerHTML = '<div class="loading"><p>אין מחירים זמינים לפי הפילטרים שנבחרו</p></div>';
+                    document.getElementById('results-info').style.display = 'none';
+                    document.getElementById('pagination').innerHTML = '';
                     return;
                 }
-                
+
                 contentEl.innerHTML = `
                     <div class="prices-table">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>מוצר</th>
-                                    <th>סניף</th>
+                                    <th style="width: 50px;"></th> <!-- Image -->
+                                    <th class="sortable ${getSortClass('product_name')}" onclick="sortBy('product_name')">מוצר</th>
+                                    <th>קטגוריה</th>
+                                    <th class="sortable ${getSortClass('store_name')}" onclick="sortBy('store_name')">סניף</th>
                                     <th>רשת</th>
-                                    <th>מחיר</th>
+                                    <th>מקום</th>
+                                    <th class="sortable ${getSortClass('price')}" onclick="sortBy('price')">מחיר</th>
                                     <th>מטבע</th>
-                                    <th>עודכן</th>
+                                    <th class="sortable ${getSortClass('scraped_at')}" onclick="sortBy('scraped_at')">עודכן</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 ${prices.map(price => `
                                     <tr>
-                                        <td>${escapeHtml(price.product_name || 'ללא שם')}</td>
-                                        <td>${escapeHtml(price.store_name || '-')}</td>
-                                        <td>${escapeHtml(price.chain_name || '-')}</td>
-                                        <td>${formatPrice(price.price, price.currency)}</td>
+                                        <td>
+                                            ${price.master_image_url ?
+                        `<img src="${price.master_image_url}" class="product-thumb" alt="Product" onerror="this.style.display='none'">` :
+                        '<div class="no-img">📷</div>'}
+                                        </td>
+                                        <td>
+                                            <div class="product-name">${escapeHtml(price.product_name || 'ללא שם')}</div>
+                                            
+                                            ${price.master_product_name ?
+                        `<div class="master-badge" title="Master Product: ${escapeHtml(price.master_product_name)}">
+                                                    🔗 ${escapeHtml(price.master_product_name)}
+                                                </div>` : ''}
+                                                
+                                            ${price.product_ean ? `<small style="color: #6b7280;">ברקוד: ${escapeHtml(price.product_ean)}</small>` : ''}
+                                        </td>
+                                        <td>
+                                            <span class="category-tag">${escapeHtml(price.category_name || '-')}</span>
+                                        </td>
+                                        <td>
+                                            <div class="store-info">
+                                                <div class="store-name">${escapeHtml(price.store_name_he || price.store_name || '-')}</div>
+                                                ${price.store_address ? `<div class="store-details">${escapeHtml(price.store_address)}</div>` : ''}
+                                            </div>
+                                        </td>
+                                        <td>${escapeHtml(price.chain_name_he || price.chain_name || '-')}</td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 6px;">
+                                                <span style="font-size: 1.2em;">${getCountryFlag(price.country_code || 'IL')}</span>
+                                                <span>${escapeHtml(price.store_city || 'ישראל')}</span>
+                                            </div>
+                                        </td>
+                                        <td class="price-value">${formatPrice(price.price, price.currency)}</td>
                                         <td>${price.currency || 'ILS'}</td>
                                         <td>${formatDate(price.last_scraped_at || price.scraped_at)}</td>
                                     </tr>
@@ -159,59 +618,148 @@
                         </table>
                     </div>
                 `;
-                
+
+                // Update results info
+                updateResultsInfo(pagination);
+
                 // Update pagination
                 updatePagination(pagination);
-                
+
             } catch (error) {
                 console.error('Failed to load prices:', error);
-                document.getElementById('prices-content').innerHTML = 
-                    '<p style="color: red;">שגיאה בטעינת המחירים</p>';
+                document.getElementById('prices-content').innerHTML =
+                    '<div class="loading"><p style="color: red;">שגיאה בטעינת המחירים</p></div>';
             }
         }
-        
+
+        function getSortClass(field) {
+            if (!currentSort) return '';
+            if (currentSort.includes(field)) {
+                return currentSort.includes('_desc') ? 'sort-desc' : 'sort-asc';
+            }
+            return '';
+        }
+
+        function sortBy(field) {
+            const currentField = currentSort.split('_')[0];
+            const currentOrder = currentSort.includes('_desc') ? 'desc' : 'asc';
+
+            if (currentField === field) {
+                // Toggle order
+                currentSort = currentOrder === 'desc' ? `${field}_asc` : `${field}_desc`;
+            } else {
+                // New field, default to desc
+                currentSort = `${field}_desc`;
+            }
+
+            document.getElementById('sort-by').value = currentSort;
+            applyFilters();
+        }
+
+        function updateResultsInfo(pagination) {
+            const infoEl = document.getElementById('results-info');
+            const countEl = document.getElementById('results-count');
+            const currentPageEl = document.getElementById('current-page');
+            const totalPagesEl = document.getElementById('total-pages');
+
+            if (pagination.total > 0) {
+                infoEl.style.display = 'flex';
+                countEl.textContent = pagination.total.toLocaleString();
+                currentPageEl.textContent = pagination.page;
+                totalPagesEl.textContent = pagination.pages;
+            } else {
+                infoEl.style.display = 'none';
+            }
+        }
+
         function updatePagination(pagination) {
             const paginationEl = document.getElementById('pagination');
             if (!pagination || pagination.pages <= 1) {
                 paginationEl.innerHTML = '';
                 return;
             }
-            
+
             const pages = [];
             const totalPages = pagination.pages;
             const current = pagination.page;
-            
+
             // Previous button
             pages.push(`<button ${current === 1 ? 'disabled' : ''} onclick="loadPrices(${current - 1})">← הקודם</button>`);
-            
-            // Page numbers
-            for (let i = 1; i <= Math.min(totalPages, 10); i++) {
-                pages.push(`<button ${i === current ? 'style="background: #10b981; color: white;"' : ''} onclick="loadPrices(${i})">${i}</button>`);
+
+            // First page
+            if (current > 3) {
+                pages.push(`<button onclick="loadPrices(1)">1</button>`);
+                if (current > 4) pages.push(`<span>...</span>`);
             }
-            
-            if (totalPages > 10) {
-                pages.push(`<span>...</span>`);
+
+            // Page numbers around current
+            const start = Math.max(1, current - 2);
+            const end = Math.min(totalPages, current + 2);
+
+            for (let i = start; i <= end; i++) {
+                pages.push(`<button class="${i === current ? 'active' : ''}" onclick="loadPrices(${i})">${i}</button>`);
+            }
+
+            // Last page
+            if (current < totalPages - 2) {
+                if (current < totalPages - 3) pages.push(`<span>...</span>`);
                 pages.push(`<button onclick="loadPrices(${totalPages})">${totalPages}</button>`);
             }
-            
+
             // Next button
             pages.push(`<button ${current === totalPages ? 'disabled' : ''} onclick="loadPrices(${current + 1})">הבא →</button>`);
-            
+
             paginationEl.innerHTML = pages.join('');
         }
-        
+
+        function applyFilters() {
+            currentPage = 1;
+            loadPrices(1);
+        }
+
+        function clearFilters() {
+            document.getElementById('product-name').value = '';
+            document.getElementById('store-name').value = '';
+            document.getElementById('chain-name').value = '';
+            document.getElementById('min-price').value = '';
+            document.getElementById('max-price').value = '';
+            document.getElementById('currency').value = '';
+            document.getElementById('from-date').value = '';
+            document.getElementById('to-date').value = '';
+            document.getElementById('sort-by').value = 'scraped_at_desc';
+            currentPage = 1;
+            loadPrices(1);
+        }
+
+        function exportData() {
+            const filters = getFilters();
+            const queryString = buildQueryString(filters, 1);
+            // For export, get more results
+            const exportQuery = queryString.replace('per_page=50', 'per_page=10000');
+
+            window.open(`${API_BASE}/api/prices?${exportQuery}`, '_blank');
+        }
+
         function formatPrice(price, currency = 'ILS') {
             if (!price) return '-';
-            const symbol = currency === 'ILS' ? '₪' : currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency;
+            const symbols = {
+                'ILS': '₪',
+                'USD': '$',
+                'EUR': '€',
+                'GBP': '£',
+                'JPY': '¥',
+                'AUD': 'A$'
+            };
+            const symbol = symbols[currency] || currency;
             return `${symbol}${parseFloat(price).toFixed(2)}`;
         }
-        
+
         function formatDate(dateStr) {
             if (!dateStr) return '-';
             const date = new Date(dateStr);
-            return date.toLocaleDateString('he-IL');
+            return date.toLocaleDateString('he-IL') + ' ' + date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
         }
-        
+
         function escapeHtml(text) {
             if (!text) return '';
             const div = document.createElement('div');
@@ -219,7 +767,15 @@
             return div.innerHTML;
         }
 
-        document.addEventListener('DOMContentLoaded', () => loadPrices(1));
+        function getCountryFlag(countryCode) {
+            if (!countryCode) return '🇮🇱'; // Default
+            const codePoints = countryCode
+                .toUpperCase()
+                .split('')
+                .map(char => 127397 + char.charCodeAt());
+            return String.fromCodePoint(...codePoints);
+        }
     </script>
 </body>
+
 </html>

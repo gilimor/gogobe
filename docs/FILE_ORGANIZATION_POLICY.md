@@ -176,3 +176,6 @@ echo # Shufersal Documentation > docs\shufersal\README.md
 גרסה: 1.0  
 סטטוס: ✅ **מדיניות פעילה**
 
+
+
+

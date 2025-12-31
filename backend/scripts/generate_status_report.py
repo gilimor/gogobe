@@ -9,17 +9,21 @@ from psycopg2.extras import RealDictCursor
 
 sys.stdout.reconfigure(encoding='utf-8')
 
+import os
+
+# Load environment variables
 DB_CONFIG = {
-    'dbname': 'gogobe',
-    'user': 'postgres',
-    'password': '9152245-Gl!',
-    'host': 'localhost',
-    'port': '5432'
+    'dbname': os.getenv('DB_NAME', 'gogobe'),
+    'user': os.getenv('DB_USER', 'postgres'),
+    'password': os.getenv('DB_PASSWORD', '9152245-Gl!'),
+    'host': os.getenv('DB_HOST', 'localhost'),
+    'port': os.getenv('DB_PORT', '5432')
 }
 
 def generate_report():
     conn = psycopg2.connect(**DB_CONFIG)
     cur = conn.cursor(cursor_factory=RealDictCursor)
+
     
     print("\n" + "="*70)
     print("🎯 דוח מצב סופי - מערכת Gogobe להשוואת מחירים")
@@ -90,18 +94,19 @@ def generate_report():
     print(f"   סה\"כ חנויות פעילות:        {total_stores}")
     
     cur.execute("""
-        SELECT s.store_name, COUNT(p.id) as price_count
+        SELECT s.name, COUNT(p.id) as price_count
         FROM stores s
         LEFT JOIN prices p ON s.id = p.store_id
         WHERE s.is_active = true
-        GROUP BY s.id, s.store_name
+        GROUP BY s.id, s.name
         ORDER BY price_count DESC
         LIMIT 10
     """)
     
     top_stores = cur.fetchall()
     for store in top_stores:
-        print(f"   {store['store_name']:45} {store['price_count']:6,} מחירים")
+        print(f"   {store['name']:45} {store['price_count']:6,} מחירים")
+
     
     # === Suppliers ===
     print("\n🏢 ספקים:")
@@ -124,17 +129,18 @@ def generate_report():
     print("\n📥 קבצים שהורדו:")
     print("-" * 70)
     
-    cur.execute("SELECT COUNT(*) as total FROM downloaded_files")
+    cur.execute("SELECT COUNT(*) as total FROM scraping_jobs")
     total_files = cur.fetchone()['total']
     print(f"   סה\"כ קבצים:                 {total_files}")
     
-    cur.execute("SELECT COUNT(*) as total FROM downloaded_files WHERE processing_status = 'completed'")
+    cur.execute("SELECT COUNT(*) as total FROM scraping_jobs WHERE status = 'completed'")
     completed = cur.fetchone()['total']
     print(f"   קבצים שעובדו:                {completed}")
     
-    cur.execute("SELECT SUM(products_imported) as total FROM downloaded_files WHERE processing_status = 'completed'")
+    cur.execute("SELECT SUM(prices_collected) as total FROM scraping_jobs WHERE status = 'completed'")
     imported = cur.fetchone()['total'] or 0
-    print(f"   סה\"כ מוצרים מיובאים:        {imported:,}")
+    print(f"   סה\"כ מחירים מיובאים:        {imported:,}")
+
     
     # === Database Size ===
     print("\n💾 גודל בסיס הנתונים:")

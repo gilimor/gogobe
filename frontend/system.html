@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogobe Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Heebo:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="nav.js" defer></script>
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .font-brand {
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(30, 41, 59, 1);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            w-full;
+            h-1;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+            width: 100%;
+            height: 2px;
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        /* Categories Colors */
+        .cat-ops .icon-box {
+            background: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+        }
+
+        .cat-ops:hover .icon-box {
+            background: #34d399;
+            color: #064e3b;
+        }
+
+        .cat-data .icon-box {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+        }
+
+        .cat-data:hover .icon-box {
+            background: #60a5fa;
+            color: #1e3a8a;
+        }
+
+        .cat-admin .icon-box {
+            background: rgba(245, 158, 11, 0.1);
+            color: #fbbf24;
+        }
+
+        .cat-admin:hover .icon-box {
+            background: #fbbf24;
+            color: #451a03;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-[url('https://assets.gogobe.co.il/bg_grid_dark.png')] bg-cover bg-fixed">
+
+    <!-- Navbar injected by nav.js -->
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-7xl mx-auto px-6 py-12 w-full">
+
+        <!-- Search / Welcome -->
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-black text-white mb-6 tracking-tight">
+                GOGO<span class="text-blue-500">BE</span> INTELLIGENCE
+            </h1>
+            <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+                מערכת השוואת מחירים גלובלית בזמן אמת. חפש מוצר, ברקוד או קטגוריה כדי להתחיל.
+            </p>
+
+            <div class="max-w-xl mx-auto relative group">
+                <input type="text" placeholder="חפש מוצר (לדוגמה: קוקה קולה, 729000...)"
+                    class="w-full bg-slate-800/80 border border-slate-600 rounded-2xl py-4 px-6 pr-14 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-xl group-hover:shadow-blue-500/20 text-lg">
+                <button
+                    class="absolute left-2 top-2 bottom-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl px-6 font-bold transition-colors">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Section 1: Core Operations -->
+        <div class="mb-12">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+                <i class="fas fa-bolt text-emerald-400"></i> Core Operations
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <a href="/dashboard.html" class="card cat-ops p-6 group">
+                    <div class="icon-box"><i class="fas fa-satellite-dish"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Mission
+                        Control</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        דשבורד בזמן אמת. ניהול סורקים, סטטוס שרתים, התראות חיות וגרפים של קצב קליטת נתונים.
+                    </p>
+                    <div
+                        class="mt-4 flex items-center gap-2 text-xs font-bold text-emerald-500 uppercase tracking-wider opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all">
+                        Launch Commander <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <a href="/map.html" class="card cat-ops p-6 group">
+                    <div class="icon-box"><i class="fas fa-map-marked-alt"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Geo
+                        Intelligence</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        מפה אינטראקטיבית של כל הסניפים והמוצרים. השוואת מחירים גיאוגרפית וניתוח אזורי.
+                    </p>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Section 2: Data Management -->
+        <div class="mb-12">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+                <i class="fas fa-database text-blue-400"></i> Data Management
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+                <a href="/product.html" class="card cat-data p-6 group">
+                    <div class="icon-box"><i class="fas fa-box-open"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-1">Products Registry</h3>
+                    <p class="text-xs text-gray-400">קטלוג מוצרים ראשי (Master Product), מיזוג כפילויות וניהול ברקודים.
+                    </p>
+                </a>
+
+                <a href="/prices.html" class="card cat-data p-6 group">
+                    <div class="icon-box"><i class="fas fa-tags"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-1">Price Analytics</h3>
+                    <p class="text-xs text-gray-400">טבלאות מחירים היסטוריות, שינויי מחיר ומבצעים.</p>
+                </a>
+
+                <a href="/stores.html" class="card cat-data p-6 group">
+                    <div class="icon-box"><i class="fas fa-store"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-1">Branch Network</h3>
+                    <p class="text-xs text-gray-400">ניהול רשתות וסניפים, כתובות ושעות פתיחה.</p>
+                </a>
+
+                <a href="/categories.html" class="card cat-data p-6 group">
+                    <div class="icon-box"><i class="fas fa-layer-group"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-1">Taxonomy</h3>
+                    <p class="text-xs text-gray-400">ניהול עץ קטגוריות ומיפוי מוצרים.</p>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Section 3: System Admin -->
+        <div>
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+                <i class="fas fa-cogs text-amber-400"></i> System Admin
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+                <a href="/sources.html" class="card cat-admin p-6 group">
+                    <div class="icon-box"><i class="fas fa-server"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-1">Scraper Sources</h3>
+                    <p class="text-xs text-gray-400">הגדרת מקורות מידע, תצורת סורקים וניהול חיבורים.</p>
+                </a>
+
+                <a href="/import-logs.html" class="card cat-admin p-6 group">
+                    <div class="icon-box"><i class="fas fa-history"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-1">Import Logs</h3>
+                    <p class="text-xs text-gray-400">היסטוריית ריצות, שגיאות מלאות וניתוח תקלות.</p>
+                </a>
+
+                <a href="/tasks.html" class="card cat-admin p-6 group">
+                    <div class="icon-box"><i class="fas fa-microchip"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-1">Background Tasks</h3>
+                    <p class="text-xs text-gray-400">ניהול תורים, משימות מתוזמנות וניקוי נתונים.</p>
+                </a>
+
+                <a href="/docs" target="_blank"
+                    class="card cat-admin p-6 group border-dashed border-gray-700 hover:border-amber-500/50">
+                    <div class="icon-box"><i class="fas fa-code"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-1">API Swagger</h3>
+                    <p class="text-xs text-gray-400">תיעוד טכני למפתחים ונקודות קצה (OpenAPI).</p>
+                </a>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-white/5 bg-black/40 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-[10px] text-gray-600 uppercase tracking-widest font-mono">
+                Gogobe Intelligence Systems • v2.4.0 (Orchestra) • 2025
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

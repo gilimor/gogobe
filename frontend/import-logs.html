@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogobe - מעקב ייבואים</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .logs-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--color);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e293b;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .logs-panel {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            height: 600px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+
+        .log-entry {
+            padding: 8px 0;
+            border-bottom: 1px solid #334155;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .log-time {
+            color: #64748b;
+            margin-left: 10px;
+        }
+
+        .log-level {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            margin-left: 10px;
+        }
+
+        .log-info {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .log-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .log-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .log-error {
+            background: #ef4444;
+            color: white;
+        }
+
+        .log-message {
+            margin-right: 10px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #64748b;
+            color: white;
+        }
+
+        .source-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .source-tab {
+            padding: 10px 20px;
+            background: #334155;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .source-tab.active {
+            background: #10b981;
+        }
+    </style>
+</head>
+
+<body>
+    <main-nav></main-nav>
+
+    <div class="logs-container">
+        <nav style="margin-bottom: 20px;">
+            <a href="/sources.html" style="color: #64748b; text-decoration: none;">← חזרה למקורות</a>
+        </nav>
+
+        <h1 style="font-size: 2.5rem; font-weight: 800; color: #1e293b; margin-bottom: 10px;">
+            📊 מעקב ייבואים בזמן אמת
+        </h1>
+        <p style="color: #64748b; font-size: 1.1rem; margin-bottom: 30px;">
+            עקוב אחר כל הפעולות של מערכת הייבוא
+        </p>
+
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-card" style="--color: #3b82f6;">
+                <div class="stat-value" id="stat-files">0</div>
+                <div class="stat-label">קבצים עובדו</div>
+            </div>
+            <div class="stat-card" style="--color: #10b981;">
+                <div class="stat-value" id="stat-products">0</div>
+                <div class="stat-label">מוצרים יובאו</div>
+            </div>
+            <div class="stat-card" style="--color: #f59e0b;">
+                <div class="stat-value" id="stat-prices">0</div>
+                <div class="stat-label">מחירים יובאו</div>
+            </div>
+            <div class="stat-card" style="--color: #ef4444;">
+                <div class="stat-value" id="stat-errors">0</div>
+                <div class="stat-label">שגיאות</div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="btn btn-primary" onclick="startMonitoring()">▶️ התחל מעקב</button>
+            <button class="btn btn-secondary" onclick="stopMonitoring()">⏸️ השהה</button>
+            <button class="btn btn-secondary" onclick="clearLogs()">🗑️ נקה</button>
+            <button class="btn btn-secondary" onclick="autoScroll = !autoScroll">
+                <span id="scroll-icon">📌</span> גלילה אוטומטית
+            </button>
+        </div>
+
+        <!-- Source Filter -->
+        <div class="source-tabs" id="sourceTabs">
+            <button class="source-tab active" data-source="all">הכל</button>
+        </div>
+
+        <!-- Logs Panel -->
+        <div class="logs-panel" id="logsPanel">
+            <div class="log-entry">
+                <span class="log-level log-info">מידע</span>
+                <span class="log-time">--:--:--</span>
+                <span class="log-message">מחכה לתחילת מעקב...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/nav.js"></script>
+    <script>
+        let monitoringActive = false;
+        let autoScroll = true;
+        let logs = [];
+        let stats = {
+            files: 0,
+            products: 0,
+            prices: 0,
+            errors: 0
+        };
+        let currentFilter = 'all';
+
+        function addLog(level, message, source = 'system') {
+            const now = new Date();
+            const time = now.toLocaleTimeString('he-IL');
+
+            logs.unshift({
+                time,
+                level,
+                message,
+                source
+            });
+
+            // Keep only last 500 logs
+            if (logs.length > 500) logs.pop();
+
+            // Update stats
+            if (message.includes('קובץ הורד') || message.includes('Downloaded')) stats.files++;
+            if (message.includes('מוצרים') || message.includes('products')) {
+                const match = message.match(/(\d+)\s*מוצרים/);
+                if (match) stats.products += parseInt(match[1]);
+            }
+            if (message.includes('מחירים') || message.includes('prices')) {
+                const match = message.match(/(\d+)\s*מחירים/);
+                if (match) stats.prices += parseInt(match[1]);
+            }
+            if (level === 'error') stats.errors++;
+
+            renderLogs();
+            updateStats();
+        }
+
+        function renderLogs() {
+            const panel = document.getElementById('logsPanel');
+            const filteredLogs = currentFilter === 'all'
+                ? logs
+                : logs.filter(log => log.source === currentFilter);
+
+            panel.innerHTML = filteredLogs.map(log => `
+                <div class="log-entry">
+                    <span class="log-level log-${log.level}">${getLevelLabel(log.level)}</span>
+                    <span class="log-time">${log.time}</span>
+                    <span class="log-message">[${log.source}] ${log.message}</span>
+                </div>
+            `).join('');
+
+            if (autoScroll) {
+                panel.scrollTop = 0;
+            }
+        }
+
+        function getLevelLabel(level) {
+            const labels = {
+                info: 'מידע',
+                success: 'הצלחה',
+                warning: 'אזהרה',
+                error: 'שגיאה'
+            };
+            return labels[level] || level;
+        }
+
+        function updateStats() {
+            document.getElementById('stat-files').textContent = stats.files.toLocaleString();
+            document.getElementById('stat-products').textContent = stats.products.toLocaleString();
+            document.getElementById('stat-prices').textContent = stats.prices.toLocaleString();
+            document.getElementById('stat-errors').textContent = stats.errors.toLocaleString();
+        }
+
+        function startMonitoring() {
+            monitoringActive = true;
+            addLog('success', 'מעקב החל', 'system');
+
+            // Simulate monitoring (in production, connect to WebSocket or SSE)
+            simulateImport();
+        }
+
+        function stopMonitoring() {
+            monitoringActive = false;
+            addLog('warning', 'מעקב הושהה', 'system');
+        }
+
+        function clearLogs() {
+            logs = [];
+            stats = { files: 0, products: 0, prices: 0, errors: 0 };
+            renderLogs();
+            updateStats();
+            addLog('info', 'לוגים נוקו', 'system');
+        }
+
+        // Simulate import for demo
+        function simulateImport() {
+            if (!monitoringActive) return;
+
+            const sources = ['shufersal', 'superpharm', 'kingstore'];
+            const source = sources[Math.floor(Math.random() * sources.length)];
+
+            const actions = [
+                { level: 'info', msg: 'מתחבר לשרת...' },
+                { level: 'info', msg: 'סורק עמוד 1...' },
+                { level: 'success', msg: 'נמצאו 20 קבצים' },
+                { level: 'info', msg: 'מוריד קובץ Price123.xml...' },
+                { level: 'success', msg: 'קובץ הורד בהצלחה (2.3 MB)' },
+                { level: 'info', msg: 'מחלץ קובץ GZ...' },
+                { level: 'success', msg: 'קובץ חולץ' },
+                { level: 'info', msg: 'מפענח XML...' },
+                { level: 'success', msg: 'נמצאו 150 מוצרים ו-450 מחירים' },
+                { level: 'info', msg: 'מייבא לDB...' },
+                { level: 'success', msg: 'ייבוא הושלם!' }
+            ];
+
+            const action = actions[Math.floor(Math.random() * actions.length)];
+            addLog(action.level, action.msg, source);
+
+            setTimeout(simulateImport, Math.random() * 2000 + 500);
+        }
+
+        // Load sources for tabs
+        async function loadSources() {
+            try {
+                const response = await fetch('/api/admin/sources/status');
+                const data = await response.json();
+                const sources = Object.keys(data.sources || {});
+
+                const tabs = document.getElementById('sourceTabs');
+                tabs.innerHTML = '<button class="source-tab active" data-source="all" onclick="filterLogs(\'all\')">הכל</button>';
+
+                sources.forEach(source => {
+                    tabs.innerHTML += `
+                        <button class="source-tab" data-source="${source}" onclick="filterLogs('${source}')">
+                            ${source}
+                        </button>
+                    `;
+                });
+            } catch (error) {
+                console.error('Error loading sources:', error);
+            }
+        }
+
+        function filterLogs(source) {
+            currentFilter = source;
+            document.querySelectorAll('.source-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.source === source);
+            });
+            renderLogs();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSources();
+        });
+    </script>
+</body>
+
+</html>

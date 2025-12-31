@@ -191,3 +191,6 @@ scripts\supermarket\import-all-kingstore.bat
 תאריך: 20 דצמבר 2025  
 סטטוס: ✅ **תוקן!**
 
+
+
+

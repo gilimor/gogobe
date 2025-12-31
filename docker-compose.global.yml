@@ -1,0 +1,635 @@
+# ============================================================================
+# Gogobe Global - Multi-Region Docker Compose
+# Simulates 4 global regions: USA, Europe, Israel, Asia
+# High Availability: Each region can work independently
+# ============================================================================
+
+version: '3.8'
+
+networks:
+  # Global network - connects all regions
+  global-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+  
+  # Regional networks (isolated)
+  israel-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+  
+  usa-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
+  
+  europe-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.23.0.0/16
+  
+  asia-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.24.0.0/16
+
+# ============================================================================
+# GLOBAL SERVICES (Shared across all regions)
+# ============================================================================
+
+services:
+  # Global Load Balancer
+  global-lb:
+    image: nginx:alpine
+    container_name: gogobe-global-lb
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/global-lb.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - global-network
+    depends_on:
+      - api-israel
+      - api-usa
+      - api-europe
+      - api-asia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Global Master Database (CockroachDB - Multi-Master)
+  cockroach-global:
+    image: cockroachdb/cockroach:latest
+    container_name: gogobe-cockroach-global
+    command: start-single-node --insecure --advertise-addr=cockroach-global
+    ports:
+      - "26257:26257"  # SQL
+      - "8080:8080"    # Admin UI
+    volumes:
+      - cockroach-global-data:/cockroach/cockroach-data
+    networks:
+      - global-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Global Kafka (for cross-region events)
+  kafka-global:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: gogobe-kafka-global
+    depends_on:
+      - zookeeper-global
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 0
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-global:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-global:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    networks:
+      - global-network
+    volumes:
+      - kafka-global-data:/var/lib/kafka/data
+    restart: unless-stopped
+
+  zookeeper-global:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: gogobe-zookeeper-global
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - global-network
+    volumes:
+      - zookeeper-global-data:/var/lib/zookeeper/data
+    restart: unless-stopped
+
+# ============================================================================
+# ISRAEL REGION 🇮🇱
+# ============================================================================
+
+  # PostgreSQL - Israel
+  postgres-israel:
+    image: postgres:15-alpine
+    container_name: gogobe-db-israel
+    environment:
+      POSTGRES_DB: gogobe_il
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-9152245-Gl!}
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=he_IL.UTF-8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-israel-data:/var/lib/postgresql/data
+      - ./backend/database:/docker-entrypoint-initdb.d:ro
+    networks:
+      - israel-network
+      - global-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d gogobe_il"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis - Israel
+  redis-israel:
+    image: redis:7-alpine
+    container_name: gogobe-redis-israel
+    command: redis-server --maxmemory 1gb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-israel-data:/data
+    networks:
+      - israel-network
+      - global-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # NATS - Israel (Regional message broker)
+  nats-israel:
+    image: nats:latest
+    container_name: gogobe-nats-israel
+    command: "-js -m 8222"
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    networks:
+      - israel-network
+      - global-network
+    restart: unless-stopped
+
+  # API Gateway - Israel
+  api-israel:
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile
+    container_name: gogobe-api-israel
+    environment:
+      REGION: IL
+      DB_HOST: postgres-israel
+      DB_PORT: 5432
+      DB_NAME: gogobe_il
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD:-9152245-Gl!}
+      REDIS_HOST: redis-israel
+      REDIS_PORT: 6379
+      NATS_URL: nats://nats-israel:4222
+      KAFKA_GLOBAL: kafka-global:9092
+      COCKROACH_URL: postgresql://root@cockroach-global:26257/gogobe_global?sslmode=disable
+    ports:
+      - "8001:8000"
+    networks:
+      - israel-network
+      - global-network
+    depends_on:
+      - postgres-israel
+      - redis-israel
+      - nats-israel
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Product Processor - Israel
+  product-processor-israel:
+    build:
+      context: ./services/product-processor
+      dockerfile: Dockerfile
+    container_name: gogobe-product-processor-israel
+    environment:
+      REGION: IL
+      DB_HOST: postgres-israel
+      DB_NAME: gogobe_il
+      REDIS_HOST: redis-israel
+      NATS_URL: nats://nats-israel:4222
+    networks:
+      - israel-network
+      - global-network
+    depends_on:
+      - postgres-israel
+      - redis-israel
+      - nats-israel
+    restart: unless-stopped
+    deploy:
+      replicas: 2
+
+# ============================================================================
+# USA REGION 🇺🇸
+# ============================================================================
+
+  postgres-usa:
+    image: postgres:15-alpine
+    container_name: gogobe-db-usa
+    environment:
+      POSTGRES_DB: gogobe_us
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-9152245-Gl!}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-usa-data:/var/lib/postgresql/data
+      - ./backend/database:/docker-entrypoint-initdb.d:ro
+    networks:
+      - usa-network
+      - global-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d gogobe_us"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis-usa:
+    image: redis:7-alpine
+    container_name: gogobe-redis-usa
+    command: redis-server --maxmemory 2gb --maxmemory-policy allkeys-lru
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-usa-data:/data
+    networks:
+      - usa-network
+      - global-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  nats-usa:
+    image: nats:latest
+    container_name: gogobe-nats-usa
+    command: "-js -m 8223"
+    ports:
+      - "4223:4222"
+      - "8223:8222"
+    networks:
+      - usa-network
+      - global-network
+    restart: unless-stopped
+
+  api-usa:
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile
+    container_name: gogobe-api-usa
+    environment:
+      REGION: US
+      DB_HOST: postgres-usa
+      DB_PORT: 5432
+      DB_NAME: gogobe_us
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD:-9152245-Gl!}
+      REDIS_HOST: redis-usa
+      REDIS_PORT: 6379
+      NATS_URL: nats://nats-usa:4222
+      KAFKA_GLOBAL: kafka-global:9092
+      COCKROACH_URL: postgresql://root@cockroach-global:26257/gogobe_global?sslmode=disable
+    ports:
+      - "8002:8000"
+    networks:
+      - usa-network
+      - global-network
+    depends_on:
+      - postgres-usa
+      - redis-usa
+      - nats-usa
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  product-processor-usa:
+    build:
+      context: ./services/product-processor
+      dockerfile: Dockerfile
+    container_name: gogobe-product-processor-usa
+    environment:
+      REGION: US
+      DB_HOST: postgres-usa
+      DB_NAME: gogobe_us
+      REDIS_HOST: redis-usa
+      NATS_URL: nats://nats-usa:4222
+    networks:
+      - usa-network
+      - global-network
+    depends_on:
+      - postgres-usa
+      - redis-usa
+      - nats-usa
+    restart: unless-stopped
+    deploy:
+      replicas: 3
+
+# ============================================================================
+# EUROPE REGION 🇪🇺
+# ============================================================================
+
+  postgres-europe:
+    image: postgres:15-alpine
+    container_name: gogobe-db-europe
+    environment:
+      POSTGRES_DB: gogobe_eu
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-9152245-Gl!}
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-europe-data:/var/lib/postgresql/data
+      - ./backend/database:/docker-entrypoint-initdb.d:ro
+    networks:
+      - europe-network
+      - global-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d gogobe_eu"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis-europe:
+    image: redis:7-alpine
+    container_name: gogobe-redis-europe
+    command: redis-server --maxmemory 1.5gb --maxmemory-policy allkeys-lru
+    ports:
+      - "6381:6379"
+    volumes:
+      - redis-europe-data:/data
+    networks:
+      - europe-network
+      - global-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  nats-europe:
+    image: nats:latest
+    container_name: gogobe-nats-europe
+    command: "-js -m 8224"
+    ports:
+      - "4224:4222"
+      - "8224:8222"
+    networks:
+      - europe-network
+      - global-network
+    restart: unless-stopped
+
+  api-europe:
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile
+    container_name: gogobe-api-europe
+    environment:
+      REGION: EU
+      DB_HOST: postgres-europe
+      DB_PORT: 5432
+      DB_NAME: gogobe_eu
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD:-9152245-Gl!}
+      REDIS_HOST: redis-europe
+      REDIS_PORT: 6379
+      NATS_URL: nats://nats-europe:4222
+      KAFKA_GLOBAL: kafka-global:9092
+      COCKROACH_URL: postgresql://root@cockroach-global:26257/gogobe_global?sslmode=disable
+    ports:
+      - "8003:8000"
+    networks:
+      - europe-network
+      - global-network
+    depends_on:
+      - postgres-europe
+      - redis-europe
+      - nats-europe
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  product-processor-europe:
+    build:
+      context: ./services/product-processor
+      dockerfile: Dockerfile
+    container_name: gogobe-product-processor-europe
+    environment:
+      REGION: EU
+      DB_HOST: postgres-europe
+      DB_NAME: gogobe_eu
+      REDIS_HOST: redis-europe
+      NATS_URL: nats://nats-europe:4222
+    networks:
+      - europe-network
+      - global-network
+    depends_on:
+      - postgres-europe
+      - redis-europe
+      - nats-europe
+    restart: unless-stopped
+    deploy:
+      replicas: 2
+
+# ============================================================================
+# ASIA REGION 🌏
+# ============================================================================
+
+  postgres-asia:
+    image: postgres:15-alpine
+    container_name: gogobe-db-asia
+    environment:
+      POSTGRES_DB: gogobe_asia
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-9152245-Gl!}
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres-asia-data:/var/lib/postgresql/data
+      - ./backend/database:/docker-entrypoint-initdb.d:ro
+    networks:
+      - asia-network
+      - global-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d gogobe_asia"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis-asia:
+    image: redis:7-alpine
+    container_name: gogobe-redis-asia
+    command: redis-server --maxmemory 1gb --maxmemory-policy allkeys-lru
+    ports:
+      - "6382:6379"
+    volumes:
+      - redis-asia-data:/data
+    networks:
+      - asia-network
+      - global-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  nats-asia:
+    image: nats:latest
+    container_name: gogobe-nats-asia
+    command: "-js -m 8225"
+    ports:
+      - "4225:4222"
+      - "8225:8222"
+    networks:
+      - asia-network
+      - global-network
+    restart: unless-stopped
+
+  api-asia:
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile
+    container_name: gogobe-api-asia
+    environment:
+      REGION: ASIA
+      DB_HOST: postgres-asia
+      DB_PORT: 5432
+      DB_NAME: gogobe_asia
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD:-9152245-Gl!}
+      REDIS_HOST: redis-asia
+      REDIS_PORT: 6379
+      NATS_URL: nats://nats-asia:4222
+      KAFKA_GLOBAL: kafka-global:9092
+      COCKROACH_URL: postgresql://root@cockroach-global:26257/gogobe_global?sslmode=disable
+    ports:
+      - "8004:8000"
+    networks:
+      - asia-network
+      - global-network
+    depends_on:
+      - postgres-asia
+      - redis-asia
+      - nats-asia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  product-processor-asia:
+    build:
+      context: ./services/product-processor
+      dockerfile: Dockerfile
+    container_name: gogobe-product-processor-asia
+    environment:
+      REGION: ASIA
+      DB_HOST: postgres-asia
+      DB_NAME: gogobe_asia
+      REDIS_HOST: redis-asia
+      NATS_URL: nats://nats-asia:4222
+    networks:
+      - asia-network
+      - global-network
+    depends_on:
+      - postgres-asia
+      - redis-asia
+      - nats-asia
+    restart: unless-stopped
+    deploy:
+      replicas: 2
+
+# ============================================================================
+# MONITORING & OBSERVABILITY
+# ============================================================================
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: gogobe-prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    networks:
+      - global-network
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: gogobe-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_INSTALL_PLUGINS: grafana-worldmap-panel
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana-dashboards:/etc/grafana/provisioning/dashboards:ro
+    networks:
+      - global-network
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+# ============================================================================
+# VOLUMES
+# ============================================================================
+
+volumes:
+  # Global
+  cockroach-global-data:
+  kafka-global-data:
+  zookeeper-global-data:
+  
+  # Israel
+  postgres-israel-data:
+  redis-israel-data:
+  
+  # USA
+  postgres-usa-data:
+  redis-usa-data:
+  
+  # Europe
+  postgres-europe-data:
+  redis-europe-data:
+  
+  # Asia
+  postgres-asia-data:
+  redis-asia-data:
+  
+  # Monitoring
+  prometheus-data:
+  grafana-data:

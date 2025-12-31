@@ -1,0 +1,16 @@
+﻿<rss version="2.0">
+  <channel>
+    <title>FuelWatch Prices For All Metro Regions</title>
+    <link>https://www.fuelwatch.wa.gov.au/</link>
+    <description>Tomorrow's price is not available now</description>
+    <language>en-us</language>
+    <copyright>Copyright 2025 FuelWatch. All Rights Reserved.</copyright>
+    <lastBuildDate>Sun, 28 Dec 2025 03:09:03 +0800</lastBuildDate>
+    <ttl>681</ttl>
+    <image>
+      <url>/fuelwatch/art/fuelwatch-logo.gif</url>
+      <title>FuelWatch</title>
+      <link>https://www.fuelwatch.wa.gov.au</link>
+    </image>
+  </channel>
+</rss>

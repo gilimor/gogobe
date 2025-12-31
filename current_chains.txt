@@ -1,0 +1,4 @@
+Current Chains in DB:
+---------------------
+ID: 1, Name: Chain 7290058108879, Code: 7290058108879
+ID: 2, Name: רמי לוי, Code: 7290058140886

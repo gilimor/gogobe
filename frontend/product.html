@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogobe - השוואת מוצר</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Chart.js & Map -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+    <!-- Master Nav -->
+    <script src="nav.js" defer></script>
+
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        .bg-grid {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Custom Marker */
+        .price-marker {
+            background: white;
+            border-radius: 99px;
+            padding: 2px 6px;
+            font-weight: bold;
+            font-size: 11px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            white-space: nowrap;
+            border: 1px solid #cbd5e1;
+        }
+
+        .price-marker.cheap {
+            background: #ecfdf5;
+            color: #047857;
+            border-color: #10b981;
+            z-index: 100 !important;
+        }
+
+        .price-marker.exp {
+            background: #fef2f2;
+            color: #b91c1c;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+
+    <!-- Spacer for fixed Nav -->
+    <div style="height: 64px;"></div>
+
+    <div id="loader" class="fixed inset-0 bg-slate-50 z-40 flex flex-col items-center justify-center">
+        <i class="fas fa-circle-notch fa-spin text-4xl text-blue-600 mb-4"></i>
+        <h2 class="text-xl font-bold text-slate-600">סורק רשתות בזמן אמת...</h2>
+    </div>
+
+    <!-- MAIN PRODUCT HEADER -->
+    <div class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row gap-8">
+
+                <!-- Product Image Area -->
+                <div class="w-full md:w-1/3 lg:w-1/4">
+                    <div
+                        class="bg-slate-50 rounded-2xl aspect-square flex items-center justify-center border border-slate-100 relative group overflow-hidden">
+                        <i class="fas fa-shopping-basket text-6xl text-slate-200"></i>
+                        <div
+                            class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                            <span class="bg-white px-4 py-2 rounded-full shadow text-sm font-bold">הגדל תמונה</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="flex-1">
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span
+                            class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                            id="p-category">קטגוריה</span>
+                        <span class="bg-slate-100 text-slate-500 px-3 py-1 rounded-full text-xs font-mono"
+                            id="p-ean">BARCODE</span>
+                    </div>
+
+                    <h1 class="text-3xl md:text-4xl font-black text-slate-900 mb-4 leading-tight" id="p-name">שם המוצר
+                        נטען...</h1>
+
+                    <div class="flex items-end gap-2 mb-6 text-slate-500">
+                        נמצא ב-<strong class="text-slate-900" id="stat-total">-</strong> רשתות שונות.
+                    </div>
+
+                    <!-- Main Price Card -->
+                    <div
+                        class="bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-2xl p-6 shadow-sm inline-block min-w-[300px]">
+                        <div class="text-xs font-bold text-slate-400 uppercase mb-1">המחיר הזול ביותר שנמצא</div>
+                        <div class="flex items-end gap-2">
+                            <div class="text-4xl font-black text-emerald-600" id="stat-min-price">-</div>
+                            <div class="text-sm font-bold text-slate-400 mb-2">ברשת רמי לוי</div>
+                        </div>
+                        <div class="text-xs text-emerald-600 font-bold mt-2">
+                            <i class="fas fa-check-circle"></i> חסכון של ₪4.50 מול הממוצע
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex gap-3">
+                        <button onclick="scrollToDeals()"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition shadow-lg shadow-blue-500/30 flex items-center gap-2">
+                            <i class="fas fa-list-ol"></i> השוואת מחירים מלאה
+                        </button>
+                        <button
+                            class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-6 py-3 rounded-xl font-bold transition">
+                            <i class="far fa-bell"></i> התראת ירידת מחיר
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- LEFT COLUMN: DEALS & CHART -->
+        <div class="lg:col-span-2 space-y-8">
+
+            <!-- Deals Table -->
+            <div id="deals-section" class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                    <h3 class="font-bold text-xl text-slate-800 flex items-center gap-2">
+                        <i class="fas fa-tags text-blue-500"></i> ההצעות המשתלמות ביותר
+                    </h3>
+                    <div class="text-xs text-slate-400">מעודכן לפני 2 דקות</div>
+                </div>
+
+                <div id="deals-list" class="divide-y divide-slate-50">
+                    <!-- JS Injected -->
+                </div>
+
+                <button id="load-more-btn" onclick="toggleAllPrices()"
+                    class="w-full py-4 text-center text-sm font-bold text-slate-500 hover:bg-slate-50 hover:text-blue-600 transition">
+                    הצג את כל החנויות
+                </button>
+            </div>
+
+            <!-- History Chart -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <h3 class="font-bold text-lg text-slate-800 mb-6 flex items-center gap-2"><i
+                        class="fas fa-chart-line text-purple-500"></i> היסטוריית מחירים (30 יום)</h3>
+                <div class="h-64">
+                    <canvas id="historyChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR: MAP & INFO -->
+        <div class="space-y-8">
+
+            <!-- Map Card -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-4 border-b border-slate-100 font-bold text-slate-700 flex justify-between items-center">
+                    <span><i class="fas fa-map-marked-alt text-emerald-500 mr-2"></i> מפת מחירים</span>
+                    <span class="text-xs bg-slate-100 px-2 py-1 rounded">LIVE</span>
+                </div>
+                <div id="priceMap" class="h-80 w-full z-0"></div>
+                <div class="p-4 text-xs text-slate-400 text-center bg-slate-50">
+                    מוצגות חנויות ברדיוס 15 ק"מ
+                </div>
+            </div>
+
+            <!-- AI Insight -->
+            <div
+                class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-lg p-6 text-white relative overflow-hidden">
+                <i class="fas fa-robot absolute -bottom-4 -left-4 text-9xl text-white/10"></i>
+                <div class="relative z-10">
+                    <h3 class="font-bold text-lg mb-2 flex items-center gap-2"><i class="fas fa-magic"></i> AI Insight
+                    </h3>
+                    <p class="text-blue-100 text-sm leading-relaxed">
+                        המערכת זיהתה שמוצר זה נמצא במגמת ירידה עונתית. מומלץ להמתין עוד יומיים לקבלת המחיר האופטימלי, או
+                        לקנות ברשתות הדיסקאונט הגדולות בדרום הארץ.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+        let allPrices = [];
+        let showingAll = false;
+        let map = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const pid = params.get('id');
+            // Mock or Fetch
+            if (!pid) return;
+
+            try {
+                const res = await fetch(`${API_BASE}/products/${pid}`);
+                const data = await res.json();
+                render(data);
+            } catch (e) {
+                console.error(e);
+                // Demo fallback if API fails
+            }
+        });
+
+        async function render(data) {
+            try {
+                const { product, prices, history } = data;
+                // Force Sort by Price ASC (Cheapest First)
+                if (prices) {
+                    prices.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+                }
+                allPrices = prices || [];
+
+                document.getElementById('loader').classList.add('hidden');
+
+                if (!product || !prices) {
+                    throw new Error("Invalid Data");
+                }
+
+                // Text
+                document.getElementById('p-name').innerText = product.name || 'מוצר לא ידוע';
+                document.getElementById('p-ean').innerText = product.ean || 'N/A';
+                document.getElementById('p-category').innerText = product.category_name || 'כללי';
+                document.getElementById('stat-total').innerText = prices.length;
+
+                const minP = prices.length ? Math.min(...prices.map(p => p.price)) : 0;
+
+                // Winners Logic (Tie Breaking)
+                const winners = prices.filter(p => p.price === minP);
+                const winnerText = winners.length > 1
+                    ? `ברשת ${winners[0].chain_name} (+${winners.length - 1} נוספים)`
+                    : `ברשת ${winners[0]?.chain_name || 'לא ידוע'}`;
+
+                document.getElementById('stat-min-price').innerText = `${minP.toFixed(2)}`;
+                // Update text next to price (was hardcoded Rami Levy)
+                document.querySelector('#stat-min-price').nextElementSibling.innerText = winnerText;
+
+                // Savings Calculation
+                const avgPrice = prices.length ? (prices.reduce((a, b) => a + b.price, 0) / prices.length) : 0;
+                const savings = avgPrice - minP;
+                const currencySym = getCurrencySymbol(prices[0]?.currency);
+                // Update savings text (was hardcoded 4.50)
+                const savingsEl = document.querySelector('.text-emerald-600.font-bold.mt-2');
+                if (savingsEl) {
+                    savingsEl.innerHTML = `<i class="fas fa-check-circle"></i> חסכון של ${currencySym}${savings.toFixed(2)} מול הממוצע`;
+                }
+
+                // Lists
+                renderDeals(prices.slice(0, 5));
+
+                // Map
+                initMap(prices);
+
+                // Chart
+                if (history && history.length > 0) {
+                    const ctx = document.getElementById('historyChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: history.map(h => new Date(h.date).toLocaleDateString('he-IL')),
+                            datasets: [{
+                                label: 'מחיר ממוצע',
+                                data: history.map(h => h.avg_price),
+                                borderColor: '#2563eb',
+                                backgroundColor: 'rgba(37, 99, 235, 0.05)',
+                                fill: true,
+                                tension: 0.4
+                            }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                    });
+                }
+
+                // Activate Makeover
+                renderMakeover(data);
+            } catch (e) {
+                console.error("Render Error:", e);
+                document.getElementById('loader').classList.add('hidden');
+                alert("שגיאה בהצגת נתוני המוצר: " + e.message);
+            }
+        }
+
+        function renderDeals(list) {
+            const minP = allPrices.length ? Math.min(...allPrices.map(p => p.price)) : 0;
+            const container = document.getElementById('deals-list');
+
+            if (!list || list.length === 0) {
+                container.innerHTML = '<div class="p-4 text-center text-slate-400">אין נתונים להצגה</div>';
+                return;
+            }
+
+            container.innerHTML = list.map(p => {
+                const isCheap = p.price === minP;
+                const gap = p.price - minP;
+
+                // Human Readable Name Logic
+                // user wants: "SuperPharm - Azrieli Mall (Store 288)"
+                let displayName = p.store_name_he || p.store_name || 'חנות לא ידועה';
+                const locationInfo = p.address || p.city || '';
+
+                // If the name is generic (e.g. just numbers or "Store X"), prepend Chain Name
+                if (!isNaN(displayName) || displayName.toLowerCase().includes('store')) {
+                    displayName = `${p.chain_name} - ${displayName}`;
+                }
+
+                // Append location if not already in name
+                if (locationInfo && !displayName.includes(locationInfo)) {
+                    displayName += ` - ${locationInfo}`;
+                }
+
+                return `
+                <div class="p-4 flex items-center justify-between hover:bg-slate-50 transition cursor-pointer group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg ${isCheap ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-500'}">
+                            ${isCheap ? '1' : '<i class="fas fa-store text-sm"></i>'}
+                        </div>
+                        <div>
+                            <div class="font-bold text-slate-800 group-hover:text-blue-600">${displayName}</div>
+                            <div class="text-xs text-slate-400 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> ${p.city || 'סניף מרכזי'}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-left">
+                        <div class="font-black text-lg text-slate-900">${getCurrencySymbol(p.currency)}${p.price.toFixed(2)}</div>
+                        ${isCheap ? '<div class="text-[10px] font-bold text-emerald-600">המחיר הזול ביותר</div>' : `<div class="text-[10px] text-red-400">+${getCurrencySymbol(p.currency)}${gap.toFixed(2)}</div>`}
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // =============================================
+        // NEW: MAKEOVER FEATURES
+        // =============================================
+
+        function renderMakeover(data) {
+            try {
+                const { chain_stats, regional_stats, similar_products, product, prices } = data;
+
+                // 1. DYNAMIC SEO
+                const minPrice = prices.length ? Math.min(...prices.map(p => p.price)) : 0;
+                const bestChain = prices.find(p => p.price === minPrice)?.chain_name || 'Gogobe';
+
+                document.title = `${product.name} | החל מ-₪${minPrice} - השוואת מחירים Gogobe`;
+
+                // 2. CHAIN COMPARISON CHART
+                if (chain_stats && chain_stats.length > 0) {
+                    // Find the RIGHT SIDEBAR container effectively
+                    // It is the 3rd column in the main grid
+                    const rightSidebar = document.querySelector('.lg\\:col-span-3') || document.querySelector('.lg\\:grid-cols-3 > div:last-child');
+
+                    if (rightSidebar) {
+                        const chartDiv = document.createElement('div');
+                        chartDiv.className = 'bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mt-6';
+                        chartDiv.innerHTML = `
+                            <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-chart-bar text-blue-500"></i> השוואה בין רשתות
+                            </h3>
+                            <div class="h-64"><canvas id="chainChart"></canvas></div>
+                         `;
+                        rightSidebar.appendChild(chartDiv);
+
+                        const ctx = document.getElementById('chainChart').getContext('2d');
+                        new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: chain_stats.map(c => c.name),
+                                datasets: [{
+                                    label: 'מחיר ממוצע',
+                                    data: chain_stats.map(c => c.avg_price),
+                                    backgroundColor: chain_stats.map(c => c.name === bestChain ? '#10b981' : '#cbd5e1'),
+                                    borderRadius: 6
+                                }]
+                            },
+                            options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } } }
+                        });
+                    }
+                }
+
+                // 3. REGIONAL ANALYSIS
+                if (regional_stats && regional_stats.length > 0) {
+                    const dealsSection = document.getElementById('deals-section');
+                    if (dealsSection && dealsSection.parentNode) {
+                        const regionDiv = document.createElement('div');
+                        regionDiv.className = 'bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mt-8';
+                        regionDiv.innerHTML = `
+                            <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-globe-israel text-indigo-500"></i> איפה הכי זול בארץ?
+                            </h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm text-left">
+                                    <thead class="text-xs text-slate-400 uppercase bg-slate-50">
+                                        <tr>
+                                            <th class="px-4 py-2 rounded-r-lg">אזור</th>
+                                            <th class="px-4 py-2">מחיר ממוצע</th>
+                                            <th class="px-4 py-2 rounded-l-lg">זמינות</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100">
+                                        ${regional_stats.map(r => `
+                                            <tr>
+                                                <td class="px-4 py-3 font-bold text-slate-700">${translateRegion(r.region)}</td>
+                                                <td class="px-4 py-3">₪${parseFloat(r.avg_price).toFixed(2)}</td>
+                                                <td class="px-4 py-3 text-slate-400 text-xs">${r.store_count} סניפים</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                         `;
+                        dealsSection.parentNode.insertBefore(regionDiv, dealsSection.nextSibling);
+                    }
+                }
+
+                // 4. GENERATED AI INSIGHT TEXT
+                if (prices.length > 0) {
+                    const aiCard = document.querySelector('.bg-gradient-to-br p') || document.querySelector('.bg-gradient-to-br.from-blue-600');
+                    if (aiCard) {
+                        const avgPrice = (prices.reduce((a, b) => a + b.price, 0) / prices.length).toFixed(2);
+                        const savings = (avgPrice - minPrice).toFixed(2);
+                        const pct = Math.round((savings / avgPrice) * 100);
+
+                        aiCard.innerHTML = `
+                            ניתוח AI: המוצר נמכר במחיר ממוצע של <b>₪${avgPrice}</b>. 
+                            בקנייה ברשת <b>${bestChain}</b> ניתן לחסוך ${pct}% (כ-₪${savings}) בכל קנייה.
+                            ${regional_stats && regional_stats.length > 0 ? `<br>האזור המשתלם ביותר כרגע הוא <b>${translateRegion(regional_stats[0].region)}</b>.` : ''}
+                        `;
+                    }
+                }
+            } catch (err) {
+                console.error("Makeover Error:", err);
+            }
+        }
+
+        function toggleAllPrices() {
+            const btn = document.getElementById('load-more-btn');
+            if (!showingAll) {
+                renderDeals(allPrices);
+                btn.innerText = "הצג פחות";
+            } else {
+                renderDeals(allPrices.slice(0, 5));
+                btn.innerText = "הצג את כל החנויות";
+            }
+            showingAll = !showingAll;
+        }
+
+        function scrollToDeals() {
+            document.getElementById('deals-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function translateRegion(en) {
+            const map = {
+                'North': 'צפון', 'South': 'דרום', 'Center': 'מרכז',
+                'Jerusalem': 'ירושלים', 'Sharon': 'שרון', 'Other': 'שאר הארץ'
+            };
+            return map[en] || en;
+        }
+
+        function initMap(prices) {
+            const valid = prices.filter(p => p.latitude);
+            if (valid.length === 0) return;
+
+            const center = [valid[0].latitude, valid[0].longitude];
+            if (map) map.remove();
+
+            map = L.map('priceMap', { zoomControl: false }).setView(center, 10);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
+
+            const minP = Math.min(...prices.map(p => p.price));
+
+            valid.forEach(p => {
+                const isCheap = p.price === minP;
+                const sym = getCurrencySymbol(p.currency);
+                const iconHtml = `<div class="price-marker ${isCheap ? 'cheap' : 'exp'}">${sym}${p.price}</div>`;
+
+                L.marker([p.latitude, p.longitude], {
+                    icon: L.divIcon({ className: '', html: iconHtml, iconSize: [40, 20] })
+                }).addTo(map).bindPopup(`<b>${p.store_name}</b><br>${sym}${p.price}`);
+            });
+        }
+
+        function getCurrencySymbol(currencyCode) {
+            if (!currencyCode) return '₪';
+            const map = {
+                'ILS': '₪',
+                'USD': '$',
+                'EUR': '€',
+                'GBP': '£',
+                'JPY': '¥'
+            };
+            return map[currencyCode] || (currencyCode + ' ');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<OrderXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Envelope>
+    <ChainId>7290172900007</ChainId>
+    <SubChainId>000</SubChainId>
+    <StoreId>311</StoreId>
+    <BikoretNo>0</BikoretNo>
+    <Header>
+      <Details>
+        <Line>
+          <PriceUpdateDate>2025-12-30</PriceUpdateDate>
+          <ItemCode>7290000066332</ItemCode>
+          <ItemName>אפרופו קטן 50 גרם</ItemName>
+          <ManufacturerName>General</ManufacturerName>
+          <ManufactureCountry />
+          <ManufacturerItemDescription>חטיף תירס</ManufacturerItemDescription>
+          <UnitQty>גרם</UnitQty>
+          <Quantity>0.00</Quantity>
+          <UnitOfMeasure>100 גרם</UnitOfMeasure>
+          <blsWeighted>0</blsWeighted>
+          <QtyInPackage>1.00</QtyInPackage>
+          <ItemPrice>5.00</ItemPrice>
+          <UnitOfMeasurePrice>0.00</UnitOfMeasurePrice>
+          <AllowDiscount>1</AllowDiscount>
+          <ItemStatus>0</ItemStatus>
+        </Line>
+      </Details>
+    </Header>
+  </Envelope>
+</OrderXml>

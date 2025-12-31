@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogobe - תרשים זרימת מחירים</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .nav {
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .nav a:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        .nav a.active {
+            background: #764ba2;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .flow-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .flow-section h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .flow-diagram {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 30px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre;
+            direction: ltr;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .service-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-right: 5px solid #667eea;
+        }
+
+        .service-box h3 {
+            font-size: 20px;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-box .icon {
+            font-size: 32px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .info-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin: 2px;
+            font-weight: bold;
+        }
+
+        .tag.kafka {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .tag.redis {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .tag.postgres {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag.llm {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .tag.go {
+            background: #e1f5fe;
+            color: #0277bd;
+        }
+
+        .tag.python {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .timeline {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin: 15px 0;
+            align-items: center;
+        }
+
+        .timeline-time {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-right: 3px solid #667eea;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🔄 תרשים זרימת מחירים - Gogobe</h1>
+        <p>מסלול מלא: מקובץ XML ועד למחיר זמין במערכת</p>
+    </div>
+
+    <div class="nav">
+        <a href="index.html">🏠 דף הבית</a>
+        <a href="price-flow.html" class="active">💰 זרימת מחירים</a>
+        <a href="implementation.html">🗺️ תכנית יישום</a>
+        <a href="categories.html">🗂️ ניהול קטגוריות</a>
+        <a href="microservices-documentation.html">🔧 Microservices</a>
+        <a href="../frontend/index.html">🔍 חזרה לאתר</a>
+    </div>
+
+    <div class="container">
+        <!-- Overview -->
+        <div class="flow-section">
+            <h2>📋 סקירה כללית</h2>
+            <p style="font-size: 18px; color: #666; margin-bottom: 20px;">
+                תהליך קליטת מחיר כולל 7 microservices שעובדים במקביל ובאופן אסינכרוני.
+                <strong>זמן עד מחיר זמין: 1-2 שניות!</strong>
+            </p>
+
+            <div class="timeline">
+                <h3 style="margin-bottom: 15px;">⏱️ Timeline - Flow נכון!</h3>
+                <div class="timeline-item">
+                    <div class="timeline-time">0ms</div>
+                    <div class="timeline-content">קובץ XML התקבל</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10ms</div>
+                    <div class="timeline-content">Import Service: Parse XML → Kafka</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">15ms</div>
+                    <div class="timeline-content">Store Processor: Get/Create store</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">20ms</div>
+                    <div class="timeline-content">Product Processor: Get/Create product (Cache!)</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time" style="background: #7c3aed;">👑 250ms</div>
+                    <div class="timeline-content" style="border-right-color: #7c3aed; background: #faf5ff;">
+                        <strong style="color: #7c3aed;">Master Product Linking (הפטנט!)</strong><br>
+                        <small style="color: #5b21b6;">חובה! לא ניתן להמשיך בלי קישור לאב מוצר</small>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">1000ms</div>
+                    <div class="timeline-content">
+                        Price Processor: Batch insert (1000 prices)<br>
+                        <small style="color: #666;">כל מחיר כבר מקושר ל-master_product_id!</small>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time" style="background: #10b981;">✅ 1s</div>
+                    <div class="timeline-content" style="border-right-color: #10b981; background: #d1fae5;">
+                        <strong>המחיר זמין ושימושי מיד!</strong><br>
+                        <small>כולל master_product_id - מוכן להשוואה</small>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time" style="background: #3b82f6;">5min</div>
+                    <div class="timeline-content" style="border-right-color: #3b82f6;">Geocoding: GPS (async - לא קריטי)
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time" style="background: #3b82f6;">15min</div>
+                    <div class="timeline-content" style="border-right-color: #3b82f6;">Currency Conversion: USD (async -
+                        לא קריטי)</div>
+                </div>
+            </div>
+
+            <div
+                style="background: #fee2e2; border: 3px solid #dc2626; padding: 20px; border-radius: 15px; margin-top: 20px;">
+                <h3 style="color: #dc2626; margin-bottom: 15px;">🚫 כלל ברזל!</h3>
+                <p style="font-size: 18px; color: #333; line-height: 2;">
+                    <strong>אסור להכניס מחיר ל-DB ללא master_product_id!</strong><br>
+                    <br>
+                    ✅ <strong>נכון:</strong> Product → Master Product → Price (עם master_product_id)<br>
+                    ❌ <strong>לא נכון:</strong> Product → Price → Master Product (async)<br>
+                    <br>
+                    <span style="color: #dc2626; font-weight: bold;">
+                        מוצר ללא אב מוצר = מוצר "חופשי" = לא תקין = לא נכנס למערכת!
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service 1 -->
+    <div class="service-box">
+        <h3><span class="icon">📥</span> 1. Import Service</h3>
+        <p>קריאת קבצי XML/GZ ושליחה ל-Kafka</p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>קלט:</strong>
+                קבצי מחירונים (FTP/HTTP)
+            </div>
+            <div class="info-item">
+                <strong>פלט:</strong>
+                Kafka events (products.raw, prices.raw, stores.raw)
+            </div>
+            <div class="info-item">
+                <strong>זמן עיבוד:</strong>
+                10-30 שניות לקובץ 50MB
+            </div>
+            <div class="info-item">
+                <strong>טכנולוגיה:</strong>
+                <span class="tag go">Go</span>
+                <span class="tag kafka">Kafka</span>
+            </div>
+        </div>
+
+        <div class="flow-diagram">
+            Input: prices.xml.gz (50MB, 100K products)
+            ↓
+            1. Decompress GZ
+            2. Parse XML
+            3. Extract:
+            - Stores
+            - Products
+            - Prices
+            ↓
+            Send to Kafka:
+            - Topic: stores.raw
+            - Topic: products.raw
+            - Topic: prices.raw
+            ↓
+            Output: 100K events sent ✅
+            Time: 20 seconds
+        </div>
+    </div>
+
+    <!-- Service 2 -->
+    <div class="service-box">
+        <h3><span class="icon">🏪</span> 2. Store Processor</h3>
+        <p>ניהול סניפים - Get or Create</p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>קלט:</strong>
+                Kafka topic: stores.raw
+            </div>
+            <div class="info-item">
+                <strong>פלט:</strong>
+                store_id + geocoding event
+            </div>
+            <div class="info-item">
+                <strong>Cache Hit Rate:</strong>
+                95%
+            </div>
+            <div class="info-item">
+                <strong>טכנולוגיה:</strong>
+                <span class="tag go">Go</span>
+                <span class="tag redis">Redis</span>
+                <span class="tag postgres">PostgreSQL</span>
+            </div>
+        </div>
+
+        <div class="flow-diagram">
+            Input: Kafka event (stores.raw)
+            ↓
+            1. Check Redis cache (95% hit!)
+            Key: "store:IL:7290027600007_001"
+            ↓
+            2. If miss → Check PostgreSQL
+            ↓
+            3. If not exists → Create
+            INSERT INTO stores (chain_id, store_id, name, city, address)
+            ON CONFLICT DO UPDATE
+            ↓
+            4. Cache result (24 hours)
+            ↓
+            Output: store_id = 12345
+            ↓
+            If no GPS → Send to Geocoding Service
+        </div>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="service-box">
+        <h3><span class="icon">📦</span> 3. Product Processor</h3>
+        <p>ניהול מוצרים - Get or Create</p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>קלט:</strong>
+                Kafka topic: products.raw
+            </div>
+            <div class="info-item">
+                <strong>פלט:</strong>
+                product_id + matching event
+            </div>
+            <div class="info-item">
+                <strong>Cache Hit Rate:</strong>
+                99%! 🔥
+            </div>
+            <div class="info-item">
+                <strong>טכנולוגיה:</strong>
+                <span class="tag go">Go</span>
+                <span class="tag redis">Redis</span>
+                <span class="tag postgres">PostgreSQL</span>
+            </div>
+        </div>
+
+        <div class="flow-diagram">
+            Input: Kafka event (products.raw)
+            ↓
+            1. Check Redis cache (99% hit!)
+            Key: "product:ean:7290000000001"
+            ↓
+            HIT! → product_id = 54321 (0.5ms) ⚡
+            ↓
+            2. If miss → Check PostgreSQL
+            SELECT id FROM products WHERE ean = '7290000000001'
+            ↓
+            3. If not exists → Create
+            INSERT INTO products (name, ean, manufacturer)
+            ↓
+            4. Cache result (24 hours)
+            ↓
+            Output: product_id = 54321
+            ↓
+            If new → Send to Master Product Matching
+        </div>
+    </div>
+
+    <!-- Service 4 -->
+    <div class="service-box">
+        <h3><span class="icon">💰</span> 4. Price Processor</h3>
+        <p>עיבוד מחירים - Batch Insert</p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>קלט:</strong>
+                Kafka topic: prices.raw
+            </div>
+            <div class="info-item">
+                <strong>פלט:</strong>
+                DB insert (upsert_price)
+            </div>
+            <div class="info-item">
+                <strong>Batch Size:</strong>
+                1000 prices
+            </div>
+            <div class="info-item">
+                <strong>טכנולוגיה:</strong>
+                <span class="tag go">Go</span>
+                <span class="tag postgres">PostgreSQL</span>
+            </div>
+        </div>
+
+        <div class="flow-diagram">
+            Input: Kafka event (prices.raw)
+            ↓
+            Add to batch queue
+            priceQueue.append({
+            product_id: 54321,
+            store_id: 12345,
+            price: 5.90,
+            currency: "ILS"
+            })
+            ↓
+            When queue reaches 1000 prices:
+            ↓
+            BEGIN TRANSACTION
+            ↓
+            FOR EACH price IN queue:
+            SELECT upsert_price(
+            product_id,
+            store_id,
+            price,
+            currency,
+            tolerance: 0.01 -- 1% tolerance
+            )
+            ↓
+            COMMIT
+            ↓
+            Clear queue
+            ↓
+            Output: 1000 prices inserted ✅
+            Time: ~100ms for batch
+        </div>
+    </div>
+
+    <!-- Service 5 -->
+    <div class="service-box">
+        <h3><span class="icon">🗺️</span> 5. Geocoding Service</h3>
+        <p>המרת כתובת ל-GPS (Async)</p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>קלט:</strong>
+                Kafka topic: geocoding.requests
+            </div>
+            <div class="info-item">
+                <strong>פלט:</strong>
+                latitude, longitude
+            </div>
+            <div class="info-item">
+                <strong>Rate Limit:</strong>
+                1 request/second (OSM policy)
+            </div>
+            <div class="info-item">
+                <strong>טכנולוגיה:</strong>
+                <span class="tag go">Go</span>
+                <span class="tag redis">Redis</span>
+            </div>
+        </div>
+
+        <div class="flow-diagram">
+            Input: Kafka event (geocoding.requests)
+            {
+            store_id: 12345,
+            address: "דרך מנחם בגין 132",
+            city: "תל אביב",
+            country: "Israel"
+            }
+            ↓
+            1. Check Redis cache (80% hit)
+            Key: "geo:דרך מנחם בגין 132:תל אביב:Israel"
+            ↓
+            2. If miss → Call OSM Nominatim API
+            https://nominatim.openstreetmap.org/search?
+            q=דרך מנחם בגין 132, תל אביב, Israel
+            ↓
+            Response: {lat: 32.0668, lon: 34.7913}
+            ↓
+            3. Cache result (1 year)
+            ↓
+            4. Update database
+            UPDATE stores
+            SET latitude = 32.0668, longitude = 34.7913
+            WHERE id = 12345
+            ↓
+            Output: GPS coordinates saved ✅
+            Time: 5 minutes (async, not blocking)
+        </div>
+    </div>
+
+    <!-- Service 6 -->
+    <div class="service-box">
+        <h3><span class="icon">🤖</span> 6. Master Product Matching</h3>
+        <p>קישור לאב מוצר (LLM - Async)</p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>קלט:</strong>
+                Kafka topic: product.matching.requests
+            </div>
+            <div class="info-item">
+                <strong>פלט:</strong>
+                master_product_id
+            </div>
+            <div class="info-item">
+                <strong>Match Rate:</strong>
+                70% barcode, 25% embedding, 5% new
+            </div>
+            <div class="info-item">
+                <strong>טכנולוגיה:</strong>
+                <span class="tag python">Python</span>
+                <span class="tag llm">LLM</span>
+                <span class="tag postgres">PostgreSQL</span>
+            </div>
+        </div>
+
+        <div class="flow-diagram">
+            Input: Kafka event (product.matching.requests)
+            {
+            product_id: 54321,
+            barcode: "7290000000001",
+            name: "חלב תנובה 3% 1 ליטר",
+            region: "IL"
+            }
+            ↓
+            Strategy 1: Search by barcode (70% hit)
+            SELECT id FROM master_products
+            WHERE global_ean = '7290000000001'
+            ↓
+            FOUND! → master_id = 999 (10ms) ⚡
+            ↓
+            Strategy 2: Search by embedding (25% hit)
+            Generate embedding → Search similar (pgvector)
+            Similarity > 90% → master_id = 999 (250ms)
+            ↓
+            Strategy 3: Create new master (5%)
+            LLM extracts attributes → Create master (1250ms)
+            ↓
+            Link product to master:
+            INSERT INTO product_master_links
+            UPDATE prices SET master_product_id = 999
+            ↓
+            Output: Product linked ✅
+            Time: 10 minutes (async, not blocking)
+        </div>
+    </div>
+
+    <!-- Service 7 -->
+    <div class="service-box">
+        <h3><span class="icon">💱</span> 7. Currency Conversion</h3>
+        <p>המרת מטבעות ל-USD</p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>קלט:</strong>
+                price + currency
+            </div>
+            <div class="info-item">
+                <strong>פלט:</strong>
+                price_usd
+            </div>
+            <div class="info-item">
+                <strong>Cache Hit Rate:</strong>
+                99.9%
+            </div>
+            <div class="info-item">
+                <strong>טכנולוגיה:</strong>
+                <span class="tag go">Go</span>
+                <span class="tag redis">Redis</span>
+            </div>
+        </div>
+
+        <div class="flow-diagram">
+            Input: price = 5.90 ILS
+            ↓
+            1. Check Redis cache
+            Key: "rate:ILS:USD"
+            ↓
+            HIT! → rate = 0.274 (0.5ms) ⚡
+            ↓
+            2. If miss → Fetch from API
+            https://api.exchangerate-api.com/v4/latest/ILS
+            Cache for 1 hour
+            ↓
+            3. Convert
+            price_usd = 5.90 × 0.274 = 1.62
+            ↓
+            4. Store in global_prices table
+            INSERT INTO global_prices (
+            master_product_id,
+            region,
+            price_local,
+            currency_local,
+            price_usd,
+            exchange_rate
+            )
+            ↓
+            Output: Price in USD saved ✅
+            Time: 15 minutes (async, not blocking)
+        </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="flow-section">
+        <h2>✅ סיכום</h2>
+
+        <div
+            style="background: #f0fdf4; border-right: 5px solid #10b981; padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <h3 style="color: #10b981; margin-bottom: 15px;">⚡ ביצועים</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 8px 0; border-bottom: 1px solid #d1fae5;">
+                    <strong>זמן עד מחיר זמין:</strong> 1-2 שניות
+                </li>
+                <li style="padding: 8px 0; border-bottom: 1px solid #d1fae5;">
+                    <strong>100,000 מחירים:</strong> 60 שניות
+                </li>
+                <li style="padding: 8px 0; border-bottom: 1px solid #d1fae5;">
+                    <strong>Cache hit rate:</strong> 95-99%
+                </li>
+                <li style="padding: 8px 0;">
+                    <strong>אפס כפילויות:</strong> upsert_price
+                </li>
+            </ul>
+        </div>
+
+        <div style="background: #fef3c7; border-right: 5px solid #f59e0b; padding: 20px; border-radius: 10px;">
+            <h3 style="color: #f59e0b; margin-bottom: 15px;">🔄 Async Processing</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 8px 0; border-bottom: 1px solid #fde68a;">
+                    <strong>Geocoding:</strong> 5 דקות (לא חוסם)
+                </li>
+                <li style="padding: 8px 0; border-bottom: 1px solid #fde68a;">
+                    <strong>Master Matching:</strong> 10 דקות (לא חוסם)
+                </li>
+                <li style="padding: 8px 0;">
+                    <strong>Currency Conversion:</strong> 15 דקות (לא חוסם)
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Price to Master Product Connection -->
+    <div class="flow-section"
+        style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border: 3px solid #7c3aed;">
+        <h2 style="color: #7c3aed;">👑 הקשר בין מחיר לאב מוצר</h2>
+
+        <div style="font-size: 18px; line-height: 2; margin: 20px 0; color: #333;">
+            <strong>זה הלב של כל המערכת!</strong><br>
+            כל מחיר חייב להיות מקושר לאב מוצר כדי להיות שימושי.
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 25px 0;">
+            <div style="background: #fee2e2; padding: 20px; border-radius: 15px; border-right: 5px solid #dc2626;">
+                <h3 style="color: #dc2626; margin-bottom: 15px;">❌ ללא אב מוצר</h3>
+                <ul style="list-style: none; padding: 0; color: #333;">
+                    <li style="padding: 8px 0;">❌ אי אפשר להשוות בין חנויות</li>
+                    <li style="padding: 8px 0;">❌ אי אפשר להשוות בין מדינות</li>
+                    <li style="padding: 8px 0;">❌ אי אפשר לעקוב אחר טרנדים</li>
+                    <li style="padding: 8px 0;">❌ אי אפשר להמליץ על תחליפים</li>
+                    <li style="padding: 8px 0; font-weight: bold; color: #dc2626;">❌ המחיר חסר ערך!</li>
+                </ul>
+            </div>
+
+            <div style="background: #d1fae5; padding: 20px; border-radius: 15px; border-right: 5px solid #10b981;">
+                <h3 style="color: #10b981; margin-bottom: 15px;">✅ עם אב מוצר</h3>
+                <ul style="list-style: none; padding: 0; color: #333;">
+                    <li style="padding: 8px 0;">✅ השוואה בין 1000+ חנויות</li>
+                    <li style="padding: 8px 0;">✅ השוואה בין 4 מדינות</li>
+                    <li style="padding: 8px 0;">✅ מעקב אחר היסטוריה</li>
+                    <li style="padding: 8px 0;">✅ המלצות חכמות</li>
+                    <li style="padding: 8px 0; font-weight: bold; color: #10b981;">✅ ערך אמיתי למשתמש!</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 25px; border-radius: 15px; margin-top: 20px;">
+            <h3 style="color: #7c3aed; margin-bottom: 15px; font-size: 20px;">📊 דוגמה: חיפוש מחיר</h3>
+
+            <div
+                style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 15px 0; font-family: 'Courier New', monospace; direction: ltr; text-align: left;">
+                -- WITHOUT Master Product (חסר ערך!)
+                SELECT price FROM prices
+                WHERE product_id = 54321
+                -- Result: ₪5.90
+                -- אבל... מה זה? איפה? איך להשוות?
+
+                -- WITH Master Product (שימושי!)
+                SELECT
+                mp.name as product_name,
+                p.price,
+                s.name as store_name,
+                s.city,
+                COUNT(*) OVER() as total_stores,
+                RANK() OVER(ORDER BY p.price) as price_rank
+                FROM prices p
+                JOIN product_master_links pml ON p.product_id = pml.regional_product_id
+                JOIN master_products mp ON pml.master_product_id = mp.id
+                JOIN stores s ON p.store_id = s.id
+                WHERE mp.master_id = 'tnuva-milk-3pct-1l'
+                ORDER BY p.price
+
+                -- Result:
+                -- Tnuva Milk 3% | ₪5.90 | רמי לוי | תל אביב | Rank: 1/150
+                -- עכשיו יש הקשר מלא!
+            </div>
+        </div>
+
+        <div
+            style="background: #fbbf24; color: #78350f; padding: 25px; border-radius: 15px; margin-top: 20px; text-align: center;">
+            <div style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">
+                🏆 זה הפטנט של Gogobe!
+            </div>
+            <div style="font-size: 18px;">
+                המערכת היחידה בעולם שמקשרת מחירים לאב מוצר גלובלי<br>
+                ומאפשרת השוואה אמיתית בין מדינות ורשתות.
+            </div>
+            <a href="master-product.html"
+                style="display: inline-block; margin-top: 20px; padding: 15px 30px; background: #7c3aed; color: white; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 18px;">
+                👑 קרא עוד על אב מוצר
+            </a>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

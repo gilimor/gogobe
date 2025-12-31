@@ -1,0 +1,356 @@
+{
+  "category": "Grocery",
+  "fetched_at": "2025-12-25T21:06:59.656388",
+  "items": [
+    {
+      "itemId": "WM-141577",
+      "name": "Grocery Product 1",
+      "salePrice": 42.15,
+      "upc": "12345627847",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-826555",
+      "name": "Grocery Product 2",
+      "salePrice": 33.23,
+      "upc": "12345646272",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-802628",
+      "name": "Grocery Product 3",
+      "salePrice": 41.13,
+      "upc": "12345638043",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-747619",
+      "name": "Grocery Product 4",
+      "salePrice": 24.25,
+      "upc": "12345648897",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-570210",
+      "name": "Grocery Product 5",
+      "salePrice": 43.56,
+      "upc": "12345611691",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-398389",
+      "name": "Grocery Product 6",
+      "salePrice": 9.8,
+      "upc": "12345699743",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-304426",
+      "name": "Grocery Product 7",
+      "salePrice": 23.04,
+      "upc": "12345679017",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-434061",
+      "name": "Grocery Product 8",
+      "salePrice": 23.84,
+      "upc": "12345659347",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-207103",
+      "name": "Grocery Product 9",
+      "salePrice": 36.67,
+      "upc": "12345663415",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-269956",
+      "name": "Grocery Product 10",
+      "salePrice": 22.41,
+      "upc": "12345619086",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-152599",
+      "name": "Grocery Product 11",
+      "salePrice": 32.11,
+      "upc": "12345640128",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-808920",
+      "name": "Grocery Product 12",
+      "salePrice": 43.21,
+      "upc": "12345678978",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-718528",
+      "name": "Grocery Product 13",
+      "salePrice": 5.22,
+      "upc": "12345690347",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-471546",
+      "name": "Grocery Product 14",
+      "salePrice": 43.38,
+      "upc": "12345641970",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-185208",
+      "name": "Grocery Product 15",
+      "salePrice": 14.36,
+      "upc": "12345693183",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-733127",
+      "name": "Grocery Product 16",
+      "salePrice": 2.23,
+      "upc": "12345617169",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-553298",
+      "name": "Grocery Product 17",
+      "salePrice": 25.98,
+      "upc": "12345669718",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-176416",
+      "name": "Grocery Product 18",
+      "salePrice": 16.94,
+      "upc": "12345614843",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-361375",
+      "name": "Grocery Product 19",
+      "salePrice": 2.88,
+      "upc": "12345689756",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-619034",
+      "name": "Grocery Product 20",
+      "salePrice": 29.2,
+      "upc": "12345614426",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-963581",
+      "name": "Grocery Product 21",
+      "salePrice": 33.65,
+      "upc": "12345636163",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-344620",
+      "name": "Grocery Product 22",
+      "salePrice": 37.51,
+      "upc": "12345696854",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-573961",
+      "name": "Grocery Product 23",
+      "salePrice": 26.99,
+      "upc": "12345692307",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-795069",
+      "name": "Grocery Product 24",
+      "salePrice": 44.87,
+      "upc": "12345613798",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-864778",
+      "name": "Grocery Product 25",
+      "salePrice": 27.08,
+      "upc": "12345653750",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-708384",
+      "name": "Grocery Product 26",
+      "salePrice": 17.59,
+      "upc": "12345618559",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-132041",
+      "name": "Grocery Product 27",
+      "salePrice": 9.6,
+      "upc": "12345619199",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-522384",
+      "name": "Grocery Product 28",
+      "salePrice": 45.23,
+      "upc": "12345651247",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-860006",
+      "name": "Grocery Product 29",
+      "salePrice": 40.23,
+      "upc": "12345633560",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-624627",
+      "name": "Grocery Product 30",
+      "salePrice": 8.82,
+      "upc": "12345682109",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-213449",
+      "name": "Grocery Product 31",
+      "salePrice": 47.14,
+      "upc": "12345657740",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-773475",
+      "name": "Grocery Product 32",
+      "salePrice": 23.83,
+      "upc": "12345617340",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-657755",
+      "name": "Grocery Product 33",
+      "salePrice": 5.93,
+      "upc": "12345636037",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-305027",
+      "name": "Grocery Product 34",
+      "salePrice": 38.97,
+      "upc": "12345630247",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-894904",
+      "name": "Grocery Product 35",
+      "salePrice": 18.07,
+      "upc": "12345636660",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-179181",
+      "name": "Grocery Product 36",
+      "salePrice": 44.65,
+      "upc": "12345615502",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-873924",
+      "name": "Grocery Product 37",
+      "salePrice": 21.86,
+      "upc": "12345616637",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-624906",
+      "name": "Grocery Product 38",
+      "salePrice": 43.45,
+      "upc": "12345649965",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-655291",
+      "name": "Grocery Product 39",
+      "salePrice": 34.08,
+      "upc": "12345640844",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-307212",
+      "name": "Grocery Product 40",
+      "salePrice": 3.01,
+      "upc": "12345667498",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-659920",
+      "name": "Grocery Product 41",
+      "salePrice": 47.28,
+      "upc": "12345677944",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-787683",
+      "name": "Grocery Product 42",
+      "salePrice": 16.16,
+      "upc": "12345682502",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-914099",
+      "name": "Grocery Product 43",
+      "salePrice": 21.39,
+      "upc": "12345624399",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-292120",
+      "name": "Grocery Product 44",
+      "salePrice": 31.83,
+      "upc": "12345668012",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-462688",
+      "name": "Grocery Product 45",
+      "salePrice": 34.15,
+      "upc": "12345665782",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-328426",
+      "name": "Grocery Product 46",
+      "salePrice": 20.64,
+      "upc": "12345640846",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-738742",
+      "name": "Grocery Product 47",
+      "salePrice": 16.08,
+      "upc": "12345615689",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-709461",
+      "name": "Grocery Product 48",
+      "salePrice": 2.75,
+      "upc": "12345698685",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-498720",
+      "name": "Grocery Product 49",
+      "salePrice": 27.13,
+      "upc": "12345672606",
+      "shortDescription": "Imported from Walmart US"
+    },
+    {
+      "itemId": "WM-895298",
+      "name": "Grocery Product 50",
+      "salePrice": 38.27,
+      "upc": "12345655433",
+      "shortDescription": "Imported from Walmart US"
+    }
+  ]
+}

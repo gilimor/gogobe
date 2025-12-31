@@ -1,0 +1,295 @@
+﻿<Root>
+  <XmlDocVersion>19</XmlDocVersion>
+  <ChainId>7290103152017</ChainId>
+  <SubChainId>1</SubChainId>
+  <StoreId>025</StoreId>
+  <BikoretNo>0</BikoretNo>
+  <DllVerNo>9.4.0.50</DllVerNo>
+  <Items Count="15">
+    <Item>
+      <PriceUpdateDate>2018-07-25 16:13:31</PriceUpdateDate>
+      <ItemCode>7290000446721</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מארז פריכיות אורז ב.</ItemName>
+      <ManufacturerName>בטר אנד דיפרנט</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>מארז פריכיות אורז ב.</ManufacturerItemDescription>
+      <UnitQty>גרמים</UnitQty>
+      <Quantity>480.00</Quantity>
+      <UnitOfMeasure>100 גרם</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>14.90</ItemPrice>
+      <UnitOfMeasurePrice>3.1042</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>301697</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2020-10-22 07:06:17</PriceUpdateDate>
+      <ItemCode>7290009003369</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>אפרסמון קרמבו</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>אפרסמון קרמבו</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>14.90</ItemPrice>
+      <UnitOfMeasurePrice>14.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>343739</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2021-02-14 11:28:59</PriceUpdateDate>
+      <ItemCode>7290009000313</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>גזר</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>גזר</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>3.90</ItemPrice>
+      <UnitOfMeasurePrice>3.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>301321</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2021-02-14 11:29:00</PriceUpdateDate>
+      <ItemCode>7290009001419</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>חציל</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>חציל</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>5.90</ItemPrice>
+      <UnitOfMeasurePrice>5.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>300798</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2021-02-14 11:29:00</PriceUpdateDate>
+      <ItemCode>7290009001518</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פלפל ירוק בהיר</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>פלפל ירוק בהיר</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>6.90</ItemPrice>
+      <UnitOfMeasurePrice>6.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>300816</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2021-02-14 11:29:00</PriceUpdateDate>
+      <ItemCode>7290009001549</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פלפל ירוק כהה</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>פלפל ירוק כהה</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>6.90</ItemPrice>
+      <UnitOfMeasurePrice>6.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>300820</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2021-02-14 11:29:00</PriceUpdateDate>
+      <ItemCode>7290009001594</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פלפל שושקה</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>פלפל שושקה</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>6.90</ItemPrice>
+      <UnitOfMeasurePrice>6.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>300827</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2021-02-14 11:29:00</PriceUpdateDate>
+      <ItemCode>7290009005325</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>לימון ברשת</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>לימון ברשת</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>5.90</ItemPrice>
+      <UnitOfMeasurePrice>5.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>303053</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2024-08-06 07:07:24</PriceUpdateDate>
+      <ItemCode>7290009005707</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>רימון</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>רימון</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>11.90</ItemPrice>
+      <UnitOfMeasurePrice>11.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>301987</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2024-09-04 11:47:55</PriceUpdateDate>
+      <ItemCode>7290009006810</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>אפרסמון</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>אפרסמון</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>13.90</ItemPrice>
+      <UnitOfMeasurePrice>13.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>302214</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-06-08 07:32:05</PriceUpdateDate>
+      <ItemCode>72940761</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מילקי שוקולד 133 גרם</ItemName>
+      <ManufacturerName>שטראוס</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>מילקי שוקולד 133 גרם</ManufacturerItemDescription>
+      <UnitQty>מיליליטרים</UnitQty>
+      <Quantity>133.00</Quantity>
+      <UnitOfMeasure>100 מ"ל</UnitOfMeasure>
+      <bIsWeighted>0</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>3.00</ItemPrice>
+      <UnitOfMeasurePrice>2.2556</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>302529</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-07-20 06:15:09</PriceUpdateDate>
+      <ItemCode>7290002069072</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פרגית עוף טרי פרימה</ItemName>
+      <ManufacturerName>עוף טוב</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>פרגית עוף טרי פרימה</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>49.90</ItemPrice>
+      <UnitOfMeasurePrice>49.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>303326</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-09-03 08:57:03</PriceUpdateDate>
+      <ItemCode>7290009001501</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פלפל אדום</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>פלפל אדום</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>7.90</ItemPrice>
+      <UnitOfMeasurePrice>7.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>300815</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-09-03 08:57:03</PriceUpdateDate>
+      <ItemCode>7290009001570</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>פלפל צהוב</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>פלפל צהוב</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>7.90</ItemPrice>
+      <UnitOfMeasurePrice>7.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>300826</ItemId>
+    </Item>
+    <Item>
+      <PriceUpdateDate>2025-09-03 08:57:03</PriceUpdateDate>
+      <ItemCode>7290009000207</ItemCode>
+      <ItemType>1</ItemType>
+      <ItemName>מלפפון</ItemName>
+      <ManufacturerName>אראל תוצרת חקלאית בע</ManufacturerName>
+      <ManufactureCountry>ישראל</ManufactureCountry>
+      <ManufacturerItemDescription>מלפפון</ManufacturerItemDescription>
+      <UnitQty>קילוגרמים</UnitQty>
+      <Quantity>1.00</Quantity>
+      <UnitOfMeasure>ק"ג</UnitOfMeasure>
+      <bIsWeighted>1</bIsWeighted>
+      <QtyInPackage>לא ידוע</QtyInPackage>
+      <ItemPrice>5.90</ItemPrice>
+      <UnitOfMeasurePrice>5.9000</UnitOfMeasurePrice>
+      <AllowDiscount>1</AllowDiscount>
+      <ItemStatus>1</ItemStatus>
+      <ItemId>300902</ItemId>
+    </Item>
+  </Items>
+</Root>

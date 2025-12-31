@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogobe - תכנית יישום</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 30px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .nav {
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            padding: 8px 16px;
+            background: #10b981;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .nav a:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .nav a.active {
+            background: #059669;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .week-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-right: 5px solid #10b981;
+        }
+
+        .week-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .week-number {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .week-title h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .week-title p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-item {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-right: 4px solid #10b981;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .task-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #10b981;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #10b981;
+            font-size: 18px;
+        }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .task-content strong {
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .task-content small {
+            color: #666;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: width 0.5s;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #10b981;
+        }
+
+        .stat-card .number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .label {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🗺️ תכנית יישום - Gogobe</h1>
+        <p>30 ימים ל-POC עובד - צעד אחר צעד</p>
+    </div>
+
+    <div class="nav">
+        <a href="index.html">🏠 דף הבית</a>
+        <a href="price-flow.html">💰 זרימת מחירים</a>
+        <a href="implementation.html" class="active">🗺️ תכנית יישום</a>
+        <a href="categories.html">🗂️ ניהול קטגוריות</a>
+        <a href="microservices-documentation.html">🔧 Microservices</a>
+        <a href="../frontend/index.html">🔍 חזרה לאתר</a>
+    </div>
+
+    <div class="container">
+        <!-- Progress Overview -->
+        <div class="week-section">
+            <h2 style="margin-bottom: 20px;">📊 התקדמות כללית</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%;">0% - מתחילים!</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">30</div>
+                    <div class="label">ימים ל-POC</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">19</div>
+                    <div class="label">Microservices</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">7</div>
+                    <div class="label">Core Services</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">4</div>
+                    <div class="label">אזורים גלובליים</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 1 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">1</div>
+                <div class="week-title">
+                    <h2>שבוע 1: Import Service</h2>
+                    <p>ימים 1-7 • הבסיס של הכל</p>
+                </div>
+            </div>
+
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 1-2: Setup פרויקט</strong>
+                        <small>Go modules, Docker, Git repository</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 3-4: XML Parser</strong>
+                        <small>קריאת קבצי GZ, parsing XML, validation</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 5-6: Kafka Producer</strong>
+                        <small>שליחה ל-3 topics: stores.raw, products.raw, prices.raw</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 7: Testing</strong>
+                        <small>בדיקה עם קובץ אמיתי, 100K products</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Week 2 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">2</div>
+                <div class="week-title">
+                    <h2>שבוע 2: Product & Store Processors</h2>
+                    <p>ימים 8-14 • Get-or-Create Logic</p>
+                </div>
+            </div>
+
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 8-9: Redis Setup</strong>
+                        <small>Cache layer, warmup strategy</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 10-11: Store Processor</strong>
+                        <small>Get-or-Create stores, 3-tier lookup</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 12-13: Product Processor</strong>
+                        <small>Get-or-Create products, cache optimization</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 14: Integration Test</strong>
+                        <small>Import → Store → Product pipeline</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Week 3 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">3</div>
+                <div class="week-title">
+                    <h2>שבוע 3: Price Processor & Geocoding</h2>
+                    <p>ימים 15-21 • המחירים זמינים!</p>
+                </div>
+            </div>
+
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 15-16: upsert_price Function</strong>
+                        <small>PostgreSQL function, deduplication logic</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 17-18: Price Processor</strong>
+                        <small>Batch insert (1000 prices), performance tuning</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 19-20: Geocoding Service</strong>
+                        <small>OSM API, cache, rate limiting</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 21: End-to-End Test</strong>
+                        <small>XML → Prices in DB, verify performance</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Week 4 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">4</div>
+                <div class="week-title">
+                    <h2>שבוע 4: LLM & Polish</h2>
+                    <p>ימים 22-30 • POC Ready!</p>
+                </div>
+            </div>
+
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 22-24: Master Product Matching</strong>
+                        <small>LLM integration, barcode matching, embedding search</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 25-26: Currency Conversion</strong>
+                        <small>Exchange rates, global_prices table</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 27-28: Monitoring</strong>
+                        <small>Prometheus, Grafana dashboards</small>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox">☐</div>
+                    <div class="task-content">
+                        <strong>יום 29-30: Demo Prep</strong>
+                        <small>Load testing, documentation, presentation</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Success Criteria -->
+        <div class="week-section"
+            style="border-right-color: #f59e0b; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);">
+            <h2 style="color: #f59e0b; margin-bottom: 20px;">✅ קריטריוני הצלחה</h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h3 style="color: #333; margin-bottom: 15px;">ביצועים</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #fde68a;">
+                            ✅ 100K מחירים ב-< 60 שניות </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #fde68a;">
+                            ✅ Cache Hit Rate > 95%
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #fde68a;">
+                            ✅ אפס כפילויות במחירים
+                        </li>
+                        <li style="padding: 8px 0;">
+                            ✅ אפס כפילויות בסניפים
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="color: #333; margin-bottom: 15px;">איכות נתונים</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #fde68a;">
+                            ✅ כל מוצר עם ברקוד תקין
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #fde68a;">
+                            ✅ כל סניף עם GPS (תוך 24 שעות)
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #fde68a;">
+                            ✅ כל מחיר עם timestamp
+                        </li>
+                        <li style="padding: 8px 0;">
+                            ✅ היסטוריית מחירים מלאה
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="week-section"
+            style="border-right-color: #6366f1; background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);">
+            <h2 style="color: #6366f1; margin-bottom: 20px;">🚀 לאחר ה-POC</h2>
+
+            <ul class="task-list">
+                <li class="task-item" style="border-right-color: #6366f1;">
+                    <div class="task-checkbox" style="border-color: #6366f1; color: #6366f1;">☐</div>
+                    <div class="task-content">
+                        <strong>חודש 2: Post-Processing Services</strong>
+                        <small>Statistics, Cataloging, Merge, Validation</small>
+                    </div>
+                </li>
+                <li class="task-item" style="border-right-color: #6366f1;">
+                    <div class="task-checkbox" style="border-color: #6366f1; color: #6366f1;">☐</div>
+                    <div class="task-content">
+                        <strong>חודש 3: Infrastructure Services</strong>
+                        <small>Cache Manager, Duplicate Cleaner, Category Manager</small>
+                    </div>
+                </li>
+                <li class="task-item" style="border-right-color: #6366f1;">
+                    <div class="task-checkbox" style="border-color: #6366f1; color: #6366f1;">☐</div>
+                    <div class="task-content">
+                        <strong>חודש 4-6: Production Deployment</strong>
+                        <small>Kubernetes, Multi-region, SSL, Backups</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

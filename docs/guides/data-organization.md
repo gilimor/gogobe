@@ -217,3 +217,6 @@ rmdir /s /q "backend\data\supermarkets\kingstore\chain-*\stores\*\prices\2025-10
 תאריך: 20 דצמבר 2025
 
 
+
+
+

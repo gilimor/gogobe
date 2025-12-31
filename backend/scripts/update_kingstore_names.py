@@ -9,12 +9,14 @@ from psycopg2.extras import RealDictCursor
 
 sys.stdout.reconfigure(encoding='utf-8')
 
+import os
+
 DB_CONFIG = {
-    'dbname': 'gogobe',
-    'user': 'postgres',
-    'password': '9152245-Gl!',
-    'host': 'localhost',
-    'port': '5432'
+    'dbname': os.getenv('DB_NAME', 'gogobe'),
+    'user': os.getenv('DB_USER', 'postgres'),
+    'password': os.getenv('DB_PASSWORD', '9152245-Gl!'),
+    'host': os.getenv('DB_HOST', 'localhost'),
+    'port': os.getenv('DB_PORT', '5432')
 }
 
 # Store names from https://kingstore.binaprojects.com/Main.aspx
@@ -67,31 +69,34 @@ def update_store_names():
         updated_count = 0
         not_found_count = 0
         
-        for store_code, store_name in KINGSTORE_STORES.items():
-            # Find store by store_code
+        for store_id_key, city_name in KINGSTORE_STORES.items():
+            # Standardize name
+            new_name = f"קינג סטור - {city_name}"
+            
+            # Find store by chain_id and store_id
             cur.execute("""
-                SELECT id, store_name
+                SELECT id, name, city
                 FROM stores
-                WHERE store_code = %s
-            """, (store_code,))
+                WHERE chain_id = 1 AND store_id = %s
+            """, (store_id_key,))
             
             existing = cur.fetchone()
             
             if existing:
-                # Update name if different
-                if existing['store_name'] != store_name:
+                # Update name and city
+                if existing['name'] != new_name:
                     cur.execute("""
                         UPDATE stores
-                        SET store_name = %s, updated_at = NOW()
+                        SET name = %s, city = %s, updated_at = NOW()
                         WHERE id = %s
-                    """, (store_name, existing['id']))
+                    """, (new_name, city_name, existing['id']))
                     
-                    print(f"✅ Updated: [{store_code:3}] {existing['store_name']:30} → {store_name}")
+                    print(f"✅ Updated: [{store_id_key}] {existing['name']} -> {new_name}")
                     updated_count += 1
                 else:
-                    print(f"⏭️  Unchanged: [{store_code:3}] {store_name}")
+                    print(f"⏭️  Unchanged: [{store_id_key}] {new_name}")
             else:
-                print(f"❌ Not found in DB: [{store_code:3}] {store_name}")
+                print(f"❌ Not found in DB: [{store_id_key}] {city_name}")
                 not_found_count += 1
         
         conn.commit()
@@ -106,16 +111,17 @@ def update_store_names():
         # Show current state
         print("Current stores in database:")
         cur.execute("""
-            SELECT store_code, store_name, COUNT(pr.id) as price_count
+            SELECT store_id, name, city, COUNT(pr.id) as price_count
             FROM stores s
             LEFT JOIN prices pr ON s.id = pr.store_id
-            GROUP BY s.id, s.store_code, s.store_name
-            ORDER BY store_code::INTEGER
+            WHERE chain_id = 1
+            GROUP BY s.id, s.store_id, s.name, s.city
+            ORDER BY store_id::INTEGER ASC
         """)
         
         stores = cur.fetchall()
         for store in stores:
-            print(f"  [{store['store_code']:3}] {store['store_name']:35} ({store['price_count']:5} מחירים)")
+            print(f"  [{store['store_id']:3}] {str(store['name']):35} | {str(store['city']):15} ({store['price_count']:5} מחירים)")
         
     except Exception as e:
         conn.rollback()
@@ -128,5 +134,8 @@ def update_store_names():
 
 if __name__ == '__main__':
     update_store_names()
+
+
+
 
 
